@@ -1,0 +1,22 @@
+# Brand / streaming media pack (~3.1 GB). Not tracked; fetch with:
+#   ./scripts/fetch-assets.sh fetch
+# Everything under assets/ is ignored except the checksum manifest, which is
+# tracked inside the pack so the pack is self-verifying.
+/assets/*
+!/assets/assets.sha256
+
+# Download cache for the asset archive
+/.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Episode working data (renders, transcripts, intermediates)
+/episodes/
+
+# OS junk
+.DS_Store
+Thumbs.db
