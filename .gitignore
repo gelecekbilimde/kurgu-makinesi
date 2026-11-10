@@ -17,6 +17,9 @@ venv/
 # Episode working data (renders, transcripts, intermediates)
 /episodes/
 
+# Demo / PoC raw footage (tens of GB; delivered as Dropbox zips)
+/demo/
+
 # OS junk
 .DS_Store
 Thumbs.db

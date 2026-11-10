@@ -1,0 +1,808 @@
+{
+ "clip": "P1011087.MOV",
+ "fps": 25.0,
+ "keep_frames": [
+  [
+   73,
+   362
+  ],
+  [
+   516,
+   620
+  ],
+  [
+   755,
+   914
+  ],
+  [
+   1039,
+   1400
+  ],
+  [
+   1455,
+   1665
+  ],
+  [
+   1815,
+   2007
+  ],
+  [
+   2015,
+   2153
+  ],
+  [
+   2260,
+   2628
+  ],
+  [
+   2699,
+   2757
+  ],
+  [
+   2820,
+   2831
+  ],
+  [
+   2902,
+   3008
+  ],
+  [
+   3014,
+   3106
+  ],
+  [
+   3111,
+   3270
+  ],
+  [
+   3283,
+   3367
+  ],
+  [
+   3615,
+   3803
+  ],
+  [
+   3881,
+   4166
+  ],
+  [
+   4742,
+   5094
+  ],
+  [
+   5103,
+   5203
+  ],
+  [
+   5207,
+   5514
+  ],
+  [
+   5658,
+   5851
+  ],
+  [
+   5997,
+   6225
+  ],
+  [
+   6236,
+   6411
+  ],
+  [
+   6484,
+   6594
+  ],
+  [
+   6604,
+   6823
+  ],
+  [
+   6828,
+   6977
+  ],
+  [
+   6982,
+   7182
+  ],
+  [
+   7218,
+   7310
+  ],
+  [
+   7319,
+   7423
+  ],
+  [
+   7485,
+   7593
+  ],
+  [
+   7597,
+   8021
+  ],
+  [
+   8026,
+   8218
+  ],
+  [
+   8223,
+   8334
+  ],
+  [
+   8338,
+   8524
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake",
+   "start": 24.84,
+   "end": 29.48,
+   "how": "matched 'Dünya'",
+   "text": "Dünya ortalaması sanayi öncesine göre ilk kez bu kadar bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 36.8,
+   "end": 40.24,
+   "how": "matched '2025'de'",
+   "text": "2025'de de hemen arkasından geldi. Bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 105.56,
+   "end": 106.8,
+   "how": "matched 'Bu'",
+   "text": "Bu masa üç bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 110.68,
+   "end": 111.36,
+   "how": "sentence-start",
+   "text": "Sera bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 113.28,
+   "end": 115.12,
+   "how": "sentence-start",
+   "text": "Sera gazı salımları nasıl bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 134.48,
+   "end": 140.36,
+   "how": "sentence-start",
+   "text": "Kyoto protokolü de bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 141.16,
+   "end": 143.48,
+   "how": "matched 'Hatırlayanlar'",
+   "text": "Hatırlayanlar olacaktır. Kyoto protokolü bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 166.92,
+   "end": 169.68,
+   "how": "matched 'COP31'",
+   "text": "COP31 9-20 Kasım arasında bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 170.64,
+   "end": 180.64,
+   "how": "matched 'COP31'",
+   "text": "COP31 9-20 Kasım arasında Ansalya'da Expo'da yapılacak. Bir daha bir daha bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 181.52,
+   "end": 184.72,
+   "how": "matched 'COP31'",
+   "text": "COP31 9-20 Kasım 2026'da bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 186.32,
+   "end": 189.76,
+   "how": "matched 'COP31'",
+   "text": "COP31 9-20 Kasım 2026'da bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 221.2,
+   "end": 224.88,
+   "how": "matched '1,5'",
+   "text": "1,5 derecenin geçişi bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 234.36,
+   "end": 240.0,
+   "how": "matched 'Yani'",
+   "text": "Yani artık soru aşacak mıyız değil ne kadar ve ne kadar süre? Bir daha."
+  },
+  {
+   "kind": "retake",
+   "start": 256.24,
+   "end": 258.64,
+   "how": "sentence-start",
+   "text": "Yani bir daha."
+  },
+  {
+   "kind": "pause",
+   "start": 14.479999999999999,
+   "end": 20.64,
+   "how": "gap 6.48s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 56.0,
+   "end": 58.2,
+   "how": "gap 2.52s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 66.60000000000001,
+   "end": 72.6,
+   "how": "gap 6.32s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 80.28,
+   "end": 80.6,
+   "how": "gap 0.64s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 86.12,
+   "end": 90.39999999999999,
+   "how": "gap 4.60s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 120.32000000000001,
+   "end": 120.56,
+   "how": "gap 0.56s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 124.24000000000001,
+   "end": 124.44,
+   "how": "gap 0.52s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 130.79999999999998,
+   "end": 131.32,
+   "how": "gap 0.84s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 152.11999999999998,
+   "end": 155.24,
+   "how": "gap 3.44s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 203.76,
+   "end": 204.12,
+   "how": "gap 0.68s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 208.11999999999998,
+   "end": 208.28,
+   "how": "gap 0.48s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 249.0,
+   "end": 249.44,
+   "how": "gap 0.76s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 263.76,
+   "end": 264.15999999999997,
+   "how": "gap 0.72s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 272.92,
+   "end": 273.12,
+   "how": "gap 0.52s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 279.08,
+   "end": 279.28,
+   "how": "gap 0.52s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 287.28,
+   "end": 288.71999999999997,
+   "how": "gap 1.76s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 292.4,
+   "end": 292.76,
+   "how": "gap 0.68s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 296.92,
+   "end": 299.4,
+   "how": "gap 2.80s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 303.71999999999997,
+   "end": 303.88,
+   "how": "gap 0.48s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 320.84,
+   "end": 321.04,
+   "how": "gap 0.52s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 328.71999999999997,
+   "end": 328.92,
+   "how": "gap 0.52s",
+   "text": ""
+  },
+  {
+   "kind": "pause",
+   "start": 333.36,
+   "end": 333.52,
+   "how": "gap 0.48s",
+   "text": ""
+  }
+ ],
+ "params": {
+  "PAD_IN": 0.12,
+  "PAD_OUT": 0.2,
+  "MAX_GAP": 0.45,
+  "WINDOW": 30.0
+ },
+ "script_check": [
+  {
+   "t": 3.04,
+   "said": "Gelecek Film'de hoş geldiniz.",
+   "script": "Merhaba, Gelecek Bilimde'ye hoş geldiniz.",
+   "score": 0.8
+  },
+  {
+   "t": 4.76,
+   "said": "Bugün sizlerle COP31'i konuşacağız.",
+   "script": "Ev sahibi ve COP31 Başkanı.",
+   "score": 0.47
+  },
+  {
+   "t": 7.5600000000000005,
+   "said": "Bu zirve bu sene Antalya'da yapılıyor.",
+   "script": "Ama gelen talepler 3 milyar dolara yaklaşıyor.",
+   "score": 0.49
+  },
+  {
+   "t": 10.6,
+   "said": "Neden bu kadar önemli?",
+   "script": "Peki neden bu kadar kritik?",
+   "score": 0.68
+  },
+  {
+   "t": 12.32,
+   "said": "Gelin öncelikle bundan başlayalım.",
+   "script": "Gelin önce büyük başlıklara bakalım.",
+   "score": 0.65
+  },
+  {
+   "t": 20.76,
+   "said": "Öncelikle 2024 yılı ölçüm tarihinin en sıcak yılı oldu.",
+   "script": "2024, ölçüm tarihinin en sıcak yılı oldu.",
+   "score": 0.84
+  },
+  {
+   "t": 30.32,
+   "said": "Dünya ortalaması sanayi öncesine göre ilk kez bir yıl boyunca 1,5 dereceyi aştı.",
+   "script": "Dünya ortalaması, sanayi öncesine göre ilk kez bir yıl boyunca 1,5 dereceyi aştı.",
+   "score": 1.0
+  },
+  {
+   "t": 41.68,
+   "said": "2025'de hemen arkasından geldi.",
+   "script": "2025 de hemen arkasından geldi:",
+   "score": 0.98
+  },
+  {
+   "t": 44.44,
+   "said": "Kayıtlardaki en sıcak ikinci ya da üçüncü yıl.",
+   "script": "kayıtlardaki en sıcak ikinci ya da üçüncü yıl.",
+   "score": 1.0
+  },
+  {
+   "t": 47.36,
+   "said": "Şimdi düşünün 9 Kasım'da neredeyse dünyanın tüm ülkeleri bu sorunu konuşmak için tek bir şehre geliyor.",
+   "script": "9 Kasım'da, neredeyse dünyanın tüm ülkeleri bu sorunu konuşmak için tek bir şehre geliyor.",
+   "score": 0.93
+  },
+  {
+   "t": 54.28,
+   "said": "O şehir Antalya.",
+   "script": "O şehir Antalya.",
+   "score": 1.0
+  },
+  {
+   "t": 58.32,
+   "said": "Merhaba Gelecek Film'de hoş geldiniz.",
+   "script": "Merhaba, Gelecek Bilimde'ye hoş geldiniz.",
+   "score": 0.93
+  },
+  {
+   "t": 60.72,
+   "said": "Bugün Türkiye'nin ilk kez sahipliğini yaptığı dev bir zirveyi konuşacağız.",
+   "script": "Bugün Türkiye'nin ilk kez ev sahipliği yaptığı dev bir zirveyi konuşacağız:",
+   "score": 0.97
+  },
+  {
+   "t": 65.44,
+   "said": "COP31.",
+   "script": "On the road to COP31:",
+   "score": 0.4
+  },
+  {
+   "t": 72.72,
+   "said": "Çayınızı kahvenizi alın.",
+   "script": "Ayrıştırıldı, kredi iddiası silindi",
+   "score": 0.46
+  },
+  {
+   "t": 74.2,
+   "said": "Arkaya yaslanın.",
+   "script": "Ama şu rakama bakın:",
+   "score": 0.53
+  },
+  {
+   "t": 75.28,
+   "said": "Ben size bu COP'un ne olduğunu bir anlatayım.",
+   "script": "Şimdi gelin, COP'un ne olduğuna ve ne olmadığına bakalım.",
+   "score": 0.52
+  },
+  {
+   "t": 77.44,
+   "said": "Öncelikle COP'un anlamına gelelim.",
+   "script": "Şimdi gelin, COP'un ne olduğuna ve ne olmadığına bakalım.",
+   "score": 0.47
+  },
+  {
+   "t": 80.72,
+   "said": "Conference of the Parties anlamına geliyor.",
+   "script": "COP (kap), \"Conference of the Parties\" (konferıns ov dı partiz) demek.",
+   "score": 0.62
+  },
+  {
+   "t": 83.4,
+   "said": "Yani Türkçesi taraflar konferansı.",
+   "script": "Ama Türk sanayisi için en az COP kadar önemli.",
+   "score": 0.41
+  },
+  {
+   "t": 90.52,
+   "said": "Masada 198 taraf var.",
+   "script": "Masada 198 taraf var:",
+   "score": 1.0
+  },
+  {
+   "t": 92.92,
+   "said": "197 ülke ve Avrupa Birliği.",
+   "script": "197 ülke ve Avrupa Birliği.",
+   "score": 1.0
+  },
+  {
+   "t": 95.12,
+   "said": "1995'den bu yana neredeyse her yıl Birleşmiş Milletler çatısı altında toplanıyorlar.",
+   "script": "1995'ten bu yana neredeyse her yıl, Birleşmiş Milletler çatısı altında toplanıyorlar.",
+   "score": 0.99
+  },
+  {
+   "t": 108.08,
+   "said": "Bu masada üç konu konuşuluyor.",
+   "script": "Bu masada üç şey konuşulur:",
+   "score": 0.84
+  },
+  {
+   "t": 112.92,
+   "said": "Bir.",
+   "script": "Sembolik bir sahne.",
+   "score": 0.29
+  },
+  {
+   "t": 116.2,
+   "said": "Birinci konu sera gazı salımları nasıl ve ne kadar azaltılacak.",
+   "script": "Sera gazı salımları nasıl ve ne kadar azaltılacak?",
+   "score": 0.88
+  },
+  {
+   "t": 120.68,
+   "said": "İkinci konu parayı kim, kime ne kadar verecek.",
+   "script": "Parayı kim, kime, ne kadar verecek?",
+   "score": 0.84
+  },
+  {
+   "t": 124.56,
+   "said": "Üçüncü konu ise bilimin söylediği ile ülkelerin vaat ettiği arasındaki açık nasıl kapanacak.",
+   "script": "Bilimin söylediği ile ülkelerin vaat ettiği arasındaki açık nasıl kapanacak?",
+   "score": 0.9
+  },
+  {
+   "t": 131.44,
+   "said": "İşte bu üç önemli konu Antalya'da da konuşulacak.",
+   "script": "Bu masada üç şey konuşulur:",
+   "score": 0.44
+  },
+  {
+   "t": 144.72,
+   "said": "Hatırlayanlar olacaktır.",
+   "script": "\"Ar-Ge yarışı\" olarak düzeltildi",
+   "score": 0.46
+  },
+  {
+   "t": 146.0,
+   "said": "Kyoto protokolü diye bir şey vardı.",
+   "script": "Kyoto Protokolü de, Paris Anlaşması da bu masada doğdu.",
+   "score": 0.51
+  },
+  {
+   "t": 147.84,
+   "said": "İşte bu protokol de Paris anlaşması da bu masada doğdu.",
+   "script": "Kyoto Protokolü de, Paris Anlaşması da bu masada doğdu.",
+   "score": 0.9
+  },
+  {
+   "t": 155.36,
+   "said": "Yani COP sıradan bir toplantı değil.",
+   "script": "Yani COP sıradan bir toplantı değil; dünyanın iklim kurallarının yazıldığı yer.",
+   "score": 0.62
+  },
+  {
+   "t": 157.96,
+   "said": "Dünyanın iklim kurallarının yazıldığı bir yer.",
+   "script": "Yani COP sıradan bir toplantı değil; dünyanın iklim kurallarının yazıldığı yer.",
+   "score": 0.67
+  },
+  {
+   "t": 160.72,
+   "said": "Peki COP31 neden dönüm noktası?",
+   "script": "Peki neden bu kadar kritik?",
+   "score": 0.54
+  },
+  {
+   "t": 165.4,
+   "said": "Gelin bir de buna bakalım.",
+   "script": "Gelin önce büyük başlıklara bakalım.",
+   "score": 0.6
+  },
+  {
+   "t": 189.8,
+   "said": "COP31 9-20 Kasım arasında Antalya'da Expo Center'da yapılacak.",
+   "script": "COP31, 9–20 Kasım 2026'da Antalya EXPO'da yapılacak.",
+   "score": 0.82
+  },
+  {
+   "t": 196.08,
+   "said": "12 gün sürecek.",
+   "script": "12 gün sürecek.",
+   "score": 1.0
+  },
+  {
+   "t": 197.4,
+   "said": "Yüzden fazla devlet ve hükümet başkanı 50 ila 70 bin kişi de ziyaretçi olarak bekleniyor.",
+   "script": "100'den fazla devlet ve hükümet başkanı, 50–70 bin kişi bekleniyor.",
+   "score": 0.79
+  },
+  {
+   "t": 204.24,
+   "said": "Peki neden bu kadar kritik?",
+   "script": "Peki neden bu kadar kritik?",
+   "score": 1.0
+  },
+  {
+   "t": 206.44,
+   "said": "4 tane neden sayabiliriz.",
+   "script": "Dört nedeni var.",
+   "score": 0.51
+  },
+  {
+   "t": 208.4,
+   "said": "Birincisi zaman daralıyor.",
+   "script": "İkisi de bulunamadı, doğrulanamadı.",
+   "score": 0.45
+  },
+  {
+   "t": 209.92,
+   "said": "Birleşmiş Milletler Çevre Programı'nın son raporuna göre ülkeler bütün vaatlerini tuttursa bile dünya bu yüz yıl içinde 2,3 ila 2,5 derece  ısınacak.",
+   "script": "BM Çevre Programı'nın son raporuna göre ülkeler bütün vaatlerini tutsa bile dünya bu yüzyıl 2,3–2,5 derece ısınacak.",
+   "score": 0.87
+  },
+  {
+   "t": 226.44,
+   "said": "1,5 derecenin geçici olarak aşılması ise büyük olasılıkla önümüzdeki 10 yıl içinde gerçekleşecek.",
+   "script": "1,5 derecenin geçici olarak aşılması ise büyük olasılıkla önümüzdeki 10 yıl içinde gerçekleşecek.",
+   "score": 1.0
+  },
+  {
+   "t": 240.0,
+   "said": "Yani artık soru aşacak mıyız geçti.",
+   "script": "Yani artık soru \"aşacak mıyız?\" değil, \"ne kadar ve ne kadar süre?\"",
+   "score": 0.66
+  },
+  {
+   "t": 244.8,
+   "said": "Ne kadar aşacağız ve ne kadar sürede bu aşım gerçekleşeceği geldi.",
+   "script": "Bunlar gönüllü hedefler; ne kadar ülkenin destek vereceği Antalya'da belli olacak.",
+   "score": 0.44
+  },
+  {
+   "t": 249.56,
+   "said": "İkinci önemli konu söz değil uygulama zamanı.",
+   "script": "Söz değil, uygulama zamanı.",
+   "score": 0.72
+  },
+  {
+   "t": 253.28,
+   "said": "Türkiye zirveyi uygulama kopu olarak tanımlıyor.",
+   "script": "Türkiye zirveyi \"Uygulama COP'u\" olarak tanımlıyor.",
+   "score": 0.98
+  },
+  {
+   "t": 259.48,
+   "said": "Yeni vaatlerden çok verilmiş sözlerin sahaya inmesi konuşulacak.",
+   "script": "Yeni vaatlerden çok, verilmiş sözlerin sahaya inmesi konuşulacak.",
+   "score": 1.0
+  },
+  {
+   "t": 264.28,
+   "said": "Üçüncü kritik nokta ise sembolik bir sahne.",
+   "script": "Sembolik bir sahne.",
+   "score": 0.6
+  },
+  {
+   "t": 267.28,
+   "said": "Antalya iklim bilincilerinin sıcak nokta dediği Akdeniz Havzası'nın tam ortasında kalıyor.",
+   "script": "Antalya, iklim bilimcilerin \"sıcak nokta\" dediği Akdeniz havzasının tam ortasında.",
+   "score": 0.93
+  },
+  {
+   "t": 273.24,
+   "said": "Kuraklık, orman yangınları, sıcak hava dalgaları bu bölgede iklim değişikliği bir tahmin değil.",
+   "script": "Kuraklık, orman yangınları, sıcak hava dalgaları:",
+   "score": 0.67
+  },
+  {
+   "t": 279.4,
+   "said": "Her yaz yaşanan bir gerçek oldu adeta.",
+   "script": "Bu bölgede iklim değişikliği bir tahmin değil, her yaz yaşanan bir gerçek.",
+   "score": 0.48
+  },
+  {
+   "t": 281.8,
+   "said": "Keza Gelecek Bilimde kanalında da bununla ilgili benzer videolar çekmiştik.",
+   "script": "Yaklaşık üç yıl süren tıkanıklıkta işin ucu ilginç bir yere varmıştı:",
+   "score": 0.46
+  },
+  {
+   "t": 288.84,
+   "said": "Dördüncü kritik nokta ise benzeri görünmemiş bir model.",
+   "script": "Benzeri görülmemiş bir model.",
+   "score": 0.66
+  },
+  {
+   "t": 292.88,
+   "said": "Türkiye ev sahibi ve başkan Avustralya ise müzakereliği yönetiyor.",
+   "script": "Türkiye ev sahibi ve başkan; Avustralya ise müzakereleri yönetiyor.",
+   "score": 0.97
+  },
+  {
+   "t": 299.52,
+   "said": "Dördüncü kritik nokta ise benzeri görünmemiş bir ev sahipliği modeli.",
+   "script": "Benzeri görülmemiş bir model.",
+   "score": 0.56
+  },
+  {
+   "t": 304.0,
+   "said": "Yani burada şöyle bir şey olacak.",
+   "script": "Bu masada üç şey konuşulur:",
+   "score": 0.45
+  },
+  {
+   "t": 305.44,
+   "said": "Türkiye ev sahibi olacak.",
+   "script": "Gelelim ev sahibi olarak bizim rolümüze.",
+   "score": 0.54
+  },
+  {
+   "t": 307.12,
+   "said": "Başkan ise Avustralya olacak ve müzakereliği yönetecek.",
+   "script": "Türkiye ev sahibi ve başkan; Avustralya ise müzakereleri yönetiyor.",
+   "score": 0.61
+  },
+  {
+   "t": 310.2,
+   "said": "Birleşmiş Milletler iklim tarihinde ilk kez bir zirvenin başkanlığı böyle paylaşılıyor.",
+   "script": "BM iklim tarihinde ilk kez bir zirvenin başkanlığı böyle paylaşılıyor.",
+   "score": 0.89
+  },
+  {
+   "t": 321.16,
+   "said": "Biliyorsunuz birlikte yaptığımızı daha önce konuşmuştuk.",
+   "script": "Bugün Türkiye'nin ilk kez ev sahipliği yaptığı dev bir zirveyi konuşacağız:",
+   "score": 0.41
+  },
+  {
+   "t": 324.16,
+   "said": "İşte bu ortaklaşa yapmanın mantığı da bu.",
+   "script": "TR-ETS'nin bu kadar önemli olmasının nedeni bu.",
+   "score": 0.43
+  },
+  {
+   "t": 326.88,
+   "said": "Biz ev sahibiz onlar yöneteceği.",
+   "script": "Gelelim ev sahibi olarak bizim rolümüze.",
+   "score": 0.51
+  },
+  {
+   "t": 329.04,
+   "said": "Kısacası COP31 12 günlük bir toplantıdan çok daha fazlası.",
+   "script": "Kısacası COP31, 12 günlük bir toplantıdan fazlası.",
+   "score": 0.91
+  },
+  {
+   "t": 333.64,
+   "said": "Önümüzdeki 10 yılın ekonomik ve çevresel rotasında çizileceği bir kavşak.",
+   "script": "Önümüzdeki on yılın ekonomik ve çevresel rotasının çizileceği bir kavşak.",
+   "score": 0.94
+  },
+  {
+   "t": 338.2,
+   "said": "Sec ceremoni olarak bir çevresel olacaktır.",
+   "script": "300 milyar dolarlık finans hedefinin nasıl dolacağı netleşecek mi?",
+   "score": 0.41
+  },
+  {
+   "t": 340.64,
+   "said": "chopsticks Mysterio",
+   "script": "COP26, Glasgow (İngiltere)",
+   "score": 0.38
+  }
+ ]
+}

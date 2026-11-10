@@ -1,0 +1,710 @@
+{
+ "version": 4,
+ "long_words": [
+  {
+   "start_f": 245,
+   "end_f": 286,
+   "text": "1992'de"
+  },
+  {
+   "start_f": 1195,
+   "end_f": 1255,
+   "text": "COP'un"
+  },
+  {
+   "start_f": 2635,
+   "end_f": 2763,
+   "text": "Küresel"
+  },
+  {
+   "start_f": 2819,
+   "end_f": 2976,
+   "text": "1,5"
+  },
+  {
+   "start_f": 6944,
+   "end_f": 7060,
+   "text": "Gelelim"
+  },
+  {
+   "start_f": 8158,
+   "end_f": 8256,
+   "text": "Bunun"
+  },
+  {
+   "start_f": 8612,
+   "end_f": 8726,
+   "text": "Bu"
+  },
+  {
+   "start_f": 9630,
+   "end_f": 9717,
+   "text": "Yani"
+  },
+  {
+   "start_f": 11314,
+   "end_f": 11362,
+   "text": "Ülkeler"
+  },
+  {
+   "start_f": 13611,
+   "end_f": 13684,
+   "text": "İşte"
+  }
+ ],
+ "second_transcript": null,
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011088.MOV",
+ "fps": 25,
+ "offset_f": -33,
+ "clip_end_f": 14388,
+ "keep_frames": [
+  [
+   50,
+   126
+  ],
+  [
+   139,
+   228
+  ],
+  [
+   235,
+   1201
+  ],
+  [
+   1248,
+   1400
+  ],
+  [
+   1409,
+   1479
+  ],
+  [
+   1512,
+   1522
+  ],
+  [
+   1559,
+   1847
+  ],
+  [
+   1855,
+   1985
+  ],
+  [
+   2750,
+   2868
+  ],
+  [
+   2897,
+   2995
+  ],
+  [
+   3003,
+   3180
+  ],
+  [
+   3187,
+   3247
+  ],
+  [
+   3254,
+   3388
+  ],
+  [
+   3396,
+   3428
+  ],
+  [
+   3441,
+   3469
+  ],
+  [
+   3489,
+   3503
+  ],
+  [
+   3634,
+   4326
+  ],
+  [
+   4442,
+   4505
+  ],
+  [
+   4521,
+   4566
+  ],
+  [
+   4593,
+   4742
+  ],
+  [
+   4755,
+   4903
+  ],
+  [
+   4911,
+   5181
+  ],
+  [
+   5194,
+   5249
+  ],
+  [
+   5350,
+   5451
+  ],
+  [
+   5459,
+   5529
+  ],
+  [
+   5537,
+   5602
+  ],
+  [
+   5610,
+   5683
+  ],
+  [
+   5860,
+   5890
+  ],
+  [
+   5940,
+   6055
+  ],
+  [
+   6064,
+   6243
+  ],
+  [
+   6347,
+   6456
+  ],
+  [
+   7501,
+   7597
+  ],
+  [
+   7604,
+   7933
+  ],
+  [
+   7949,
+   8083
+  ],
+  [
+   8096,
+   8136
+  ],
+  [
+   8249,
+   8337
+  ],
+  [
+   8450,
+   8486
+  ],
+  [
+   8505,
+   8570
+  ],
+  [
+   8591,
+   8618
+  ],
+  [
+   8697,
+   8714
+  ],
+  [
+   8732,
+   8767
+  ],
+  [
+   8876,
+   9285
+  ],
+  [
+   9299,
+   9404
+  ],
+  [
+   9413,
+   9578
+  ],
+  [
+   9966,
+   10191
+  ],
+  [
+   10217,
+   10337
+  ],
+  [
+   10479,
+   10560
+  ],
+  [
+   10569,
+   10584
+  ],
+  [
+   11347,
+   11495
+  ],
+  [
+   11512,
+   11595
+  ],
+  [
+   11611,
+   11750
+  ],
+  [
+   11761,
+   12084
+  ],
+  [
+   12192,
+   12203
+  ],
+  [
+   12224,
+   12685
+  ],
+  [
+   12924,
+   13141
+  ],
+  [
+   13189,
+   13424
+  ],
+  [
+   13678,
+   13733
+  ],
+  [
+   13743,
+   14036
+  ],
+  [
+   14047,
+   14237
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake-marker",
+   "start_f": 1478,
+   "end_f": 1490,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1502,
+   "end_f": 1509,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Burayı bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1995,
+   "end_f": 2095,
+   "how": "matched 'Küresel'",
+   "source": "primary",
+   "text": "Küresel uygulama hızlandırıcıları ve... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2128,
+   "end_f": 2231,
+   "how": "matched 'Küresel'",
+   "source": "primary",
+   "text": "Küresel uygulama hızlandırıcı... Hızlandırıcı... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2253,
+   "end_f": 2339,
+   "how": "matched 'Küresel'",
+   "source": "primary",
+   "text": "Küresel uygulama hızlandırıcı ve Belém 1... Bir daha, bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2366,
+   "end_f": 2569,
+   "how": "matched 'Küresel'",
+   "source": "primary",
+   "text": "Küresel uygulama hızlandırıcı ve Belém 1,5 misyonu 80'in aşkın ülkeye fosit yakın... Bir daha. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3428,
+   "end_f": 3440,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bir daha, bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3528,
+   "end_f": 3608,
+   "how": "matched 'Gelelim'",
+   "source": "primary",
+   "text": "Gelelim COP29'a. COP29'de... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4333,
+   "end_f": 4407,
+   "how": "matched 'Gördüğünüz'",
+   "source": "primary",
+   "text": "Gördüğünüz üzere buradan alınan sonuçlar... Pardon bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5249,
+   "end_f": 5257,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5294,
+   "end_f": 5336,
+   "how": "matched 'Şimdi'",
+   "source": "primary",
+   "text": "Şimdi gelelim 2002 bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5692,
+   "end_f": 5837,
+   "how": "matched 'Glasgow,'",
+   "source": "primary",
+   "text": "Glasgow, İngiltere'de yapılmış. Kömürün kademeli azaltılması ilk kez karar metni... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5889,
+   "end_f": 5895,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6254,
+   "end_f": 6317,
+   "how": "matched 'Bundan'",
+   "source": "primary",
+   "text": "Bundan bir önceki toplantı 2015 bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6455,
+   "end_f": 7147,
+   "how": "matched 'Fransa'nın'",
+   "source": "primary",
+   "text": "Fransa'da yapılmış. Paris Antlaşması  ısınmayı 2 santigrat derecenin oldukça antılda tutmak, 1,5 santigrat derece için ise çaba göstermek. Her ülke 5 yılda bir ulusal katkı beyanı yani NDC sunması kararı alınmış. Bunu biraz daha güzel yapalım. Durun. Tekrar. Gelelim 2015 COP21'e. Paris'in bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7177,
+   "end_f": 7226,
+   "how": "matched 'Fransa'",
+   "source": "primary",
+   "text": "Fransa'nın Paris Antlaşması bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7230,
+   "end_f": 7289,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Fransa Paris'te yapılan bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7316,
+   "end_f": 7471,
+   "how": "matched 'Gelelim'",
+   "source": "primary",
+   "text": "Gelelim Fransa'nın Paris şehrinde yapılan COP21'e. 2015 yılında yapıldı bu anlaşma bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8151,
+   "end_f": 8158,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 8333,
+   "end_f": 8442,
+   "how": "phrase 'ulusal katkı beyanı' repeated",
+   "source": "primary",
+   "text": "ulusal katkı beyanı sunması kararı alındı. Buna NDC deniliyor."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9585,
+   "end_f": 9630,
+   "how": "matched 'Yani'",
+   "source": "primary",
+   "text": "Yani siz bir... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9630,
+   "end_f": 9787,
+   "how": "matched 'Yani'",
+   "source": "primary",
+   "text": "Yani siz bir rapor sunuyorsunuz ama buna hedefe... Bir daha."
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 9807,
+   "end_f": 9942,
+   "how": "phrase 'Yani siz bir' repeated",
+   "source": "primary",
+   "text": "Yani siz bir rapor sunuyorsunuz. 5 yılda bir söylemiştim ama bu hedefe... Tekrar."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 10580,
+   "end_f": 11075,
+   "how": "matched 'Ülkeler'",
+   "source": "primary",
+   "text": "ülkeler verilerini paylaşmak istemiyor. Yorumlarda bu ülkeyi belirtebilirsiniz. Şimdi gelelim COP31 bu zincirin neresinde? Yani Türkiye'nin ne sahipliğini yapacağı, Antalya'da yapılacağı COP31 bu zincirin neresinde? İşte Paris Antlaşması'nın 10. yılından sonraki ilk zirve bu zirve olacak. Örnek bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 11148,
+   "end_f": 11177,
+   "how": "matched 'Ülkeler'",
+   "source": "primary",
+   "text": "Ülkeler bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 11196,
+   "end_f": 11315,
+   "how": "matched 'Ülkeler'",
+   "source": "primary",
+   "text": "Ülkeler 2025'te NDC 3.0 denen. 2015 bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12185,
+   "end_f": 12189,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12692,
+   "end_f": 12713,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Gelin bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12747,
+   "end_f": 12770,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Bunu bitirmeye bir daha"
+  },
+  {
+   "kind": "orphan",
+   "start_f": 12770,
+   "end_f": 12777,
+   "how": "fragment between cuts",
+   "source": "primary",
+   "text": "yapalım."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12843,
+   "end_f": 12864,
+   "how": "matched 'İkincisi'",
+   "source": "primary",
+   "text": "İkinci bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 13431,
+   "end_f": 13611,
+   "how": "matched 'İşte'",
+   "source": "primary",
+   "text": "İşte zirvenin en çarpıcı rakamı bilim insanlığına göre 1,5 dereceye yakın kalabilmek. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 14226,
+   "end_f": 14265,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Antalya'da bu açık bir daha."
+  }
+ ],
+ "noise_islands": [
+  [
+   1210,
+   1211
+  ],
+  [
+   2057,
+   2058
+  ],
+  [
+   2076,
+   2078
+  ],
+  [
+   2510,
+   2511
+  ],
+  [
+   2516,
+   2518
+  ],
+  [
+   2622,
+   2630
+  ],
+  [
+   2635,
+   2651
+  ],
+  [
+   2739,
+   2740
+  ],
+  [
+   2868,
+   2882
+  ],
+  [
+   5923,
+   5924
+  ],
+  [
+   6992,
+   6994
+  ],
+  [
+   6998,
+   6999
+  ],
+  [
+   7162,
+   7163
+  ],
+  [
+   8188,
+   8190
+  ],
+  [
+   8202,
+   8204
+  ],
+  [
+   8218,
+   8220
+  ],
+  [
+   8223,
+   8224
+  ],
+  [
+   8624,
+   8625
+  ],
+  [
+   8644,
+   8646
+  ],
+  [
+   8848,
+   8860
+  ],
+  [
+   9286,
+   9289
+  ],
+  [
+   9905,
+   9906
+  ],
+  [
+   12088,
+   12089
+  ],
+  [
+   12802,
+   12804
+  ],
+  [
+   12811,
+   12814
+  ],
+  [
+   13143,
+   13145
+  ],
+  [
+   13630,
+   13633
+  ],
+  [
+   13651,
+   13652
+  ],
+  [
+   14286,
+   14287
+  ]
+ ],
+ "tail_trim_frames": 26,
+ "head_trim_frames": 15,
+ "dropped_outside_clip": "İzlediğiniz için teşekkür ederim. İzlediğiniz için teşekkür ederim.",
+ "kept_text": "Şimdi gelelim bu COP nedir ne değildir? COP'un ne olduğuna ve ne olmadığına bir bakalım isterseniz. COP 1992'de Rio'da imzalanan Birleşmiş Milletler İklim Değişikliği Çerçeve Sözleşmesi'nin en üst karar organıdır. Kamuoyunda çoğu zaman liderlerin fotoğraf çektirdiği, aktivistlerin konuştuğu bir platform diye görülüyor. Ama bu masada küresel karbon piyasalının kuralları, milyarlarca dolarlık finans hedefleri ve enerji dönüşümünün takvimi yazılıyor. Peki COP ne değildir? COP bir dünya hükümeti değildir. Kararları uygulayacak bir iklim polisi ya da ceza kesen bir mahkeme yok burada. Üstelik kararlar oy birliğiyle alınıyor. Yani tek bir ülke bile bir metni kitleyebiliyor. COP'un gücü ortak kurallar ve beklentiler üzerinden piyasaları ve hükümetleri yönlendirmesinden geliyor. Dönüm noktası olan zirveler ise aşağıda... yapalım. Şimdi sizlere bazı notlarla COP'un dönüşüm olan zirvelerini özetleyeceğim. Sondan başa gideceğim. 2025 yılında COP, Brezilya'da Belém şehrinde yapıldı. Burada oyun finansmanını 2035'e kadar 3'e katlama çağrısı yapıldı. Küresel uygulama hızlandırıcı ve Belém 1,5 misyonu 80'i aşkın ülkeye fosil yakıt yol  ertesi istedi ama nihai kararda fosil yakıt kelimesi bile geçmedi. İşte bu toplantı için kritik şeylerden birisi buydu. Gelelim 2024 yılına COP29'a. COP29 nerede yapıldı? Bakü, kardeş... dur. Bol yapmayalım burayı. Tekrar. Gelelim 2024 yılına COP29'a. Kardeş ülke, Azerbaycan'da, Bakü'de yapıldı COP29. Peki buradaki temel konu neydi? Yeni finans hedefi. Gelişmiş ülkeler öncülüğünde 2035'e kadar en az yılda 300 milyar dolar, tüm kaynaklardan da 1,3 trilyon dolar çağrısı yapıldı. Çok büyük rakamlar değil mi? İşte Paris madde altı karbon piyasası kuralları bu toplantıda tamamlandı. Gördüğünüz üzere buradan alınan kararlarla enerji piyasası şekillenmiş. Bundan bir önceki toplantıya gelelim. COP28, Dubai'de yapıldı. Birleşik Arap Emirlikleri. Bir COP kararında ilk kez enerji sistemlerinde fosil yakıtlardan uzaklaşma çağrısı yapılmış. Bu büyük bir şey aslında. COP zirvesi için değil ama bizim için en azından. 2030'a kadar yenilenebilir kapasiteyi 3'e, enerji verimliliği hızında 2'ye katlama çağrısı yapılmış. 2022 COP nerede yapılmış? Şimdi daha geriye gidelim. 2022 yılına gidelim. COP27'ye. Mısır'da El Şeyh Şarm'da yapılmış. Kayıp ve hasar fonu kurulması kararı alınmış. 2021 COP nerede yapılmış? COP26. Glasgow, İngiltere değil. Gelelim COP26'ya. 2021 yılında Glasgow'da yapılmış. Burada nasıl bir karar alınmış? Kömürün kademeli olarak azaltılması ilk kez bir karar metninde burada ortaya çıkmış. Bundan bir önceki toplantı 2015 yılında COP21 Paris, Gelelim Fransa'nın Paris şehrinde yapılan COP21'e. 2015'te toplandılar ve nasıl bir sonuç çıktı Paris Antlaşması'ndan? Isınmayı 2 santigrat derecenin oldukça altına tutma, 1,5 santigrat için ise çaba gösterme kararı çıktı. Her ülke 5 yılda bir ulusal katkı beyanı yani NDC sunacak. 1997. Bunun dışında da katılımcı her ülkenin 5 yılda bir Ulusal katkı beyanı. Gelelim 1997 COP. Kaç bu? Bu çok eski yani 1997 COP. Bundan önce de 97 yılında Kyoto Japonya'da adını hatırlarsınız Kyoto Protokol diye bir şey vardı ya işte burada alınan karar. Gelişmiş ülkelere ilk kez hukuken bağlayıcı azaltım hedefleri ve emisyon ticareti gibi bir nihai karar ortaya çıktı. Şimdi bu verdiğim örneklerdeki önemli ayrıntı şu arkadaşlar. Paris'te NDC sunmak zorunlu oldu. Ama içine yazılan hedefe ulaşmak hukuken bağlayıcı değildi. Yani siz bir rapor sunuyorsunuz ama hedefe ulaşıp ulaşmadığınız çok da önemli değil ve bağlayıcı değil. Önemli olan 5 yılda bir rapor sunmak. Az önce anlatmıştım. Sistem ülkelerin birbirini izlemesine ve her turda çıtayı yükseltmesine dayanıyor. Belki fark etmişsinizdir. Burada bir ülke yok. Bazı Ülkeler 2025'te NDC 3.0 denen 2035 hedeflerini sundu. Belem'de dünya uygulama dönemine geçtik dedi. Antalya'daki soru basit ama sert bir soru. Bu vaatler gerçekten dayata geçecek mi? COP31'in ana gündem maddeleri. Antalya'da aslında iki masa var. Birinci resmi müzakere masası. Burayı az önce söylediğim gibi Avustralya yönetiyor. Ve çıkan kararlar tüm ülkeleri bağlayan metinler... yapalım. Birincisi resmi müzakere masası. Az önce de bahsettim. Burayı Avustralya yönetiyor. Ve çıkan kararlar tüm ülkeleri bağlayan metinler olmuş oluyor. İkincisi ise Türkiye'nin yönettiği eylem gündemi. Burada ülkeler, şehirler ve şirketler gönüllü hedefler etrafında birleşiyor. İkincisi Türkiye'nin yönettiği eylem gündemi. Burada ülkeler, şehirler ve şirketler gönüllü hedefler etrafında birleşiyorlar. Gelin öncelikle isterseniz büyük başlıklara bakalım. 3.1 emisyon azaltımı ve 1,5 santigrat derece hedefi. Bunlar önemli başlıklar. İşte zirvenin en çarpıcı rakamı. Bilim insanlığına göre 1,5 santigrat dereceye yakın kalmak için küresel salımların 2035'e kadar 2019'a göre %55 ile 60 düşmesi gerekiyor. Ülkelerin şu ana kadar ki bütün vaatleri tam uygulansa bile düşüş yalnızca %15 civarında kalıyor.",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "END_HOLD_F": 25,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "WINDOW_F": 750,
+  "REPEAT_MAX_SPAN_F": 500,
+  "ORPHAN_F": 37
+ }
+}

@@ -1,0 +1,492 @@
+{
+ "version": 4,
+ "review_flags": [
+  {
+   "kind": "long-retake-review",
+   "start_f": 4320,
+   "end_f": 4872,
+   "source": "primary",
+   "how": "matched 'Bir diğer', 22s > 15s: kept, please review",
+   "text": "Bir diğer teknoloji kânsıması da elektrik şebekesi ve elektrifikasyona. COP31'in 2035'e kadar %35 hedefi aslında bir şebeke meselesi. Daha fazla güneş ve rüzgar, daha güçlü iletimatları, ülkeler arası bağlantılar ve talebeyi tahmin eden yapay zeka destekli yazılımlar demek. İleri malzemeler."
+  },
+  {
+   "kind": "long-retake-review",
+   "start_f": 4319,
+   "end_f": 4873,
+   "source": "second",
+   "how": "matched 'Bir diğer', 22s > 15s: kept, please review",
+   "text": "Bir diğer teknoloji yansıması da elektrik şebekesi ve elektrifikasyona. COP31'in 2035'e kadar %35 hedefi aslında bir şebeke meselesi. Daha fazla güneş ve rüzgar, daha güçlü iletim atları, ülkeler arası bağlantılar ve talebeyi tahmin eden yapay zeka destekli yazılımlar demek. İleri malzemeler."
+  }
+ ],
+ "long_words": [
+  {
+   "start_f": 1134,
+   "end_f": 1336,
+   "text": "yansımaları"
+  },
+  {
+   "start_f": 2466,
+   "end_f": 2774,
+   "text": "Yenilenebilir"
+  },
+  {
+   "start_f": 2831,
+   "end_f": 2958,
+   "text": "ve"
+  },
+  {
+   "start_f": 3262,
+   "end_f": 3331,
+   "text": "batarya"
+  },
+  {
+   "start_f": 4881,
+   "end_f": 4944,
+   "text": "Bir"
+  },
+  {
+   "start_f": 5211,
+   "end_f": 5264,
+   "text": "Daha"
+  },
+  {
+   "start_f": 5731,
+   "end_f": 5785,
+   "text": "İş"
+  },
+  {
+   "start_f": 7253,
+   "end_f": 7311,
+   "text": "Belem'de"
+  },
+  {
+   "start_f": 7501,
+   "end_f": 7608,
+   "text": "Belem'de"
+  }
+ ],
+ "hallucinated": "",
+ "second_transcript": "out/episode/P1011091-tr.json",
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011091.MOV",
+ "fps": 25,
+ "offset_f": 6,
+ "clip_end_f": 9912,
+ "keep_frames": [
+  [
+   49,
+   168
+  ],
+  [
+   185,
+   218
+  ],
+  [
+   587,
+   998
+  ],
+  [
+   1057,
+   1152
+  ],
+  [
+   1228,
+   1384
+  ],
+  [
+   1404,
+   1695
+  ],
+  [
+   1727,
+   1733
+  ],
+  [
+   2178,
+   2284
+  ],
+  [
+   2292,
+   2470
+  ],
+  [
+   2757,
+   2856
+  ],
+  [
+   2879,
+   3218
+  ],
+  [
+   3230,
+   3263
+  ],
+  [
+   3319,
+   3492
+  ],
+  [
+   3500,
+   3589
+  ],
+  [
+   3671,
+   3800
+  ],
+  [
+   3809,
+   3947
+  ],
+  [
+   3958,
+   4102
+  ],
+  [
+   4143,
+   4219
+  ],
+  [
+   4317,
+   4430
+  ],
+  [
+   4439,
+   4565
+  ],
+  [
+   4575,
+   4800
+  ],
+  [
+   4835,
+   4867
+  ],
+  [
+   4940,
+   5119
+  ],
+  [
+   5257,
+   5424
+  ],
+  [
+   5439,
+   5736
+  ],
+  [
+   6090,
+   6144
+  ],
+  [
+   6519,
+   6905
+  ],
+  [
+   6913,
+   7259
+  ],
+  [
+   7586,
+   7817
+  ],
+  [
+   7882,
+   8092
+  ],
+  [
+   8448,
+   8978
+  ],
+  [
+   9023,
+   9592
+  ],
+  [
+   9720,
+   9882
+  ],
+  [
+   9891,
+   9912
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake-marker",
+   "start_f": 218,
+   "end_f": 323,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "Karbonu düşünen Türk üreticileri uzak doğuya göre coğrafi bir daha."
+  },
+  {
+   "kind": "orphan",
+   "start_f": 400,
+   "end_f": 404,
+   "how": "fragment between cuts",
+   "source": "primary",
+   "text": "Şimdi"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 404,
+   "end_f": 543,
+   "how": "matched 'Bu'",
+   "source": "primary",
+   "text": "bu işin bir de fırsat tarafı var. Hani sanki hep bize yazacak gibi görünüyor ama karbonu düşünen Türk üreticileri bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1733,
+   "end_f": 1975,
+   "how": "matched 'Burada'",
+   "source": "primary",
+   "text": "burada iğme kazanan teknolojiler, yeşil hidrojen, çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1976,
+   "end_f": 2149,
+   "how": "matched 'Burada'",
+   "source": "second",
+   "text": "Burada iğme kazanan teknolojilerden bahsedebiliriz. Mesela yeşil hidrojen bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2040,
+   "end_f": 2149,
+   "how": "matched 'Burada'",
+   "source": "primary",
+   "text": "Burada iğme kazanan teknolojilerden bahsedebiliriz. Mesela yeşil hidrojen, bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3601,
+   "end_f": 3625,
+   "how": "matched 'Katı'",
+   "source": "primary",
+   "text": "Katı hal pilleri bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4215,
+   "end_f": 4249,
+   "how": "matched 'Bir'",
+   "source": "primary",
+   "text": "bir konu. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4872,
+   "end_f": 4881,
+   "how": "marker only (long retake flagged)",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5128,
+   "end_f": 5211,
+   "how": "matched 'Daha'",
+   "source": "primary",
+   "text": "Daha az klinkerli yeni tür çimentolar. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5731,
+   "end_f": 6032,
+   "how": "matched 'İş gücü'",
+   "source": "primary",
+   "text": "İş gücü ve enerji faturaları uluslararası yenilenebilir enerji ajansına göre dünyada yenilenebilir enerji sektöründe çalışan 16 milyon insanın... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6144,
+   "end_f": 6160,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6250,
+   "end_f": 6457,
+   "how": "matched 'Peki'",
+   "source": "primary",
+   "text": "Peki bizim hayatımıza nasıl yansıyor? Yani bizim gibi mühendislerin iş gücüne ve enerji faturalarına... İşte uluslararası enerji... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7253,
+   "end_f": 7501,
+   "how": "matched 'Belem'de'",
+   "source": "primary",
+   "text": "Belem'de kabul edilen adil geçiş mekanizması bu dönüşünden zarar görecek çalışanları ve bölgeleri korumaya başlamış. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8092,
+   "end_f": 8339,
+   "how": "matched 'Orta'",
+   "source": "primary",
+   "text": "Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgarın payı arttıkça... Petrol ve gaz krizlerinin elektrik yansımalarına... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8971,
+   "end_f": 8989,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9587,
+   "end_f": 9681,
+   "how": "matched 'Elektrikli'",
+   "source": "primary",
+   "text": "Elektrikli araçlara gelirsek Türkiye'de her... Bir daha."
+  }
+ ],
+ "noise_islands": [
+  [
+   351,
+   354
+  ],
+  [
+   361,
+   362
+  ],
+  [
+   365,
+   368
+  ],
+  [
+   552,
+   559
+  ],
+  [
+   573,
+   576
+  ],
+  [
+   1011,
+   1013
+  ],
+  [
+   1170,
+   1209
+  ],
+  [
+   1387,
+   1388
+  ],
+  [
+   1952,
+   1953
+  ],
+  [
+   2482,
+   2623
+  ],
+  [
+   2647,
+   2664
+  ],
+  [
+   2745,
+   2747
+  ],
+  [
+   3635,
+   3641
+  ],
+  [
+   4119,
+   4123
+  ],
+  [
+   5231,
+   5232
+  ],
+  [
+   5238,
+   5241
+  ],
+  [
+   5245,
+   5247
+  ],
+  [
+   6059,
+   6063
+  ],
+  [
+   6068,
+   6070
+  ],
+  [
+   6481,
+   6484
+  ],
+  [
+   6492,
+   6495
+  ],
+  [
+   7261,
+   7262
+  ],
+  [
+   7528,
+   7532
+  ],
+  [
+   8313,
+   8314
+  ],
+  [
+   8366,
+   8368
+  ],
+  [
+   8380,
+   8385
+  ],
+  [
+   8416,
+   8417
+  ]
+ ],
+ "tail_trim_frames": 22,
+ "head_trim_frames": 10,
+ "dropped_outside_clip": "bir Hollanda değil. Evet ama en azından kötünün... Dur. İmansızı. Altyazı M.K.",
+ "kept_text": "Peki bu para AB'nin kasasına mı gidecek? Türkiye'deki dönüşüme mi harcanacak? Fırsat tarafı da var. Bu işin bir de fırsat tarafı var. Sanki hep bize yazacak gibi görünüyor ama öyle değil. Karbonunu düşüren Türk üreticileri uzak doğuya göre coğrafi yakınlık ve hızlı teslimat avantajını düşük karbonlu üretim ile birleştirdiğinde Avrupa bazarında pay kazanabilir. Peki zirvenin sanayi, teknoloji ve günlük hayata yansımaları neler olabilir? Yani peki yani bütün bu kararlar fabrikaya, laboratuvarı ve bizim evimize nasıl yansıyacak? Çünkü çok fazla teorik şeylerden konuştuk, kağıt üstündeki şeylerden konuştuk. Ama bana sorarsanız işin en önemli kısmı da bu. İşte Burada iğme kazanan bazı teknolojilerden bahsedelim. Yeşil hidrojen, çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın yerini alabilecek bir aday. Yenilenebilir elektrikle suyu ayrıştıran elektrolyzörler ve hidrojenin nasıl sertifikalandırılacağı bu yüzden de kritik olacak. SKDM'nin hidrojeni de kapsaması konunun ihracatçılar için ne kadar somut olduğunu gösteriyor. Bataryalar, batarya konusu da çok önemli. Elektrikli araçlar ve şebekede enerji depolama için litü müyon pillere talep hızla artıyor. Sodü müyon pilleri ise ucuz ve bol ham maddeleriyle yükselişte. Katı hal pilleri ise henüz seri üretimde değiller. Asıl yarış ARGE laboratuvarlarında. Avrupa'da 2027'den itibaren elektrikli araç bataryaları için batarya pasaportu geliyor. Pilin içinde ne olduğu, nereden geldiği ve karbon ayak izi dijital olarak kayıt altına alınacak. Elektrik şebekesi ve elektrifikasyon ise çok önemli Bir diğer teknoloji kânsıması da elektrik şebekesi ve elektrifikasyona. COP31'in 2035'e kadar %35 hedefi aslında bir şebeke meselesi. Daha fazla güneş ve rüzgar, daha güçlü iletimatları, ülkeler arası bağlantılar ve talebeyi tahmin eden yapay zeka destekli yazılımlar demek. İleri malzemeler. Bir diğer yansıması ise ileri malzemeler konusunda. Çimentada karbonun büyük kısmı klinker üretiminden geliyor. Daha az klinkerli yeni tür çimentolar karbon salınımını azaltacak ve bu da geliştirilme aşamasında. Havacılık ve otomotivde ise hafif kompozit malzemeler yakıt tüketimini azaltıyor. Baca gazından karbon yakalayan sisus sistemlerde ise daha verimli tutucu malzemeler üzerinde çalışılıyor. İş gücü ve enerji faturaları... Peki bunun teknolojik yansıması yanı sıra iş gücünde nasıl bir yansıması var? Dersek uluslararası yenilenebilir enerji ajansına göre... Dünyada yenilenebilir enerji sektöründe benim de içinde olduğum çalışan sayısı 16 milyon insanı aşmış. Kömür madenciliği ve işten yanmalı motor üretimi gibi alanlarda istihdam daralırken... Güneş ve rüzgar kurulumu, enerji verimliği denetimi, sürdürülebilirlik raporlaması... Ve batarya kimyası gibi alanlarda yeni meslekler doğuyor. Belem'de kabul edilen adil geçiş mekanizması bu dönüşünden zarar görecek çalışanları ve bölgeleri korumaya başlıyor. Faturalar tarafında... Peki gelelim faturalar tarafına. Tablo iki aşamalı. Kısa vadede şebeke yatırımları ve karbon fiyatları maliyet artışı yaratabilir. Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgarın payı arttıkça... Petrol ve gaz krizlerinin elektrik fiyatlarının yansıması azalabilir. Bildiğiniz üzere her kış Avrupa'da bir kriz oluyor. Özellikle doğal gaz konusunda. İşte bizim hayatımızdan ne değişiyor? Bunu da düşünürsek çatıdaki santral, çatı güneş panelleri ve ev tipi... Örneğin çatımızdaki santraller. Çatı güneş panelleri ve ev tipi bataryalarla tüketici aynı zamanda üretici de olmuş oluyor. Prosumer deniyor bunu hatta. Fazla elektriğini şebekeye satabilir. Buradan da para kazanabilir. Kombi yerine  ısı pompası, özellikle Avrupa'da doğal gazlı kombiden  ısı pompasına geçiş teşvik ediliyor. Tabi ki bu her ülkede oluyor değil. Bazı ülkelerde oluyor ama. Elektrikli araçlara gelirsek Türkiye'de 2025'de satılan her yüz otomobilden yaklaşık 17'si elektrikliydi. Henüz rakamlar",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "END_HOLD_F": 13,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "HALLU_MIN_ACTIVE": 0.1,
+  "WINDOW_F": 750,
+  "NEAR_F": 250,
+  "PAUSE_F": 12,
+  "MAX_RETAKE_F": 375,
+  "REPEAT_MAX_SPAN_F": 250,
+  "ORPHAN_F": 37
+ }
+}

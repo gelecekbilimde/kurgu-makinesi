@@ -1,0 +1,3781 @@
+{
+ "language": "tr",
+ "segments": [
+  {
+   "start": "00:00:00:00",
+   "end": "00:00:02:04",
+   "words": [
+    {
+     "start": "00:00:00:00",
+     "end": "00:00:02:04",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:00:02:04",
+   "end": "00:00:12:23",
+   "words": [
+    {
+     "start": "00:00:02:04",
+     "end": "00:00:02:05",
+     "text": " Peki"
+    },
+    {
+     "start": "00:00:02:05",
+     "end": "00:00:02:12",
+     "text": " bu"
+    },
+    {
+     "start": "00:00:02:12",
+     "end": "00:00:02:21",
+     "text": " para"
+    },
+    {
+     "start": "00:00:02:21",
+     "end": "00:00:03:13",
+     "text": " AB'nin"
+    },
+    {
+     "start": "00:00:03:13",
+     "end": "00:00:04:01",
+     "text": " kasasına"
+    },
+    {
+     "start": "00:00:04:01",
+     "end": "00:00:04:03",
+     "text": " mı"
+    },
+    {
+     "start": "00:00:04:03",
+     "end": "00:00:04:20",
+     "text": " gidecek?"
+    },
+    {
+     "start": "00:00:05:01",
+     "end": "00:00:05:13",
+     "text": " Türkiye'deki"
+    },
+    {
+     "start": "00:00:05:13",
+     "end": "00:00:06:01",
+     "text": " dönüşüme"
+    },
+    {
+     "start": "00:00:06:01",
+     "end": "00:00:06:04",
+     "text": " mi"
+    },
+    {
+     "start": "00:00:06:04",
+     "end": "00:00:06:17",
+     "text": " harcanacak?"
+    },
+    {
+     "start": "00:00:07:10",
+     "end": "00:00:07:17",
+     "text": " Fırsat"
+    },
+    {
+     "start": "00:00:07:17",
+     "end": "00:00:08:02",
+     "text": " tarafı"
+    },
+    {
+     "start": "00:00:08:02",
+     "end": "00:00:08:04",
+     "text": " da"
+    },
+    {
+     "start": "00:00:08:04",
+     "end": "00:00:08:18",
+     "text": " var."
+    },
+    {
+     "start": "00:00:08:18",
+     "end": "00:00:09:04",
+     "text": " Karbonu"
+    },
+    {
+     "start": "00:00:09:04",
+     "end": "00:00:09:11",
+     "text": " düşünen"
+    },
+    {
+     "start": "00:00:09:11",
+     "end": "00:00:09:17",
+     "text": " Türk"
+    },
+    {
+     "start": "00:00:09:17",
+     "end": "00:00:10:09",
+     "text": " üreticileri"
+    },
+    {
+     "start": "00:00:10:09",
+     "end": "00:00:11:06",
+     "text": " uzak"
+    },
+    {
+     "start": "00:00:11:06",
+     "end": "00:00:11:14",
+     "text": " doğuya"
+    },
+    {
+     "start": "00:00:11:14",
+     "end": "00:00:11:21",
+     "text": " göre"
+    },
+    {
+     "start": "00:00:11:21",
+     "end": "00:00:12:12",
+     "text": " coğrafi"
+    },
+    {
+     "start": "00:00:12:12",
+     "end": "00:00:12:17",
+     "text": " bir"
+    },
+    {
+     "start": "00:00:12:17",
+     "end": "00:00:12:23",
+     "text": " daha."
+    }
+   ],
+   "text": " Peki bu para AB'nin kasasına mı gidecek? Türkiye'deki dönüşüme mi harcanacak? Fırsat tarafı da var. Karbonu düşünen Türk üreticileri uzak doğuya göre coğrafi bir daha."
+  },
+  {
+   "start": "00:00:12:23",
+   "end": "00:00:16:01",
+   "words": [
+    {
+     "start": "00:00:12:23",
+     "end": "00:00:16:01",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:00:16:01",
+   "end": "00:00:21:19",
+   "words": [
+    {
+     "start": "00:00:16:01",
+     "end": "00:00:16:03",
+     "text": " Şimdi"
+    },
+    {
+     "start": "00:00:16:03",
+     "end": "00:00:16:07",
+     "text": " bu"
+    },
+    {
+     "start": "00:00:16:07",
+     "end": "00:00:16:14",
+     "text": " işin"
+    },
+    {
+     "start": "00:00:16:14",
+     "end": "00:00:16:17",
+     "text": " bir"
+    },
+    {
+     "start": "00:00:16:17",
+     "end": "00:00:16:19",
+     "text": " de"
+    },
+    {
+     "start": "00:00:16:19",
+     "end": "00:00:17:04",
+     "text": " fırsat"
+    },
+    {
+     "start": "00:00:17:04",
+     "end": "00:00:17:13",
+     "text": " tarafı"
+    },
+    {
+     "start": "00:00:17:13",
+     "end": "00:00:17:21",
+     "text": " var."
+    },
+    {
+     "start": "00:00:17:21",
+     "end": "00:00:17:23",
+     "text": " Hani"
+    },
+    {
+     "start": "00:00:17:23",
+     "end": "00:00:18:07",
+     "text": " sanki"
+    },
+    {
+     "start": "00:00:18:07",
+     "end": "00:00:18:13",
+     "text": " bize"
+    },
+    {
+     "start": "00:00:18:13",
+     "end": "00:00:18:23",
+     "text": " yazacak"
+    },
+    {
+     "start": "00:00:18:23",
+     "end": "00:00:19:03",
+     "text": " gibi"
+    },
+    {
+     "start": "00:00:19:03",
+     "end": "00:00:19:12",
+     "text": " görünüyor"
+    },
+    {
+     "start": "00:00:19:12",
+     "end": "00:00:19:16",
+     "text": " ama"
+    },
+    {
+     "start": "00:00:19:16",
+     "end": "00:00:20:06",
+     "text": " karbonu"
+    },
+    {
+     "start": "00:00:20:06",
+     "end": "00:00:20:14",
+     "text": " düşünen"
+    },
+    {
+     "start": "00:00:20:14",
+     "end": "00:00:20:19",
+     "text": " Türk"
+    },
+    {
+     "start": "00:00:20:19",
+     "end": "00:00:21:09",
+     "text": " üreticileri"
+    },
+    {
+     "start": "00:00:21:09",
+     "end": "00:00:21:13",
+     "text": " bir"
+    },
+    {
+     "start": "00:00:21:13",
+     "end": "00:00:21:19",
+     "text": " daha."
+    }
+   ],
+   "text": " Şimdi bu işin bir de fırsat tarafı var. Hani sanki bize yazacak gibi görünüyor ama karbonu düşünen Türk üreticileri bir daha."
+  },
+  {
+   "start": "00:00:21:19",
+   "end": "00:00:23:24",
+   "words": [
+    {
+     "start": "00:00:21:19",
+     "end": "00:00:23:24",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:00:23:24",
+   "end": "00:00:39:17",
+   "words": [
+    {
+     "start": "00:00:23:24",
+     "end": "00:00:24:00",
+     "text": " Bu"
+    },
+    {
+     "start": "00:00:24:00",
+     "end": "00:00:24:07",
+     "text": " işin"
+    },
+    {
+     "start": "00:00:24:07",
+     "end": "00:00:24:09",
+     "text": " bir"
+    },
+    {
+     "start": "00:00:24:09",
+     "end": "00:00:24:11",
+     "text": " de"
+    },
+    {
+     "start": "00:00:24:11",
+     "end": "00:00:24:21",
+     "text": " fırsat"
+    },
+    {
+     "start": "00:00:24:21",
+     "end": "00:00:25:05",
+     "text": " tarafı"
+    },
+    {
+     "start": "00:00:25:05",
+     "end": "00:00:25:11",
+     "text": " var."
+    },
+    {
+     "start": "00:00:25:11",
+     "end": "00:00:25:18",
+     "text": " Sanki"
+    },
+    {
+     "start": "00:00:25:18",
+     "end": "00:00:25:23",
+     "text": " hep"
+    },
+    {
+     "start": "00:00:25:23",
+     "end": "00:00:26:02",
+     "text": " bize"
+    },
+    {
+     "start": "00:00:26:02",
+     "end": "00:00:26:10",
+     "text": " yazacak"
+    },
+    {
+     "start": "00:00:26:10",
+     "end": "00:00:26:15",
+     "text": " gibi"
+    },
+    {
+     "start": "00:00:26:15",
+     "end": "00:00:26:23",
+     "text": " görünüyor"
+    },
+    {
+     "start": "00:00:26:23",
+     "end": "00:00:27:03",
+     "text": " ama"
+    },
+    {
+     "start": "00:00:27:03",
+     "end": "00:00:27:12",
+     "text": " öyle"
+    },
+    {
+     "start": "00:00:27:12",
+     "end": "00:00:27:19",
+     "text": " değil."
+    },
+    {
+     "start": "00:00:27:19",
+     "end": "00:00:28:19",
+     "text": " Karbonunu"
+    },
+    {
+     "start": "00:00:28:19",
+     "end": "00:00:29:06",
+     "text": " düşüren"
+    },
+    {
+     "start": "00:00:29:06",
+     "end": "00:00:29:13",
+     "text": " Türk"
+    },
+    {
+     "start": "00:00:29:13",
+     "end": "00:00:30:07",
+     "text": " üreticileri"
+    },
+    {
+     "start": "00:00:30:07",
+     "end": "00:00:31:03",
+     "text": " uzak"
+    },
+    {
+     "start": "00:00:31:03",
+     "end": "00:00:31:10",
+     "text": " doğuya"
+    },
+    {
+     "start": "00:00:31:10",
+     "end": "00:00:31:16",
+     "text": " göre"
+    },
+    {
+     "start": "00:00:31:16",
+     "end": "00:00:32:09",
+     "text": " coğrafi"
+    },
+    {
+     "start": "00:00:32:09",
+     "end": "00:00:32:21",
+     "text": " yakınlık"
+    },
+    {
+     "start": "00:00:32:21",
+     "end": "00:00:33:00",
+     "text": " ve"
+    },
+    {
+     "start": "00:00:33:00",
+     "end": "00:00:33:07",
+     "text": " hızlı"
+    },
+    {
+     "start": "00:00:33:07",
+     "end": "00:00:33:17",
+     "text": " teslimat"
+    },
+    {
+     "start": "00:00:33:17",
+     "end": "00:00:34:09",
+     "text": " avantajını"
+    },
+    {
+     "start": "00:00:34:09",
+     "end": "00:00:35:02",
+     "text": " düşük"
+    },
+    {
+     "start": "00:00:35:02",
+     "end": "00:00:35:15",
+     "text": " karbonlu"
+    },
+    {
+     "start": "00:00:35:15",
+     "end": "00:00:36:01",
+     "text": " üretim"
+    },
+    {
+     "start": "00:00:36:01",
+     "end": "00:00:36:05",
+     "text": " ile"
+    },
+    {
+     "start": "00:00:36:05",
+     "end": "00:00:37:05",
+     "text": " birleştirdiğinde"
+    },
+    {
+     "start": "00:00:37:05",
+     "end": "00:00:38:01",
+     "text": " Avrupa"
+    },
+    {
+     "start": "00:00:38:01",
+     "end": "00:00:38:14",
+     "text": " pazarında"
+    },
+    {
+     "start": "00:00:38:14",
+     "end": "00:00:39:01",
+     "text": " pay"
+    },
+    {
+     "start": "00:00:39:01",
+     "end": "00:00:39:17",
+     "text": " kazanabilir."
+    }
+   ],
+   "text": " Bu işin bir de fırsat tarafı var. Sanki hep bize yazacak gibi görünüyor ama öyle değil. Karbonunu düşüren Türk üreticileri uzak doğuya göre coğrafi yakınlık ve hızlı teslimat avantajını düşük karbonlu üretim ile birleştirdiğinde Avrupa pazarında pay kazanabilir."
+  },
+  {
+   "start": "00:00:39:17",
+   "end": "00:00:42:07",
+   "words": [
+    {
+     "start": "00:00:39:17",
+     "end": "00:00:42:07",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:00:42:07",
+   "end": "00:01:25:24",
+   "words": [
+    {
+     "start": "00:00:42:07",
+     "end": "00:00:42:11",
+     "text": " Peki"
+    },
+    {
+     "start": "00:00:42:11",
+     "end": "00:00:43:09",
+     "text": " zirvenin"
+    },
+    {
+     "start": "00:00:43:09",
+     "end": "00:00:44:02",
+     "text": " sanayi,"
+    },
+    {
+     "start": "00:00:44:02",
+     "end": "00:00:44:13",
+     "text": " teknoloji"
+    },
+    {
+     "start": "00:00:44:13",
+     "end": "00:00:44:17",
+     "text": " ve"
+    },
+    {
+     "start": "00:00:44:17",
+     "end": "00:00:45:00",
+     "text": " günlük"
+    },
+    {
+     "start": "00:00:45:00",
+     "end": "00:00:45:09",
+     "text": " hayata"
+    },
+    {
+     "start": "00:00:45:09",
+     "end": "00:00:53:11",
+     "text": " yansımaları"
+    },
+    {
+     "start": "00:00:53:11",
+     "end": "00:00:53:23",
+     "text": " neler"
+    },
+    {
+     "start": "00:00:53:23",
+     "end": "00:00:54:06",
+     "text": " olabilir?"
+    },
+    {
+     "start": "00:00:54:14",
+     "end": "00:00:54:18",
+     "text": " Yani"
+    },
+    {
+     "start": "00:00:54:18",
+     "end": "00:00:55:04",
+     "text": " peki"
+    },
+    {
+     "start": "00:00:55:04",
+     "end": "00:00:56:10",
+     "text": " yani"
+    },
+    {
+     "start": "00:00:56:10",
+     "end": "00:00:56:19",
+     "text": " bütün"
+    },
+    {
+     "start": "00:00:56:19",
+     "end": "00:00:56:24",
+     "text": " bu"
+    },
+    {
+     "start": "00:00:56:24",
+     "end": "00:00:57:12",
+     "text": " kararlar"
+    },
+    {
+     "start": "00:00:57:12",
+     "end": "00:00:58:07",
+     "text": " fabrikaya,"
+    },
+    {
+     "start": "00:00:58:07",
+     "end": "00:00:58:21",
+     "text": " laboratuvarı"
+    },
+    {
+     "start": "00:00:58:21",
+     "end": "00:00:59:00",
+     "text": " ve"
+    },
+    {
+     "start": "00:00:59:00",
+     "end": "00:00:59:07",
+     "text": " bizim"
+    },
+    {
+     "start": "00:00:59:07",
+     "end": "00:00:59:18",
+     "text": " evimize"
+    },
+    {
+     "start": "00:00:59:18",
+     "end": "00:01:00:06",
+     "text": " nasıl"
+    },
+    {
+     "start": "00:01:00:06",
+     "end": "00:01:00:21",
+     "text": " yansıyacak?"
+    },
+    {
+     "start": "00:01:00:21",
+     "end": "00:01:01:00",
+     "text": " Çünkü"
+    },
+    {
+     "start": "00:01:01:00",
+     "end": "00:01:01:04",
+     "text": " çok"
+    },
+    {
+     "start": "00:01:01:04",
+     "end": "00:01:01:15",
+     "text": " fazla"
+    },
+    {
+     "start": "00:01:01:15",
+     "end": "00:01:02:10",
+     "text": " teorik"
+    },
+    {
+     "start": "00:01:02:10",
+     "end": "00:01:02:21",
+     "text": " şeylerden"
+    },
+    {
+     "start": "00:01:02:21",
+     "end": "00:01:03:09",
+     "text": " konuştuk,"
+    },
+    {
+     "start": "00:01:03:09",
+     "end": "00:01:03:16",
+     "text": " kağıt"
+    },
+    {
+     "start": "00:01:03:16",
+     "end": "00:01:03:22",
+     "text": " üstündeki"
+    },
+    {
+     "start": "00:01:03:22",
+     "end": "00:01:04:07",
+     "text": " şeylerden"
+    },
+    {
+     "start": "00:01:04:07",
+     "end": "00:01:04:20",
+     "text": " konuştuk."
+    },
+    {
+     "start": "00:01:05:06",
+     "end": "00:01:05:09",
+     "text": " Ama"
+    },
+    {
+     "start": "00:01:05:09",
+     "end": "00:01:05:15",
+     "text": " bana"
+    },
+    {
+     "start": "00:01:05:15",
+     "end": "00:01:06:04",
+     "text": " sorarsanız"
+    },
+    {
+     "start": "00:01:06:04",
+     "end": "00:01:06:13",
+     "text": " işin"
+    },
+    {
+     "start": "00:01:06:13",
+     "end": "00:01:06:18",
+     "text": " en"
+    },
+    {
+     "start": "00:01:06:18",
+     "end": "00:01:07:00",
+     "text": " önemli"
+    },
+    {
+     "start": "00:01:07:00",
+     "end": "00:01:07:09",
+     "text": " kısmı"
+    },
+    {
+     "start": "00:01:07:09",
+     "end": "00:01:07:10",
+     "text": " da"
+    },
+    {
+     "start": "00:01:07:10",
+     "end": "00:01:07:15",
+     "text": " bu."
+    },
+    {
+     "start": "00:01:07:15",
+     "end": "00:01:09:07",
+     "text": " İşte"
+    },
+    {
+     "start": "00:01:09:07",
+     "end": "00:01:09:15",
+     "text": " burada"
+    },
+    {
+     "start": "00:01:09:15",
+     "end": "00:01:10:00",
+     "text": " iğme"
+    },
+    {
+     "start": "00:01:10:00",
+     "end": "00:01:10:10",
+     "text": " kazanan"
+    },
+    {
+     "start": "00:01:10:10",
+     "end": "00:01:11:09",
+     "text": " teknolojiler,"
+    },
+    {
+     "start": "00:01:11:09",
+     "end": "00:01:11:15",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:01:11:15",
+     "end": "00:01:12:03",
+     "text": " hidrojen,"
+    },
+    {
+     "start": "00:01:12:10",
+     "end": "00:01:12:19",
+     "text": " çelik,"
+    },
+    {
+     "start": "00:01:13:00",
+     "end": "00:01:13:05",
+     "text": " gübre"
+    },
+    {
+     "start": "00:01:13:05",
+     "end": "00:01:13:10",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:13:10",
+     "end": "00:01:13:19",
+     "text": " kimya"
+    },
+    {
+     "start": "00:01:13:19",
+     "end": "00:01:14:01",
+     "text": " gibi"
+    },
+    {
+     "start": "00:01:14:01",
+     "end": "00:01:14:15",
+     "text": " doğrudan"
+    },
+    {
+     "start": "00:01:14:15",
+     "end": "00:01:15:02",
+     "text": " elektrikle"
+    },
+    {
+     "start": "00:01:15:02",
+     "end": "00:01:15:18",
+     "text": " çalıştırılması"
+    },
+    {
+     "start": "00:01:15:18",
+     "end": "00:01:15:24",
+     "text": " zor"
+    },
+    {
+     "start": "00:01:15:24",
+     "end": "00:01:16:17",
+     "text": " sektörlerde"
+    },
+    {
+     "start": "00:01:16:17",
+     "end": "00:01:17:12",
+     "text": " fosil"
+    },
+    {
+     "start": "00:01:17:12",
+     "end": "00:01:17:23",
+     "text": " yakıtın..."
+    },
+    {
+     "start": "00:01:17:23",
+     "end": "00:01:18:19",
+     "text": "(...)"
+    },
+    {
+     "start": "00:01:18:19",
+     "end": "00:01:18:20",
+     "text": " Bir"
+    },
+    {
+     "start": "00:01:18:20",
+     "end": "00:01:19:01",
+     "text": " daha..."
+    },
+    {
+     "start": "00:01:19:01",
+     "end": "00:01:21:21",
+     "text": " Burada"
+    },
+    {
+     "start": "00:01:21:21",
+     "end": "00:01:22:05",
+     "text": " iğme"
+    },
+    {
+     "start": "00:01:22:05",
+     "end": "00:01:22:16",
+     "text": " kazanan"
+    },
+    {
+     "start": "00:01:22:16",
+     "end": "00:01:23:11",
+     "text": " teknolojilerden"
+    },
+    {
+     "start": "00:01:23:11",
+     "end": "00:01:24:10",
+     "text": " bahsedebiliriz."
+    },
+    {
+     "start": "00:01:24:10",
+     "end": "00:01:24:19",
+     "text": " Mesela"
+    },
+    {
+     "start": "00:01:24:19",
+     "end": "00:01:25:04",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:01:25:04",
+     "end": "00:01:25:14",
+     "text": " hidrojen"
+    },
+    {
+     "start": "00:01:25:14",
+     "end": "00:01:25:19",
+     "text": " bir"
+    },
+    {
+     "start": "00:01:25:19",
+     "end": "00:01:25:24",
+     "text": " daha."
+    }
+   ],
+   "text": " Peki zirvenin sanayi, teknoloji ve günlük hayata yansımaları neler olabilir? Yani peki yani bütün bu kararlar fabrikaya, laboratuvarı ve bizim evimize nasıl yansıyacak? Çünkü çok fazla teorik şeylerden konuştuk, kağıt üstündeki şeylerden konuştuk. Ama bana sorarsanız işin en önemli kısmı da bu. İşte burada iğme kazanan teknolojiler, yeşil hidrojen, çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın...(...) Bir daha... Burada iğme kazanan teknolojilerden bahsedebiliriz. Mesela yeşil hidrojen bir daha."
+  },
+  {
+   "start": "00:01:25:24",
+   "end": "00:01:27:05",
+   "words": [
+    {
+     "start": "00:01:25:24",
+     "end": "00:01:27:05",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:01:27:05",
+   "end": "00:02:08:13",
+   "words": [
+    {
+     "start": "00:01:27:05",
+     "end": "00:01:27:12",
+     "text": " Burada"
+    },
+    {
+     "start": "00:01:27:12",
+     "end": "00:01:27:23",
+     "text": " iğme"
+    },
+    {
+     "start": "00:01:27:23",
+     "end": "00:01:28:10",
+     "text": " kazanan"
+    },
+    {
+     "start": "00:01:28:10",
+     "end": "00:01:28:20",
+     "text": " bazı"
+    },
+    {
+     "start": "00:01:28:20",
+     "end": "00:01:29:15",
+     "text": " teknolojilerden"
+    },
+    {
+     "start": "00:01:29:15",
+     "end": "00:01:30:09",
+     "text": " bahsedelim."
+    },
+    {
+     "start": "00:01:30:09",
+     "end": "00:01:30:17",
+     "text": " Yeşil"
+    },
+    {
+     "start": "00:01:30:17",
+     "end": "00:01:31:05",
+     "text": " hidrojen,"
+    },
+    {
+     "start": "00:01:31:11",
+     "end": "00:01:32:06",
+     "text": " çelik,"
+    },
+    {
+     "start": "00:01:32:06",
+     "end": "00:01:32:11",
+     "text": " gübre"
+    },
+    {
+     "start": "00:01:32:11",
+     "end": "00:01:32:16",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:32:16",
+     "end": "00:01:33:01",
+     "text": " kimya"
+    },
+    {
+     "start": "00:01:33:01",
+     "end": "00:01:33:06",
+     "text": " gibi"
+    },
+    {
+     "start": "00:01:33:06",
+     "end": "00:01:33:18",
+     "text": " doğrudan"
+    },
+    {
+     "start": "00:01:33:18",
+     "end": "00:01:34:06",
+     "text": " elektrikle"
+    },
+    {
+     "start": "00:01:34:06",
+     "end": "00:01:34:24",
+     "text": " çalıştırılması"
+    },
+    {
+     "start": "00:01:34:24",
+     "end": "00:01:35:05",
+     "text": " zor"
+    },
+    {
+     "start": "00:01:35:05",
+     "end": "00:01:36:01",
+     "text": " sektörlerde"
+    },
+    {
+     "start": "00:01:36:01",
+     "end": "00:01:36:21",
+     "text": " fosil"
+    },
+    {
+     "start": "00:01:36:21",
+     "end": "00:01:37:06",
+     "text": " yakıtın"
+    },
+    {
+     "start": "00:01:37:06",
+     "end": "00:01:37:14",
+     "text": " yerini"
+    },
+    {
+     "start": "00:01:37:14",
+     "end": "00:01:38:02",
+     "text": " alabilecek"
+    },
+    {
+     "start": "00:01:38:02",
+     "end": "00:01:38:06",
+     "text": " bir"
+    },
+    {
+     "start": "00:01:38:06",
+     "end": "00:01:38:15",
+     "text": " aday."
+    },
+    {
+     "start": "00:01:38:15",
+     "end": "00:01:50:23",
+     "text": " Yenilenebilir"
+    },
+    {
+     "start": "00:01:50:23",
+     "end": "00:01:51:12",
+     "text": " elektrikle"
+    },
+    {
+     "start": "00:01:51:12",
+     "end": "00:01:51:19",
+     "text": " suyu"
+    },
+    {
+     "start": "00:01:51:19",
+     "end": "00:01:52:06",
+     "text": " ayrıştıran"
+    },
+    {
+     "start": "00:01:52:06",
+     "end": "00:01:53:05",
+     "text": " elektrolyzörler"
+    },
+    {
+     "start": "00:01:53:05",
+     "end": "00:01:53:13",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:53:13",
+     "end": "00:01:59:00",
+     "text": " hidrojenin"
+    },
+    {
+     "start": "00:01:59:00",
+     "end": "00:01:59:05",
+     "text": " nasıl"
+    },
+    {
+     "start": "00:01:59:05",
+     "end": "00:02:00:15",
+     "text": " sertifikalandırılacağı"
+    },
+    {
+     "start": "00:02:00:15",
+     "end": "00:02:01:00",
+     "text": " bu"
+    },
+    {
+     "start": "00:02:01:00",
+     "end": "00:02:01:07",
+     "text": " yüzden"
+    },
+    {
+     "start": "00:02:01:07",
+     "end": "00:02:01:11",
+     "text": " de"
+    },
+    {
+     "start": "00:02:01:11",
+     "end": "00:02:01:20",
+     "text": " kritik"
+    },
+    {
+     "start": "00:02:01:20",
+     "end": "00:02:02:04",
+     "text": " olacak."
+    },
+    {
+     "start": "00:02:02:04",
+     "end": "00:02:03:18",
+     "text": " SKDM'nin"
+    },
+    {
+     "start": "00:02:03:18",
+     "end": "00:02:04:09",
+     "text": " hidrojeni"
+    },
+    {
+     "start": "00:02:04:09",
+     "end": "00:02:04:12",
+     "text": " de"
+    },
+    {
+     "start": "00:02:04:12",
+     "end": "00:02:05:06",
+     "text": " kapsaması"
+    },
+    {
+     "start": "00:02:05:06",
+     "end": "00:02:05:20",
+     "text": " konunun"
+    },
+    {
+     "start": "00:02:05:20",
+     "end": "00:02:06:14",
+     "text": " ihracatçılar"
+    },
+    {
+     "start": "00:02:06:14",
+     "end": "00:02:06:20",
+     "text": " için"
+    },
+    {
+     "start": "00:02:06:20",
+     "end": "00:02:07:01",
+     "text": " ne"
+    },
+    {
+     "start": "00:02:07:01",
+     "end": "00:02:07:07",
+     "text": " kadar"
+    },
+    {
+     "start": "00:02:07:07",
+     "end": "00:02:07:17",
+     "text": " somut"
+    },
+    {
+     "start": "00:02:07:17",
+     "end": "00:02:08:00",
+     "text": " olduğunu"
+    },
+    {
+     "start": "00:02:08:00",
+     "end": "00:02:08:13",
+     "text": " gösteriyor."
+    }
+   ],
+   "text": " Burada iğme kazanan bazı teknolojilerden bahsedelim. Yeşil hidrojen, çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın yerini alabilecek bir aday. Yenilenebilir elektrikle suyu ayrıştıran elektrolyzörler ve hidrojenin nasıl sertifikalandırılacağı bu yüzden de kritik olacak. SKDM'nin hidrojeni de kapsaması konunun ihracatçılar için ne kadar somut olduğunu gösteriyor."
+  },
+  {
+   "start": "00:02:08:13",
+   "end": "00:02:09:13",
+   "words": [
+    {
+     "start": "00:02:08:13",
+     "end": "00:02:09:13",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:02:09:13",
+   "end": "00:02:25:00",
+   "words": [
+    {
+     "start": "00:02:09:13",
+     "end": "00:02:10:07",
+     "text": " Bataryalar,"
+    },
+    {
+     "start": "00:02:10:13",
+     "end": "00:02:13:06",
+     "text": " batarya"
+    },
+    {
+     "start": "00:02:13:06",
+     "end": "00:02:13:16",
+     "text": " konusu"
+    },
+    {
+     "start": "00:02:13:16",
+     "end": "00:02:13:18",
+     "text": " da"
+    },
+    {
+     "start": "00:02:13:18",
+     "end": "00:02:13:23",
+     "text": " çok"
+    },
+    {
+     "start": "00:02:13:23",
+     "end": "00:02:14:07",
+     "text": " önemli."
+    },
+    {
+     "start": "00:02:14:18",
+     "end": "00:02:15:04",
+     "text": " Elektrikle"
+    },
+    {
+     "start": "00:02:15:04",
+     "end": "00:02:15:13",
+     "text": " araçlar"
+    },
+    {
+     "start": "00:02:15:13",
+     "end": "00:02:15:16",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:15:16",
+     "end": "00:02:16:04",
+     "text": " şebekede"
+    },
+    {
+     "start": "00:02:16:04",
+     "end": "00:02:16:12",
+     "text": " enerji"
+    },
+    {
+     "start": "00:02:16:12",
+     "end": "00:02:16:22",
+     "text": " depolama"
+    },
+    {
+     "start": "00:02:16:22",
+     "end": "00:02:17:06",
+     "text": " için"
+    },
+    {
+     "start": "00:02:17:06",
+     "end": "00:02:17:18",
+     "text": " lityum"
+    },
+    {
+     "start": "00:02:17:18",
+     "end": "00:02:17:23",
+     "text": " yon"
+    },
+    {
+     "start": "00:02:17:23",
+     "end": "00:02:18:07",
+     "text": " pillere"
+    },
+    {
+     "start": "00:02:18:07",
+     "end": "00:02:18:18",
+     "text": " talep"
+    },
+    {
+     "start": "00:02:18:18",
+     "end": "00:02:19:01",
+     "text": " hızla"
+    },
+    {
+     "start": "00:02:19:01",
+     "end": "00:02:19:11",
+     "text": " artıyor."
+    },
+    {
+     "start": "00:02:20:03",
+     "end": "00:02:20:12",
+     "text": " Sodium"
+    },
+    {
+     "start": "00:02:20:12",
+     "end": "00:02:20:18",
+     "text": " yon"
+    },
+    {
+     "start": "00:02:20:18",
+     "end": "00:02:21:02",
+     "text": " pilleri"
+    },
+    {
+     "start": "00:02:21:02",
+     "end": "00:02:21:05",
+     "text": " ise"
+    },
+    {
+     "start": "00:02:21:05",
+     "end": "00:02:21:14",
+     "text": " ucuz"
+    },
+    {
+     "start": "00:02:21:14",
+     "end": "00:02:21:18",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:21:18",
+     "end": "00:02:22:00",
+     "text": " bol"
+    },
+    {
+     "start": "00:02:22:00",
+     "end": "00:02:22:04",
+     "text": " ham"
+    },
+    {
+     "start": "00:02:22:04",
+     "end": "00:02:22:18",
+     "text": " maddeliyle"
+    },
+    {
+     "start": "00:02:22:18",
+     "end": "00:02:23:09",
+     "text": " yükselişte."
+    },
+    {
+     "start": "00:02:24:01",
+     "end": "00:02:24:07",
+     "text": " Katı"
+    },
+    {
+     "start": "00:02:24:07",
+     "end": "00:02:24:11",
+     "text": " hal"
+    },
+    {
+     "start": "00:02:24:11",
+     "end": "00:02:24:20",
+     "text": " pilleri"
+    },
+    {
+     "start": "00:02:24:20",
+     "end": "00:02:24:20",
+     "text": " bir"
+    },
+    {
+     "start": "00:02:24:20",
+     "end": "00:02:25:00",
+     "text": " daha."
+    }
+   ],
+   "text": " Bataryalar, batarya konusu da çok önemli. Elektrikle araçlar ve şebekede enerji depolama için lityum yon pillere talep hızla artıyor. Sodium yon pilleri ise ucuz ve bol ham maddeliyle yükselişte. Katı hal pilleri bir daha."
+  },
+  {
+   "start": "00:02:25:00",
+   "end": "00:02:26:23",
+   "words": [
+    {
+     "start": "00:02:25:00",
+     "end": "00:02:26:23",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:02:26:23",
+   "end": "00:02:43:22",
+   "words": [
+    {
+     "start": "00:02:26:23",
+     "end": "00:02:27:04",
+     "text": " Katı"
+    },
+    {
+     "start": "00:02:27:04",
+     "end": "00:02:27:07",
+     "text": " hal"
+    },
+    {
+     "start": "00:02:27:07",
+     "end": "00:02:27:17",
+     "text": " pilleri"
+    },
+    {
+     "start": "00:02:27:17",
+     "end": "00:02:27:22",
+     "text": " ise"
+    },
+    {
+     "start": "00:02:27:22",
+     "end": "00:02:28:07",
+     "text": " henüz"
+    },
+    {
+     "start": "00:02:28:07",
+     "end": "00:02:28:15",
+     "text": " seri"
+    },
+    {
+     "start": "00:02:28:15",
+     "end": "00:02:29:00",
+     "text": " üretimde"
+    },
+    {
+     "start": "00:02:29:00",
+     "end": "00:02:29:11",
+     "text": " değiller."
+    },
+    {
+     "start": "00:02:29:17",
+     "end": "00:02:30:00",
+     "text": " Asıl"
+    },
+    {
+     "start": "00:02:30:00",
+     "end": "00:02:30:08",
+     "text": " yarış"
+    },
+    {
+     "start": "00:02:30:08",
+     "end": "00:02:30:20",
+     "text": " ARGE"
+    },
+    {
+     "start": "00:02:30:20",
+     "end": "00:02:31:20",
+     "text": " laboratuvarlarında."
+    },
+    {
+     "start": "00:02:32:10",
+     "end": "00:02:32:22",
+     "text": " Avrupa'da"
+    },
+    {
+     "start": "00:02:32:22",
+     "end": "00:02:33:19",
+     "text": " 2027'den"
+    },
+    {
+     "start": "00:02:33:19",
+     "end": "00:02:34:05",
+     "text": " itibaren"
+    },
+    {
+     "start": "00:02:34:05",
+     "end": "00:02:34:19",
+     "text": " elektrikli"
+    },
+    {
+     "start": "00:02:34:19",
+     "end": "00:02:34:24",
+     "text": " araç"
+    },
+    {
+     "start": "00:02:34:24",
+     "end": "00:02:35:12",
+     "text": " bataryaları"
+    },
+    {
+     "start": "00:02:35:12",
+     "end": "00:02:35:22",
+     "text": " için"
+    },
+    {
+     "start": "00:02:35:22",
+     "end": "00:02:36:16",
+     "text": " batarya"
+    },
+    {
+     "start": "00:02:36:16",
+     "end": "00:02:37:07",
+     "text": " pasaportu"
+    },
+    {
+     "start": "00:02:37:07",
+     "end": "00:02:37:15",
+     "text": " geliyor."
+    },
+    {
+     "start": "00:02:37:15",
+     "end": "00:02:38:11",
+     "text": "(...)"
+    },
+    {
+     "start": "00:02:38:11",
+     "end": "00:02:38:16",
+     "text": " Pilin"
+    },
+    {
+     "start": "00:02:38:16",
+     "end": "00:02:38:24",
+     "text": " içinde"
+    },
+    {
+     "start": "00:02:38:24",
+     "end": "00:02:39:06",
+     "text": " ne"
+    },
+    {
+     "start": "00:02:39:06",
+     "end": "00:02:39:19",
+     "text": " olduğu,"
+    },
+    {
+     "start": "00:02:39:19",
+     "end": "00:02:40:04",
+     "text": " nereden"
+    },
+    {
+     "start": "00:02:40:04",
+     "end": "00:02:40:14",
+     "text": " geldiği"
+    },
+    {
+     "start": "00:02:40:14",
+     "end": "00:02:40:18",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:40:18",
+     "end": "00:02:41:05",
+     "text": " karbon"
+    },
+    {
+     "start": "00:02:41:05",
+     "end": "00:02:41:11",
+     "text": " ayak"
+    },
+    {
+     "start": "00:02:41:11",
+     "end": "00:02:41:18",
+     "text": " izi"
+    },
+    {
+     "start": "00:02:41:18",
+     "end": "00:02:42:13",
+     "text": " dijital"
+    },
+    {
+     "start": "00:02:42:13",
+     "end": "00:02:42:21",
+     "text": " olarak"
+    },
+    {
+     "start": "00:02:42:21",
+     "end": "00:02:43:05",
+     "text": " kayıt"
+    },
+    {
+     "start": "00:02:43:05",
+     "end": "00:02:43:13",
+     "text": " altına"
+    },
+    {
+     "start": "00:02:43:13",
+     "end": "00:02:43:22",
+     "text": " alınacak."
+    }
+   ],
+   "text": " Katı hal pilleri ise henüz seri üretimde değiller. Asıl yarış ARGE laboratuvarlarında. Avrupa'da 2027'den itibaren elektrikli araç bataryaları için batarya pasaportu geliyor.(...) Pilin içinde ne olduğu, nereden geldiği ve karbon ayak izi dijital olarak kayıt altına alınacak."
+  },
+  {
+   "start": "00:02:43:22",
+   "end": "00:02:45:18",
+   "words": [
+    {
+     "start": "00:02:43:22",
+     "end": "00:02:45:18",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:02:45:18",
+   "end": "00:02:49:23",
+   "words": [
+    {
+     "start": "00:02:45:18",
+     "end": "00:02:46:04",
+     "text": " Elektrik"
+    },
+    {
+     "start": "00:02:46:04",
+     "end": "00:02:46:18",
+     "text": " şebekesi"
+    },
+    {
+     "start": "00:02:46:18",
+     "end": "00:02:46:20",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:46:20",
+     "end": "00:02:47:16",
+     "text": " elektrifikasyon"
+    },
+    {
+     "start": "00:02:47:16",
+     "end": "00:02:47:22",
+     "text": " ise"
+    },
+    {
+     "start": "00:02:47:22",
+     "end": "00:02:48:07",
+     "text": " çok"
+    },
+    {
+     "start": "00:02:48:07",
+     "end": "00:02:48:14",
+     "text": " önemli"
+    },
+    {
+     "start": "00:02:48:14",
+     "end": "00:02:48:18",
+     "text": " bir"
+    },
+    {
+     "start": "00:02:48:18",
+     "end": "00:02:49:02",
+     "text": " konu."
+    },
+    {
+     "start": "00:02:49:17",
+     "end": "00:02:49:18",
+     "text": " Bir"
+    },
+    {
+     "start": "00:02:49:18",
+     "end": "00:02:49:23",
+     "text": " daha."
+    }
+   ],
+   "text": " Elektrik şebekesi ve elektrifikasyon ise çok önemli bir konu. Bir daha."
+  },
+  {
+   "start": "00:02:49:23",
+   "end": "00:02:52:19",
+   "words": [
+    {
+     "start": "00:02:49:23",
+     "end": "00:02:52:19",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:02:52:19",
+   "end": "00:03:15:04",
+   "words": [
+    {
+     "start": "00:02:52:19",
+     "end": "00:02:52:22",
+     "text": " Bir"
+    },
+    {
+     "start": "00:02:52:22",
+     "end": "00:02:53:03",
+     "text": " diğer"
+    },
+    {
+     "start": "00:02:53:03",
+     "end": "00:02:53:16",
+     "text": " teknoloji"
+    },
+    {
+     "start": "00:02:53:16",
+     "end": "00:02:54:06",
+     "text": " yansıması"
+    },
+    {
+     "start": "00:02:54:06",
+     "end": "00:02:54:11",
+     "text": " da"
+    },
+    {
+     "start": "00:02:54:11",
+     "end": "00:02:55:00",
+     "text": " elektrik"
+    },
+    {
+     "start": "00:02:55:00",
+     "end": "00:02:55:15",
+     "text": " şebekesi"
+    },
+    {
+     "start": "00:02:55:15",
+     "end": "00:02:55:18",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:55:18",
+     "end": "00:02:56:23",
+     "text": " elektrifikasyona."
+    },
+    {
+     "start": "00:02:56:23",
+     "end": "00:02:58:10",
+     "text": " COP31'in"
+    },
+    {
+     "start": "00:02:58:10",
+     "end": "00:02:59:07",
+     "text": " 2035'e"
+    },
+    {
+     "start": "00:02:59:07",
+     "end": "00:02:59:14",
+     "text": " kadar"
+    },
+    {
+     "start": "00:02:59:14",
+     "end": "00:03:00:06",
+     "text": " %35"
+    },
+    {
+     "start": "00:03:00:06",
+     "end": "00:03:00:19",
+     "text": " hedefi"
+    },
+    {
+     "start": "00:03:00:19",
+     "end": "00:03:01:03",
+     "text": " aslında"
+    },
+    {
+     "start": "00:03:01:03",
+     "end": "00:03:01:10",
+     "text": " bir"
+    },
+    {
+     "start": "00:03:01:10",
+     "end": "00:03:01:21",
+     "text": " şebeke"
+    },
+    {
+     "start": "00:03:01:21",
+     "end": "00:03:02:16",
+     "text": " meselesi."
+    },
+    {
+     "start": "00:03:03:02",
+     "end": "00:03:03:06",
+     "text": " Daha"
+    },
+    {
+     "start": "00:03:03:06",
+     "end": "00:03:03:15",
+     "text": " fazla"
+    },
+    {
+     "start": "00:03:03:15",
+     "end": "00:03:04:00",
+     "text": " güneş"
+    },
+    {
+     "start": "00:03:04:00",
+     "end": "00:03:04:03",
+     "text": " ve"
+    },
+    {
+     "start": "00:03:04:03",
+     "end": "00:03:04:20",
+     "text": " rüzgar,"
+    },
+    {
+     "start": "00:03:04:20",
+     "end": "00:03:05:05",
+     "text": " daha"
+    },
+    {
+     "start": "00:03:05:05",
+     "end": "00:03:05:16",
+     "text": " güçlü"
+    },
+    {
+     "start": "00:03:05:16",
+     "end": "00:03:06:00",
+     "text": " iletim"
+    },
+    {
+     "start": "00:03:06:00",
+     "end": "00:03:06:10",
+     "text": " atları,"
+    },
+    {
+     "start": "00:03:06:21",
+     "end": "00:03:07:09",
+     "text": " ülkeler"
+    },
+    {
+     "start": "00:03:07:09",
+     "end": "00:03:07:14",
+     "text": " arası"
+    },
+    {
+     "start": "00:03:07:14",
+     "end": "00:03:08:09",
+     "text": " bağlantılar"
+    },
+    {
+     "start": "00:03:08:09",
+     "end": "00:03:08:17",
+     "text": " ve"
+    },
+    {
+     "start": "00:03:08:17",
+     "end": "00:03:09:08",
+     "text": " talebeyi"
+    },
+    {
+     "start": "00:03:09:08",
+     "end": "00:03:09:15",
+     "text": " tahmin"
+    },
+    {
+     "start": "00:03:09:15",
+     "end": "00:03:09:22",
+     "text": " eden"
+    },
+    {
+     "start": "00:03:09:22",
+     "end": "00:03:10:06",
+     "text": " yapay"
+    },
+    {
+     "start": "00:03:10:06",
+     "end": "00:03:10:15",
+     "text": " zeka"
+    },
+    {
+     "start": "00:03:10:15",
+     "end": "00:03:11:02",
+     "text": " destekli"
+    },
+    {
+     "start": "00:03:11:02",
+     "end": "00:03:11:16",
+     "text": " yazılımlar"
+    },
+    {
+     "start": "00:03:11:16",
+     "end": "00:03:11:21",
+     "text": " demek."
+    },
+    {
+     "start": "00:03:11:21",
+     "end": "00:03:13:18",
+     "text": " İleri"
+    },
+    {
+     "start": "00:03:13:18",
+     "end": "00:03:14:16",
+     "text": " malzemeler."
+    },
+    {
+     "start": "00:03:14:23",
+     "end": "00:03:15:00",
+     "text": " Bir"
+    },
+    {
+     "start": "00:03:15:00",
+     "end": "00:03:15:04",
+     "text": " daha."
+    }
+   ],
+   "text": " Bir diğer teknoloji yansıması da elektrik şebekesi ve elektrifikasyona. COP31'in 2035'e kadar %35 hedefi aslında bir şebeke meselesi. Daha fazla güneş ve rüzgar, daha güçlü iletim atları, ülkeler arası bağlantılar ve talebeyi tahmin eden yapay zeka destekli yazılımlar demek. İleri malzemeler. Bir daha."
+  },
+  {
+   "start": "00:03:15:04",
+   "end": "00:03:17:17",
+   "words": [
+    {
+     "start": "00:03:15:04",
+     "end": "00:03:17:17",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:03:17:17",
+   "end": "00:04:01:06",
+   "words": [
+    {
+     "start": "00:03:17:17",
+     "end": "00:03:17:19",
+     "text": " Bir"
+    },
+    {
+     "start": "00:03:17:19",
+     "end": "00:03:18:02",
+     "text": " diğer"
+    },
+    {
+     "start": "00:03:18:02",
+     "end": "00:03:18:21",
+     "text": " yansıması"
+    },
+    {
+     "start": "00:03:18:21",
+     "end": "00:03:19:04",
+     "text": " ise"
+    },
+    {
+     "start": "00:03:19:04",
+     "end": "00:03:19:19",
+     "text": " ileri"
+    },
+    {
+     "start": "00:03:19:19",
+     "end": "00:03:20:08",
+     "text": " malzemeler"
+    },
+    {
+     "start": "00:03:20:08",
+     "end": "00:03:21:01",
+     "text": " konusunda."
+    },
+    {
+     "start": "00:03:21:02",
+     "end": "00:03:21:15",
+     "text": " Çimentoda"
+    },
+    {
+     "start": "00:03:21:15",
+     "end": "00:03:22:06",
+     "text": " karbonun"
+    },
+    {
+     "start": "00:03:22:06",
+     "end": "00:03:22:14",
+     "text": " büyük"
+    },
+    {
+     "start": "00:03:22:14",
+     "end": "00:03:23:02",
+     "text": " kısmı"
+    },
+    {
+     "start": "00:03:23:02",
+     "end": "00:03:23:13",
+     "text": " klinker"
+    },
+    {
+     "start": "00:03:23:13",
+     "end": "00:03:24:04",
+     "text": " üretiminden"
+    },
+    {
+     "start": "00:03:24:04",
+     "end": "00:03:24:12",
+     "text": " geliyor."
+    },
+    {
+     "start": "00:03:25:03",
+     "end": "00:03:25:07",
+     "text": " Daha"
+    },
+    {
+     "start": "00:03:25:07",
+     "end": "00:03:25:13",
+     "text": " az"
+    },
+    {
+     "start": "00:03:25:13",
+     "end": "00:03:26:03",
+     "text": " klinkerli"
+    },
+    {
+     "start": "00:03:26:03",
+     "end": "00:03:26:08",
+     "text": " yeni"
+    },
+    {
+     "start": "00:03:26:08",
+     "end": "00:03:26:14",
+     "text": " tür"
+    },
+    {
+     "start": "00:03:26:14",
+     "end": "00:03:27:11",
+     "text": " çimentolar."
+    },
+    {
+     "start": "00:03:28:04",
+     "end": "00:03:28:05",
+     "text": " Bir"
+    },
+    {
+     "start": "00:03:28:05",
+     "end": "00:03:28:11",
+     "text": " daha."
+    },
+    {
+     "start": "00:03:28:11",
+     "end": "00:03:30:14",
+     "text": " Daha"
+    },
+    {
+     "start": "00:03:30:14",
+     "end": "00:03:30:20",
+     "text": " az"
+    },
+    {
+     "start": "00:03:30:20",
+     "end": "00:03:31:12",
+     "text": " klinkerli"
+    },
+    {
+     "start": "00:03:31:12",
+     "end": "00:03:31:21",
+     "text": " yeni"
+    },
+    {
+     "start": "00:03:31:21",
+     "end": "00:03:32:02",
+     "text": " tür"
+    },
+    {
+     "start": "00:03:32:02",
+     "end": "00:03:33:00",
+     "text": " çimentolar"
+    },
+    {
+     "start": "00:03:33:00",
+     "end": "00:03:33:12",
+     "text": " karbon"
+    },
+    {
+     "start": "00:03:33:12",
+     "end": "00:03:34:01",
+     "text": " salınımını"
+    },
+    {
+     "start": "00:03:34:01",
+     "end": "00:03:34:20",
+     "text": " azaltacak"
+    },
+    {
+     "start": "00:03:34:20",
+     "end": "00:03:35:02",
+     "text": " ve"
+    },
+    {
+     "start": "00:03:35:02",
+     "end": "00:03:35:07",
+     "text": " bu"
+    },
+    {
+     "start": "00:03:35:07",
+     "end": "00:03:35:10",
+     "text": " da"
+    },
+    {
+     "start": "00:03:35:10",
+     "end": "00:03:36:02",
+     "text": " geliştirilme"
+    },
+    {
+     "start": "00:03:36:02",
+     "end": "00:03:36:19",
+     "text": " aşamasında."
+    },
+    {
+     "start": "00:03:37:13",
+     "end": "00:03:38:00",
+     "text": " Havacılık"
+    },
+    {
+     "start": "00:03:38:00",
+     "end": "00:03:38:03",
+     "text": " ve"
+    },
+    {
+     "start": "00:03:38:03",
+     "end": "00:03:38:18",
+     "text": " otomotivde"
+    },
+    {
+     "start": "00:03:38:18",
+     "end": "00:03:39:00",
+     "text": " ise"
+    },
+    {
+     "start": "00:03:39:00",
+     "end": "00:03:39:16",
+     "text": " hafif"
+    },
+    {
+     "start": "00:03:39:16",
+     "end": "00:03:40:03",
+     "text": " kompozit"
+    },
+    {
+     "start": "00:03:40:03",
+     "end": "00:03:40:20",
+     "text": " malzemeler"
+    },
+    {
+     "start": "00:03:40:20",
+     "end": "00:03:41:03",
+     "text": " yakıt"
+    },
+    {
+     "start": "00:03:41:03",
+     "end": "00:03:41:16",
+     "text": " tüketimini"
+    },
+    {
+     "start": "00:03:41:16",
+     "end": "00:03:42:05",
+     "text": " azaltıyor."
+    },
+    {
+     "start": "00:03:42:18",
+     "end": "00:03:42:24",
+     "text": " Baca"
+    },
+    {
+     "start": "00:03:42:24",
+     "end": "00:03:43:10",
+     "text": " gazından"
+    },
+    {
+     "start": "00:03:43:10",
+     "end": "00:03:43:24",
+     "text": " karbon"
+    },
+    {
+     "start": "00:03:43:24",
+     "end": "00:03:44:12",
+     "text": " yakalayan"
+    },
+    {
+     "start": "00:03:44:12",
+     "end": "00:03:45:06",
+     "text": " sisus"
+    },
+    {
+     "start": "00:03:45:06",
+     "end": "00:03:46:00",
+     "text": " sistemlerde"
+    },
+    {
+     "start": "00:03:46:00",
+     "end": "00:03:46:08",
+     "text": " ise"
+    },
+    {
+     "start": "00:03:46:08",
+     "end": "00:03:46:23",
+     "text": " daha"
+    },
+    {
+     "start": "00:03:46:23",
+     "end": "00:03:47:09",
+     "text": " verimli"
+    },
+    {
+     "start": "00:03:47:09",
+     "end": "00:03:47:19",
+     "text": " tutucu"
+    },
+    {
+     "start": "00:03:47:19",
+     "end": "00:03:48:06",
+     "text": " malzemeler"
+    },
+    {
+     "start": "00:03:48:06",
+     "end": "00:03:48:15",
+     "text": " üzerinde"
+    },
+    {
+     "start": "00:03:48:15",
+     "end": "00:03:49:05",
+     "text": " çalışılıyor."
+    },
+    {
+     "start": "00:03:49:05",
+     "end": "00:03:51:10",
+     "text": " İş"
+    },
+    {
+     "start": "00:03:51:10",
+     "end": "00:03:51:16",
+     "text": " gücü"
+    },
+    {
+     "start": "00:03:51:16",
+     "end": "00:03:51:19",
+     "text": " ve"
+    },
+    {
+     "start": "00:03:51:19",
+     "end": "00:03:52:03",
+     "text": " enerji"
+    },
+    {
+     "start": "00:03:52:03",
+     "end": "00:03:52:21",
+     "text": " faturaları"
+    },
+    {
+     "start": "00:03:52:21",
+     "end": "00:03:53:13",
+     "text": " uluslararası"
+    },
+    {
+     "start": "00:03:53:13",
+     "end": "00:03:54:03",
+     "text": " yenilenebilir"
+    },
+    {
+     "start": "00:03:54:03",
+     "end": "00:03:54:12",
+     "text": " enerji"
+    },
+    {
+     "start": "00:03:54:12",
+     "end": "00:03:55:00",
+     "text": " ajansına"
+    },
+    {
+     "start": "00:03:55:00",
+     "end": "00:03:55:06",
+     "text": " göre"
+    },
+    {
+     "start": "00:03:55:06",
+     "end": "00:03:56:09",
+     "text": " dünyada"
+    },
+    {
+     "start": "00:03:56:09",
+     "end": "00:03:57:03",
+     "text": " yenilenebilir"
+    },
+    {
+     "start": "00:03:57:03",
+     "end": "00:03:57:12",
+     "text": " enerji"
+    },
+    {
+     "start": "00:03:57:12",
+     "end": "00:03:58:00",
+     "text": " sektöründe"
+    },
+    {
+     "start": "00:03:58:00",
+     "end": "00:03:58:13",
+     "text": " çalışan"
+    },
+    {
+     "start": "00:03:58:13",
+     "end": "00:03:59:07",
+     "text": " 16"
+    },
+    {
+     "start": "00:03:59:07",
+     "end": "00:03:59:21",
+     "text": " milyon"
+    },
+    {
+     "start": "00:03:59:21",
+     "end": "00:04:00:17",
+     "text": " insanın..."
+    },
+    {
+     "start": "00:04:01:00",
+     "end": "00:04:01:02",
+     "text": " Bir"
+    },
+    {
+     "start": "00:04:01:02",
+     "end": "00:04:01:06",
+     "text": " daha."
+    }
+   ],
+   "text": " Bir diğer yansıması ise ileri malzemeler konusunda. Çimentoda karbonun büyük kısmı klinker üretiminden geliyor. Daha az klinkerli yeni tür çimentolar. Bir daha. Daha az klinkerli yeni tür çimentolar karbon salınımını azaltacak ve bu da geliştirilme aşamasında. Havacılık ve otomotivde ise hafif kompozit malzemeler yakıt tüketimini azaltıyor. Baca gazından karbon yakalayan sisus sistemlerde ise daha verimli tutucu malzemeler üzerinde çalışılıyor. İş gücü ve enerji faturaları uluslararası yenilenebilir enerji ajansına göre dünyada yenilenebilir enerji sektöründe çalışan 16 milyon insanın... Bir daha."
+  },
+  {
+   "start": "00:04:01:06",
+   "end": "00:04:03:17",
+   "words": [
+    {
+     "start": "00:04:01:06",
+     "end": "00:04:03:17",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:04:03:17",
+   "end": "00:04:06:10",
+   "words": [
+    {
+     "start": "00:04:03:17",
+     "end": "00:04:03:21",
+     "text": " İş"
+    },
+    {
+     "start": "00:04:03:21",
+     "end": "00:04:04:02",
+     "text": " gücü"
+    },
+    {
+     "start": "00:04:04:02",
+     "end": "00:04:04:06",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:04:06",
+     "end": "00:04:04:14",
+     "text": " enerji"
+    },
+    {
+     "start": "00:04:04:14",
+     "end": "00:04:05:08",
+     "text": " faturaları..."
+    },
+    {
+     "start": "00:04:05:18",
+     "end": "00:04:06:00",
+     "text": " Bir"
+    },
+    {
+     "start": "00:04:06:00",
+     "end": "00:04:06:10",
+     "text": " daha."
+    }
+   ],
+   "text": " İş gücü ve enerji faturaları... Bir daha."
+  },
+  {
+   "start": "00:04:06:10",
+   "end": "00:04:10:00",
+   "words": [
+    {
+     "start": "00:04:06:10",
+     "end": "00:04:10:00",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:04:10:00",
+   "end": "00:04:18:08",
+   "words": [
+    {
+     "start": "00:04:10:00",
+     "end": "00:04:10:04",
+     "text": " Peki"
+    },
+    {
+     "start": "00:04:10:04",
+     "end": "00:04:10:20",
+     "text": " bizim"
+    },
+    {
+     "start": "00:04:10:20",
+     "end": "00:04:11:09",
+     "text": " hayatımıza"
+    },
+    {
+     "start": "00:04:11:09",
+     "end": "00:04:11:14",
+     "text": " nasıl"
+    },
+    {
+     "start": "00:04:11:14",
+     "end": "00:04:12:04",
+     "text": " yansıyor?"
+    },
+    {
+     "start": "00:04:12:11",
+     "end": "00:04:12:17",
+     "text": " Yani"
+    },
+    {
+     "start": "00:04:12:17",
+     "end": "00:04:13:00",
+     "text": " bizim"
+    },
+    {
+     "start": "00:04:13:00",
+     "end": "00:04:13:06",
+     "text": " gibi"
+    },
+    {
+     "start": "00:04:13:06",
+     "end": "00:04:14:02",
+     "text": " mühendislerin"
+    },
+    {
+     "start": "00:04:14:02",
+     "end": "00:04:14:08",
+     "text": " iş"
+    },
+    {
+     "start": "00:04:14:08",
+     "end": "00:04:14:16",
+     "text": " gücüne"
+    },
+    {
+     "start": "00:04:14:16",
+     "end": "00:04:14:19",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:14:19",
+     "end": "00:04:15:02",
+     "text": " enerji"
+    },
+    {
+     "start": "00:04:15:02",
+     "end": "00:04:15:23",
+     "text": " faturalarına..."
+    },
+    {
+     "start": "00:04:15:23",
+     "end": "00:04:16:02",
+     "text": " İşte"
+    },
+    {
+     "start": "00:04:16:02",
+     "end": "00:04:16:19",
+     "text": " uluslararası"
+    },
+    {
+     "start": "00:04:16:19",
+     "end": "00:04:17:08",
+     "text": " enerji..."
+    },
+    {
+     "start": "00:04:18:00",
+     "end": "00:04:18:02",
+     "text": " Bir"
+    },
+    {
+     "start": "00:04:18:02",
+     "end": "00:04:18:08",
+     "text": " daha."
+    }
+   ],
+   "text": " Peki bizim hayatımıza nasıl yansıyor? Yani bizim gibi mühendislerin iş gücüne ve enerji faturalarına... İşte uluslararası enerji... Bir daha."
+  },
+  {
+   "start": "00:04:18:08",
+   "end": "00:04:20:21",
+   "words": [
+    {
+     "start": "00:04:18:08",
+     "end": "00:04:20:21",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:04:20:21",
+   "end": "00:05:12:10",
+   "words": [
+    {
+     "start": "00:04:20:21",
+     "end": "00:04:20:24",
+     "text": " Peki"
+    },
+    {
+     "start": "00:04:20:24",
+     "end": "00:04:21:06",
+     "text": " bunun"
+    },
+    {
+     "start": "00:04:21:06",
+     "end": "00:04:21:21",
+     "text": " teknolojik"
+    },
+    {
+     "start": "00:04:21:21",
+     "end": "00:04:22:11",
+     "text": " yansıması"
+    },
+    {
+     "start": "00:04:22:11",
+     "end": "00:04:22:18",
+     "text": " yanı"
+    },
+    {
+     "start": "00:04:22:18",
+     "end": "00:04:22:22",
+     "text": " sıra"
+    },
+    {
+     "start": "00:04:22:22",
+     "end": "00:04:23:04",
+     "text": " iş"
+    },
+    {
+     "start": "00:04:23:04",
+     "end": "00:04:23:13",
+     "text": " gücünde"
+    },
+    {
+     "start": "00:04:23:13",
+     "end": "00:04:23:18",
+     "text": " nasıl"
+    },
+    {
+     "start": "00:04:23:18",
+     "end": "00:04:23:23",
+     "text": " bir"
+    },
+    {
+     "start": "00:04:23:23",
+     "end": "00:04:24:12",
+     "text": " yansıması"
+    },
+    {
+     "start": "00:04:24:12",
+     "end": "00:04:24:22",
+     "text": " var?"
+    },
+    {
+     "start": "00:04:24:22",
+     "end": "00:04:25:09",
+     "text": " Dersek"
+    },
+    {
+     "start": "00:04:25:09",
+     "end": "00:04:26:06",
+     "text": " uluslararası"
+    },
+    {
+     "start": "00:04:26:06",
+     "end": "00:04:26:23",
+     "text": " yenilenebilir"
+    },
+    {
+     "start": "00:04:26:23",
+     "end": "00:04:27:08",
+     "text": " enerji"
+    },
+    {
+     "start": "00:04:27:08",
+     "end": "00:04:27:20",
+     "text": " ajansına"
+    },
+    {
+     "start": "00:04:27:20",
+     "end": "00:04:28:01",
+     "text": " göre..."
+    },
+    {
+     "start": "00:04:28:19",
+     "end": "00:04:29:11",
+     "text": " Dünyada"
+    },
+    {
+     "start": "00:04:29:11",
+     "end": "00:04:30:09",
+     "text": " yenilenebilir"
+    },
+    {
+     "start": "00:04:30:09",
+     "end": "00:04:30:19",
+     "text": " enerji"
+    },
+    {
+     "start": "00:04:30:19",
+     "end": "00:04:31:10",
+     "text": " sektöründe"
+    },
+    {
+     "start": "00:04:31:10",
+     "end": "00:04:31:22",
+     "text": " benim"
+    },
+    {
+     "start": "00:04:31:22",
+     "end": "00:04:32:01",
+     "text": " de"
+    },
+    {
+     "start": "00:04:32:01",
+     "end": "00:04:32:08",
+     "text": " içinde"
+    },
+    {
+     "start": "00:04:32:08",
+     "end": "00:04:32:19",
+     "text": " olduğum"
+    },
+    {
+     "start": "00:04:32:19",
+     "end": "00:04:33:05",
+     "text": " çalışan"
+    },
+    {
+     "start": "00:04:33:05",
+     "end": "00:04:33:17",
+     "text": " sayısı"
+    },
+    {
+     "start": "00:04:33:17",
+     "end": "00:04:34:10",
+     "text": " 16"
+    },
+    {
+     "start": "00:04:34:10",
+     "end": "00:04:34:20",
+     "text": " milyon"
+    },
+    {
+     "start": "00:04:34:20",
+     "end": "00:04:35:08",
+     "text": " insanı"
+    },
+    {
+     "start": "00:04:35:08",
+     "end": "00:04:35:19",
+     "text": " aşmış."
+    },
+    {
+     "start": "00:04:35:19",
+     "end": "00:04:36:16",
+     "text": "(...)"
+    },
+    {
+     "start": "00:04:36:16",
+     "end": "00:04:36:22",
+     "text": " Kömür"
+    },
+    {
+     "start": "00:04:36:22",
+     "end": "00:04:37:13",
+     "text": " madenciliği"
+    },
+    {
+     "start": "00:04:37:13",
+     "end": "00:04:37:16",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:37:16",
+     "end": "00:04:38:00",
+     "text": " işten"
+    },
+    {
+     "start": "00:04:38:00",
+     "end": "00:04:38:11",
+     "text": " yanmalı"
+    },
+    {
+     "start": "00:04:38:11",
+     "end": "00:04:38:16",
+     "text": " motor"
+    },
+    {
+     "start": "00:04:38:16",
+     "end": "00:04:39:01",
+     "text": " üretimi"
+    },
+    {
+     "start": "00:04:39:01",
+     "end": "00:04:39:05",
+     "text": " gibi"
+    },
+    {
+     "start": "00:04:39:05",
+     "end": "00:04:39:19",
+     "text": " alanlarda"
+    },
+    {
+     "start": "00:04:39:19",
+     "end": "00:04:40:08",
+     "text": " istihdam"
+    },
+    {
+     "start": "00:04:40:08",
+     "end": "00:04:41:05",
+     "text": " dararırken..."
+    },
+    {
+     "start": "00:04:41:13",
+     "end": "00:04:41:19",
+     "text": " Güneş"
+    },
+    {
+     "start": "00:04:41:19",
+     "end": "00:04:41:23",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:41:23",
+     "end": "00:04:42:06",
+     "text": " rüzgar"
+    },
+    {
+     "start": "00:04:42:06",
+     "end": "00:04:42:20",
+     "text": " kurulumu,"
+    },
+    {
+     "start": "00:04:43:05",
+     "end": "00:04:43:15",
+     "text": " enerji"
+    },
+    {
+     "start": "00:04:43:15",
+     "end": "00:04:44:00",
+     "text": " verimliği"
+    },
+    {
+     "start": "00:04:44:00",
+     "end": "00:04:44:13",
+     "text": " denetimi,"
+    },
+    {
+     "start": "00:04:44:20",
+     "end": "00:04:45:20",
+     "text": " sürdürülebilirlik"
+    },
+    {
+     "start": "00:04:45:20",
+     "end": "00:04:46:13",
+     "text": " raporlaması..."
+    },
+    {
+     "start": "00:04:46:13",
+     "end": "00:04:46:19",
+     "text": " Ve"
+    },
+    {
+     "start": "00:04:46:19",
+     "end": "00:04:47:08",
+     "text": " batarya"
+    },
+    {
+     "start": "00:04:47:08",
+     "end": "00:04:47:20",
+     "text": " kimyası"
+    },
+    {
+     "start": "00:04:47:20",
+     "end": "00:04:47:24",
+     "text": " gibi"
+    },
+    {
+     "start": "00:04:47:24",
+     "end": "00:04:48:13",
+     "text": " alanlarda"
+    },
+    {
+     "start": "00:04:48:13",
+     "end": "00:04:49:03",
+     "text": " yeni"
+    },
+    {
+     "start": "00:04:49:03",
+     "end": "00:04:49:18",
+     "text": " meslekler"
+    },
+    {
+     "start": "00:04:49:18",
+     "end": "00:04:50:04",
+     "text": " doğuyor."
+    },
+    {
+     "start": "00:04:50:04",
+     "end": "00:04:52:11",
+     "text": " Belem'de"
+    },
+    {
+     "start": "00:04:52:11",
+     "end": "00:04:52:15",
+     "text": " kabul"
+    },
+    {
+     "start": "00:04:52:15",
+     "end": "00:04:53:00",
+     "text": " edilen"
+    },
+    {
+     "start": "00:04:53:00",
+     "end": "00:04:53:12",
+     "text": " adil"
+    },
+    {
+     "start": "00:04:53:12",
+     "end": "00:04:53:21",
+     "text": " geçiş"
+    },
+    {
+     "start": "00:04:53:21",
+     "end": "00:04:54:13",
+     "text": " mekanizması"
+    },
+    {
+     "start": "00:04:54:13",
+     "end": "00:04:54:23",
+     "text": " bu"
+    },
+    {
+     "start": "00:04:54:23",
+     "end": "00:04:55:12",
+     "text": " dönüşünden"
+    },
+    {
+     "start": "00:04:55:12",
+     "end": "00:04:55:22",
+     "text": " zarar"
+    },
+    {
+     "start": "00:04:55:22",
+     "end": "00:04:56:08",
+     "text": " görecek"
+    },
+    {
+     "start": "00:04:56:08",
+     "end": "00:04:57:01",
+     "text": " çalışanları"
+    },
+    {
+     "start": "00:04:57:01",
+     "end": "00:04:57:12",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:57:12",
+     "end": "00:04:58:00",
+     "text": " bölgeleri"
+    },
+    {
+     "start": "00:04:58:00",
+     "end": "00:04:58:12",
+     "text": " korumaya"
+    },
+    {
+     "start": "00:04:58:12",
+     "end": "00:04:59:08",
+     "text": " başlamış."
+    },
+    {
+     "start": "00:04:59:18",
+     "end": "00:04:59:20",
+     "text": " Bir"
+    },
+    {
+     "start": "00:04:59:20",
+     "end": "00:05:00:01",
+     "text": " daha."
+    },
+    {
+     "start": "00:05:00:01",
+     "end": "00:05:04:08",
+     "text": " Belem'de"
+    },
+    {
+     "start": "00:05:04:08",
+     "end": "00:05:04:12",
+     "text": " kabul"
+    },
+    {
+     "start": "00:05:04:12",
+     "end": "00:05:04:22",
+     "text": " edilen"
+    },
+    {
+     "start": "00:05:04:22",
+     "end": "00:05:05:11",
+     "text": " adil"
+    },
+    {
+     "start": "00:05:05:11",
+     "end": "00:05:05:22",
+     "text": " geçiş"
+    },
+    {
+     "start": "00:05:05:22",
+     "end": "00:05:06:16",
+     "text": " mekanizması"
+    },
+    {
+     "start": "00:05:06:16",
+     "end": "00:05:07:00",
+     "text": " bu"
+    },
+    {
+     "start": "00:05:07:00",
+     "end": "00:05:07:15",
+     "text": " dönüşümden"
+    },
+    {
+     "start": "00:05:07:15",
+     "end": "00:05:07:24",
+     "text": " zarar"
+    },
+    {
+     "start": "00:05:07:24",
+     "end": "00:05:08:09",
+     "text": " görecek"
+    },
+    {
+     "start": "00:05:08:09",
+     "end": "00:05:08:24",
+     "text": " çalışanları"
+    },
+    {
+     "start": "00:05:08:24",
+     "end": "00:05:09:03",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:09:03",
+     "end": "00:05:09:15",
+     "text": " bölgeleri"
+    },
+    {
+     "start": "00:05:09:15",
+     "end": "00:05:10:04",
+     "text": " korumaya"
+    },
+    {
+     "start": "00:05:10:04",
+     "end": "00:05:10:17",
+     "text": " başlıyor."
+    },
+    {
+     "start": "00:05:10:17",
+     "end": "00:05:11:22",
+     "text": " Faturalar"
+    },
+    {
+     "start": "00:05:11:22",
+     "end": "00:05:12:10",
+     "text": " tarafında..."
+    }
+   ],
+   "text": " Peki bunun teknolojik yansıması yanı sıra iş gücünde nasıl bir yansıması var? Dersek uluslararası yenilenebilir enerji ajansına göre... Dünyada yenilenebilir enerji sektöründe benim de içinde olduğum çalışan sayısı 16 milyon insanı aşmış.(...) Kömür madenciliği ve işten yanmalı motor üretimi gibi alanlarda istihdam dararırken... Güneş ve rüzgar kurulumu, enerji verimliği denetimi, sürdürülebilirlik raporlaması... Ve batarya kimyası gibi alanlarda yeni meslekler doğuyor. Belem'de kabul edilen adil geçiş mekanizması bu dönüşünden zarar görecek çalışanları ve bölgeleri korumaya başlamış. Bir daha. Belem'de kabul edilen adil geçiş mekanizması bu dönüşümden zarar görecek çalışanları ve bölgeleri korumaya başlıyor. Faturalar tarafında..."
+  },
+  {
+   "start": "00:05:12:10",
+   "end": "00:05:15:10",
+   "words": [
+    {
+     "start": "00:05:12:10",
+     "end": "00:05:15:10",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:05:15:10",
+   "end": "00:06:36:11",
+   "words": [
+    {
+     "start": "00:05:15:10",
+     "end": "00:05:15:13",
+     "text": " Peki"
+    },
+    {
+     "start": "00:05:15:13",
+     "end": "00:05:16:00",
+     "text": " gelelim"
+    },
+    {
+     "start": "00:05:16:00",
+     "end": "00:05:16:14",
+     "text": " faturalar"
+    },
+    {
+     "start": "00:05:16:14",
+     "end": "00:05:17:00",
+     "text": " tarafına."
+    },
+    {
+     "start": "00:05:17:08",
+     "end": "00:05:17:18",
+     "text": " Tablo"
+    },
+    {
+     "start": "00:05:17:18",
+     "end": "00:05:18:00",
+     "text": " iki"
+    },
+    {
+     "start": "00:05:18:00",
+     "end": "00:05:18:12",
+     "text": " aşamalı."
+    },
+    {
+     "start": "00:05:19:00",
+     "end": "00:05:19:05",
+     "text": " Kısa"
+    },
+    {
+     "start": "00:05:19:05",
+     "end": "00:05:19:16",
+     "text": " vadede"
+    },
+    {
+     "start": "00:05:19:16",
+     "end": "00:05:20:01",
+     "text": " şebeke"
+    },
+    {
+     "start": "00:05:20:01",
+     "end": "00:05:20:16",
+     "text": " yatırımları"
+    },
+    {
+     "start": "00:05:20:16",
+     "end": "00:05:20:23",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:20:23",
+     "end": "00:05:21:08",
+     "text": " karbon"
+    },
+    {
+     "start": "00:05:21:08",
+     "end": "00:05:21:19",
+     "text": " fiyatları"
+    },
+    {
+     "start": "00:05:21:19",
+     "end": "00:05:22:05",
+     "text": " maliyet"
+    },
+    {
+     "start": "00:05:22:05",
+     "end": "00:05:22:16",
+     "text": " artışı"
+    },
+    {
+     "start": "00:05:22:16",
+     "end": "00:05:23:05",
+     "text": " yaratabilir."
+    },
+    {
+     "start": "00:05:23:17",
+     "end": "00:05:23:23",
+     "text": " Orta"
+    },
+    {
+     "start": "00:05:23:23",
+     "end": "00:05:24:01",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:24:01",
+     "end": "00:05:24:08",
+     "text": " uzun"
+    },
+    {
+     "start": "00:05:24:08",
+     "end": "00:05:24:19",
+     "text": " vadede"
+    },
+    {
+     "start": "00:05:24:19",
+     "end": "00:05:25:00",
+     "text": " ise"
+    },
+    {
+     "start": "00:05:25:00",
+     "end": "00:05:25:12",
+     "text": " yakıt"
+    },
+    {
+     "start": "00:05:25:12",
+     "end": "00:05:26:00",
+     "text": " maliyeti"
+    },
+    {
+     "start": "00:05:26:00",
+     "end": "00:05:26:19",
+     "text": " sıfır"
+    },
+    {
+     "start": "00:05:26:19",
+     "end": "00:05:27:00",
+     "text": " olan"
+    },
+    {
+     "start": "00:05:27:00",
+     "end": "00:05:27:08",
+     "text": " güneş"
+    },
+    {
+     "start": "00:05:27:08",
+     "end": "00:05:27:11",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:27:11",
+     "end": "00:05:27:22",
+     "text": " rüzgarın"
+    },
+    {
+     "start": "00:05:27:22",
+     "end": "00:05:28:04",
+     "text": " payı"
+    },
+    {
+     "start": "00:05:28:04",
+     "end": "00:05:28:22",
+     "text": " arttıkça..."
+    },
+    {
+     "start": "00:05:29:03",
+     "end": "00:05:29:12",
+     "text": " Petrol"
+    },
+    {
+     "start": "00:05:29:12",
+     "end": "00:05:29:15",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:29:15",
+     "end": "00:05:29:22",
+     "text": " gaz"
+    },
+    {
+     "start": "00:05:29:22",
+     "end": "00:05:30:23",
+     "text": " krizlerinin"
+    },
+    {
+     "start": "00:05:30:23",
+     "end": "00:05:31:10",
+     "text": " elektrik"
+    },
+    {
+     "start": "00:05:31:10",
+     "end": "00:05:32:11",
+     "text": " yansımalarına..."
+    },
+    {
+     "start": "00:05:32:11",
+     "end": "00:05:33:07",
+     "text": "(...)"
+    },
+    {
+     "start": "00:05:33:07",
+     "end": "00:05:33:08",
+     "text": " Bir"
+    },
+    {
+     "start": "00:05:33:08",
+     "end": "00:05:33:13",
+     "text": " daha."
+    },
+    {
+     "start": "00:05:33:13",
+     "end": "00:05:38:04",
+     "text": " Orta"
+    },
+    {
+     "start": "00:05:38:04",
+     "end": "00:05:38:08",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:38:08",
+     "end": "00:05:38:15",
+     "text": " uzun"
+    },
+    {
+     "start": "00:05:38:15",
+     "end": "00:05:39:01",
+     "text": " vadede"
+    },
+    {
+     "start": "00:05:39:01",
+     "end": "00:05:39:08",
+     "text": " ise"
+    },
+    {
+     "start": "00:05:39:08",
+     "end": "00:05:39:20",
+     "text": " yakıt"
+    },
+    {
+     "start": "00:05:39:20",
+     "end": "00:05:40:08",
+     "text": " maliyeti"
+    },
+    {
+     "start": "00:05:40:08",
+     "end": "00:05:40:17",
+     "text": " sıfır"
+    },
+    {
+     "start": "00:05:40:17",
+     "end": "00:05:40:24",
+     "text": " olan"
+    },
+    {
+     "start": "00:05:40:24",
+     "end": "00:05:41:08",
+     "text": " güneş"
+    },
+    {
+     "start": "00:05:41:08",
+     "end": "00:05:41:12",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:41:12",
+     "end": "00:05:41:23",
+     "text": " rüzgarın"
+    },
+    {
+     "start": "00:05:41:23",
+     "end": "00:05:42:06",
+     "text": " payı"
+    },
+    {
+     "start": "00:05:42:06",
+     "end": "00:05:42:24",
+     "text": " arttıkça..."
+    },
+    {
+     "start": "00:05:43:13",
+     "end": "00:05:43:22",
+     "text": " Petrol"
+    },
+    {
+     "start": "00:05:43:22",
+     "end": "00:05:44:01",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:44:01",
+     "end": "00:05:44:09",
+     "text": " gaz"
+    },
+    {
+     "start": "00:05:44:09",
+     "end": "00:05:45:00",
+     "text": " krizlerinin"
+    },
+    {
+     "start": "00:05:45:00",
+     "end": "00:05:45:10",
+     "text": " elektrik"
+    },
+    {
+     "start": "00:05:45:10",
+     "end": "00:05:45:22",
+     "text": " fiyatlarının"
+    },
+    {
+     "start": "00:05:45:22",
+     "end": "00:05:46:12",
+     "text": " yansıması"
+    },
+    {
+     "start": "00:05:46:12",
+     "end": "00:05:47:04",
+     "text": " azalabilir."
+    },
+    {
+     "start": "00:05:47:17",
+     "end": "00:05:48:02",
+     "text": " Bildiğiniz"
+    },
+    {
+     "start": "00:05:48:02",
+     "end": "00:05:48:09",
+     "text": " üzere"
+    },
+    {
+     "start": "00:05:48:09",
+     "end": "00:05:48:16",
+     "text": " her"
+    },
+    {
+     "start": "00:05:48:16",
+     "end": "00:05:48:22",
+     "text": " kış"
+    },
+    {
+     "start": "00:05:48:22",
+     "end": "00:05:49:12",
+     "text": " Avrupa'da"
+    },
+    {
+     "start": "00:05:49:12",
+     "end": "00:05:49:21",
+     "text": " bir"
+    },
+    {
+     "start": "00:05:49:21",
+     "end": "00:05:50:05",
+     "text": " kriz"
+    },
+    {
+     "start": "00:05:50:05",
+     "end": "00:05:50:15",
+     "text": " oluyor."
+    },
+    {
+     "start": "00:05:50:15",
+     "end": "00:05:51:00",
+     "text": " Özellikle"
+    },
+    {
+     "start": "00:05:51:00",
+     "end": "00:05:51:09",
+     "text": " doğal"
+    },
+    {
+     "start": "00:05:51:09",
+     "end": "00:05:51:14",
+     "text": " gaz"
+    },
+    {
+     "start": "00:05:51:14",
+     "end": "00:05:52:01",
+     "text": " konusunda."
+    },
+    {
+     "start": "00:05:52:20",
+     "end": "00:05:52:22",
+     "text": " İşte"
+    },
+    {
+     "start": "00:05:52:22",
+     "end": "00:05:53:03",
+     "text": " bizim"
+    },
+    {
+     "start": "00:05:53:03",
+     "end": "00:05:53:16",
+     "text": " hayatımızdan"
+    },
+    {
+     "start": "00:05:53:16",
+     "end": "00:05:53:20",
+     "text": " ne"
+    },
+    {
+     "start": "00:05:53:20",
+     "end": "00:05:54:06",
+     "text": " değişiyor?"
+    },
+    {
+     "start": "00:05:54:12",
+     "end": "00:05:54:16",
+     "text": " Bunu"
+    },
+    {
+     "start": "00:05:54:16",
+     "end": "00:05:54:19",
+     "text": " da"
+    },
+    {
+     "start": "00:05:54:19",
+     "end": "00:05:55:11",
+     "text": " düşünürsek..."
+    },
+    {
+     "start": "00:05:55:22",
+     "end": "00:05:56:07",
+     "text": " Çatıdaki"
+    },
+    {
+     "start": "00:05:56:07",
+     "end": "00:05:57:00",
+     "text": " santral,"
+    },
+    {
+     "start": "00:05:57:00",
+     "end": "00:05:57:06",
+     "text": " çatı"
+    },
+    {
+     "start": "00:05:57:06",
+     "end": "00:05:57:13",
+     "text": " güneş"
+    },
+    {
+     "start": "00:05:57:13",
+     "end": "00:05:58:00",
+     "text": " panelleri"
+    },
+    {
+     "start": "00:05:58:00",
+     "end": "00:05:58:04",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:58:04",
+     "end": "00:05:58:12",
+     "text": " FTP..."
+    },
+    {
+     "start": "00:05:58:12",
+     "end": "00:05:59:08",
+     "text": "(...)"
+    },
+    {
+     "start": "00:05:59:08",
+     "end": "00:05:59:08",
+     "text": " Bir"
+    },
+    {
+     "start": "00:05:59:08",
+     "end": "00:05:59:13",
+     "text": " daha."
+    },
+    {
+     "start": "00:05:59:13",
+     "end": "00:06:01:09",
+     "text": " Örneğin"
+    },
+    {
+     "start": "00:06:01:09",
+     "end": "00:06:02:04",
+     "text": " çatımızdaki"
+    },
+    {
+     "start": "00:06:02:04",
+     "end": "00:06:02:21",
+     "text": " santraller."
+    },
+    {
+     "start": "00:06:03:09",
+     "end": "00:06:03:17",
+     "text": " Çatı"
+    },
+    {
+     "start": "00:06:03:17",
+     "end": "00:06:03:24",
+     "text": " güneş"
+    },
+    {
+     "start": "00:06:03:24",
+     "end": "00:06:04:12",
+     "text": " panelleri"
+    },
+    {
+     "start": "00:06:04:12",
+     "end": "00:06:04:15",
+     "text": " ve"
+    },
+    {
+     "start": "00:06:04:15",
+     "end": "00:06:04:23",
+     "text": " FTP"
+    },
+    {
+     "start": "00:06:04:23",
+     "end": "00:06:05:19",
+     "text": " bataryalarla"
+    },
+    {
+     "start": "00:06:05:19",
+     "end": "00:06:06:12",
+     "text": " tüketici..."
+    },
+    {
+     "start": "00:06:06:18",
+     "end": "00:06:07:00",
+     "text": " Aynı"
+    },
+    {
+     "start": "00:06:07:00",
+     "end": "00:06:07:12",
+     "text": " zamanda"
+    },
+    {
+     "start": "00:06:07:12",
+     "end": "00:06:08:01",
+     "text": " üretici"
+    },
+    {
+     "start": "00:06:08:01",
+     "end": "00:06:08:04",
+     "text": " de"
+    },
+    {
+     "start": "00:06:08:04",
+     "end": "00:06:08:08",
+     "text": " olmuş"
+    },
+    {
+     "start": "00:06:08:08",
+     "end": "00:06:08:16",
+     "text": " oluyor."
+    },
+    {
+     "start": "00:06:09:01",
+     "end": "00:06:09:14",
+     "text": " Prosumer"
+    },
+    {
+     "start": "00:06:09:14",
+     "end": "00:06:09:20",
+     "text": " deniyor"
+    },
+    {
+     "start": "00:06:09:20",
+     "end": "00:06:10:00",
+     "text": " bunu"
+    },
+    {
+     "start": "00:06:10:00",
+     "end": "00:06:10:08",
+     "text": " hatta."
+    },
+    {
+     "start": "00:06:10:21",
+     "end": "00:06:11:04",
+     "text": " Fazla"
+    },
+    {
+     "start": "00:06:11:04",
+     "end": "00:06:11:15",
+     "text": " elektriğini"
+    },
+    {
+     "start": "00:06:11:15",
+     "end": "00:06:12:03",
+     "text": " şebekeye"
+    },
+    {
+     "start": "00:06:12:03",
+     "end": "00:06:12:16",
+     "text": " satabilir."
+    },
+    {
+     "start": "00:06:13:05",
+     "end": "00:06:13:11",
+     "text": " Buradan"
+    },
+    {
+     "start": "00:06:13:11",
+     "end": "00:06:13:13",
+     "text": " da"
+    },
+    {
+     "start": "00:06:13:13",
+     "end": "00:06:13:18",
+     "text": " para"
+    },
+    {
+     "start": "00:06:13:18",
+     "end": "00:06:14:08",
+     "text": " kazanabilir."
+    },
+    {
+     "start": "00:06:14:22",
+     "end": "00:06:15:05",
+     "text": " Kombi"
+    },
+    {
+     "start": "00:06:15:05",
+     "end": "00:06:15:11",
+     "text": " yerine"
+    },
+    {
+     "start": "00:06:15:11",
+     "end": "00:06:15:14",
+     "text": " "
+    },
+    {
+     "start": "00:06:15:14",
+     "end": "00:06:15:16",
+     "text": "ısı"
+    },
+    {
+     "start": "00:06:15:16",
+     "end": "00:06:16:09",
+     "text": " pompası..."
+    },
+    {
+     "start": "00:06:16:09",
+     "end": "00:06:16:21",
+     "text": " Özellikle"
+    },
+    {
+     "start": "00:06:16:21",
+     "end": "00:06:17:07",
+     "text": " Avrupa'da"
+    },
+    {
+     "start": "00:06:17:07",
+     "end": "00:06:17:15",
+     "text": " doğal"
+    },
+    {
+     "start": "00:06:17:15",
+     "end": "00:06:17:22",
+     "text": " gazlı"
+    },
+    {
+     "start": "00:06:17:22",
+     "end": "00:06:18:07",
+     "text": " kombiden"
+    },
+    {
+     "start": "00:06:18:07",
+     "end": "00:06:18:11",
+     "text": " "
+    },
+    {
+     "start": "00:06:18:11",
+     "end": "00:06:18:14",
+     "text": "ısı"
+    },
+    {
+     "start": "00:06:18:14",
+     "end": "00:06:19:01",
+     "text": " pompasına"
+    },
+    {
+     "start": "00:06:19:01",
+     "end": "00:06:19:11",
+     "text": " geçiş"
+    },
+    {
+     "start": "00:06:19:11",
+     "end": "00:06:20:05",
+     "text": " teşvik"
+    },
+    {
+     "start": "00:06:20:05",
+     "end": "00:06:20:13",
+     "text": " ediliyor."
+    },
+    {
+     "start": "00:06:20:22",
+     "end": "00:06:21:02",
+     "text": " Tabi"
+    },
+    {
+     "start": "00:06:21:02",
+     "end": "00:06:21:04",
+     "text": " ki"
+    },
+    {
+     "start": "00:06:21:04",
+     "end": "00:06:21:07",
+     "text": " bu"
+    },
+    {
+     "start": "00:06:21:07",
+     "end": "00:06:21:11",
+     "text": " her"
+    },
+    {
+     "start": "00:06:21:11",
+     "end": "00:06:21:18",
+     "text": " ülkede"
+    },
+    {
+     "start": "00:06:21:18",
+     "end": "00:06:21:23",
+     "text": " oluyor"
+    },
+    {
+     "start": "00:06:21:23",
+     "end": "00:06:22:04",
+     "text": " değil."
+    },
+    {
+     "start": "00:06:22:09",
+     "end": "00:06:22:16",
+     "text": " Bazı"
+    },
+    {
+     "start": "00:06:22:16",
+     "end": "00:06:23:00",
+     "text": " ülkelerde"
+    },
+    {
+     "start": "00:06:23:00",
+     "end": "00:06:23:06",
+     "text": " oluyor"
+    },
+    {
+     "start": "00:06:23:06",
+     "end": "00:06:23:12",
+     "text": " ama."
+    },
+    {
+     "start": "00:06:24:02",
+     "end": "00:06:24:15",
+     "text": " Elektrikli"
+    },
+    {
+     "start": "00:06:24:15",
+     "end": "00:06:25:00",
+     "text": " araçlara"
+    },
+    {
+     "start": "00:06:25:00",
+     "end": "00:06:25:13",
+     "text": " gelirsek..."
+    },
+    {
+     "start": "00:06:25:18",
+     "end": "00:06:26:02",
+     "text": " Türkiye'de"
+    },
+    {
+     "start": "00:06:26:02",
+     "end": "00:06:26:08",
+     "text": " her..."
+    },
+    {
+     "start": "00:06:26:16",
+     "end": "00:06:26:24",
+     "text": " Bir"
+    },
+    {
+     "start": "00:06:26:24",
+     "end": "00:06:27:04",
+     "text": " daha."
+    },
+    {
+     "start": "00:06:27:04",
+     "end": "00:06:29:09",
+     "text": " Elektrikli"
+    },
+    {
+     "start": "00:06:29:09",
+     "end": "00:06:29:20",
+     "text": " araçlara"
+    },
+    {
+     "start": "00:06:29:20",
+     "end": "00:06:30:07",
+     "text": " gelirsek..."
+    },
+    {
+     "start": "00:06:30:11",
+     "end": "00:06:30:24",
+     "text": " Türkiye'de"
+    },
+    {
+     "start": "00:06:30:24",
+     "end": "00:06:31:18",
+     "text": " 2025'de"
+    },
+    {
+     "start": "00:06:31:18",
+     "end": "00:06:32:04",
+     "text": " satılan"
+    },
+    {
+     "start": "00:06:32:04",
+     "end": "00:06:32:10",
+     "text": " her"
+    },
+    {
+     "start": "00:06:32:10",
+     "end": "00:06:32:14",
+     "text": " 100"
+    },
+    {
+     "start": "00:06:32:14",
+     "end": "00:06:33:05",
+     "text": " otomobilden"
+    },
+    {
+     "start": "00:06:33:05",
+     "end": "00:06:33:20",
+     "text": " yaklaşık"
+    },
+    {
+     "start": "00:06:33:20",
+     "end": "00:06:34:11",
+     "text": " 17'si"
+    },
+    {
+     "start": "00:06:34:11",
+     "end": "00:06:35:02",
+     "text": " elektrikliydi."
+    },
+    {
+     "start": "00:06:35:15",
+     "end": "00:06:35:22",
+     "text": " Henüz"
+    },
+    {
+     "start": "00:06:35:22",
+     "end": "00:06:36:11",
+     "text": " rakamlar..."
+    }
+   ],
+   "text": " Peki gelelim faturalar tarafına. Tablo iki aşamalı. Kısa vadede şebeke yatırımları ve karbon fiyatları maliyet artışı yaratabilir. Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgarın payı arttıkça... Petrol ve gaz krizlerinin elektrik yansımalarına...(...) Bir daha. Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgarın payı arttıkça... Petrol ve gaz krizlerinin elektrik fiyatlarının yansıması azalabilir. Bildiğiniz üzere her kış Avrupa'da bir kriz oluyor. Özellikle doğal gaz konusunda. İşte bizim hayatımızdan ne değişiyor? Bunu da düşünürsek... Çatıdaki santral, çatı güneş panelleri ve FTP...(...) Bir daha. Örneğin çatımızdaki santraller. Çatı güneş panelleri ve FTP bataryalarla tüketici... Aynı zamanda üretici de olmuş oluyor. Prosumer deniyor bunu hatta. Fazla elektriğini şebekeye satabilir. Buradan da para kazanabilir. Kombi yerine ısı pompası... Özellikle Avrupa'da doğal gazlı kombiden ısı pompasına geçiş teşvik ediliyor. Tabi ki bu her ülkede oluyor değil. Bazı ülkelerde oluyor ama. Elektrikli araçlara gelirsek... Türkiye'de her... Bir daha. Elektrikli araçlara gelirsek... Türkiye'de 2025'de satılan her 100 otomobilden yaklaşık 17'si elektrikliydi. Henüz rakamlar..."
+  }
+ ]
+}

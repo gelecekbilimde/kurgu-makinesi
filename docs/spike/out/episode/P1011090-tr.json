@@ -1,0 +1,5206 @@
+{
+ "language": "tr",
+ "segments": [
+  {
+   "start": "00:00:00:00",
+   "end": "00:00:01:24",
+   "words": [
+    {
+     "start": "00:00:00:00",
+     "end": "00:00:01:24",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:00:01:24",
+   "end": "00:00:08:20",
+   "words": [
+    {
+     "start": "00:00:01:24",
+     "end": "00:00:02:06",
+     "text": " Nihai"
+    },
+    {
+     "start": "00:00:02:06",
+     "end": "00:00:02:14",
+     "text": " enerji"
+    },
+    {
+     "start": "00:00:02:14",
+     "end": "00:00:03:06",
+     "text": " tüketiminde"
+    },
+    {
+     "start": "00:00:03:06",
+     "end": "00:00:03:18",
+     "text": " elektriğin"
+    },
+    {
+     "start": "00:00:03:18",
+     "end": "00:00:04:04",
+     "text": " payını"
+    },
+    {
+     "start": "00:00:04:04",
+     "end": "00:00:05:00",
+     "text": " %35'e"
+    },
+    {
+     "start": "00:00:05:00",
+     "end": "00:00:05:21",
+     "text": " çıkarmak,"
+    },
+    {
+     "start": "00:00:05:21",
+     "end": "00:00:07:00",
+     "text": " 2035'e"
+    },
+    {
+     "start": "00:00:07:00",
+     "end": "00:00:07:06",
+     "text": " kadar"
+    },
+    {
+     "start": "00:00:07:06",
+     "end": "00:00:07:14",
+     "text": " ise..."
+    },
+    {
+     "start": "00:00:07:19",
+     "end": "00:00:08:00",
+     "text": " Bir"
+    },
+    {
+     "start": "00:00:08:00",
+     "end": "00:00:08:05",
+     "text": " daha"
+    },
+    {
+     "start": "00:00:08:05",
+     "end": "00:00:08:20",
+     "text": " pardon."
+    }
+   ],
+   "text": " Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak, 2035'e kadar ise... Bir daha pardon."
+  },
+  {
+   "start": "00:00:08:20",
+   "end": "00:00:10:24",
+   "words": [
+    {
+     "start": "00:00:08:20",
+     "end": "00:00:10:24",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:00:10:24",
+   "end": "00:01:32:04",
+   "words": [
+    {
+     "start": "00:00:10:24",
+     "end": "00:00:11:15",
+     "text": " 2035"
+    },
+    {
+     "start": "00:00:11:15",
+     "end": "00:00:12:00",
+     "text": " yılına"
+    },
+    {
+     "start": "00:00:12:00",
+     "end": "00:00:12:07",
+     "text": " kadar"
+    },
+    {
+     "start": "00:00:12:07",
+     "end": "00:00:12:22",
+     "text": " nihai"
+    },
+    {
+     "start": "00:00:12:22",
+     "end": "00:00:13:04",
+     "text": " enerji"
+    },
+    {
+     "start": "00:00:13:04",
+     "end": "00:00:13:24",
+     "text": " tüketiminde"
+    },
+    {
+     "start": "00:00:13:24",
+     "end": "00:00:14:20",
+     "text": " elektriğin"
+    },
+    {
+     "start": "00:00:14:20",
+     "end": "00:00:15:06",
+     "text": " payını"
+    },
+    {
+     "start": "00:00:15:06",
+     "end": "00:00:16:01",
+     "text": " %35'e"
+    },
+    {
+     "start": "00:00:16:01",
+     "end": "00:00:16:16",
+     "text": " çıkarmak,"
+    },
+    {
+     "start": "00:00:16:16",
+     "end": "00:00:17:11",
+     "text": "(...)"
+    },
+    {
+     "start": "00:00:17:11",
+     "end": "00:00:17:19",
+     "text": " atık"
+    },
+    {
+     "start": "00:00:17:19",
+     "end": "00:00:18:10",
+     "text": " üretimindeki"
+    },
+    {
+     "start": "00:00:18:10",
+     "end": "00:00:18:21",
+     "text": " artış"
+    },
+    {
+     "start": "00:00:18:21",
+     "end": "00:00:19:05",
+     "text": " hızını"
+    },
+    {
+     "start": "00:00:19:05",
+     "end": "00:00:19:20",
+     "text": " yarıya"
+    },
+    {
+     "start": "00:00:19:20",
+     "end": "00:00:20:08",
+     "text": " indirmek,"
+    },
+    {
+     "start": "00:00:20:16",
+     "end": "00:00:21:03",
+     "text": " sırayla"
+    },
+    {
+     "start": "00:00:21:03",
+     "end": "00:00:21:13",
+     "text": " sayıyorum"
+    },
+    {
+     "start": "00:00:21:13",
+     "end": "00:00:21:17",
+     "text": " bu"
+    },
+    {
+     "start": "00:00:21:17",
+     "end": "00:00:22:00",
+     "text": " 1,"
+    },
+    {
+     "start": "00:00:22:00",
+     "end": "00:00:22:03",
+     "text": " 2"
+    },
+    {
+     "start": "00:00:22:03",
+     "end": "00:00:22:12",
+     "text": " oldu,"
+    },
+    {
+     "start": "00:00:23:03",
+     "end": "00:00:23:21",
+     "text": " binalardaki"
+    },
+    {
+     "start": "00:00:23:21",
+     "end": "00:00:24:04",
+     "text": " enerji"
+    },
+    {
+     "start": "00:00:24:04",
+     "end": "00:00:24:15",
+     "text": " kullanım"
+    },
+    {
+     "start": "00:00:24:15",
+     "end": "00:00:25:04",
+     "text": " yoğunluğunu"
+    },
+    {
+     "start": "00:00:25:04",
+     "end": "00:00:25:10",
+     "text": " en"
+    },
+    {
+     "start": "00:00:25:10",
+     "end": "00:00:25:15",
+     "text": " az"
+    },
+    {
+     "start": "00:00:25:15",
+     "end": "00:00:26:09",
+     "text": " %25"
+    },
+    {
+     "start": "00:00:26:09",
+     "end": "00:00:27:02",
+     "text": " azaltmak,"
+    },
+    {
+     "start": "00:00:27:02",
+     "end": "00:00:27:24",
+     "text": " 4."
+    },
+    {
+     "start": "00:00:28:05",
+     "end": "00:00:28:20",
+     "text": " Sanayide"
+    },
+    {
+     "start": "00:00:28:20",
+     "end": "00:00:29:08",
+     "text": " döngüsel"
+    },
+    {
+     "start": "00:00:29:08",
+     "end": "00:00:29:19",
+     "text": " malzeme"
+    },
+    {
+     "start": "00:00:29:19",
+     "end": "00:00:30:05",
+     "text": " kullanım"
+    },
+    {
+     "start": "00:00:30:05",
+     "end": "00:00:30:16",
+     "text": " oranını"
+    },
+    {
+     "start": "00:00:30:16",
+     "end": "00:00:31:00",
+     "text": " en"
+    },
+    {
+     "start": "00:00:31:00",
+     "end": "00:00:31:04",
+     "text": " az"
+    },
+    {
+     "start": "00:00:31:04",
+     "end": "00:00:31:20",
+     "text": " %15'e"
+    },
+    {
+     "start": "00:00:31:20",
+     "end": "00:00:32:11",
+     "text": " çıkarmak,"
+    },
+    {
+     "start": "00:00:33:05",
+     "end": "00:00:33:23",
+     "text": " 2030'a"
+    },
+    {
+     "start": "00:00:33:23",
+     "end": "00:00:34:04",
+     "text": " kadar"
+    },
+    {
+     "start": "00:00:34:04",
+     "end": "00:00:34:14",
+     "text": " iklim"
+    },
+    {
+     "start": "00:00:34:14",
+     "end": "00:00:35:06",
+     "text": " değişikliğini"
+    },
+    {
+     "start": "00:00:35:06",
+     "end": "00:00:35:18",
+     "text": " eğitim"
+    },
+    {
+     "start": "00:00:35:18",
+     "end": "00:00:36:11",
+     "text": " müfredatlarına"
+    },
+    {
+     "start": "00:00:36:11",
+     "end": "00:00:36:22",
+     "text": " almak,"
+    },
+    {
+     "start": "00:00:36:22",
+     "end": "00:00:37:19",
+     "text": "(...)"
+    },
+    {
+     "start": "00:00:37:19",
+     "end": "00:00:38:02",
+     "text": " iklim"
+    },
+    {
+     "start": "00:00:38:02",
+     "end": "00:00:38:11",
+     "text": " uygulama"
+    },
+    {
+     "start": "00:00:38:11",
+     "end": "00:00:39:01",
+     "text": " köprüsü"
+    },
+    {
+     "start": "00:00:39:01",
+     "end": "00:00:39:04",
+     "text": " ile"
+    },
+    {
+     "start": "00:00:39:04",
+     "end": "00:00:39:17",
+     "text": " ülkelerin"
+    },
+    {
+     "start": "00:00:39:17",
+     "end": "00:00:40:05",
+     "text": " hedeflerini"
+    },
+    {
+     "start": "00:00:40:05",
+     "end": "00:00:40:16",
+     "text": " yatırım"
+    },
+    {
+     "start": "00:00:40:16",
+     "end": "00:00:41:05",
+     "text": " yapılabilir"
+    },
+    {
+     "start": "00:00:41:05",
+     "end": "00:00:41:18",
+     "text": " projelere"
+    },
+    {
+     "start": "00:00:41:18",
+     "end": "00:00:42:11",
+     "text": " dönüştürmek,"
+    },
+    {
+     "start": "00:00:43:00",
+     "end": "00:00:43:13",
+     "text": " başkanlık"
+    },
+    {
+     "start": "00:00:43:13",
+     "end": "00:00:43:19",
+     "text": " bunun"
+    },
+    {
+     "start": "00:00:43:19",
+     "end": "00:00:44:01",
+     "text": " yeni"
+    },
+    {
+     "start": "00:00:44:01",
+     "end": "00:00:44:07",
+     "text": " bir"
+    },
+    {
+     "start": "00:00:44:07",
+     "end": "00:00:44:14",
+     "text": " fon"
+    },
+    {
+     "start": "00:00:44:14",
+     "end": "00:00:45:04",
+     "text": " olmadığını"
+    },
+    {
+     "start": "00:00:45:04",
+     "end": "00:00:45:17",
+     "text": " vurguluyor"
+    },
+    {
+     "start": "00:00:45:17",
+     "end": "00:00:46:04",
+     "text": " özellikle,"
+    },
+    {
+     "start": "00:00:46:17",
+     "end": "00:00:47:05",
+     "text": " başkanlığın"
+    },
+    {
+     "start": "00:00:47:05",
+     "end": "00:00:47:17",
+     "text": " hesabına"
+    },
+    {
+     "start": "00:00:47:17",
+     "end": "00:00:47:23",
+     "text": " göre"
+    },
+    {
+     "start": "00:00:47:23",
+     "end": "00:00:48:02",
+     "text": " bu"
+    },
+    {
+     "start": "00:00:48:02",
+     "end": "00:00:48:17",
+     "text": " hedefler"
+    },
+    {
+     "start": "00:00:48:17",
+     "end": "00:00:49:14",
+     "text": " 2035'e"
+    },
+    {
+     "start": "00:00:49:14",
+     "end": "00:00:49:22",
+     "text": " kadar"
+    },
+    {
+     "start": "00:00:49:22",
+     "end": "00:00:51:04",
+     "text": " 8,5"
+    },
+    {
+     "start": "00:00:51:04",
+     "end": "00:00:51:12",
+     "text": " ile"
+    },
+    {
+     "start": "00:00:51:12",
+     "end": "00:00:51:21",
+     "text": " 10"
+    },
+    {
+     "start": "00:00:51:21",
+     "end": "00:00:52:06",
+     "text": " milyar"
+    },
+    {
+     "start": "00:00:52:06",
+     "end": "00:00:52:10",
+     "text": " ton"
+    },
+    {
+     "start": "00:00:52:10",
+     "end": "00:00:53:05",
+     "text": " karbondioksit"
+    },
+    {
+     "start": "00:00:53:05",
+     "end": "00:00:53:22",
+     "text": " azaltımına"
+    },
+    {
+     "start": "00:00:53:22",
+     "end": "00:00:54:15",
+     "text": " katkı"
+    },
+    {
+     "start": "00:00:54:15",
+     "end": "00:00:55:06",
+     "text": " sağlayabilir."
+    },
+    {
+     "start": "00:00:55:06",
+     "end": "00:00:56:03",
+     "text": " Bunlar"
+    },
+    {
+     "start": "00:00:56:03",
+     "end": "00:00:56:13",
+     "text": " gönüllü"
+    },
+    {
+     "start": "00:00:56:13",
+     "end": "00:00:57:01",
+     "text": " hedefler,"
+    },
+    {
+     "start": "00:00:57:09",
+     "end": "00:00:57:10",
+     "text": " ne"
+    },
+    {
+     "start": "00:00:57:10",
+     "end": "00:00:57:24",
+     "text": " ülkenin"
+    },
+    {
+     "start": "00:00:57:24",
+     "end": "00:00:58:10",
+     "text": " destek"
+    },
+    {
+     "start": "00:00:58:10",
+     "end": "00:01:03:21",
+     "text": " vereceği"
+    },
+    {
+     "start": "00:01:03:21",
+     "end": "00:01:04:12",
+     "text": " Antalya'da"
+    },
+    {
+     "start": "00:01:04:12",
+     "end": "00:01:04:19",
+     "text": " belli"
+    },
+    {
+     "start": "00:01:04:19",
+     "end": "00:01:05:05",
+     "text": " olacak."
+    },
+    {
+     "start": "00:01:05:05",
+     "end": "00:01:11:02",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:01:11:02",
+     "end": "00:01:11:09",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:11:09",
+     "end": "00:01:11:23",
+     "text": " COP31"
+    },
+    {
+     "start": "00:01:11:24",
+     "end": "00:01:16:19",
+     "text": " Şimdi"
+    },
+    {
+     "start": "00:01:16:19",
+     "end": "00:01:17:05",
+     "text": " az"
+    },
+    {
+     "start": "00:01:17:05",
+     "end": "00:01:17:10",
+     "text": " önce"
+    },
+    {
+     "start": "00:01:17:10",
+     "end": "00:01:18:00",
+     "text": " bahsettim"
+    },
+    {
+     "start": "00:01:18:00",
+     "end": "00:01:18:02",
+     "text": " ya"
+    },
+    {
+     "start": "00:01:18:02",
+     "end": "00:01:18:10",
+     "text": " rol"
+    },
+    {
+     "start": "00:01:18:10",
+     "end": "00:01:19:04",
+     "text": " dağılımına,"
+    },
+    {
+     "start": "00:01:19:04",
+     "end": "00:01:20:01",
+     "text": " Avustralya'ya"
+    },
+    {
+     "start": "00:01:20:01",
+     "end": "00:01:20:09",
+     "text": " işte"
+    },
+    {
+     "start": "00:01:20:09",
+     "end": "00:01:21:08",
+     "text": " müzakereci"
+    },
+    {
+     "start": "00:01:21:08",
+     "end": "00:01:21:15",
+     "text": " olacak"
+    },
+    {
+     "start": "00:01:21:15",
+     "end": "00:01:21:22",
+     "text": " vs."
+    },
+    {
+     "start": "00:01:22:10",
+     "end": "00:01:22:17",
+     "text": " Peki"
+    },
+    {
+     "start": "00:01:22:17",
+     "end": "00:01:23:06",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:01:23:06",
+     "end": "00:01:23:12",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:23:12",
+     "end": "00:01:24:12",
+     "text": " COP31'de"
+    },
+    {
+     "start": "00:01:24:12",
+     "end": "00:01:24:23",
+     "text": " bizim"
+    },
+    {
+     "start": "00:01:24:23",
+     "end": "00:01:25:07",
+     "text": " yani"
+    },
+    {
+     "start": "00:01:25:07",
+     "end": "00:01:25:12",
+     "text": " el"
+    },
+    {
+     "start": "00:01:25:12",
+     "end": "00:01:25:21",
+     "text": " sahibi"
+    },
+    {
+     "start": "00:01:25:21",
+     "end": "00:01:26:04",
+     "text": " olarak"
+    },
+    {
+     "start": "00:01:26:04",
+     "end": "00:01:27:10",
+     "text": " yapacağımız"
+    },
+    {
+     "start": "00:01:27:10",
+     "end": "00:01:27:14",
+     "text": " iş"
+    },
+    {
+     "start": "00:01:27:14",
+     "end": "00:01:27:21",
+     "text": " ne?"
+    },
+    {
+     "start": "00:01:27:21",
+     "end": "00:01:27:22",
+     "text": " Ve"
+    },
+    {
+     "start": "00:01:27:22",
+     "end": "00:01:28:03",
+     "text": " bu"
+    },
+    {
+     "start": "00:01:28:03",
+     "end": "00:01:28:21",
+     "text": " stratejik"
+    },
+    {
+     "start": "00:01:28:21",
+     "end": "00:01:29:05",
+     "text": " önemi"
+    },
+    {
+     "start": "00:01:29:05",
+     "end": "00:01:29:21",
+     "text": " anlatayım"
+    },
+    {
+     "start": "00:01:29:21",
+     "end": "00:01:30:04",
+     "text": " size"
+    },
+    {
+     "start": "00:01:30:04",
+     "end": "00:01:30:13",
+     "text": " gelin."
+    },
+    {
+     "start": "00:01:30:13",
+     "end": "00:01:31:12",
+     "text": "(...)"
+    },
+    {
+     "start": "00:01:31:12",
+     "end": "00:01:31:13",
+     "text": " Bir"
+    },
+    {
+     "start": "00:01:31:13",
+     "end": "00:01:31:15",
+     "text": " daha"
+    },
+    {
+     "start": "00:01:31:15",
+     "end": "00:01:31:24",
+     "text": " olmadı"
+    },
+    {
+     "start": "00:01:31:24",
+     "end": "00:01:32:04",
+     "text": " bu."
+    }
+   ],
+   "text": " 2035 yılına kadar nihai enerji tüketiminde elektriğin payını %35'e çıkarmak,(...) atık üretimindeki artış hızını yarıya indirmek, sırayla sayıyorum bu 1, 2 oldu, binalardaki enerji kullanım yoğunluğunu en az %25 azaltmak, 4. Sanayide döngüsel malzeme kullanım oranını en az %15'e çıkarmak, 2030'a kadar iklim değişikliğini eğitim müfredatlarına almak,(...) iklim uygulama köprüsü ile ülkelerin hedeflerini yatırım yapılabilir projelere dönüştürmek, başkanlık bunun yeni bir fon olmadığını vurguluyor özellikle, başkanlığın hesabına göre bu hedefler 2035'e kadar 8,5 ile 10 milyar ton karbondioksit azaltımına katkı sağlayabilir. Bunlar gönüllü hedefler, ne ülkenin destek vereceği Antalya'da belli olacak. Türkiye ve COP31 Şimdi az önce bahsettim ya rol dağılımına, Avustralya'ya işte müzakereci olacak vs. Peki Türkiye ve COP31'de bizim yani el sahibi olarak yapacağımız iş ne? Ve bu stratejik önemi anlatayım size gelin.(...) Bir daha olmadı bu."
+  },
+  {
+   "start": "00:01:32:04",
+   "end": "00:01:33:17",
+   "words": [
+    {
+     "start": "00:01:32:04",
+     "end": "00:01:33:17",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:01:33:17",
+   "end": "00:01:43:05",
+   "words": [
+    {
+     "start": "00:01:33:17",
+     "end": "00:01:33:21",
+     "text": " Az"
+    },
+    {
+     "start": "00:01:33:21",
+     "end": "00:01:34:01",
+     "text": " önce"
+    },
+    {
+     "start": "00:01:34:01",
+     "end": "00:01:34:16",
+     "text": " bahsettim"
+    },
+    {
+     "start": "00:01:34:16",
+     "end": "00:01:34:19",
+     "text": " ya"
+    },
+    {
+     "start": "00:01:34:19",
+     "end": "00:01:35:09",
+     "text": " Avustralya"
+    },
+    {
+     "start": "00:01:35:09",
+     "end": "00:01:35:11",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:35:11",
+     "end": "00:01:35:19",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:01:35:19",
+     "end": "00:01:36:02",
+     "text": " rol"
+    },
+    {
+     "start": "00:01:36:02",
+     "end": "00:01:36:15",
+     "text": " paylaşımı"
+    },
+    {
+     "start": "00:01:36:15",
+     "end": "00:01:37:04",
+     "text": " yapmıştı."
+    },
+    {
+     "start": "00:01:37:18",
+     "end": "00:01:38:03",
+     "text": " Gelelim"
+    },
+    {
+     "start": "00:01:38:03",
+     "end": "00:01:39:01",
+     "text": " Türkiye'ye"
+    },
+    {
+     "start": "00:01:39:01",
+     "end": "00:01:39:06",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:39:06",
+     "end": "00:01:40:03",
+     "text": " COP31'e."
+    },
+    {
+     "start": "00:01:40:10",
+     "end": "00:01:40:12",
+     "text": " Yani"
+    },
+    {
+     "start": "00:01:40:12",
+     "end": "00:01:40:18",
+     "text": " ev"
+    },
+    {
+     "start": "00:01:40:18",
+     "end": "00:01:41:08",
+     "text": " sahipliği"
+    },
+    {
+     "start": "00:01:41:08",
+     "end": "00:01:41:11",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:41:11",
+     "end": "00:01:42:02",
+     "text": " stratejik"
+    },
+    {
+     "start": "00:01:42:02",
+     "end": "00:01:42:09",
+     "text": " önemi"
+    },
+    {
+     "start": "00:01:42:09",
+     "end": "00:01:42:20",
+     "text": " olanı,"
+    },
+    {
+     "start": "00:01:42:20",
+     "end": "00:01:43:01",
+     "text": " bir"
+    },
+    {
+     "start": "00:01:43:01",
+     "end": "00:01:43:05",
+     "text": " daha."
+    }
+   ],
+   "text": " Az önce bahsettim ya Avustralya ve Türkiye rol paylaşımı yapmıştı. Gelelim Türkiye'ye ve COP31'e. Yani ev sahipliği ve stratejik önemi olanı, bir daha."
+  },
+  {
+   "start": "00:01:43:05",
+   "end": "00:01:44:14",
+   "words": [
+    {
+     "start": "00:01:43:05",
+     "end": "00:01:44:14",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:01:44:14",
+   "end": "00:01:56:03",
+   "words": [
+    {
+     "start": "00:01:44:14",
+     "end": "00:01:44:21",
+     "text": " Yani"
+    },
+    {
+     "start": "00:01:44:21",
+     "end": "00:01:45:03",
+     "text": " ev"
+    },
+    {
+     "start": "00:01:45:03",
+     "end": "00:01:45:20",
+     "text": " sahipliğimize"
+    },
+    {
+     "start": "00:01:45:20",
+     "end": "00:01:46:00",
+     "text": " ve"
+    },
+    {
+     "start": "00:01:46:00",
+     "end": "00:01:46:08",
+     "text": " bunun"
+    },
+    {
+     "start": "00:01:46:08",
+     "end": "00:01:47:04",
+     "text": " stratejik"
+    },
+    {
+     "start": "00:01:47:04",
+     "end": "00:01:47:17",
+     "text": " önemine."
+    },
+    {
+     "start": "00:01:47:17",
+     "end": "00:01:50:04",
+     "text": " Şimdi"
+    },
+    {
+     "start": "00:01:50:04",
+     "end": "00:01:50:14",
+     "text": " peki"
+    },
+    {
+     "start": "00:01:50:14",
+     "end": "00:01:51:03",
+     "text": " bir"
+    },
+    {
+     "start": "00:01:51:03",
+     "end": "00:01:51:08",
+     "text": " daha."
+    },
+    {
+     "start": "00:01:51:21",
+     "end": "00:01:52:01",
+     "text": " Şimdi"
+    },
+    {
+     "start": "00:01:52:01",
+     "end": "00:01:52:09",
+     "text": " bizim"
+    },
+    {
+     "start": "00:01:52:09",
+     "end": "00:01:52:20",
+     "text": " rolümüz"
+    },
+    {
+     "start": "00:01:52:20",
+     "end": "00:01:53:00",
+     "text": " tam"
+    },
+    {
+     "start": "00:01:53:00",
+     "end": "00:01:53:06",
+     "text": " olarak"
+    },
+    {
+     "start": "00:01:53:06",
+     "end": "00:01:53:11",
+     "text": " ne"
+    },
+    {
+     "start": "00:01:53:11",
+     "end": "00:01:53:18",
+     "text": " burada?"
+    },
+    {
+     "start": "00:01:54:04",
+     "end": "00:01:54:07",
+     "text": " Bir"
+    },
+    {
+     "start": "00:01:54:07",
+     "end": "00:01:54:23",
+     "text": " diplomasi"
+    },
+    {
+     "start": "00:01:54:23",
+     "end": "00:01:55:05",
+     "text": " düğümü"
+    },
+    {
+     "start": "00:01:55:05",
+     "end": "00:01:55:13",
+     "text": " nasıl"
+    },
+    {
+     "start": "00:01:55:13",
+     "end": "00:01:56:03",
+     "text": " çözüldü?"
+    }
+   ],
+   "text": " Yani ev sahipliğimize ve bunun stratejik önemine. Şimdi peki bir daha. Şimdi bizim rolümüz tam olarak ne burada? Bir diplomasi düğümü nasıl çözüldü?"
+  },
+  {
+   "start": "00:01:56:03",
+   "end": "00:01:59:21",
+   "words": [
+    {
+     "start": "00:01:56:03",
+     "end": "00:01:59:21",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:01:59:21",
+   "end": "00:02:44:22",
+   "words": [
+    {
+     "start": "00:01:59:21",
+     "end": "00:02:00:07",
+     "text": " Birleşmiş"
+    },
+    {
+     "start": "00:02:00:07",
+     "end": "00:02:01:03",
+     "text": " Milletler'de"
+    },
+    {
+     "start": "00:02:01:03",
+     "end": "00:02:01:17",
+     "text": " COP'lara"
+    },
+    {
+     "start": "00:02:01:17",
+     "end": "00:02:02:07",
+     "text": " bölgeler"
+    },
+    {
+     "start": "00:02:02:07",
+     "end": "00:02:02:22",
+     "text": " sırayla"
+    },
+    {
+     "start": "00:02:02:22",
+     "end": "00:02:03:03",
+     "text": " ev"
+    },
+    {
+     "start": "00:02:03:03",
+     "end": "00:02:03:15",
+     "text": " sahipliği"
+    },
+    {
+     "start": "00:02:03:15",
+     "end": "00:02:03:23",
+     "text": " yapıyor."
+    },
+    {
+     "start": "00:02:03:23",
+     "end": "00:02:05:03",
+     "text": " 2026'da"
+    },
+    {
+     "start": "00:02:05:03",
+     "end": "00:02:05:12",
+     "text": " sıra"
+    },
+    {
+     "start": "00:02:05:12",
+     "end": "00:02:05:23",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:02:05:23",
+     "end": "00:02:06:11",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:06:11",
+     "end": "00:02:07:04",
+     "text": " Avustralya'nın"
+    },
+    {
+     "start": "00:02:07:04",
+     "end": "00:02:07:09",
+     "text": " da"
+    },
+    {
+     "start": "00:02:07:09",
+     "end": "00:02:07:17",
+     "text": " içinde"
+    },
+    {
+     "start": "00:02:07:17",
+     "end": "00:02:08:02",
+     "text": " olduğu"
+    },
+    {
+     "start": "00:02:08:02",
+     "end": "00:02:08:14",
+     "text": " 28"
+    },
+    {
+     "start": "00:02:08:14",
+     "end": "00:02:09:06",
+     "text": " ülkelik"
+    },
+    {
+     "start": "00:02:09:06",
+     "end": "00:02:09:22",
+     "text": " Batı"
+    },
+    {
+     "start": "00:02:09:22",
+     "end": "00:02:10:07",
+     "text": " Avrupa"
+    },
+    {
+     "start": "00:02:10:07",
+     "end": "00:02:10:11",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:10:11",
+     "end": "00:02:11:00",
+     "text": " diğerleri"
+    },
+    {
+     "start": "00:02:11:00",
+     "end": "00:02:11:18",
+     "text": " grubundaydı."
+    },
+    {
+     "start": "00:02:12:06",
+     "end": "00:02:12:11",
+     "text": " İki"
+    },
+    {
+     "start": "00:02:12:11",
+     "end": "00:02:13:00",
+     "text": " ülkede"
+    },
+    {
+     "start": "00:02:13:00",
+     "end": "00:02:14:02",
+     "text": " 2022'de"
+    },
+    {
+     "start": "00:02:14:02",
+     "end": "00:02:14:09",
+     "text": " aday"
+    },
+    {
+     "start": "00:02:14:09",
+     "end": "00:02:14:15",
+     "text": " oldu."
+    },
+    {
+     "start": "00:02:15:10",
+     "end": "00:02:16:00",
+     "text": " Avustralya"
+    },
+    {
+     "start": "00:02:16:00",
+     "end": "00:02:16:12",
+     "text": " Pasifik"
+    },
+    {
+     "start": "00:02:16:12",
+     "end": "00:02:16:16",
+     "text": " ada"
+    },
+    {
+     "start": "00:02:16:16",
+     "end": "00:02:17:06",
+     "text": " ülkeleriyle"
+    },
+    {
+     "start": "00:02:17:06",
+     "end": "00:02:17:15",
+     "text": " birlikte"
+    },
+    {
+     "start": "00:02:17:15",
+     "end": "00:02:18:00",
+     "text": " bir"
+    },
+    {
+     "start": "00:02:18:00",
+     "end": "00:02:18:12",
+     "text": " Pasifik"
+    },
+    {
+     "start": "00:02:18:12",
+     "end": "00:02:18:20",
+     "text": " COP'u"
+    },
+    {
+     "start": "00:02:18:20",
+     "end": "00:02:19:09",
+     "text": " istiyordu."
+    },
+    {
+     "start": "00:02:19:23",
+     "end": "00:02:20:10",
+     "text": " Yaklaşık"
+    },
+    {
+     "start": "00:02:20:10",
+     "end": "00:02:20:16",
+     "text": " 3"
+    },
+    {
+     "start": "00:02:20:16",
+     "end": "00:02:20:20",
+     "text": " yıl"
+    },
+    {
+     "start": "00:02:20:20",
+     "end": "00:02:21:02",
+     "text": " süren"
+    },
+    {
+     "start": "00:02:21:02",
+     "end": "00:02:21:23",
+     "text": " tıkanıklıkla"
+    },
+    {
+     "start": "00:02:21:23",
+     "end": "00:02:22:08",
+     "text": " işin"
+    },
+    {
+     "start": "00:02:22:08",
+     "end": "00:02:22:11",
+     "text": " ucu"
+    },
+    {
+     "start": "00:02:22:11",
+     "end": "00:02:22:22",
+     "text": " ilginç"
+    },
+    {
+     "start": "00:02:22:22",
+     "end": "00:02:23:00",
+     "text": " bir"
+    },
+    {
+     "start": "00:02:23:00",
+     "end": "00:02:23:05",
+     "text": " yere"
+    },
+    {
+     "start": "00:02:23:05",
+     "end": "00:02:23:19",
+     "text": " varmıştı."
+    },
+    {
+     "start": "00:02:23:19",
+     "end": "00:02:24:07",
+     "text": " Çünkü"
+    },
+    {
+     "start": "00:02:24:07",
+     "end": "00:02:24:11",
+     "text": " ben"
+    },
+    {
+     "start": "00:02:24:11",
+     "end": "00:02:24:13",
+     "text": " de"
+    },
+    {
+     "start": "00:02:24:13",
+     "end": "00:02:24:20",
+     "text": " başta"
+    },
+    {
+     "start": "00:02:24:20",
+     "end": "00:02:25:00",
+     "text": " çok"
+    },
+    {
+     "start": "00:02:25:00",
+     "end": "00:02:25:11",
+     "text": " düşündüm."
+    },
+    {
+     "start": "00:02:25:11",
+     "end": "00:02:25:23",
+     "text": " Avustralya"
+    },
+    {
+     "start": "00:02:25:23",
+     "end": "00:02:26:06",
+     "text": " nereye,"
+    },
+    {
+     "start": "00:02:26:13",
+     "end": "00:02:26:20",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:02:26:20",
+     "end": "00:02:27:04",
+     "text": " nereye"
+    },
+    {
+     "start": "00:02:27:04",
+     "end": "00:02:27:09",
+     "text": " diye."
+    },
+    {
+     "start": "00:02:28:00",
+     "end": "00:02:28:06",
+     "text": " İşin"
+    },
+    {
+     "start": "00:02:28:06",
+     "end": "00:02:28:11",
+     "text": " ucu"
+    },
+    {
+     "start": "00:02:28:11",
+     "end": "00:02:29:01",
+     "text": " uzlaşma"
+    },
+    {
+     "start": "00:02:29:01",
+     "end": "00:02:29:16",
+     "text": " çıkmazsa"
+    },
+    {
+     "start": "00:02:29:16",
+     "end": "00:02:30:09",
+     "text": " zirve,"
+    },
+    {
+     "start": "00:02:30:09",
+     "end": "00:02:31:00",
+     "text": " Birleşmiş"
+    },
+    {
+     "start": "00:02:31:00",
+     "end": "00:02:31:11",
+     "text": " Milletler"
+    },
+    {
+     "start": "00:02:31:11",
+     "end": "00:02:31:18",
+     "text": " İklim"
+    },
+    {
+     "start": "00:02:31:18",
+     "end": "00:02:32:11",
+     "text": " Sekreterliği'nin"
+    },
+    {
+     "start": "00:02:32:11",
+     "end": "00:02:33:06",
+     "text": " bulunduğu"
+    },
+    {
+     "start": "00:02:33:06",
+     "end": "00:02:34:02",
+     "text": " Almanya'nın"
+    },
+    {
+     "start": "00:02:34:02",
+     "end": "00:02:34:12",
+     "text": " Bonk"
+    },
+    {
+     "start": "00:02:34:12",
+     "end": "00:02:34:22",
+     "text": " kentine"
+    },
+    {
+     "start": "00:02:34:22",
+     "end": "00:02:35:16",
+     "text": " çıkacaktı."
+    },
+    {
+     "start": "00:02:35:16",
+     "end": "00:02:35:18",
+     "text": " Yani"
+    },
+    {
+     "start": "00:02:35:18",
+     "end": "00:02:36:09",
+     "text": " kalacaktı."
+    },
+    {
+     "start": "00:02:36:09",
+     "end": "00:02:37:05",
+     "text": "(...)"
+    },
+    {
+     "start": "00:02:37:05",
+     "end": "00:02:37:12",
+     "text": " Çözüm"
+    },
+    {
+     "start": "00:02:37:12",
+     "end": "00:02:37:18",
+     "text": " ise"
+    },
+    {
+     "start": "00:02:37:18",
+     "end": "00:02:38:05",
+     "text": " Kasım"
+    },
+    {
+     "start": "00:02:38:05",
+     "end": "00:02:39:00",
+     "text": " 2025'de"
+    },
+    {
+     "start": "00:02:39:00",
+     "end": "00:02:39:17",
+     "text": " Belen'den"
+    },
+    {
+     "start": "00:02:39:17",
+     "end": "00:02:40:00",
+     "text": " gelmiş"
+    },
+    {
+     "start": "00:02:40:00",
+     "end": "00:02:40:10",
+     "text": " oldu."
+    },
+    {
+     "start": "00:02:41:00",
+     "end": "00:02:41:09",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:02:41:09",
+     "end": "00:02:41:22",
+     "text": " ev"
+    },
+    {
+     "start": "00:02:41:22",
+     "end": "00:02:42:07",
+     "text": " sahibi"
+    },
+    {
+     "start": "00:02:42:07",
+     "end": "00:02:42:15",
+     "text": " olacak"
+    },
+    {
+     "start": "00:02:42:15",
+     "end": "00:02:43:04",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:43:04",
+     "end": "00:02:43:16",
+     "text": " COP31"
+    },
+    {
+     "start": "00:02:43:16",
+     "end": "00:02:44:07",
+     "text": " başkanı"
+    },
+    {
+     "start": "00:02:44:07",
+     "end": "00:02:44:22",
+     "text": " olacaktı."
+    }
+   ],
+   "text": " Birleşmiş Milletler'de COP'lara bölgeler sırayla ev sahipliği yapıyor. 2026'da sıra Türkiye ve Avustralya'nın da içinde olduğu 28 ülkelik Batı Avrupa ve diğerleri grubundaydı. İki ülkede 2022'de aday oldu. Avustralya Pasifik ada ülkeleriyle birlikte bir Pasifik COP'u istiyordu. Yaklaşık 3 yıl süren tıkanıklıkla işin ucu ilginç bir yere varmıştı. Çünkü ben de başta çok düşündüm. Avustralya nereye, Türkiye nereye diye. İşin ucu uzlaşma çıkmazsa zirve, Birleşmiş Milletler İklim Sekreterliği'nin bulunduğu Almanya'nın Bonk kentine çıkacaktı. Yani kalacaktı.(...) Çözüm ise Kasım 2025'de Belen'den gelmiş oldu. Türkiye ev sahibi olacak ve COP31 başkanı olacaktı."
+  },
+  {
+   "start": "00:02:44:22",
+   "end": "00:02:46:09",
+   "words": [
+    {
+     "start": "00:02:44:22",
+     "end": "00:02:46:09",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:02:46:09",
+   "end": "00:03:06:00",
+   "words": [
+    {
+     "start": "00:02:46:09",
+     "end": "00:02:46:22",
+     "text": " Başkan,"
+    },
+    {
+     "start": "00:02:46:22",
+     "end": "00:02:47:07",
+     "text": " Çevre"
+    },
+    {
+     "start": "00:02:47:07",
+     "end": "00:02:47:24",
+     "text": " Şehircilik"
+    },
+    {
+     "start": "00:02:47:24",
+     "end": "00:02:48:02",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:48:02",
+     "end": "00:02:48:09",
+     "text": " İklim"
+    },
+    {
+     "start": "00:02:48:09",
+     "end": "00:02:48:23",
+     "text": " Değişikliği"
+    },
+    {
+     "start": "00:02:48:23",
+     "end": "00:02:49:09",
+     "text": " Bakanı"
+    },
+    {
+     "start": "00:02:49:09",
+     "end": "00:02:49:20",
+     "text": " Murat"
+    },
+    {
+     "start": "00:02:49:20",
+     "end": "00:02:50:01",
+     "text": " Kurum."
+    },
+    {
+     "start": "00:02:50:16",
+     "end": "00:02:51:06",
+     "text": " Avustralya"
+    },
+    {
+     "start": "00:02:51:06",
+     "end": "00:02:51:20",
+     "text": " Müzakere"
+    },
+    {
+     "start": "00:02:51:20",
+     "end": "00:02:52:12",
+     "text": " Başkanı"
+    },
+    {
+     "start": "00:02:52:12",
+     "end": "00:02:53:06",
+     "text": " Taslak"
+    },
+    {
+     "start": "00:02:53:06",
+     "end": "00:02:53:18",
+     "text": " Metinleri"
+    },
+    {
+     "start": "00:02:53:18",
+     "end": "00:02:54:05",
+     "text": " Hazırlama"
+    },
+    {
+     "start": "00:02:54:05",
+     "end": "00:02:59:15",
+     "text": " ve"
+    },
+    {
+     "start": "00:02:59:15",
+     "end": "00:03:00:11",
+     "text": " Müzakereleri"
+    },
+    {
+     "start": "00:03:00:11",
+     "end": "00:03:00:18",
+     "text": " Yönetme"
+    },
+    {
+     "start": "00:03:00:18",
+     "end": "00:03:01:05",
+     "text": " Yetkisi"
+    },
+    {
+     "start": "00:03:01:05",
+     "end": "00:03:02:01",
+     "text": " Avustralya"
+    },
+    {
+     "start": "00:03:02:01",
+     "end": "00:03:02:11",
+     "text": " İklim"
+    },
+    {
+     "start": "00:03:02:11",
+     "end": "00:03:02:21",
+     "text": " Bakanı"
+    },
+    {
+     "start": "00:03:02:21",
+     "end": "00:03:03:06",
+     "text": " Chris"
+    },
+    {
+     "start": "00:03:03:06",
+     "end": "00:03:03:23",
+     "text": " Bowen'da."
+    },
+    {
+     "start": "00:03:03:23",
+     "end": "00:03:04:20",
+     "text": "(...)"
+    },
+    {
+     "start": "00:03:04:20",
+     "end": "00:03:05:12",
+     "text": " Bowen,"
+    },
+    {
+     "start": "00:03:05:12",
+     "end": "00:03:05:20",
+     "text": " Bowen"
+    },
+    {
+     "start": "00:03:05:20",
+     "end": "00:03:06:00",
+     "text": " bu."
+    }
+   ],
+   "text": " Başkan, Çevre Şehircilik ve İklim Değişikliği Bakanı Murat Kurum. Avustralya Müzakere Başkanı Taslak Metinleri Hazırlama ve Müzakereleri Yönetme Yetkisi Avustralya İklim Bakanı Chris Bowen'da.(...) Bowen, Bowen bu."
+  },
+  {
+   "start": "00:03:06:00",
+   "end": "00:03:07:15",
+   "words": [
+    {
+     "start": "00:03:06:00",
+     "end": "00:03:07:15",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:03:07:15",
+   "end": "00:03:14:06",
+   "words": [
+    {
+     "start": "00:03:07:15",
+     "end": "00:03:07:17",
+     "text": " Bir"
+    },
+    {
+     "start": "00:03:07:17",
+     "end": "00:03:07:22",
+     "text": " daha."
+    },
+    {
+     "start": "00:03:08:09",
+     "end": "00:03:08:16",
+     "text": " Taslak"
+    },
+    {
+     "start": "00:03:08:16",
+     "end": "00:03:09:03",
+     "text": " Metinleri"
+    },
+    {
+     "start": "00:03:09:03",
+     "end": "00:03:09:17",
+     "text": " Hazırlama"
+    },
+    {
+     "start": "00:03:09:17",
+     "end": "00:03:09:23",
+     "text": " ve"
+    },
+    {
+     "start": "00:03:09:23",
+     "end": "00:03:10:20",
+     "text": " Müzakereleri"
+    },
+    {
+     "start": "00:03:10:20",
+     "end": "00:03:11:02",
+     "text": " Yönetme"
+    },
+    {
+     "start": "00:03:11:02",
+     "end": "00:03:11:14",
+     "text": " Yetkisi"
+    },
+    {
+     "start": "00:03:11:14",
+     "end": "00:03:12:09",
+     "text": " Avustralya"
+    },
+    {
+     "start": "00:03:12:09",
+     "end": "00:03:12:16",
+     "text": " İklim"
+    },
+    {
+     "start": "00:03:12:16",
+     "end": "00:03:13:02",
+     "text": " Bakanı"
+    },
+    {
+     "start": "00:03:13:02",
+     "end": "00:03:13:14",
+     "text": " Chris"
+    },
+    {
+     "start": "00:03:13:14",
+     "end": "00:03:14:06",
+     "text": " Bowen'da."
+    }
+   ],
+   "text": " Bir daha. Taslak Metinleri Hazırlama ve Müzakereleri Yönetme Yetkisi Avustralya İklim Bakanı Chris Bowen'da."
+  },
+  {
+   "start": "00:03:14:06",
+   "end": "00:03:18:09",
+   "words": [
+    {
+     "start": "00:03:14:06",
+     "end": "00:03:18:09",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:03:18:09",
+   "end": "00:03:27:16",
+   "words": [
+    {
+     "start": "00:03:18:09",
+     "end": "00:03:18:13",
+     "text": " Yani"
+    },
+    {
+     "start": "00:03:18:13",
+     "end": "00:03:19:04",
+     "text": " anlayacağınız"
+    },
+    {
+     "start": "00:03:19:04",
+     "end": "00:03:19:14",
+     "text": " üzere"
+    },
+    {
+     "start": "00:03:19:14",
+     "end": "00:03:20:09",
+     "text": " onlar"
+    },
+    {
+     "start": "00:03:20:09",
+     "end": "00:03:20:24",
+     "text": " istemiş,"
+    },
+    {
+     "start": "00:03:20:24",
+     "end": "00:03:21:02",
+     "text": " biz"
+    },
+    {
+     "start": "00:03:21:02",
+     "end": "00:03:21:23",
+     "text": " istemişiz."
+    },
+    {
+     "start": "00:03:21:23",
+     "end": "00:03:22:10",
+     "text": " Almanya"
+    },
+    {
+     "start": "00:03:22:10",
+     "end": "00:03:22:22",
+     "text": " olmasın"
+    },
+    {
+     "start": "00:03:22:22",
+     "end": "00:03:23:07",
+     "text": " derken"
+    },
+    {
+     "start": "00:03:23:07",
+     "end": "00:03:23:14",
+     "text": " tamam"
+    },
+    {
+     "start": "00:03:23:14",
+     "end": "00:03:23:22",
+     "text": " abi"
+    },
+    {
+     "start": "00:03:23:22",
+     "end": "00:03:24:02",
+     "text": " biz"
+    },
+    {
+     "start": "00:03:24:02",
+     "end": "00:03:24:07",
+     "text": " bunu"
+    },
+    {
+     "start": "00:03:24:07",
+     "end": "00:03:24:16",
+     "text": " birlikte"
+    },
+    {
+     "start": "00:03:24:16",
+     "end": "00:03:25:01",
+     "text": " yapalım"
+    },
+    {
+     "start": "00:03:25:01",
+     "end": "00:03:25:14",
+     "text": " demişiz."
+    },
+    {
+     "start": "00:03:25:14",
+     "end": "00:03:25:21",
+     "text": " Biraz"
+    },
+    {
+     "start": "00:03:25:21",
+     "end": "00:03:26:13",
+     "text": " zorlama"
+    },
+    {
+     "start": "00:03:26:13",
+     "end": "00:03:26:18",
+     "text": " gibi"
+    },
+    {
+     "start": "00:03:26:18",
+     "end": "00:03:27:02",
+     "text": " olduğunu"
+    },
+    {
+     "start": "00:03:27:02",
+     "end": "00:03:27:16",
+     "text": " düşünüyorum."
+    }
+   ],
+   "text": " Yani anlayacağınız üzere onlar istemiş, biz istemişiz. Almanya olmasın derken tamam abi biz bunu birlikte yapalım demişiz. Biraz zorlama gibi olduğunu düşünüyorum."
+  },
+  {
+   "start": "00:03:27:16",
+   "end": "00:03:28:17",
+   "words": [
+    {
+     "start": "00:03:27:16",
+     "end": "00:03:28:17",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:03:28:17",
+   "end": "00:04:07:01",
+   "words": [
+    {
+     "start": "00:03:28:17",
+     "end": "00:03:29:05",
+     "text": " Pasifik"
+    },
+    {
+     "start": "00:03:29:05",
+     "end": "00:03:29:19",
+     "text": " Zirve"
+    },
+    {
+     "start": "00:03:29:19",
+     "end": "00:03:30:03",
+     "text": " Öncesi"
+    },
+    {
+     "start": "00:03:30:03",
+     "end": "00:03:30:18",
+     "text": " Bakanlar"
+    },
+    {
+     "start": "00:03:30:18",
+     "end": "00:03:31:15",
+     "text": " Toplantısı,"
+    },
+    {
+     "start": "00:03:31:15",
+     "end": "00:03:32:02",
+     "text": " Pre-COP"
+    },
+    {
+     "start": "00:03:32:02",
+     "end": "00:03:32:12",
+     "text": " dediğimiz"
+    },
+    {
+     "start": "00:03:32:12",
+     "end": "00:03:33:02",
+     "text": " toplantıda"
+    },
+    {
+     "start": "00:03:33:02",
+     "end": "00:03:33:09",
+     "text": " 5"
+    },
+    {
+     "start": "00:03:33:09",
+     "end": "00:03:33:16",
+     "text": " ila"
+    },
+    {
+     "start": "00:03:33:16",
+     "end": "00:03:34:03",
+     "text": " bir"
+    },
+    {
+     "start": "00:03:34:03",
+     "end": "00:03:34:14",
+     "text": " daha."
+    },
+    {
+     "start": "00:03:34:14",
+     "end": "00:03:36:18",
+     "text": " Pasifik"
+    },
+    {
+     "start": "00:03:36:18",
+     "end": "00:03:37:05",
+     "text": " Zirve"
+    },
+    {
+     "start": "00:03:37:05",
+     "end": "00:03:37:16",
+     "text": " Öncesi"
+    },
+    {
+     "start": "00:03:37:16",
+     "end": "00:03:38:07",
+     "text": " Bakanlar"
+    },
+    {
+     "start": "00:03:38:07",
+     "end": "00:03:39:00",
+     "text": " Toplantısı,"
+    },
+    {
+     "start": "00:03:39:05",
+     "end": "00:03:39:09",
+     "text": " buna"
+    },
+    {
+     "start": "00:03:39:09",
+     "end": "00:03:40:00",
+     "text": " Pre-COP'da"
+    },
+    {
+     "start": "00:03:40:00",
+     "end": "00:03:40:12",
+     "text": " deniliyor."
+    },
+    {
+     "start": "00:03:40:13",
+     "end": "00:03:41:00",
+     "text": " 5-8"
+    },
+    {
+     "start": "00:03:41:00",
+     "end": "00:03:41:07",
+     "text": " Ekim"
+    },
+    {
+     "start": "00:03:41:07",
+     "end": "00:03:42:14",
+     "text": " 2026'da"
+    },
+    {
+     "start": "00:03:42:14",
+     "end": "00:03:42:23",
+     "text": " Fiji'de"
+    },
+    {
+     "start": "00:03:42:23",
+     "end": "00:03:43:13",
+     "text": " yapılmıştı."
+    },
+    {
+     "start": "00:03:44:01",
+     "end": "00:03:44:12",
+     "text": " Liderler"
+    },
+    {
+     "start": "00:03:44:12",
+     "end": "00:03:44:22",
+     "text": " Bölümü"
+    },
+    {
+     "start": "00:03:44:22",
+     "end": "00:03:45:16",
+     "text": " Tavolu'da"
+    },
+    {
+     "start": "00:03:45:16",
+     "end": "00:03:46:09",
+     "text": " toplandı."
+    },
+    {
+     "start": "00:03:46:23",
+     "end": "00:03:47:07",
+     "text": " Türkiye'nin"
+    },
+    {
+     "start": "00:03:47:07",
+     "end": "00:03:47:15",
+     "text": " özel"
+    },
+    {
+     "start": "00:03:47:15",
+     "end": "00:03:48:06",
+     "text": " konumu,"
+    },
+    {
+     "start": "00:03:48:06",
+     "end": "00:03:48:16",
+     "text": " bir"
+    },
+    {
+     "start": "00:03:48:16",
+     "end": "00:03:48:21",
+     "text": " daha."
+    },
+    {
+     "start": "00:03:48:21",
+     "end": "00:03:53:21",
+     "text": " Bu"
+    },
+    {
+     "start": "00:03:53:21",
+     "end": "00:03:54:04",
+     "text": " bir"
+    },
+    {
+     "start": "00:03:54:04",
+     "end": "00:03:54:09",
+     "text": " daha,"
+    },
+    {
+     "start": "00:03:54:15",
+     "end": "00:03:54:19",
+     "text": " şimdi"
+    },
+    {
+     "start": "00:03:54:19",
+     "end": "00:03:55:03",
+     "text": " baştan"
+    },
+    {
+     "start": "00:03:55:03",
+     "end": "00:03:55:13",
+     "text": " çekelim."
+    },
+    {
+     "start": "00:03:56:03",
+     "end": "00:03:56:07",
+     "text": " COP"
+    },
+    {
+     "start": "00:03:56:07",
+     "end": "00:03:56:21",
+     "text": " yapılmadan"
+    },
+    {
+     "start": "00:03:56:21",
+     "end": "00:03:57:02",
+     "text": " önce"
+    },
+    {
+     "start": "00:03:57:02",
+     "end": "00:03:57:07",
+     "text": " bir"
+    },
+    {
+     "start": "00:03:57:07",
+     "end": "00:03:57:10",
+     "text": " de"
+    },
+    {
+     "start": "00:03:57:10",
+     "end": "00:03:57:22",
+     "text": " Pre-COP"
+    },
+    {
+     "start": "00:03:57:22",
+     "end": "00:03:58:02",
+     "text": " diye"
+    },
+    {
+     "start": "00:03:58:02",
+     "end": "00:03:58:05",
+     "text": " bir"
+    },
+    {
+     "start": "00:03:58:05",
+     "end": "00:03:58:18",
+     "text": " toplantı"
+    },
+    {
+     "start": "00:03:58:18",
+     "end": "00:03:59:02",
+     "text": " yapıldı."
+    },
+    {
+     "start": "00:03:59:02",
+     "end": "00:03:59:13",
+     "text": " 5-8"
+    },
+    {
+     "start": "00:03:59:13",
+     "end": "00:03:59:20",
+     "text": " Ekim"
+    },
+    {
+     "start": "00:03:59:20",
+     "end": "00:04:00:13",
+     "text": " 2026'da"
+    },
+    {
+     "start": "00:04:00:13",
+     "end": "00:04:01:04",
+     "text": " Fiji'de."
+    },
+    {
+     "start": "00:04:01:19",
+     "end": "00:04:02:01",
+     "text": " Burada"
+    },
+    {
+     "start": "00:04:02:01",
+     "end": "00:04:02:16",
+     "text": " Liderler"
+    },
+    {
+     "start": "00:04:02:16",
+     "end": "00:04:02:24",
+     "text": " Bölümü"
+    },
+    {
+     "start": "00:04:02:24",
+     "end": "00:04:03:06",
+     "text": " de"
+    },
+    {
+     "start": "00:04:03:06",
+     "end": "00:04:04:02",
+     "text": " Tuvalu'da"
+    },
+    {
+     "start": "00:04:04:02",
+     "end": "00:04:04:18",
+     "text": " toplandı."
+    },
+    {
+     "start": "00:04:05:05",
+     "end": "00:04:05:17",
+     "text": " Türkiye'nin"
+    },
+    {
+     "start": "00:04:05:17",
+     "end": "00:04:06:00",
+     "text": " özel"
+    },
+    {
+     "start": "00:04:06:00",
+     "end": "00:04:06:11",
+     "text": " konumu,"
+    },
+    {
+     "start": "00:04:06:20",
+     "end": "00:04:07:01",
+     "text": " Türkiye..."
+    }
+   ],
+   "text": " Pasifik Zirve Öncesi Bakanlar Toplantısı, Pre-COP dediğimiz toplantıda 5 ila bir daha. Pasifik Zirve Öncesi Bakanlar Toplantısı, buna Pre-COP'da deniliyor. 5-8 Ekim 2026'da Fiji'de yapılmıştı. Liderler Bölümü Tavolu'da toplandı. Türkiye'nin özel konumu, bir daha. Bu bir daha, şimdi baştan çekelim. COP yapılmadan önce bir de Pre-COP diye bir toplantı yapıldı. 5-8 Ekim 2026'da Fiji'de. Burada Liderler Bölümü de Tuvalu'da toplandı. Türkiye'nin özel konumu, Türkiye..."
+  },
+  {
+   "start": "00:04:07:01",
+   "end": "00:04:12:11",
+   "words": [
+    {
+     "start": "00:04:07:01",
+     "end": "00:04:12:11",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:04:12:11",
+   "end": "00:04:22:17",
+   "words": [
+    {
+     "start": "00:04:12:11",
+     "end": "00:04:12:23",
+     "text": " Türkiye'nin"
+    },
+    {
+     "start": "00:04:12:23",
+     "end": "00:04:13:14",
+     "text": " gördüğünüz"
+    },
+    {
+     "start": "00:04:13:14",
+     "end": "00:04:13:22",
+     "text": " üzere"
+    },
+    {
+     "start": "00:04:13:22",
+     "end": "00:04:14:07",
+     "text": " özel"
+    },
+    {
+     "start": "00:04:14:07",
+     "end": "00:04:14:10",
+     "text": " bir"
+    },
+    {
+     "start": "00:04:14:10",
+     "end": "00:04:14:19",
+     "text": " konumu"
+    },
+    {
+     "start": "00:04:14:19",
+     "end": "00:04:15:00",
+     "text": " var."
+    },
+    {
+     "start": "00:04:15:05",
+     "end": "00:04:15:16",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:04:15:16",
+     "end": "00:04:16:00",
+     "text": " İklim"
+    },
+    {
+     "start": "00:04:16:00",
+     "end": "00:04:16:21",
+     "text": " Sözleşmesi'nde"
+    },
+    {
+     "start": "00:04:16:21",
+     "end": "00:04:17:09",
+     "text": " ilginç"
+    },
+    {
+     "start": "00:04:17:09",
+     "end": "00:04:17:14",
+     "text": " bir"
+    },
+    {
+     "start": "00:04:17:14",
+     "end": "00:04:17:22",
+     "text": " yerde"
+    },
+    {
+     "start": "00:04:17:22",
+     "end": "00:04:18:06",
+     "text": " duruyor."
+    },
+    {
+     "start": "00:04:18:06",
+     "end": "00:04:19:19",
+     "text": " 1992'de"
+    },
+    {
+     "start": "00:04:19:19",
+     "end": "00:04:20:04",
+     "text": " gelişmiş"
+    },
+    {
+     "start": "00:04:20:04",
+     "end": "00:04:20:15",
+     "text": " ülkeler"
+    },
+    {
+     "start": "00:04:20:15",
+     "end": "00:04:21:06",
+     "text": " listesine"
+    },
+    {
+     "start": "00:04:21:06",
+     "end": "00:04:22:02",
+     "text": " yazılmış"
+    },
+    {
+     "start": "00:04:22:02",
+     "end": "00:04:22:12",
+     "text": " bir"
+    },
+    {
+     "start": "00:04:22:12",
+     "end": "00:04:22:17",
+     "text": " daha."
+    }
+   ],
+   "text": " Türkiye'nin gördüğünüz üzere özel bir konumu var. Türkiye İklim Sözleşmesi'nde ilginç bir yerde duruyor. 1992'de gelişmiş ülkeler listesine yazılmış bir daha."
+  },
+  {
+   "start": "00:04:22:17",
+   "end": "00:04:23:18",
+   "words": [
+    {
+     "start": "00:04:22:17",
+     "end": "00:04:23:18",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:04:23:18",
+   "end": "00:05:06:08",
+   "words": [
+    {
+     "start": "00:04:23:18",
+     "end": "00:04:24:02",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:04:24:02",
+     "end": "00:04:25:08",
+     "text": " 1992'de"
+    },
+    {
+     "start": "00:04:25:08",
+     "end": "00:04:25:23",
+     "text": " gelişmiş"
+    },
+    {
+     "start": "00:04:25:23",
+     "end": "00:04:26:09",
+     "text": " ülkeler"
+    },
+    {
+     "start": "00:04:26:09",
+     "end": "00:04:26:22",
+     "text": " listesine"
+    },
+    {
+     "start": "00:04:26:22",
+     "end": "00:04:27:08",
+     "text": " yazıldı."
+    },
+    {
+     "start": "00:04:28:00",
+     "end": "00:04:34:05",
+     "text": " 2001'de"
+    },
+    {
+     "start": "00:04:34:05",
+     "end": "00:04:34:08",
+     "text": " de"
+    },
+    {
+     "start": "00:04:34:08",
+     "end": "00:04:35:02",
+     "text": " gelişmekte"
+    },
+    {
+     "start": "00:04:35:02",
+     "end": "00:04:35:08",
+     "text": " olan"
+    },
+    {
+     "start": "00:04:35:08",
+     "end": "00:04:35:22",
+     "text": " ülkelere"
+    },
+    {
+     "start": "00:04:35:22",
+     "end": "00:04:36:06",
+     "text": " para"
+    },
+    {
+     "start": "00:04:36:06",
+     "end": "00:04:36:18",
+     "text": " vermekle"
+    },
+    {
+     "start": "00:04:36:18",
+     "end": "00:04:37:01",
+     "text": " yükümlü"
+    },
+    {
+     "start": "00:04:37:01",
+     "end": "00:04:37:10",
+     "text": " ülkeler"
+    },
+    {
+     "start": "00:04:37:10",
+     "end": "00:04:38:01",
+     "text": " listesinden"
+    },
+    {
+     "start": "00:04:38:01",
+     "end": "00:04:38:22",
+     "text": " çıkarıldı."
+    },
+    {
+     "start": "00:04:39:08",
+     "end": "00:04:39:12",
+     "text": " Bu"
+    },
+    {
+     "start": "00:04:39:12",
+     "end": "00:04:39:18",
+     "text": " ara"
+    },
+    {
+     "start": "00:04:39:18",
+     "end": "00:04:40:03",
+     "text": " konum"
+    },
+    {
+     "start": "00:04:40:03",
+     "end": "00:04:40:12",
+     "text": " yüzünden"
+    },
+    {
+     "start": "00:04:40:12",
+     "end": "00:04:41:01",
+     "text": " Türkiye,"
+    },
+    {
+     "start": "00:04:41:10",
+     "end": "00:04:41:23",
+     "text": " Yeşil"
+    },
+    {
+     "start": "00:04:41:23",
+     "end": "00:04:42:04",
+     "text": " İklim"
+    },
+    {
+     "start": "00:04:42:04",
+     "end": "00:04:42:11",
+     "text": " Fonu"
+    },
+    {
+     "start": "00:04:42:11",
+     "end": "00:04:42:14",
+     "text": " gibi"
+    },
+    {
+     "start": "00:04:42:14",
+     "end": "00:04:43:09",
+     "text": " kaynaklardan"
+    },
+    {
+     "start": "00:04:43:09",
+     "end": "00:04:44:01",
+     "text": " doğrudan"
+    },
+    {
+     "start": "00:04:44:01",
+     "end": "00:04:44:23",
+     "text": " yararlanamıyor."
+    },
+    {
+     "start": "00:04:44:23",
+     "end": "00:04:45:19",
+     "text": " Ev"
+    },
+    {
+     "start": "00:04:45:19",
+     "end": "00:04:46:11",
+     "text": " sahipliği,"
+    },
+    {
+     "start": "00:04:46:16",
+     "end": "00:04:46:22",
+     "text": " iklim"
+    },
+    {
+     "start": "00:04:46:22",
+     "end": "00:04:47:15",
+     "text": " finansmanına"
+    },
+    {
+     "start": "00:04:47:15",
+     "end": "00:04:48:00",
+     "text": " erişim"
+    },
+    {
+     "start": "00:04:48:00",
+     "end": "00:04:48:04",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:48:04",
+     "end": "00:04:48:12",
+     "text": " yatırım"
+    },
+    {
+     "start": "00:04:48:12",
+     "end": "00:04:48:20",
+     "text": " çekme"
+    },
+    {
+     "start": "00:04:48:20",
+     "end": "00:04:49:11",
+     "text": " konusunda"
+    },
+    {
+     "start": "00:04:49:11",
+     "end": "00:04:50:05",
+     "text": " önemli"
+    },
+    {
+     "start": "00:04:50:05",
+     "end": "00:04:50:11",
+     "text": " bir"
+    },
+    {
+     "start": "00:04:50:11",
+     "end": "00:04:51:01",
+     "text": " diplomatik"
+    },
+    {
+     "start": "00:04:51:01",
+     "end": "00:04:51:15",
+     "text": " kaldıraç."
+    },
+    {
+     "start": "00:04:52:09",
+     "end": "00:04:52:22",
+     "text": " Türkiye,"
+    },
+    {
+     "start": "00:04:52:22",
+     "end": "00:04:53:04",
+     "text": " Paris"
+    },
+    {
+     "start": "00:04:53:04",
+     "end": "00:04:53:20",
+     "text": " Antlaşması'nı"
+    },
+    {
+     "start": "00:04:53:20",
+     "end": "00:04:54:15",
+     "text": " 2021'de"
+    },
+    {
+     "start": "00:04:54:15",
+     "end": "00:04:55:01",
+     "text": " onayladı"
+    },
+    {
+     "start": "00:04:55:01",
+     "end": "00:04:55:15",
+     "text": " ve"
+    },
+    {
+     "start": "00:04:55:15",
+     "end": "00:04:56:09",
+     "text": " 2053"
+    },
+    {
+     "start": "00:04:56:09",
+     "end": "00:04:56:15",
+     "text": " net"
+    },
+    {
+     "start": "00:04:56:15",
+     "end": "00:04:56:23",
+     "text": " sıfır"
+    },
+    {
+     "start": "00:04:56:23",
+     "end": "00:04:57:08",
+     "text": " hedefini"
+    },
+    {
+     "start": "00:04:57:08",
+     "end": "00:04:57:21",
+     "text": " açıkladı."
+    },
+    {
+     "start": "00:04:58:11",
+     "end": "00:04:58:18",
+     "text": " Kasım"
+    },
+    {
+     "start": "00:04:58:18",
+     "end": "00:04:59:17",
+     "text": " 2025'de"
+    },
+    {
+     "start": "00:04:59:17",
+     "end": "00:05:00:01",
+     "text": " sunduğu"
+    },
+    {
+     "start": "00:05:00:01",
+     "end": "00:05:00:15",
+     "text": " 2035"
+    },
+    {
+     "start": "00:05:00:15",
+     "end": "00:05:01:02",
+     "text": " hedefine"
+    },
+    {
+     "start": "00:05:01:02",
+     "end": "00:05:01:08",
+     "text": " göre"
+    },
+    {
+     "start": "00:05:01:08",
+     "end": "00:05:02:10",
+     "text": " salımlarını"
+    },
+    {
+     "start": "00:05:02:10",
+     "end": "00:05:03:12",
+     "text": " 643"
+    },
+    {
+     "start": "00:05:03:12",
+     "end": "00:05:03:22",
+     "text": " milyon"
+    },
+    {
+     "start": "00:05:03:22",
+     "end": "00:05:04:02",
+     "text": " ton"
+    },
+    {
+     "start": "00:05:04:02",
+     "end": "00:05:04:13",
+     "text": " karbon"
+    },
+    {
+     "start": "00:05:04:13",
+     "end": "00:05:04:23",
+     "text": " dioksit"
+    },
+    {
+     "start": "00:05:04:23",
+     "end": "00:05:05:12",
+     "text": " eşdeğerinde"
+    },
+    {
+     "start": "00:05:05:12",
+     "end": "00:05:06:08",
+     "text": " sınırlayacak."
+    }
+   ],
+   "text": " Türkiye 1992'de gelişmiş ülkeler listesine yazıldı. 2001'de de gelişmekte olan ülkelere para vermekle yükümlü ülkeler listesinden çıkarıldı. Bu ara konum yüzünden Türkiye, Yeşil İklim Fonu gibi kaynaklardan doğrudan yararlanamıyor. Ev sahipliği, iklim finansmanına erişim ve yatırım çekme konusunda önemli bir diplomatik kaldıraç. Türkiye, Paris Antlaşması'nı 2021'de onayladı ve 2053 net sıfır hedefini açıkladı. Kasım 2025'de sunduğu 2035 hedefine göre salımlarını 643 milyon ton karbon dioksit eşdeğerinde sınırlayacak."
+  },
+  {
+   "start": "00:05:06:08",
+   "end": "00:05:08:24",
+   "words": [
+    {
+     "start": "00:05:06:08",
+     "end": "00:05:08:24",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:05:08:24",
+   "end": "00:05:14:04",
+   "words": [
+    {
+     "start": "00:05:08:24",
+     "end": "00:05:09:06",
+     "text": " Hükümet"
+    },
+    {
+     "start": "00:05:09:06",
+     "end": "00:05:09:13",
+     "text": " bunu"
+    },
+    {
+     "start": "00:05:09:13",
+     "end": "00:05:09:24",
+     "text": " olağan"
+    },
+    {
+     "start": "00:05:09:24",
+     "end": "00:05:10:13",
+     "text": " senaryoya"
+    },
+    {
+     "start": "00:05:10:13",
+     "end": "00:05:10:20",
+     "text": " göre"
+    },
+    {
+     "start": "00:05:10:20",
+     "end": "00:05:11:17",
+     "text": " 466"
+    },
+    {
+     "start": "00:05:11:17",
+     "end": "00:05:12:06",
+     "text": " milyon"
+    },
+    {
+     "start": "00:05:12:06",
+     "end": "00:05:12:16",
+     "text": " tonluk"
+    },
+    {
+     "start": "00:05:12:16",
+     "end": "00:05:12:21",
+     "text": " bir"
+    },
+    {
+     "start": "00:05:12:21",
+     "end": "00:05:13:10",
+     "text": " azaltım"
+    },
+    {
+     "start": "00:05:13:10",
+     "end": "00:05:13:17",
+     "text": " olarak"
+    },
+    {
+     "start": "00:05:13:17",
+     "end": "00:05:14:04",
+     "text": " sunuyor."
+    }
+   ],
+   "text": " Hükümet bunu olağan senaryoya göre 466 milyon tonluk bir azaltım olarak sunuyor."
+  },
+  {
+   "start": "00:05:14:04",
+   "end": "00:05:17:03",
+   "words": [
+    {
+     "start": "00:05:14:04",
+     "end": "00:05:17:03",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:05:17:03",
+   "end": "00:06:01:08",
+   "words": [
+    {
+     "start": "00:05:17:03",
+     "end": "00:05:17:20",
+     "text": " Eleştirmenler"
+    },
+    {
+     "start": "00:05:17:20",
+     "end": "00:05:18:00",
+     "text": " ise"
+    },
+    {
+     "start": "00:05:18:00",
+     "end": "00:05:18:05",
+     "text": " bu"
+    },
+    {
+     "start": "00:05:18:05",
+     "end": "00:05:18:17",
+     "text": " hedefin"
+    },
+    {
+     "start": "00:05:18:17",
+     "end": "00:05:19:09",
+     "text": " salımların"
+    },
+    {
+     "start": "00:05:19:09",
+     "end": "00:05:20:08",
+     "text": " 2035'e"
+    },
+    {
+     "start": "00:05:20:08",
+     "end": "00:05:20:15",
+     "text": " kadar"
+    },
+    {
+     "start": "00:05:20:15",
+     "end": "00:05:21:02",
+     "text": " artmaya"
+    },
+    {
+     "start": "00:05:21:02",
+     "end": "00:05:21:11",
+     "text": " devam"
+    },
+    {
+     "start": "00:05:21:11",
+     "end": "00:05:22:00",
+     "text": " etmesine"
+    },
+    {
+     "start": "00:05:22:00",
+     "end": "00:05:22:09",
+     "text": " izin"
+    },
+    {
+     "start": "00:05:22:09",
+     "end": "00:05:22:20",
+     "text": " verdiğini"
+    },
+    {
+     "start": "00:05:22:20",
+     "end": "00:05:23:12",
+     "text": " söylüyor."
+    },
+    {
+     "start": "00:05:23:12",
+     "end": "00:05:24:00",
+     "text": " Bağımsız"
+    },
+    {
+     "start": "00:05:24:00",
+     "end": "00:05:24:05",
+     "text": " bir"
+    },
+    {
+     "start": "00:05:24:05",
+     "end": "00:05:24:20",
+     "text": " değerlendirme"
+    },
+    {
+     "start": "00:05:24:20",
+     "end": "00:05:25:05",
+     "text": " kuruluşu"
+    },
+    {
+     "start": "00:05:25:05",
+     "end": "00:05:25:12",
+     "text": " olan"
+    },
+    {
+     "start": "00:05:25:12",
+     "end": "00:05:26:06",
+     "text": " Climate"
+    },
+    {
+     "start": "00:05:26:06",
+     "end": "00:05:26:18",
+     "text": " Action"
+    },
+    {
+     "start": "00:05:26:18",
+     "end": "00:05:27:06",
+     "text": " Tracker"
+    },
+    {
+     "start": "00:05:27:06",
+     "end": "00:05:28:01",
+     "text": " hedefi"
+    },
+    {
+     "start": "00:05:28:01",
+     "end": "00:05:28:12",
+     "text": " kritik"
+    },
+    {
+     "start": "00:05:28:12",
+     "end": "00:05:29:00",
+     "text": " derecede"
+    },
+    {
+     "start": "00:05:29:00",
+     "end": "00:05:29:20",
+     "text": " yetersiz"
+    },
+    {
+     "start": "00:05:29:20",
+     "end": "00:05:30:04",
+     "text": " buluyor."
+    },
+    {
+     "start": "00:05:30:21",
+     "end": "00:05:31:08",
+     "text": " Türkiye'nin"
+    },
+    {
+     "start": "00:05:31:08",
+     "end": "00:05:31:18",
+     "text": " vitrinde"
+    },
+    {
+     "start": "00:05:31:18",
+     "end": "00:05:32:07",
+     "text": " göstermek"
+    },
+    {
+     "start": "00:05:32:07",
+     "end": "00:05:32:17",
+     "text": " istediği"
+    },
+    {
+     "start": "00:05:32:17",
+     "end": "00:05:33:03",
+     "text": " adımlar"
+    },
+    {
+     "start": "00:05:33:03",
+     "end": "00:05:33:06",
+     "text": " da"
+    },
+    {
+     "start": "00:05:33:06",
+     "end": "00:05:33:14",
+     "text": " var."
+    },
+    {
+     "start": "00:05:34:01",
+     "end": "00:05:34:09",
+     "text": " Temmuz"
+    },
+    {
+     "start": "00:05:34:09",
+     "end": "00:05:35:11",
+     "text": " 2025'de"
+    },
+    {
+     "start": "00:05:35:11",
+     "end": "00:05:35:19",
+     "text": " iklim"
+    },
+    {
+     "start": "00:05:35:19",
+     "end": "00:05:36:05",
+     "text": " kanunu"
+    },
+    {
+     "start": "00:05:36:05",
+     "end": "00:05:36:18",
+     "text": " çıkardı."
+    },
+    {
+     "start": "00:05:37:08",
+     "end": "00:05:37:18",
+     "text": " Ağustos"
+    },
+    {
+     "start": "00:05:37:18",
+     "end": "00:05:38:16",
+     "text": " 2026'da"
+    },
+    {
+     "start": "00:05:38:16",
+     "end": "00:05:38:22",
+     "text": " ise"
+    },
+    {
+     "start": "00:05:38:22",
+     "end": "00:05:39:11",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:05:39:11",
+     "end": "00:05:40:01",
+     "text": " Emisyon"
+    },
+    {
+     "start": "00:05:40:01",
+     "end": "00:05:40:11",
+     "text": " Ticaret"
+    },
+    {
+     "start": "00:05:40:11",
+     "end": "00:05:41:00",
+     "text": " Sistemi"
+    },
+    {
+     "start": "00:05:41:00",
+     "end": "00:05:42:11",
+     "text": " TR-ETS"
+    },
+    {
+     "start": "00:05:42:11",
+     "end": "00:05:43:01",
+     "text": " yönetmeliği"
+    },
+    {
+     "start": "00:05:43:01",
+     "end": "00:05:43:16",
+     "text": " yürürlüğe"
+    },
+    {
+     "start": "00:05:43:16",
+     "end": "00:05:43:23",
+     "text": " girdi."
+    },
+    {
+     "start": "00:05:43:23",
+     "end": "00:05:44:19",
+     "text": " Yani"
+    },
+    {
+     "start": "00:05:44:19",
+     "end": "00:05:45:05",
+     "text": " sadece"
+    },
+    {
+     "start": "00:05:45:05",
+     "end": "00:05:45:18",
+     "text": " teorik"
+    },
+    {
+     "start": "00:05:45:18",
+     "end": "00:05:45:23",
+     "text": " değil"
+    },
+    {
+     "start": "00:05:45:23",
+     "end": "00:05:46:11",
+     "text": " bakın"
+    },
+    {
+     "start": "00:05:46:11",
+     "end": "00:05:46:17",
+     "text": " biz"
+    },
+    {
+     "start": "00:05:46:17",
+     "end": "00:05:46:22",
+     "text": " bir"
+    },
+    {
+     "start": "00:05:46:22",
+     "end": "00:05:47:01",
+     "text": " şeyler"
+    },
+    {
+     "start": "00:05:47:01",
+     "end": "00:05:47:06",
+     "text": " de"
+    },
+    {
+     "start": "00:05:47:06",
+     "end": "00:05:47:13",
+     "text": " yapıyoruz"
+    },
+    {
+     "start": "00:05:47:13",
+     "end": "00:05:48:00",
+     "text": " pratikte"
+    },
+    {
+     "start": "00:05:48:00",
+     "end": "00:05:48:08",
+     "text": " demek"
+    },
+    {
+     "start": "00:05:48:08",
+     "end": "00:05:48:14",
+     "text": " için"
+    },
+    {
+     "start": "00:05:48:14",
+     "end": "00:05:48:23",
+     "text": " yapılmış"
+    },
+    {
+     "start": "00:05:48:23",
+     "end": "00:05:49:12",
+     "text": " eylemlerde"
+    },
+    {
+     "start": "00:05:49:12",
+     "end": "00:05:49:18",
+     "text": " bunlar."
+    },
+    {
+     "start": "00:05:49:18",
+     "end": "00:05:50:14",
+     "text": "(...)"
+    },
+    {
+     "start": "00:05:50:14",
+     "end": "00:05:50:22",
+     "text": " Sistem"
+    },
+    {
+     "start": "00:05:50:22",
+     "end": "00:05:51:02",
+     "text": " bir"
+    },
+    {
+     "start": "00:05:51:02",
+     "end": "00:05:51:10",
+     "text": " pilot"
+    },
+    {
+     "start": "00:05:51:10",
+     "end": "00:05:51:22",
+     "text": " dönemle"
+    },
+    {
+     "start": "00:05:51:22",
+     "end": "00:05:52:12",
+     "text": " başlıyor"
+    },
+    {
+     "start": "00:05:52:12",
+     "end": "00:05:53:00",
+     "text": " ve"
+    },
+    {
+     "start": "00:05:53:00",
+     "end": "00:05:53:12",
+     "text": " yılda"
+    },
+    {
+     "start": "00:05:53:12",
+     "end": "00:05:53:21",
+     "text": " 50"
+    },
+    {
+     "start": "00:05:53:21",
+     "end": "00:05:54:00",
+     "text": " bin"
+    },
+    {
+     "start": "00:05:54:00",
+     "end": "00:05:54:11",
+     "text": " tondan"
+    },
+    {
+     "start": "00:05:54:11",
+     "end": "00:05:54:20",
+     "text": " fazla"
+    },
+    {
+     "start": "00:05:54:20",
+     "end": "00:05:55:04",
+     "text": " salım"
+    },
+    {
+     "start": "00:05:55:04",
+     "end": "00:05:55:12",
+     "text": " yapan"
+    },
+    {
+     "start": "00:05:55:12",
+     "end": "00:05:55:18",
+     "text": " büyük"
+    },
+    {
+     "start": "00:05:55:18",
+     "end": "00:05:56:08",
+     "text": " tesisleri"
+    },
+    {
+     "start": "00:05:56:08",
+     "end": "00:05:56:22",
+     "text": " kapsıyor."
+    },
+    {
+     "start": "00:05:56:22",
+     "end": "00:05:57:17",
+     "text": "(...)"
+    },
+    {
+     "start": "00:05:57:17",
+     "end": "00:05:58:05",
+     "text": " Bölgesel"
+    },
+    {
+     "start": "00:05:58:05",
+     "end": "00:05:58:13",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:05:58:13",
+     "end": "00:05:58:24",
+     "text": " dönüşüm"
+    },
+    {
+     "start": "00:05:58:24",
+     "end": "00:05:59:14",
+     "text": " köprüsü"
+    },
+    {
+     "start": "00:05:59:14",
+     "end": "00:06:00:03",
+     "text": " olabilir"
+    },
+    {
+     "start": "00:06:00:03",
+     "end": "00:06:00:15",
+     "text": " miyiz?"
+    },
+    {
+     "start": "00:06:00:21",
+     "end": "00:06:01:02",
+     "text": " Bir"
+    },
+    {
+     "start": "00:06:01:02",
+     "end": "00:06:01:08",
+     "text": " daha."
+    }
+   ],
+   "text": " Eleştirmenler ise bu hedefin salımların 2035'e kadar artmaya devam etmesine izin verdiğini söylüyor. Bağımsız bir değerlendirme kuruluşu olan Climate Action Tracker hedefi kritik derecede yetersiz buluyor. Türkiye'nin vitrinde göstermek istediği adımlar da var. Temmuz 2025'de iklim kanunu çıkardı. Ağustos 2026'da ise Türkiye Emisyon Ticaret Sistemi TR-ETS yönetmeliği yürürlüğe girdi. Yani sadece teorik değil bakın biz bir şeyler de yapıyoruz pratikte demek için yapılmış eylemlerde bunlar.(...) Sistem bir pilot dönemle başlıyor ve yılda 50 bin tondan fazla salım yapan büyük tesisleri kapsıyor.(...) Bölgesel yeşil dönüşüm köprüsü olabilir miyiz? Bir daha."
+  },
+  {
+   "start": "00:06:01:08",
+   "end": "00:06:03:13",
+   "words": [
+    {
+     "start": "00:06:01:08",
+     "end": "00:06:03:13",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:06:03:13",
+   "end": "00:06:14:05",
+   "words": [
+    {
+     "start": "00:06:03:13",
+     "end": "00:06:03:18",
+     "text": " Peki"
+    },
+    {
+     "start": "00:06:03:18",
+     "end": "00:06:04:06",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:06:04:06",
+     "end": "00:06:04:20",
+     "text": " yaptığı"
+    },
+    {
+     "start": "00:06:04:20",
+     "end": "00:06:05:00",
+     "text": " bu"
+    },
+    {
+     "start": "00:06:05:00",
+     "end": "00:06:05:15",
+     "text": " şeylerle"
+    },
+    {
+     "start": "00:06:05:15",
+     "end": "00:06:06:03",
+     "text": " aldığı"
+    },
+    {
+     "start": "00:06:06:03",
+     "end": "00:06:06:18",
+     "text": " kararlarla"
+    },
+    {
+     "start": "00:06:06:18",
+     "end": "00:06:07:10",
+     "text": " bölgesel"
+    },
+    {
+     "start": "00:06:07:10",
+     "end": "00:06:07:22",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:06:07:22",
+     "end": "00:06:08:08",
+     "text": " dönüşüm"
+    },
+    {
+     "start": "00:06:08:08",
+     "end": "00:06:08:21",
+     "text": " köprüsü"
+    },
+    {
+     "start": "00:06:08:21",
+     "end": "00:06:09:07",
+     "text": " olabilir"
+    },
+    {
+     "start": "00:06:09:07",
+     "end": "00:06:09:13",
+     "text": " mi?"
+    },
+    {
+     "start": "00:06:09:13",
+     "end": "00:06:10:16",
+     "text": " Yeşil"
+    },
+    {
+     "start": "00:06:10:16",
+     "end": "00:06:10:23",
+     "text": " enerji"
+    },
+    {
+     "start": "00:06:10:23",
+     "end": "00:06:11:11",
+     "text": " kavramını"
+    },
+    {
+     "start": "00:06:11:11",
+     "end": "00:06:11:15",
+     "text": " çok"
+    },
+    {
+     "start": "00:06:11:15",
+     "end": "00:06:12:01",
+     "text": " sevmem"
+    },
+    {
+     "start": "00:06:12:01",
+     "end": "00:06:12:10",
+     "text": " fazla"
+    },
+    {
+     "start": "00:06:12:10",
+     "end": "00:06:13:21",
+     "text": " marketingi"
+    },
+    {
+     "start": "00:06:13:21",
+     "end": "00:06:14:00",
+     "text": " bir"
+    },
+    {
+     "start": "00:06:14:00",
+     "end": "00:06:14:05",
+     "text": " daha."
+    }
+   ],
+   "text": " Peki Türkiye yaptığı bu şeylerle aldığı kararlarla bölgesel yeşil dönüşüm köprüsü olabilir mi? Yeşil enerji kavramını çok sevmem fazla marketingi bir daha."
+  },
+  {
+   "start": "00:06:14:05",
+   "end": "00:06:15:08",
+   "words": [
+    {
+     "start": "00:06:14:05",
+     "end": "00:06:15:08",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:06:15:08",
+   "end": "00:06:29:16",
+   "words": [
+    {
+     "start": "00:06:15:08",
+     "end": "00:06:15:16",
+     "text": " Yeşil"
+    },
+    {
+     "start": "00:06:15:16",
+     "end": "00:06:15:23",
+     "text": " enerji"
+    },
+    {
+     "start": "00:06:15:23",
+     "end": "00:06:16:02",
+     "text": " diye"
+    },
+    {
+     "start": "00:06:16:02",
+     "end": "00:06:16:05",
+     "text": " bir"
+    },
+    {
+     "start": "00:06:16:05",
+     "end": "00:06:16:15",
+     "text": " kavram"
+    },
+    {
+     "start": "00:06:16:15",
+     "end": "00:06:17:00",
+     "text": " yoktur"
+    },
+    {
+     "start": "00:06:17:00",
+     "end": "00:06:17:03",
+     "text": " bu"
+    },
+    {
+     "start": "00:06:17:03",
+     "end": "00:06:17:09",
+     "text": " biraz"
+    },
+    {
+     "start": "00:06:17:09",
+     "end": "00:06:17:22",
+     "text": " reklam"
+    },
+    {
+     "start": "00:06:17:22",
+     "end": "00:06:18:07",
+     "text": " tarafına"
+    },
+    {
+     "start": "00:06:18:07",
+     "end": "00:06:18:12",
+     "text": " girer"
+    },
+    {
+     "start": "00:06:18:12",
+     "end": "00:06:18:17",
+     "text": " ama"
+    },
+    {
+     "start": "00:06:18:17",
+     "end": "00:06:19:01",
+     "text": " burada"
+    },
+    {
+     "start": "00:06:19:01",
+     "end": "00:06:19:07",
+     "text": " bunu"
+    },
+    {
+     "start": "00:06:19:07",
+     "end": "00:06:19:24",
+     "text": " kullanalım."
+    },
+    {
+     "start": "00:06:19:24",
+     "end": "00:06:20:01",
+     "text": " Pek"
+    },
+    {
+     "start": "00:06:20:01",
+     "end": "00:06:20:10",
+     "text": " sevdiğim"
+    },
+    {
+     "start": "00:06:20:10",
+     "end": "00:06:20:13",
+     "text": " bir"
+    },
+    {
+     "start": "00:06:20:13",
+     "end": "00:06:20:21",
+     "text": " kavram"
+    },
+    {
+     "start": "00:06:20:21",
+     "end": "00:06:21:05",
+     "text": " değildir"
+    },
+    {
+     "start": "00:06:21:05",
+     "end": "00:06:21:15",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:06:21:15",
+     "end": "00:06:22:00",
+     "text": " enerji."
+    },
+    {
+     "start": "00:06:22:14",
+     "end": "00:06:22:17",
+     "text": " Ama"
+    },
+    {
+     "start": "00:06:22:17",
+     "end": "00:06:23:04",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:06:23:04",
+     "end": "00:06:23:14",
+     "text": " dönüşüm"
+    },
+    {
+     "start": "00:06:23:14",
+     "end": "00:06:23:22",
+     "text": " dediğimiz"
+    },
+    {
+     "start": "00:06:23:22",
+     "end": "00:06:24:04",
+     "text": " şey"
+    },
+    {
+     "start": "00:06:24:04",
+     "end": "00:06:25:15",
+     "text": " karbondioksitten"
+    },
+    {
+     "start": "00:06:25:15",
+     "end": "00:06:26:02",
+     "text": " karbon"
+    },
+    {
+     "start": "00:06:26:02",
+     "end": "00:06:26:20",
+     "text": " emisyonundan"
+    },
+    {
+     "start": "00:06:26:20",
+     "end": "00:06:27:14",
+     "text": " arındırılmış"
+    },
+    {
+     "start": "00:06:27:14",
+     "end": "00:06:27:24",
+     "text": " enerji"
+    },
+    {
+     "start": "00:06:27:24",
+     "end": "00:06:28:11",
+     "text": " üretimini"
+    },
+    {
+     "start": "00:06:28:11",
+     "end": "00:06:29:02",
+     "text": " ve"
+    },
+    {
+     "start": "00:06:29:02",
+     "end": "00:06:29:16",
+     "text": " daha."
+    }
+   ],
+   "text": " Yeşil enerji diye bir kavram yoktur bu biraz reklam tarafına girer ama burada bunu kullanalım. Pek sevdiğim bir kavram değildir yeşil enerji. Ama yeşil dönüşüm dediğimiz şey karbondioksitten karbon emisyonundan arındırılmış enerji üretimini ve daha."
+  },
+  {
+   "start": "00:06:29:16",
+   "end": "00:06:32:12",
+   "words": [
+    {
+     "start": "00:06:29:16",
+     "end": "00:06:32:12",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:06:32:12",
+   "end": "00:06:47:03",
+   "words": [
+    {
+     "start": "00:06:32:12",
+     "end": "00:06:32:15",
+     "text": " Neyse"
+    },
+    {
+     "start": "00:06:32:15",
+     "end": "00:06:32:20",
+     "text": " buraya"
+    },
+    {
+     "start": "00:06:32:20",
+     "end": "00:06:33:03",
+     "text": " ekleme"
+    },
+    {
+     "start": "00:06:33:03",
+     "end": "00:06:33:15",
+     "text": " boşver"
+    },
+    {
+     "start": "00:06:33:15",
+     "end": "00:06:33:24",
+     "text": " fazla"
+    },
+    {
+     "start": "00:06:33:24",
+     "end": "00:06:34:14",
+     "text": " uzatmayalım"
+    },
+    {
+     "start": "00:06:34:14",
+     "end": "00:06:34:23",
+     "text": " çok"
+    },
+    {
+     "start": "00:06:34:23",
+     "end": "00:06:35:04",
+     "text": " uzadı"
+    },
+    {
+     "start": "00:06:35:04",
+     "end": "00:06:35:12",
+     "text": " video."
+    },
+    {
+     "start": "00:06:35:12",
+     "end": "00:06:37:11",
+     "text": " Türkiye"
+    },
+    {
+     "start": "00:06:37:11",
+     "end": "00:06:38:04",
+     "text": " yıllarca"
+    },
+    {
+     "start": "00:06:38:04",
+     "end": "00:06:38:15",
+     "text": " Avrupa'ya"
+    },
+    {
+     "start": "00:06:38:15",
+     "end": "00:06:38:22",
+     "text": " giden"
+    },
+    {
+     "start": "00:06:38:22",
+     "end": "00:06:39:07",
+     "text": " petrol"
+    },
+    {
+     "start": "00:06:39:07",
+     "end": "00:06:39:12",
+     "text": " ve"
+    },
+    {
+     "start": "00:06:39:12",
+     "end": "00:06:39:21",
+     "text": " doğal"
+    },
+    {
+     "start": "00:06:39:21",
+     "end": "00:06:40:04",
+     "text": " gazın"
+    },
+    {
+     "start": "00:06:40:04",
+     "end": "00:06:40:13",
+     "text": " geçiş"
+    },
+    {
+     "start": "00:06:40:13",
+     "end": "00:06:40:23",
+     "text": " ülkesi"
+    },
+    {
+     "start": "00:06:40:23",
+     "end": "00:06:41:04",
+     "text": " olarak"
+    },
+    {
+     "start": "00:06:41:04",
+     "end": "00:06:41:18",
+     "text": " görüldü."
+    },
+    {
+     "start": "00:06:42:03",
+     "end": "00:06:42:10",
+     "text": " Hızla"
+    },
+    {
+     "start": "00:06:42:10",
+     "end": "00:06:42:19",
+     "text": " artan"
+    },
+    {
+     "start": "00:06:42:19",
+     "end": "00:06:43:03",
+     "text": " rüzgar"
+    },
+    {
+     "start": "00:06:43:03",
+     "end": "00:06:43:06",
+     "text": " ve"
+    },
+    {
+     "start": "00:06:43:06",
+     "end": "00:06:43:14",
+     "text": " güneş"
+    },
+    {
+     "start": "00:06:43:14",
+     "end": "00:06:44:08",
+     "text": " kapasitesiyle"
+    },
+    {
+     "start": "00:06:44:08",
+     "end": "00:06:44:18",
+     "text": " şimdi"
+    },
+    {
+     "start": "00:06:44:18",
+     "end": "00:06:45:09",
+     "text": " hedef"
+    },
+    {
+     "start": "00:06:45:09",
+     "end": "00:06:45:20",
+     "text": " temiz"
+    },
+    {
+     "start": "00:06:45:20",
+     "end": "00:06:46:14",
+     "text": " elektrik."
+    },
+    {
+     "start": "00:06:46:22",
+     "end": "00:06:46:22",
+     "text": " Bir"
+    },
+    {
+     "start": "00:06:46:22",
+     "end": "00:06:47:03",
+     "text": " daha."
+    }
+   ],
+   "text": " Neyse buraya ekleme boşver fazla uzatmayalım çok uzadı video. Türkiye yıllarca Avrupa'ya giden petrol ve doğal gazın geçiş ülkesi olarak görüldü. Hızla artan rüzgar ve güneş kapasitesiyle şimdi hedef temiz elektrik. Bir daha."
+  },
+  {
+   "start": "00:06:47:03",
+   "end": "00:06:49:12",
+   "words": [
+    {
+     "start": "00:06:47:03",
+     "end": "00:06:49:12",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:06:49:12",
+   "end": "00:07:06:05",
+   "words": [
+    {
+     "start": "00:06:49:12",
+     "end": "00:06:49:19",
+     "text": " Hızla"
+    },
+    {
+     "start": "00:06:49:19",
+     "end": "00:06:50:04",
+     "text": " artan"
+    },
+    {
+     "start": "00:06:50:04",
+     "end": "00:06:50:14",
+     "text": " rüzgar"
+    },
+    {
+     "start": "00:06:50:14",
+     "end": "00:06:50:19",
+     "text": " ve"
+    },
+    {
+     "start": "00:06:50:19",
+     "end": "00:06:51:02",
+     "text": " güneş"
+    },
+    {
+     "start": "00:06:51:02",
+     "end": "00:06:52:00",
+     "text": " kapasitesiyle"
+    },
+    {
+     "start": "00:06:52:00",
+     "end": "00:06:52:08",
+     "text": " yani"
+    },
+    {
+     "start": "00:06:52:08",
+     "end": "00:06:52:17",
+     "text": " kurulu"
+    },
+    {
+     "start": "00:06:52:17",
+     "end": "00:06:53:03",
+     "text": " gücüyle"
+    },
+    {
+     "start": "00:06:53:03",
+     "end": "00:06:53:19",
+     "text": " şimdi"
+    },
+    {
+     "start": "00:06:53:19",
+     "end": "00:06:54:05",
+     "text": " hedefi"
+    },
+    {
+     "start": "00:06:54:05",
+     "end": "00:06:54:18",
+     "text": " Türkiye'nin"
+    },
+    {
+     "start": "00:06:54:18",
+     "end": "00:06:55:03",
+     "text": " temiz"
+    },
+    {
+     "start": "00:06:55:03",
+     "end": "00:06:55:18",
+     "text": " elektrik,"
+    },
+    {
+     "start": "00:06:56:01",
+     "end": "00:06:56:11",
+     "text": " yeşil"
+    },
+    {
+     "start": "00:06:56:11",
+     "end": "00:06:57:00",
+     "text": " hidrojen"
+    },
+    {
+     "start": "00:06:57:00",
+     "end": "00:06:57:04",
+     "text": " ve"
+    },
+    {
+     "start": "00:06:57:04",
+     "end": "00:06:57:14",
+     "text": " kritik"
+    },
+    {
+     "start": "00:06:57:14",
+     "end": "00:06:57:22",
+     "text": " mineral"
+    },
+    {
+     "start": "00:06:57:22",
+     "end": "00:06:58:09",
+     "text": " tedarik"
+    },
+    {
+     "start": "00:06:58:09",
+     "end": "00:06:59:00",
+     "text": " zincirinde"
+    },
+    {
+     "start": "00:06:59:00",
+     "end": "00:07:00:00",
+     "text": " bölgesel"
+    },
+    {
+     "start": "00:07:00:00",
+     "end": "00:07:00:05",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:00:05",
+     "end": "00:07:00:15",
+     "text": " merkez"
+    },
+    {
+     "start": "00:07:00:15",
+     "end": "00:07:01:04",
+     "text": " olabilmek."
+    },
+    {
+     "start": "00:07:01:16",
+     "end": "00:07:02:02",
+     "text": " Avrupa"
+    },
+    {
+     "start": "00:07:02:02",
+     "end": "00:07:02:04",
+     "text": " ve"
+    },
+    {
+     "start": "00:07:02:04",
+     "end": "00:07:02:12",
+     "text": " doğu"
+    },
+    {
+     "start": "00:07:02:12",
+     "end": "00:07:02:15",
+     "text": " ortada"
+    },
+    {
+     "start": "00:07:02:15",
+     "end": "00:07:02:18",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:02:18",
+     "end": "00:07:02:23",
+     "text": " daha."
+    },
+    {
+     "start": "00:07:02:23",
+     "end": "00:07:04:15",
+     "text": " Avrupa,"
+    },
+    {
+     "start": "00:07:04:15",
+     "end": "00:07:04:22",
+     "text": " orta"
+    },
+    {
+     "start": "00:07:04:22",
+     "end": "00:07:05:01",
+     "text": " doğu"
+    },
+    {
+     "start": "00:07:05:01",
+     "end": "00:07:05:04",
+     "text": " ve"
+    },
+    {
+     "start": "00:07:05:04",
+     "end": "00:07:05:19",
+     "text": " afrika"
+    },
+    {
+     "start": "00:07:05:19",
+     "end": "00:07:06:00",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:06:00",
+     "end": "00:07:06:05",
+     "text": " daha."
+    }
+   ],
+   "text": " Hızla artan rüzgar ve güneş kapasitesiyle yani kurulu gücüyle şimdi hedefi Türkiye'nin temiz elektrik, yeşil hidrojen ve kritik mineral tedarik zincirinde bölgesel bir merkez olabilmek. Avrupa ve doğu ortada bir daha. Avrupa, orta doğu ve afrika bir daha."
+  },
+  {
+   "start": "00:07:06:05",
+   "end": "00:07:07:09",
+   "words": [
+    {
+     "start": "00:07:06:05",
+     "end": "00:07:07:09",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:07:07:09",
+   "end": "00:07:11:17",
+   "words": [
+    {
+     "start": "00:07:07:09",
+     "end": "00:07:07:23",
+     "text": " Avrupa,"
+    },
+    {
+     "start": "00:07:07:23",
+     "end": "00:07:08:02",
+     "text": " orta"
+    },
+    {
+     "start": "00:07:08:02",
+     "end": "00:07:08:11",
+     "text": " doğu,"
+    },
+    {
+     "start": "00:07:08:11",
+     "end": "00:07:08:18",
+     "text": " afrika"
+    },
+    {
+     "start": "00:07:08:18",
+     "end": "00:07:08:22",
+     "text": " ve"
+    },
+    {
+     "start": "00:07:08:22",
+     "end": "00:07:09:07",
+     "text": " asya'nın"
+    },
+    {
+     "start": "00:07:09:07",
+     "end": "00:07:09:18",
+     "text": " aynı"
+    },
+    {
+     "start": "00:07:09:18",
+     "end": "00:07:10:02",
+     "text": " masaya"
+    },
+    {
+     "start": "00:07:10:02",
+     "end": "00:07:10:19",
+     "text": " oturduğu"
+    },
+    {
+     "start": "00:07:10:19",
+     "end": "00:07:11:17",
+     "text": " Antalya."
+    }
+   ],
+   "text": " Avrupa, orta doğu, afrika ve asya'nın aynı masaya oturduğu Antalya."
+  },
+  {
+   "start": "00:07:11:17",
+   "end": "00:07:15:05",
+   "words": [
+    {
+     "start": "00:07:11:17",
+     "end": "00:07:15:05",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:07:15:05",
+   "end": "00:07:50:05",
+   "words": [
+    {
+     "start": "00:07:15:05",
+     "end": "00:07:15:20",
+     "text": " Avrupa,"
+    },
+    {
+     "start": "00:07:15:20",
+     "end": "00:07:16:01",
+     "text": " orta"
+    },
+    {
+     "start": "00:07:16:01",
+     "end": "00:07:16:11",
+     "text": " doğu,"
+    },
+    {
+     "start": "00:07:16:11",
+     "end": "00:07:16:18",
+     "text": " afrika"
+    },
+    {
+     "start": "00:07:16:18",
+     "end": "00:07:16:22",
+     "text": " ve"
+    },
+    {
+     "start": "00:07:16:22",
+     "end": "00:07:17:08",
+     "text": " asya'nın"
+    },
+    {
+     "start": "00:07:17:08",
+     "end": "00:07:17:16",
+     "text": " aynı"
+    },
+    {
+     "start": "00:07:17:16",
+     "end": "00:07:18:00",
+     "text": " masaya"
+    },
+    {
+     "start": "00:07:18:00",
+     "end": "00:07:18:11",
+     "text": " oturduğu"
+    },
+    {
+     "start": "00:07:18:11",
+     "end": "00:07:19:01",
+     "text": " Antalya"
+    },
+    {
+     "start": "00:07:19:01",
+     "end": "00:07:19:11",
+     "text": " bu"
+    },
+    {
+     "start": "00:07:19:11",
+     "end": "00:07:19:20",
+     "text": " iddia"
+    },
+    {
+     "start": "00:07:19:20",
+     "end": "00:07:20:04",
+     "text": " içinde"
+    },
+    {
+     "start": "00:07:20:04",
+     "end": "00:07:20:12",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:20:12",
+     "end": "00:07:20:23",
+     "text": " vitrin"
+    },
+    {
+     "start": "00:07:20:23",
+     "end": "00:07:21:07",
+     "text": " olacak."
+    },
+    {
+     "start": "00:07:21:07",
+     "end": "00:07:23:08",
+     "text": " SKDM"
+    },
+    {
+     "start": "00:07:23:08",
+     "end": "00:07:23:21",
+     "text": " yani"
+    },
+    {
+     "start": "00:07:23:21",
+     "end": "00:07:24:04",
+     "text": " Türk"
+    },
+    {
+     "start": "00:07:24:04",
+     "end": "00:07:25:00",
+     "text": " sanayisinin"
+    },
+    {
+     "start": "00:07:25:00",
+     "end": "00:07:25:17",
+     "text": " kapısındaki"
+    },
+    {
+     "start": "00:07:25:17",
+     "end": "00:07:26:05",
+     "text": " karbon"
+    },
+    {
+     "start": "00:07:26:05",
+     "end": "00:07:26:22",
+     "text": " gümrüğü."
+    },
+    {
+     "start": "00:07:27:06",
+     "end": "00:07:27:11",
+     "text": " Şimdi"
+    },
+    {
+     "start": "00:07:27:11",
+     "end": "00:07:27:22",
+     "text": " çok"
+    },
+    {
+     "start": "00:07:27:22",
+     "end": "00:07:28:05",
+     "text": " önemli"
+    },
+    {
+     "start": "00:07:28:05",
+     "end": "00:07:28:11",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:28:11",
+     "end": "00:07:28:19",
+     "text": " ayrımı"
+    },
+    {
+     "start": "00:07:28:19",
+     "end": "00:07:29:04",
+     "text": " yapalım."
+    },
+    {
+     "start": "00:07:29:18",
+     "end": "00:07:30:04",
+     "text": " AB'nin"
+    },
+    {
+     "start": "00:07:30:04",
+     "end": "00:07:30:16",
+     "text": " sınırda"
+    },
+    {
+     "start": "00:07:30:16",
+     "end": "00:07:31:01",
+     "text": " karbon"
+    },
+    {
+     "start": "00:07:31:01",
+     "end": "00:07:31:14",
+     "text": " düzenleme"
+    },
+    {
+     "start": "00:07:31:14",
+     "end": "00:07:32:08",
+     "text": " mekanizması"
+    },
+    {
+     "start": "00:07:32:08",
+     "end": "00:07:33:06",
+     "text": " yani"
+    },
+    {
+     "start": "00:07:33:06",
+     "end": "00:07:34:05",
+     "text": " SKDM"
+    },
+    {
+     "start": "00:07:34:05",
+     "end": "00:07:34:13",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:34:13",
+     "end": "00:07:34:20",
+     "text": " kop"
+    },
+    {
+     "start": "00:07:34:20",
+     "end": "00:07:35:08",
+     "text": " kararı"
+    },
+    {
+     "start": "00:07:35:08",
+     "end": "00:07:35:15",
+     "text": " değil."
+    },
+    {
+     "start": "00:07:36:08",
+     "end": "00:07:36:12",
+     "text": " Bu"
+    },
+    {
+     "start": "00:07:36:12",
+     "end": "00:07:37:07",
+     "text": " AB'nin"
+    },
+    {
+     "start": "00:07:37:07",
+     "end": "00:07:37:18",
+     "text": " kendi"
+    },
+    {
+     "start": "00:07:37:18",
+     "end": "00:07:38:06",
+     "text": " aldığı"
+    },
+    {
+     "start": "00:07:38:06",
+     "end": "00:07:38:11",
+     "text": " bir"
+    },
+    {
+     "start": "00:07:38:11",
+     "end": "00:07:38:21",
+     "text": " karar."
+    },
+    {
+     "start": "00:07:39:08",
+     "end": "00:07:39:11",
+     "text": " Ama"
+    },
+    {
+     "start": "00:07:39:11",
+     "end": "00:07:39:18",
+     "text": " Türk"
+    },
+    {
+     "start": "00:07:39:18",
+     "end": "00:07:40:11",
+     "text": " sanayisi"
+    },
+    {
+     "start": "00:07:40:11",
+     "end": "00:07:42:18",
+     "text": " için"
+    },
+    {
+     "start": "00:07:42:18",
+     "end": "00:07:43:00",
+     "text": " en"
+    },
+    {
+     "start": "00:07:43:00",
+     "end": "00:07:43:04",
+     "text": " az"
+    },
+    {
+     "start": "00:07:43:04",
+     "end": "00:07:43:11",
+     "text": " kop"
+    },
+    {
+     "start": "00:07:43:11",
+     "end": "00:07:43:16",
+     "text": " kadar"
+    },
+    {
+     "start": "00:07:43:16",
+     "end": "00:07:44:00",
+     "text": " önemli."
+    },
+    {
+     "start": "00:07:44:00",
+     "end": "00:07:44:18",
+     "text": " Neden"
+    },
+    {
+     "start": "00:07:44:18",
+     "end": "00:07:45:00",
+     "text": " mi?"
+    },
+    {
+     "start": "00:07:45:08",
+     "end": "00:07:45:13",
+     "text": " Çünkü"
+    },
+    {
+     "start": "00:07:45:13",
+     "end": "00:07:46:04",
+     "text": " Türkiye'nin"
+    },
+    {
+     "start": "00:07:46:04",
+     "end": "00:07:47:04",
+     "text": " ihracatının"
+    },
+    {
+     "start": "00:07:47:04",
+     "end": "00:07:48:02",
+     "text": " yaklaşık"
+    },
+    {
+     "start": "00:07:48:02",
+     "end": "00:07:49:02",
+     "text": " %40'ı"
+    },
+    {
+     "start": "00:07:49:02",
+     "end": "00:07:49:19",
+     "text": " AB'ye"
+    },
+    {
+     "start": "00:07:49:19",
+     "end": "00:07:50:05",
+     "text": " gidiyor."
+    }
+   ],
+   "text": " Avrupa, orta doğu, afrika ve asya'nın aynı masaya oturduğu Antalya bu iddia içinde bir vitrin olacak. SKDM yani Türk sanayisinin kapısındaki karbon gümrüğü. Şimdi çok önemli bir ayrımı yapalım. AB'nin sınırda karbon düzenleme mekanizması yani SKDM bir kop kararı değil. Bu AB'nin kendi aldığı bir karar. Ama Türk sanayisi için en az kop kadar önemli. Neden mi? Çünkü Türkiye'nin ihracatının yaklaşık %40'ı AB'ye gidiyor."
+  },
+  {
+   "start": "00:07:50:05",
+   "end": "00:07:51:13",
+   "words": [
+    {
+     "start": "00:07:50:05",
+     "end": "00:07:51:13",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:07:51:13",
+   "end": "00:08:44:04",
+   "words": [
+    {
+     "start": "00:07:51:13",
+     "end": "00:07:52:04",
+     "text": " SKB-M"
+    },
+    {
+     "start": "00:07:52:04",
+     "end": "00:07:52:18",
+     "text": " şöyle"
+    },
+    {
+     "start": "00:07:52:18",
+     "end": "00:07:53:01",
+     "text": " işliyor"
+    },
+    {
+     "start": "00:07:53:01",
+     "end": "00:07:53:13",
+     "text": " kısaca."
+    },
+    {
+     "start": "00:07:54:02",
+     "end": "00:07:54:11",
+     "text": " Demir,"
+    },
+    {
+     "start": "00:07:54:11",
+     "end": "00:07:54:18",
+     "text": " çelik,"
+    },
+    {
+     "start": "00:07:54:18",
+     "end": "00:07:55:07",
+     "text": " alüminyum,"
+    },
+    {
+     "start": "00:07:55:07",
+     "end": "00:07:55:13",
+     "text": " çimento,"
+    },
+    {
+     "start": "00:07:55:20",
+     "end": "00:07:56:06",
+     "text": " gübre,"
+    },
+    {
+     "start": "00:07:56:06",
+     "end": "00:07:56:14",
+     "text": " elektrik"
+    },
+    {
+     "start": "00:07:56:14",
+     "end": "00:07:56:18",
+     "text": " ve"
+    },
+    {
+     "start": "00:07:56:18",
+     "end": "00:07:57:04",
+     "text": " hidrojen"
+    },
+    {
+     "start": "00:07:57:04",
+     "end": "00:07:58:04",
+     "text": " AB'ye"
+    },
+    {
+     "start": "00:07:58:04",
+     "end": "00:07:58:18",
+     "text": " girerken"
+    },
+    {
+     "start": "00:07:58:18",
+     "end": "00:07:59:08",
+     "text": " üretiminin"
+    },
+    {
+     "start": "00:07:59:08",
+     "end": "00:07:59:16",
+     "text": " açığa"
+    },
+    {
+     "start": "00:07:59:16",
+     "end": "00:07:59:24",
+     "text": " çıkan"
+    },
+    {
+     "start": "00:07:59:24",
+     "end": "00:08:00:13",
+     "text": " karbonu"
+    },
+    {
+     "start": "00:08:00:13",
+     "end": "00:08:01:07",
+     "text": " hesaplıyorlar."
+    },
+    {
+     "start": "00:08:01:07",
+     "end": "00:08:02:24",
+     "text": " AB'deki"
+    },
+    {
+     "start": "00:08:02:24",
+     "end": "00:08:03:18",
+     "text": " ithalatçı"
+    },
+    {
+     "start": "00:08:03:18",
+     "end": "00:08:04:01",
+     "text": " bu"
+    },
+    {
+     "start": "00:08:04:01",
+     "end": "00:08:04:12",
+     "text": " karbon"
+    },
+    {
+     "start": "00:08:04:12",
+     "end": "00:08:08:00",
+     "text": " için"
+    },
+    {
+     "start": "00:08:08:00",
+     "end": "00:08:08:16",
+     "text": " AB'nin"
+    },
+    {
+     "start": "00:08:08:16",
+     "end": "00:08:09:02",
+     "text": " karbon"
+    },
+    {
+     "start": "00:08:09:02",
+     "end": "00:08:09:16",
+     "text": " piyasası"
+    },
+    {
+     "start": "00:08:09:16",
+     "end": "00:08:10:04",
+     "text": " fiyatına"
+    },
+    {
+     "start": "00:08:10:04",
+     "end": "00:08:10:14",
+     "text": " bağlı"
+    },
+    {
+     "start": "00:08:10:14",
+     "end": "00:08:11:01",
+     "text": " sertifika"
+    },
+    {
+     "start": "00:08:11:01",
+     "end": "00:08:11:09",
+     "text": " almak"
+    },
+    {
+     "start": "00:08:11:09",
+     "end": "00:08:11:20",
+     "text": " zorunda."
+    },
+    {
+     "start": "00:08:12:06",
+     "end": "00:08:12:14",
+     "text": " Karbon"
+    },
+    {
+     "start": "00:08:12:14",
+     "end": "00:08:13:00",
+     "text": " sertifikası"
+    },
+    {
+     "start": "00:08:13:00",
+     "end": "00:08:13:08",
+     "text": " dediğimiz"
+    },
+    {
+     "start": "00:08:13:08",
+     "end": "00:08:13:12",
+     "text": " şey"
+    },
+    {
+     "start": "00:08:13:12",
+     "end": "00:08:13:18",
+     "text": " işte"
+    },
+    {
+     "start": "00:08:13:18",
+     "end": "00:08:13:23",
+     "text": " bu."
+    },
+    {
+     "start": "00:08:14:14",
+     "end": "00:08:14:22",
+     "text": " Kesin"
+    },
+    {
+     "start": "00:08:14:22",
+     "end": "00:08:15:04",
+     "text": " dönem"
+    },
+    {
+     "start": "00:08:15:04",
+     "end": "00:08:15:09",
+     "text": " 1"
+    },
+    {
+     "start": "00:08:15:09",
+     "end": "00:08:15:19",
+     "text": " Ocak"
+    },
+    {
+     "start": "00:08:15:19",
+     "end": "00:08:19:18",
+     "text": " 2026'da"
+    },
+    {
+     "start": "00:08:19:18",
+     "end": "00:08:20:06",
+     "text": " başladı."
+    },
+    {
+     "start": "00:08:20:19",
+     "end": "00:08:21:12",
+     "text": " 2026"
+    },
+    {
+     "start": "00:08:21:12",
+     "end": "00:08:22:05",
+     "text": " ithalatı"
+    },
+    {
+     "start": "00:08:22:05",
+     "end": "00:08:22:10",
+     "text": " için"
+    },
+    {
+     "start": "00:08:22:10",
+     "end": "00:08:22:23",
+     "text": " sertifika"
+    },
+    {
+     "start": "00:08:22:23",
+     "end": "00:08:23:11",
+     "text": " satışı"
+    },
+    {
+     "start": "00:08:23:11",
+     "end": "00:08:24:04",
+     "text": " Şubat"
+    },
+    {
+     "start": "00:08:24:04",
+     "end": "00:08:25:00",
+     "text": " 2027'de"
+    },
+    {
+     "start": "00:08:25:00",
+     "end": "00:08:25:16",
+     "text": " başlayacak."
+    },
+    {
+     "start": "00:08:26:06",
+     "end": "00:08:26:15",
+     "text": " Yılda"
+    },
+    {
+     "start": "00:08:26:15",
+     "end": "00:08:29:17",
+     "text": " %50'ün"
+    },
+    {
+     "start": "00:08:29:17",
+     "end": "00:08:30:02",
+     "text": " altında"
+    },
+    {
+     "start": "00:08:30:02",
+     "end": "00:08:30:12",
+     "text": " ithalat"
+    },
+    {
+     "start": "00:08:30:12",
+     "end": "00:08:31:00",
+     "text": " yapanlar"
+    },
+    {
+     "start": "00:08:31:00",
+     "end": "00:08:31:08",
+     "text": " bu"
+    },
+    {
+     "start": "00:08:31:08",
+     "end": "00:08:31:19",
+     "text": " şeyden"
+    },
+    {
+     "start": "00:08:31:19",
+     "end": "00:08:32:04",
+     "text": " bir"
+    },
+    {
+     "start": "00:08:32:04",
+     "end": "00:08:32:09",
+     "text": " daha."
+    },
+    {
+     "start": "00:08:33:01",
+     "end": "00:08:33:05",
+     "text": " Eğer"
+    },
+    {
+     "start": "00:08:33:05",
+     "end": "00:08:33:13",
+     "text": " yılda"
+    },
+    {
+     "start": "00:08:33:13",
+     "end": "00:08:33:19",
+     "text": " 50"
+    },
+    {
+     "start": "00:08:33:19",
+     "end": "00:08:34:02",
+     "text": " tonun"
+    },
+    {
+     "start": "00:08:34:02",
+     "end": "00:08:34:11",
+     "text": " altında"
+    },
+    {
+     "start": "00:08:34:11",
+     "end": "00:08:34:22",
+     "text": " ithalat"
+    },
+    {
+     "start": "00:08:34:22",
+     "end": "00:08:35:11",
+     "text": " yapıyorsanız"
+    },
+    {
+     "start": "00:08:35:11",
+     "end": "00:08:35:20",
+     "text": " bundan"
+    },
+    {
+     "start": "00:08:35:20",
+     "end": "00:08:36:08",
+     "text": " muafsınız."
+    },
+    {
+     "start": "00:08:36:15",
+     "end": "00:08:36:17",
+     "text": " Ama"
+    },
+    {
+     "start": "00:08:36:17",
+     "end": "00:08:37:13",
+     "text": " fazlaysa"
+    },
+    {
+     "start": "00:08:37:13",
+     "end": "00:08:38:04",
+     "text": " muaf"
+    },
+    {
+     "start": "00:08:38:04",
+     "end": "00:08:38:17",
+     "text": " değilsiniz."
+    },
+    {
+     "start": "00:08:38:17",
+     "end": "00:08:39:13",
+     "text": "(...)"
+    },
+    {
+     "start": "00:08:39:13",
+     "end": "00:08:39:23",
+     "text": " Faturayı"
+    },
+    {
+     "start": "00:08:39:23",
+     "end": "00:08:40:14",
+     "text": " ithalatçı"
+    },
+    {
+     "start": "00:08:40:14",
+     "end": "00:08:40:24",
+     "text": " ödüyor"
+    },
+    {
+     "start": "00:08:40:24",
+     "end": "00:08:41:09",
+     "text": " ama"
+    },
+    {
+     "start": "00:08:41:09",
+     "end": "00:08:41:23",
+     "text": " maliyet"
+    },
+    {
+     "start": "00:08:41:23",
+     "end": "00:08:42:08",
+     "text": " doğal"
+    },
+    {
+     "start": "00:08:42:08",
+     "end": "00:08:42:16",
+     "text": " olarak"
+    },
+    {
+     "start": "00:08:42:16",
+     "end": "00:08:42:24",
+     "text": " Türk"
+    },
+    {
+     "start": "00:08:42:24",
+     "end": "00:08:43:20",
+     "text": " ihracatçı"
+    },
+    {
+     "start": "00:08:43:20",
+     "end": "00:08:43:24",
+     "text": " bir"
+    },
+    {
+     "start": "00:08:43:24",
+     "end": "00:08:44:04",
+     "text": " daha."
+    }
+   ],
+   "text": " SKB-M şöyle işliyor kısaca. Demir, çelik, alüminyum, çimento, gübre, elektrik ve hidrojen AB'ye girerken üretiminin açığa çıkan karbonu hesaplıyorlar. AB'deki ithalatçı bu karbon için AB'nin karbon piyasası fiyatına bağlı sertifika almak zorunda. Karbon sertifikası dediğimiz şey işte bu. Kesin dönem 1 Ocak 2026'da başladı. 2026 ithalatı için sertifika satışı Şubat 2027'de başlayacak. Yılda %50'ün altında ithalat yapanlar bu şeyden bir daha. Eğer yılda 50 tonun altında ithalat yapıyorsanız bundan muafsınız. Ama fazlaysa muaf değilsiniz.(...) Faturayı ithalatçı ödüyor ama maliyet doğal olarak Türk ihracatçı bir daha."
+  },
+  {
+   "start": "00:08:44:04",
+   "end": "00:08:45:21",
+   "words": [
+    {
+     "start": "00:08:44:04",
+     "end": "00:08:45:21",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:08:45:21",
+   "end": "00:08:56:21",
+   "words": [
+    {
+     "start": "00:08:45:21",
+     "end": "00:08:46:07",
+     "text": " Faturayı"
+    },
+    {
+     "start": "00:08:46:07",
+     "end": "00:08:46:23",
+     "text": " ithalatçı"
+    },
+    {
+     "start": "00:08:46:23",
+     "end": "00:08:47:06",
+     "text": " ödüyor"
+    },
+    {
+     "start": "00:08:47:06",
+     "end": "00:08:47:16",
+     "text": " ama"
+    },
+    {
+     "start": "00:08:47:16",
+     "end": "00:08:48:05",
+     "text": " maliyet"
+    },
+    {
+     "start": "00:08:48:05",
+     "end": "00:08:48:12",
+     "text": " doğal"
+    },
+    {
+     "start": "00:08:48:12",
+     "end": "00:08:48:23",
+     "text": " olarak"
+    },
+    {
+     "start": "00:08:48:23",
+     "end": "00:08:49:23",
+     "text": " ihracatçıya"
+    },
+    {
+     "start": "00:08:49:23",
+     "end": "00:08:50:15",
+     "text": " yansıyor."
+    },
+    {
+     "start": "00:08:50:17",
+     "end": "00:08:50:23",
+     "text": " İşin"
+    },
+    {
+     "start": "00:08:50:23",
+     "end": "00:08:51:05",
+     "text": " kilit"
+    },
+    {
+     "start": "00:08:51:05",
+     "end": "00:08:51:16",
+     "text": " noktası"
+    },
+    {
+     "start": "00:08:51:16",
+     "end": "00:08:52:00",
+     "text": " burada."
+    },
+    {
+     "start": "00:08:52:00",
+     "end": "00:08:52:23",
+     "text": " Ürün"
+    },
+    {
+     "start": "00:08:52:23",
+     "end": "00:08:53:16",
+     "text": " üretildiği"
+    },
+    {
+     "start": "00:08:53:16",
+     "end": "00:08:53:24",
+     "text": " ülkede"
+    },
+    {
+     "start": "00:08:53:24",
+     "end": "00:08:54:09",
+     "text": " zaten"
+    },
+    {
+     "start": "00:08:54:09",
+     "end": "00:08:54:16",
+     "text": " bir"
+    },
+    {
+     "start": "00:08:54:16",
+     "end": "00:08:55:00",
+     "text": " karbon"
+    },
+    {
+     "start": "00:08:55:00",
+     "end": "00:08:55:10",
+     "text": " fiyatı"
+    },
+    {
+     "start": "00:08:55:10",
+     "end": "00:08:56:02",
+     "text": " ödediyse."
+    },
+    {
+     "start": "00:08:56:13",
+     "end": "00:08:56:16",
+     "text": " Bir"
+    },
+    {
+     "start": "00:08:56:16",
+     "end": "00:08:56:21",
+     "text": " daha."
+    }
+   ],
+   "text": " Faturayı ithalatçı ödüyor ama maliyet doğal olarak ihracatçıya yansıyor. İşin kilit noktası burada. Ürün üretildiği ülkede zaten bir karbon fiyatı ödediyse. Bir daha."
+  },
+  {
+   "start": "00:08:56:21",
+   "end": "00:08:58:11",
+   "words": [
+    {
+     "start": "00:08:56:21",
+     "end": "00:08:58:11",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:08:58:11",
+   "end": "00:09:07:05",
+   "words": [
+    {
+     "start": "00:08:58:11",
+     "end": "00:08:58:17",
+     "text": " Ürün"
+    },
+    {
+     "start": "00:08:58:17",
+     "end": "00:08:59:06",
+     "text": " üretildiği"
+    },
+    {
+     "start": "00:08:59:06",
+     "end": "00:08:59:14",
+     "text": " ülkede"
+    },
+    {
+     "start": "00:08:59:14",
+     "end": "00:08:59:24",
+     "text": " zaten"
+    },
+    {
+     "start": "00:08:59:24",
+     "end": "00:09:00:05",
+     "text": " bir"
+    },
+    {
+     "start": "00:09:00:05",
+     "end": "00:09:00:17",
+     "text": " karbon"
+    },
+    {
+     "start": "00:09:00:17",
+     "end": "00:09:01:03",
+     "text": " fiyatı"
+    },
+    {
+     "start": "00:09:01:03",
+     "end": "00:09:01:17",
+     "text": " ödediyse."
+    },
+    {
+     "start": "00:09:02:06",
+     "end": "00:09:02:13",
+     "text": " Tutar"
+    },
+    {
+     "start": "00:09:02:13",
+     "end": "00:09:03:08",
+     "text": " AB'deki"
+    },
+    {
+     "start": "00:09:03:08",
+     "end": "00:09:04:03",
+     "text": " yükümlülükten"
+    },
+    {
+     "start": "00:09:04:03",
+     "end": "00:09:04:22",
+     "text": " düşülebiliyor."
+    },
+    {
+     "start": "00:09:04:22",
+     "end": "00:09:05:20",
+     "text": "(...)"
+    },
+    {
+     "start": "00:09:05:20",
+     "end": "00:09:06:16",
+     "text": " TR-ETS"
+    },
+    {
+     "start": "00:09:06:16",
+     "end": "00:09:07:00",
+     "text": " bir"
+    },
+    {
+     "start": "00:09:07:00",
+     "end": "00:09:07:05",
+     "text": " daha."
+    }
+   ],
+   "text": " Ürün üretildiği ülkede zaten bir karbon fiyatı ödediyse. Tutar AB'deki yükümlülükten düşülebiliyor.(...) TR-ETS bir daha."
+  },
+  {
+   "start": "00:09:07:05",
+   "end": "00:09:09:10",
+   "words": [
+    {
+     "start": "00:09:07:05",
+     "end": "00:09:09:10",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:09:09:10",
+   "end": "00:09:17:05",
+   "words": [
+    {
+     "start": "00:09:09:10",
+     "end": "00:09:09:15",
+     "text": " İşte"
+    },
+    {
+     "start": "00:09:09:15",
+     "end": "00:09:10:21",
+     "text": " TR-ETS'nin"
+    },
+    {
+     "start": "00:09:10:21",
+     "end": "00:09:11:03",
+     "text": " bu"
+    },
+    {
+     "start": "00:09:11:03",
+     "end": "00:09:11:09",
+     "text": " kadar"
+    },
+    {
+     "start": "00:09:11:09",
+     "end": "00:09:11:17",
+     "text": " önemli"
+    },
+    {
+     "start": "00:09:11:17",
+     "end": "00:09:12:04",
+     "text": " olmasının"
+    },
+    {
+     "start": "00:09:12:04",
+     "end": "00:09:12:16",
+     "text": " nedeni"
+    },
+    {
+     "start": "00:09:12:16",
+     "end": "00:09:12:19",
+     "text": " de"
+    },
+    {
+     "start": "00:09:12:19",
+     "end": "00:09:13:03",
+     "text": " bu."
+    },
+    {
+     "start": "00:09:13:13",
+     "end": "00:09:13:19",
+     "text": " Para"
+    },
+    {
+     "start": "00:09:13:19",
+     "end": "00:09:14:03",
+     "text": " AB"
+    },
+    {
+     "start": "00:09:14:03",
+     "end": "00:09:14:16",
+     "text": " kasasına"
+    },
+    {
+     "start": "00:09:14:16",
+     "end": "00:09:14:20",
+     "text": " mı"
+    },
+    {
+     "start": "00:09:14:20",
+     "end": "00:09:15:11",
+     "text": " gidecek?"
+    },
+    {
+     "start": "00:09:15:13",
+     "end": "00:09:15:23",
+     "text": " Türkiye'de"
+    },
+    {
+     "start": "00:09:15:23",
+     "end": "00:09:16:08",
+     "text": " dönüşe"
+    },
+    {
+     "start": "00:09:16:08",
+     "end": "00:09:16:10",
+     "text": " mi"
+    },
+    {
+     "start": "00:09:16:10",
+     "end": "00:09:16:14",
+     "text": " mi"
+    },
+    {
+     "start": "00:09:16:14",
+     "end": "00:09:17:05",
+     "text": " harcanacak?"
+    }
+   ],
+   "text": " İşte TR-ETS'nin bu kadar önemli olmasının nedeni de bu. Para AB kasasına mı gidecek? Türkiye'de dönüşe mi mi harcanacak?"
+  },
+  {
+   "start": "00:09:17:05",
+   "end": "00:09:18:20",
+   "words": [
+    {
+     "start": "00:09:17:05",
+     "end": "00:09:18:20",
+     "text": "(...)"
+    }
+   ],
+   "text": "(...)"
+  },
+  {
+   "start": "00:09:18:20",
+   "end": "00:09:19:00",
+   "words": [
+    {
+     "start": "00:09:18:20",
+     "end": "00:09:18:20",
+     "text": " Bir"
+    },
+    {
+     "start": "00:09:18:20",
+     "end": "00:09:19:00",
+     "text": " daha."
+    }
+   ],
+   "text": " Bir daha."
+  }
+ ]
+}

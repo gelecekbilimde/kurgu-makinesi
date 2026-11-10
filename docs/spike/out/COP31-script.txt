@@ -1,0 +1,225 @@
+[Heading1] COP31: Antalya'da Dünyanın Geleceği – YouTube Senaryosu
+Oct 25, 2026 · @Burak Cankaya
+[Heading2] Düzeltme notları
+Orijinal metindeki 15 noktayı düzelttim veya güncelledim; en önemlileri COP30'un hiç anılmaması, SKDM'nin bir COP kararı gibi sunulması ve ulaşımın COP31'in ana müzakere başlığı gibi gösterilmesiydi. Aşağıdaki senaryo bu düzeltmelerle yeniden yazıldı.
+Orijinal ifade
+Sorun
+Yeni metinde
+"1995'ten beri her yıl"
+2020'de pandemi nedeniyle COP yapılmadı
+"1995'ten bu yana neredeyse her yıl"
+"11 günlük zirve"
+9–20 Kasım 12 gün eder
+12 gün
+Paris: "1,5°C ile sınırlandırma hedefi koyuldu", "NDC'ler zorunlu"
+Metin: 2°C'nin "oldukça altı" + 1,5°C için "çaba gösterme". NDC sunmak zorunlu, hedefi tutturmak hukuken bağlayıcı değil
+Ayrım netleştirildi
+COP28: "fosil yakıtlardan kademeli çıkış prensibi", "2050 net sıfır hedefi belirlendi"
+Metin "enerji sistemlerinde fosil yakıtlardan uzaklaşma" (transition away) diyor; "çıkış" (phase-out) kelimesi girmedi. 2050 net sıfır bir çağrı
+"Uzaklaşma" ifadesi kullanıldı
+COP30 (Belém, 2025) hiç yok
+COP31'in hemen öncesi; nihai kararda "fosil yakıt" kelimesi yok, uyum finansmanı 2035'e kadar üçe katlanacak
+Tarihçeye ve gündeme eklendi
+"%60 azaltım zorunluluğu… bağlayıcılığı"
+%60, IPCC'nin bilimsel gerekliliği (Küresel Stok Sayımı kararında anılıyor); hukuki zorunluluk değil. UNEP 2025 raporu %55 diyor
+"Bilim insanlarına göre gereken" diye düzeltildi
+"NDC 3.0 ilk kez COP31'de kapsamlı denetime tabi"
+Resmi bir "denetim" mekanizması yok; şeffaflık raporları ve sentez raporları var
+"Masaya yatırılacak" diye yumuşatıldı
+COP29: "yıllık yüz milyarlarca dolar"
+Somut rakam: 2035'e kadar yılda en az 300 milyar $; tüm kaynaklardan 1,3 trilyon $ çağrısı
+Rakamlar eklendi
+Ulaşım/SAF "COP31'in ana gündem maddesi"; "liman harçlarının ayrıştırılması"
+Havacılık ICAO'da, denizcilik IMO'da müzakere ediliyor; COP31 Eylem Gündemi'nin 10 önceliğinde ulaşım yok (yalnızca yeşil navlun koridorları girişimi). Harç/navlun iddiası kaynaksız
+Yan başlık olarak yeniden kurgulandı, kaynaksız kısım silindi; sıralama emisyon → finans → ulaşım oldu
+Türkiye–Avustralya "iki yıla yayılan yarış"
+Adaylık 2022'de açıklandı, uzlaşma Kasım 2025'te: yaklaşık üç yıl
+Düzeltildi; Pre-COP (Fiji, 5–8 Ekim 2026) eklendi
+"COP süreçlerinde alınan karbon fiyatlama kuralları… SKDM"; "COP kararlarına uymayan ülkeler SKDM ile karşılaşır, düşük faizli kredi alamaz"
+SKDM AB'nin kendi düzenlemesi, COP kararı değil; uygulanması ürünün gömülü karbonuna bağlı. Kredi iddiası abartılı
+Ayrıştırıldı, kredi iddiası silindi
+"Türk sanayicisi AB sınırında mali yükümlülükle karşı karşıya"
+Sertifikayı AB'deki ithalatçı alır, maliyet ihracatçıya yansır; ilk satış Şubat 2027, 50 ton muafiyeti var
+Mekanizma doğru anlatıldı; İklim Kanunu ve TR-ETS eklendi
+"Katı hal pillerine talep katlanıyor"
+Katı hal piller henüz seri üretimde değil
+"Ar-Ge yarışı" olarak düzeltildi
+"Gıdadan tekstile karbon etiketleri zorunlu hale geliyor"
+Genel bir zorunluluk yok; AB'de batarya pasaportu gibi ürün bazlı kurallar var
+Yumuşatıldı
+Kaynakça: Bakanlık (2024) "adaylık ve hazırlık raporu", TEPAV (2023) "Politika Notu No. 2023/14"
+İkisi de bulunamadı, doğrulanamadı. NZIA artık öneri değil, 2024'te tüzük oldu. Habertürk haberi yeşil tahvil/sigortacılık iddiasını içermiyor
+Doğrulanamayanlar çıkarıldı, kaynakça güncellendi
+Doğru bulunanlar: tarih ve yer (9–20 Kasım 2026, Antalya EXPO), 197 devlet + AB, Kyoto 1997, Paris 2015, COP28'deki yenilenebilir enerjiyi üçe katlama hedefi, WEOG grubu, SKDM sektörleri, AB'nin ihracattaki yaklaşık %40 payı, Madde 6.
+Senaryo notu: [EKRAN] satırları kurgu ekibi için görsel önerileridir; seslendirilmez. Parantez içindeki okunuşlar korunmuştur. Tahmini süre: 11–13 dakika.
+[Heading2] 1. Açılış: Zirve neden bu kadar önemli? (Begüm Dursun)
+[EKRAN: Isı haritasında kızaran dünya; köşede "2024: +1,55°C"]
+2024, ölçüm tarihinin en sıcak yılı oldu. Dünya ortalaması, sanayi öncesine göre ilk kez bir yıl boyunca 1,5 dereceyi aştı. 2025 de hemen arkasından geldi: kayıtlardaki en sıcak ikinci ya da üçüncü yıl.
+Şimdi düşünün: 9 Kasım'da, neredeyse dünyanın tüm ülkeleri bu sorunu konuşmak için tek bir şehre geliyor. O şehir Antalya.
+Merhaba, Gelecek Bilimde'ye hoş geldiniz. Bugün Türkiye'nin ilk kez ev sahipliği yaptığı dev bir zirveyi konuşacağız: COP31.
+[Heading3] COP nedir? (30 saniyede)
+COP (kap), "Conference of the Parties" (konferıns ov dı partiz) demek. Türkçesi: Taraflar Konferansı.
+Masada 198 taraf var: 197 ülke ve Avrupa Birliği. 1995'ten bu yana neredeyse her yıl, Birleşmiş Milletler çatısı altında toplanıyorlar.
+Bu masada üç şey konuşulur:
+[ListParagraph] Sera gazı salımları nasıl ve ne kadar azaltılacak?
+[ListParagraph] Parayı kim, kime, ne kadar verecek?
+[ListParagraph] Bilimin söylediği ile ülkelerin vaat ettiği arasındaki açık nasıl kapanacak?
+Kyoto Protokolü de, Paris Anlaşması da bu masada doğdu. Yani COP sıradan bir toplantı değil; dünyanın iklim kurallarının yazıldığı yer.
+[Heading3] COP31 neden bir dönüm noktası?
+[EKRAN: Takvim — 9–20 Kasım 2026, Antalya EXPO]
+COP31, 9–20 Kasım 2026'da Antalya EXPO'da yapılacak. 12 gün sürecek. 100'den fazla devlet ve hükümet başkanı, 50–70 bin kişi bekleniyor. Peki neden bu kadar kritik? Dört nedeni var.
+1. Zaman daralıyor. BM Çevre Programı'nın son raporuna göre ülkeler bütün vaatlerini tutsa bile dünya bu yüzyıl 2,3–2,5 derece ısınacak. 1,5 derecenin geçici olarak aşılması ise büyük olasılıkla önümüzdeki 10 yıl içinde gerçekleşecek. Yani artık soru "aşacak mıyız?" değil, "ne kadar ve ne kadar süre?"
+2. Söz değil, uygulama zamanı. Türkiye zirveyi "Uygulama COP'u" olarak tanımlıyor. Yeni vaatlerden çok, verilmiş sözlerin sahaya inmesi konuşulacak.
+3. Sembolik bir sahne. Antalya, iklim bilimcilerin "sıcak nokta" dediği Akdeniz havzasının tam ortasında. Kuraklık, orman yangınları, sıcak hava dalgaları: Bu bölgede iklim değişikliği bir tahmin değil, her yaz yaşanan bir gerçek.
+4. Benzeri görülmemiş bir model. Türkiye ev sahibi ve başkan; Avustralya ise müzakereleri yönetiyor. BM iklim tarihinde ilk kez bir zirvenin başkanlığı böyle paylaşılıyor.
+Kısacası COP31, 12 günlük bir toplantıdan fazlası. Önümüzdeki on yılın ekonomik ve çevresel rotasının çizileceği bir kavşak.
+[Heading2] 2. COP nedir, ne değildir?
+Şimdi gelin, COP'un ne olduğuna ve ne olmadığına bakalım.
+COP, 1992'de Rio'da imzalanan BM İklim Değişikliği Çerçeve Sözleşmesi'nin en üst karar organı. Kamuoyunda çoğu zaman "liderlerin fotoğraf çektirdiği, aktivistlerin konuştuğu bir platform" diye görülüyor. Ama bu masada küresel karbon piyasalarının kuralları, milyarlarca dolarlık finans hedefleri ve enerji dönüşümünün takvimi yazılıyor.
+[Heading3] Ne değildir?
+COP bir dünya hükümeti değil. Kararları uygulatacak bir "iklim polisi" ya da ceza kesen bir mahkeme yok. Üstelik kararlar oybirliğiyle alınıyor; yani tek bir ülke bile bir metni kilitleyebiliyor. COP'un gücü, ortak kurallar ve beklentiler üzerinden piyasaları ve hükümetleri yönlendirmesinden geliyor.
+[Heading3] Dönüm noktası olan zirveler
+[EKRAN: Aşağıdaki tablo animasyonlu zaman çizelgesi olarak; COP31 en sonda parlıyor]
+Yıl
+Zirve
+Ne çıktı?
+2025
+COP30, Belém (Brezilya)
+Uyum finansmanını 2035'e kadar üçe katlama çağrısı; "Küresel Uygulama Hızlandırıcı" ve "Belém 1,5 Misyonu". 80'i aşkın ülke fosil yakıt yol haritası istedi ama nihai kararda "fosil yakıt" kelimesi bile geçmedi
+2024
+COP29, Bakü (Azerbaycan)
+Yeni finans hedefi: gelişmiş ülkeler öncülüğünde 2035'e kadar yılda en az 300 milyar $; tüm kaynaklardan 1,3 trilyon $ çağrısı. Paris Madde 6 karbon piyasası kuralları tamamlandı
+2023
+COP28, Dubai (BAE)
+Bir COP kararında ilk kez "enerji sistemlerinde fosil yakıtlardan uzaklaşma" çağrısı. 2030'a kadar yenilenebilir kapasiteyi üçe, enerji verimliliği hızını ikiye katlama
+2022
+COP27, Şarm El-Şeyh (Mısır)
+Kayıp ve Hasar Fonu kurulması kararı
+2021
+COP26, Glasgow (İngiltere)
+Kömürün kademeli azaltılması ilk kez karar metninde
+2015
+COP21, Paris (Fransa)
+Paris Anlaşması: ısınmayı 2°C'nin oldukça altında tutmak, 1,5°C için çaba göstermek. Her ülke 5 yılda bir Ulusal Katkı Beyanı (NDC) sunacak
+1997
+COP3, Kyoto (Japonya)
+Kyoto Protokolü: gelişmiş ülkelere ilk kez hukuken bağlayıcı azaltım hedefleri ve emisyon ticareti
+Tablodaki önemli ayrıntı şu: Paris'te NDC sunmak zorunlu, ama içine yazılan hedefe ulaşmak hukuken bağlayıcı değil. Sistem, ülkelerin birbirini izlemesine ve her turda çıtayı yükseltmesine dayanıyor.
+[Heading3] COP31 bu zincirin neresinde?
+COP31, Paris Anlaşması'nın 10. yılından sonraki ilk zirve. Ülkeler 2025'te "NDC 3.0" denen 2035 hedeflerini sundu. Belém'de dünya "uygulama dönemine geçtik" dedi. Antalya'daki soru basit ama sert: Bu vaatler gerçekten hayata geçecek mi?
+[Heading2] 3. COP31'in ana gündem maddeleri
+Antalya'da aslında iki masa var. Birincisi resmi müzakere masası; burayı Avustralya yönetiyor ve çıkan kararlar tüm ülkeleri bağlayan metinler. İkincisi Türkiye'nin yönettiği "Eylem Gündemi"; burada ülkeler, şehirler ve şirketler gönüllü hedefler etrafında birleşiyor. Gelin önce büyük başlıklara bakalım.
+[Heading3] 3.1 Emisyon azaltımı ve 1,5°C hedefi
+[EKRAN: İki çubuk — "Gereken: %55–60" ve "Vaat edilen: ~%15"]
+İşte zirvenin en çarpıcı rakamı. Bilim insanlarına göre 1,5 dereceye yakın kalmak için küresel salımların 2035'e kadar 2019'a göre yüzde 55–60 düşmesi gerekiyor. Ülkelerin şu ana kadarki bütün vaatleri tam uygulansa bile düşüş yalnızca yüzde 15 civarında kalıyor.
+Antalya'da bu açık masaya yatırılacak. Üç soru öne çıkıyor:
+[ListParagraph] 2035 hedefleri yeterli mi? Yeni nesil NDC'lerin toplam etkisi ve hâlâ hedef sunmamış ülkeler.
+[ListParagraph] Fosil yakıtlar geri dönecek mi? COP28'de "fosil yakıtlardan uzaklaşma" kabul edildi. COP30'da 80'i aşkın ülke somut bir yol haritası istedi ama metin uzlaşma uğruna temizlendi. Brezilya bu yol haritasını gönüllü bir süreçle sürdürüyor; Kolombiya ve Hollanda da Nisan 2026'da fosil yakıtlardan çıkış konulu ilk uluslararası konferansı düzenledi. Konunun Antalya'da ne kadar ses getireceği zirvenin en büyük sınavlarından biri.
+[ListParagraph] 2030 hedefleri yolunda mı? Yenilenebilir kapasiteyi üçe, enerji verimliliğini ikiye katlama sözünün ara karnesi. İyi haber: 2025'in ilk yarısında yenilenebilir kaynaklar, dünya elektrik üretiminde ilk kez kömürü geçti.
+[Heading3] 3.2 İklim finansmanı ve Kayıp-Hasar Fonu
+Gelişmekte olan ülkelerin dönüşüm hızını belirleyen en kritik başlık para.
+Bakü'de, gelişmiş ülkelerin öncülüğünde 2035'e kadar yılda en az 300 milyar dolar toplanması kararlaştırıldı. Tüm kaynaklardan ise 1,3 trilyon dolar hedefleniyor. Belém'de buna uyum finansmanını 2035'e kadar üçe katlama çağrısı eklendi. Antalya'daki soru: Bu paranın ne kadarı hibe, ne kadarı borç olacak ve yoksul ülkeleri yeni bir borç sarmalına sokmadan nasıl aktarılacak?
+Kayıp ve Hasar Fonu ise iklim felaketlerinden zarar gören ülkeler için. Fon ilk döneminde (2025–2026) 250 milyon dolar dağıtacak. Ama gelen talepler 3 milyar dolara yaklaşıyor. Yani masadaki her bir dolar için on iki dolarlık ihtiyaç var.
+[Heading3] 3.3 Masanın kenarındaki büyük konu: Havacılık ve deniz taşımacılığı
+[EKRAN: Uçak ve konteyner gemisi; üstünde "ICAO" ve "IMO" yazıları]
+Uluslararası uçuşlar ve deniz taşımacılığı hiçbir ülkenin sınırına tam sığmıyor. Bu yüzden kuralları COP'ta değil, BM'nin iki ayrı kuruluşunda yazılıyor: havacılık için ICAO (Uluslararası Sivil Havacılık Örgütü), denizcilik için IMO (Uluslararası Denizcilik Örgütü).
+Havacılıkta umut SAF, yani Sürdürülebilir Havacılık Yakıtı. Kerosen yerine atık yağlardan ve biyokütleden üretiliyor. ICAO'nun CORSIA programı ise uçuş salımlarını dengelemeyi hedefliyor.
+Denizcilik küresel salımların yaklaşık yüzde 3'ünden sorumlu. IMO, gemi yakıtına dünyanın ilk küresel karbon fiyatını getirecek "Net Sıfır Çerçevesi"ni Nisan 2025'te onayladı. Ama Ekim 2025'teki oylamada, ABD'nin de bastırmasıyla, karar 57'ye 49 oyla bir yıl ertelendi. Kesin karar Aralık 2026'da, yani Antalya'dan sadece birkaç hafta sonra verilecek. Bu yüzden COP31'den çıkacak mesaj, gemicilik dünyasında da yakından izleniyor. Türkiye'nin Eylem Gündemi'nde de "yeşil navlun koridorları" girişimi yer alıyor.
+[Heading3] 3.4 Türkiye'nin masaya koyduğu hedefler
+COP31 Başkanlığı, Eylem Gündemi'nde 10 öncelik ve 2035 için 6 küresel hedef açıkladı:
+[ListParagraph] Nihai enerji tüketiminde elektriğin payını yüzde 35'e çıkarmak ("2035'e kadar %35").
+[ListParagraph] Atık üretimindeki artış hızını yarıya indirmek.
+[ListParagraph] Binalarda enerji kullanım yoğunluğunu en az yüzde 25 azaltmak.
+[ListParagraph] Sanayide döngüsel malzeme kullanım oranını en az yüzde 15'e çıkarmak.
+[ListParagraph] 2030'a kadar iklim değişikliğini eğitim müfredatlarına almak.
+[ListParagraph] "İklim Uygulama Köprüsü" ile ülkelerin hedeflerini yatırım yapılabilir projelere dönüştürmek. Başkanlık bunun yeni bir fon olmadığını vurguluyor.
+Başkanlığın hesabına göre bu hedefler 2035'e kadar 8,5–10 milyar ton karbondioksit azaltımına katkı sağlayabilir. Bunlar gönüllü hedefler; ne kadar ülkenin destek vereceği Antalya'da belli olacak.
+[Heading2] 4. Türkiye ve COP31: Ev sahipliği ve stratejik önemi
+Gelelim ev sahibi olarak bizim rolümüze.
+[Heading3] Bir diplomasi düğümü nasıl çözüldü?
+[EKRAN: Dünya haritası — Antalya, Canberra, Fiji, Tuvalu arasında çizgiler]
+BM'de COP'lara bölgeler sırayla ev sahipliği yapıyor. 2026'da sıra, Türkiye ve Avustralya'nın da içinde olduğu 28 ülkelik "Batı Avrupa ve Diğerleri" grubundaydı. İki ülke de 2022'de aday oldu. Avustralya, Pasifik ada ülkeleriyle birlikte bir "Pasifik COP'u" istiyordu.
+Yaklaşık üç yıl süren tıkanıklıkta işin ucu ilginç bir yere varmıştı: Uzlaşma çıkmazsa zirve, BM İklim Sekreterliği'nin bulunduğu Almanya'nın Bonn kentine kalacaktı.
+Çözüm Kasım 2025'te Belém'de geldi:
+[ListParagraph] Türkiye: Ev sahibi ve COP31 Başkanı. Başkan, Çevre, Şehircilik ve İklim Değişikliği Bakanı Murat Kurum.
+[ListParagraph] Avustralya: "Müzakere Başkanı". Taslak metinleri hazırlama ve müzakereleri yönetme yetkisi Avustralya İklim Bakanı Chris Bowen'da.
+[ListParagraph] Pasifik: Zirve öncesi bakanlar toplantısı (Pre-COP) 5–8 Ekim 2026'da Fiji'de yapıldı; liderler bölümü Tuvalu'da toplandı.
+[Heading3] Türkiye'nin özel konumu
+Türkiye iklim sözleşmesinde ilginç bir yerde duruyor. 1992'de gelişmiş ülkeler listesine (Ek-I) yazıldı. 2001'de, gelişmekte olan ülkelere para vermekle yükümlü ülkeler listesinden (Ek-II) çıkarıldı. Bu ara konum yüzünden Türkiye, Yeşil İklim Fonu gibi kaynaklardan doğrudan yararlanamıyor. Ev sahipliği, iklim finansmanına erişim ve yatırım çekme konusunda önemli bir diplomatik kaldıraç.
+Türkiye Paris Anlaşması'nı 2021'de onayladı ve 2053 net sıfır hedefini açıkladı. Kasım 2025'te sunduğu 2035 hedefine göre salımlarını 643 milyon ton karbondioksit eşdeğerinde sınırlayacak. Hükümet bunu, olağan senaryoya göre 466 milyon tonluk bir azaltım olarak sunuyor. Eleştirmenler ise bu hedefin salımların 2035'e kadar artmaya devam etmesine izin verdiğini söylüyor; bağımsız bir değerlendirme kuruluşu olan Climate Action Tracker, hedefi "kritik derecede yetersiz" buluyor.
+Türkiye'nin vitrinde göstermek istediği adımlar da var: Temmuz 2025'te İklim Kanunu çıktı. Ağustos 2026'da ise Türkiye Emisyon Ticaret Sistemi (TR-ETS) yönetmeliği yürürlüğe girdi. Sistem bir pilot dönemle başlıyor ve yılda 50 bin tondan fazla salım yapan büyük tesisleri kapsıyor.
+[Heading3] Bölgesel yeşil dönüşüm köprüsü olabilir mi?
+Türkiye yıllarca Avrupa'ya giden petrol ve doğal gazın geçiş ülkesi olarak görüldü. Hızla artan rüzgâr ve güneş kapasitesiyle şimdi hedef, temiz elektrik, yeşil hidrojen ve kritik mineral tedarik zincirlerinde bölgesel bir merkez olmak. Avrupa, Orta Doğu, Afrika ve Asya'nın aynı masaya oturduğu Antalya, bu iddia için de bir vitrin.
+[Heading3] SKDM: Türk sanayisinin kapısındaki karbon gümrüğü
+[EKRAN: AB sınırında bir tır; üzerinde "Gömülü karbon: ? ton" etiketi]
+Şimdi çok önemli bir ayrımı yapalım: AB'nin Sınırda Karbon Düzenleme Mekanizması, yani SKDM, bir COP kararı değil. AB'nin kendi aldığı bir karar. Ama Türk sanayisi için en az COP kadar önemli.
+Neden? Çünkü Türkiye'nin ihracatının yaklaşık yüzde 40'ı AB'ye gidiyor.
+SKDM şöyle işliyor:
+[ListParagraph] Demir-çelik, alüminyum, çimento, gübre, elektrik ve hidrojen AB'ye girerken, üretiminde açığa çıkan karbon hesaplanıyor.
+[ListParagraph] AB'deki ithalatçı, bu karbon için AB'nin karbon piyasası fiyatına bağlı sertifika almak zorunda. Kesin dönem 1 Ocak 2026'da başladı; 2026 ithalatı için sertifika satışı Şubat 2027'de başlıyor. Yılda 50 tonun altında ithalat yapanlar muaf.
+[ListParagraph] Faturayı ithalatçı ödüyor ama maliyet doğal olarak Türk ihracatçıya yansıyor.
+İşin kilit noktası burada: Ürün üretildiği ülkede zaten bir karbon fiyatı ödediyse, bu tutar AB'deki yükümlülükten düşülebiliyor. TR-ETS'nin bu kadar önemli olmasının nedeni bu. Para AB kasasına mı gidecek, Türkiye'de dönüşüme mi harcanacak?
+Fırsat tarafı da var: Karbonunu düşüren Türk üreticileri, Uzak Doğu'ya göre coğrafi yakınlık ve hızlı teslimat avantajını "düşük karbonlu üretim" ile birleştirirse Avrupa pazarında pay kazanabilir.
+[Heading2] 5. Zirvenin sanayi, teknoloji ve günlük hayata yansımaları
+Peki bütün bu kararlar fabrikaya, laboratuvara ve bizim evimize nasıl yansıyacak?
+[Heading3] İvme kazanan teknolojiler
+[EKRAN: Dört ikon — H₂ molekülü, batarya, rüzgâr türbini, çimento torbası]
+Yeşil hidrojen. Çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın yerini alabilecek aday. Yenilenebilir elektrikle suyu ayrıştıran elektrolizörler ve hidrojenin nasıl sertifikalanacağı bu yüzden kritik. SKDM'nin hidrojeni de kapsaması, konunun ihracatçılar için ne kadar somut olduğunu gösteriyor.
+Bataryalar. Elektrikli araçlar ve şebekede enerji depolama için lityum-iyon pillere talep hızla artıyor. Sodyum-iyon piller ucuz ve bol hammaddeleriyle yükselişte. Katı hal piller ise henüz seri üretimde değil; asıl yarış Ar-Ge laboratuvarlarında. Avrupa'da 2027'den itibaren elektrikli araç bataryaları için "batarya pasaportu" geliyor: Pilin içinde ne olduğu, nereden geldiği ve karbon ayak izi dijital olarak kayıt altına alınacak.
+Elektrik şebekesi ve elektrifikasyon. COP31'in "2035'e kadar %35" hedefi aslında bir şebeke meselesi. Daha fazla güneş ve rüzgâr; daha güçlü iletim hatları, ülkeler arası bağlantılar ve talebi tahmin eden yapay zekâ destekli yazılımlar demek.
+İleri malzemeler. Çimentoda karbonun büyük kısmı klinker üretiminden geliyor; daha az klinkerli yeni çimento türleri geliştiriliyor. Havacılık ve otomotivde hafif kompozit malzemeler yakıt tüketimini azaltıyor. Baca gazından karbon yakalayan (CCUS) sistemlerde ise daha verimli tutucu malzemeler üzerinde çalışılıyor.
+[Heading3] İş gücü ve enerji faturaları
+Uluslararası Yenilenebilir Enerji Ajansı'na göre dünyada yenilenebilir enerji sektöründe çalışan sayısı 16 milyonu aştı. Kömür madenciliği ve içten yanmalı motor üretimi gibi alanlarda istihdam daralırken; güneş ve rüzgâr kurulumu, enerji verimliliği denetimi, sürdürülebilirlik raporlaması ve batarya kimyası gibi alanlarda yeni meslekler doğuyor. Belém'de kabul edilen "adil geçiş" mekanizması, bu dönüşümden zarar görecek çalışanları ve bölgeleri korumayı amaçlıyor.
+Faturalar tarafında tablo iki aşamalı. Kısa vadede şebeke yatırımları ve karbon fiyatları maliyet artışı yaratabilir. Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgârın payı arttıkça, petrol ve gaz krizlerinin elektrik fiyatlarına yansıması azalabilir.
+[Heading3] Bizim hayatımızda neler değişiyor?
+[ListParagraph] Çatıdaki santral: Çatı güneş panelleri ve ev tipi bataryalarla tüketici aynı zamanda üretici oluyor; fazla elektriğini şebekeye satabiliyor.
+[ListParagraph] Kombi yerine ısı pompası: Özellikle Avrupa'da doğal gazlı kombiden ısı pompasına geçiş teşvik ediliyor.
+[ListParagraph] Elektrikli araçlar: Türkiye'de 2025'te satılan her 100 otomobilden yaklaşık 17'si elektrikliydi.
+[ListParagraph] Atık ve plastik: COP31'in atık hedefi ve geri dönüştürülemeyen plastiklere yönelik sınırlamalar, market rafından çöp kutusuna kadar alışkanlıklarımızı etkileyecek.
+[ListParagraph] Ürün etiketleri: Ürünlerin karbon ayak izi henüz genel olarak zorunlu bir etiket değil. Ama batarya pasaportu gibi ürün bazlı kurallarla bu bilgi giderek daha görünür hale geliyor.
+[Heading2] 6. COP31 dünyayı değiştirebilir mi?
+[EKRAN: Termometre ibresi — 2015: 3–3,5°C → 2025: 2,3–2,5°C]
+Dürüst olalım: Hiçbir COP dünyayı bir gecede değiştiremez. Kararları zorla uygulatacak bir iklim polisi yok. Kararlar oybirliğiyle alınıyor ve en büyük salımcılardan biri olan ABD, Paris Anlaşması'ndan ikinci kez çekildi.
+Ama şu rakama bakın: Paris Anlaşması imzalandığında dünya bu yüzyıl için 3–3,5 derecelik bir ısınmaya gidiyordu. Bugün, vaatler tam uygulanırsa bu tahmin 2,3–2,5 dereceye indi. Yetmez, ama boşuna da değil. Her onda bir derece; daha az sel, daha az kuraklık, daha az kayıp demek.
+COP'un gücü dolaylı. Karbon piyasası kurallarını belirliyor, finans akışlarını yönlendiriyor ve yatırımcılara "rüzgâr nereye esiyor" sinyalini veriyor. SKDM gibi ticaret kuralları ve TR-ETS gibi ulusal piyasalar da bu sinyalle şekilleniyor.
+Bu yüzden COP31'i yeni sloganlarla değil, üç somut soruyla ölçmek gerekiyor:
+[ListParagraph] 300 milyar dolarlık finans hedefinin nasıl dolacağı netleşecek mi?
+[ListParagraph] Fosil yakıtlardan uzaklaşma, somut bir takvime bağlanacak mı?
+[ListParagraph] Türkiye'nin açıkladığı elektrifikasyon, atık ve bina hedeflerine kaç ülke imza atacak?
+[Heading3] Kapanış
+Antalya, 20 Kasım'da kapılarını kapattığında bu soruların cevabını göreceğiz. Peki siz ne düşünüyorsunuz?
+Sizce COP31 gibi zirveler küresel ısınmayı durdurmada gerçekten etkili mi, yoksa sadece diplomatik bir şov mu?
+Cevaplarınızı yorumlarda bekliyoruz. Zirve sonuçlarını da ayrı bir videoda ele alacağız; kaçırmamak için abone olmayı ve bildirimleri açmayı unutmayın. Bir sonraki videoda görüşmek üzere, Gelecek Bilimde!
+[Heading2] Kaynakça
+Tüm bağlantılar 25 Ekim 2026'da kontrol edildi. Orijinal listedeki doğrulanabilen kaynaklar korundu, doğrulanamayan ikisi çıkarıldı.
+COP31 ve resmi açıklamalar
+[ListParagraph] UNFCCC. (2026). The road to Antalya — tarihler, Türkiye–Avustralya ortaklığı, Pre-COP (Fiji/Tuvalu).
+[ListParagraph] United Nations Türkiye. (2026, 17 Şubat). On the road to COP31: Strong message from Istanbul for new era of climate action.
+[ListParagraph] T.C. İklim Değişikliği Başkanlığı. (2026, 9 Haziran). COP31 President-Designate and Minister Kurum unveils COP31 Action Agenda.
+[ListParagraph] T.C. İklim Değişikliği Başkanlığı. (2026, 28 Ağustos). Türkiye's Emissions Trading System enters into force.
+[ListParagraph] T.C. İklim Değişikliği Başkanlığı. (2025). Türkiye to host and preside over COP31.
+[ListParagraph] T.C. İklim Değişikliği Başkanlığı. (2025). Türkiye submits its second Nationally Determined Contribution.
+[ListParagraph] Daily Sabah / AA. (2026, 22 Eylül). Türkiye's COP31 Action Agenda sets energy, waste targets for 2035.
+[ListParagraph] Habertürk. (2026, 10 Temmuz). Antalya'da COP31 hazırlığı: İklim diplomasisinin yeni merkezi Türkiye.
+[ListParagraph] Ekonomi Gazetesi. (2026, 20 Nisan). COP 31 Yüksek Düzeyli İklim Şampiyonları Toplantısı yapıldı.
+[ListParagraph] Climate Home News. (2025, 20 Kasım). COP31 will be hosted by Türkiye but run by Australia.
+[ListParagraph] PINA. (2026, 26 Şubat). Pacific to host key COP31 pre-summit talks in Fiji and Tuvalu.
+Bilim ve emisyon açığı
+[ListParagraph] UNEP. (2025). Emissions Gap Report 2025: Off Target.
+[ListParagraph] WMO. (2025, 6 Kasım). 2025 set to be second or third warmest year on record.
+[ListParagraph] Climate Action Tracker. (2026). Türkiye: 2035 NDC assessment.
+COP29, COP30, finansman ve kayıp-hasar
+[ListParagraph] King's College London. (2025). Your quick guide to the outcomes of COP30.
+[ListParagraph] UNCTAD. (2024, 10 Aralık). Countries agree $300 billion by 2035 for new climate finance goal.
+[ListParagraph] Eco-Business. (2026). Loss and damage fund faces US$2.8bn gap as first projects move ahead.
+Ulaşım
+[ListParagraph] DNV. (2025). Decision on the IMO Net-Zero Framework delayed for one year.
+[ListParagraph] Carbon Brief. (2026). Q&A: How countries got the global 'net-zero' shipping deal back on track.
+SKDM ve ticaret
+[ListParagraph] EY. (2025, 22 Ekim). EU adopts CBAM Omnibus Regulation.
+[ListParagraph] Sözcü / AA. (2026). Türkiye'nin AB ülkelerine ihracatı ilk 6 ayda yükseldi.
+Orijinal listeden korunanlar (güncellenmiş)
+[ListParagraph] United Nations. (1992). United Nations Framework Convention on Climate Change.
+[ListParagraph] IRENA. Renewable energy and jobs: Annual review (güncel baskı; 2023 baskısının yerine).
+[ListParagraph] European Union. (2024). Net-Zero Industry Act, Regulation (EU) 2024/1735 (orijinal listedeki COM(2023) 161 önerisi bu tüzükle kabul edildi).
+Çıkarılanlar: T.C. Çevre, Şehircilik ve İklim Değişikliği Bakanlığı (2024) "COP31 ev sahipliği adaylık ve hazırlık raporu" ile TEPAV (2023) "Politika Notu No. 2023/14" bulunamadı.

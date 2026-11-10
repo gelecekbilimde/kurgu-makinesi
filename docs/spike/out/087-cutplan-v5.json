@@ -1,0 +1,429 @@
+{
+ "version": 4,
+ "long_words": [
+  {
+   "start_f": 2378,
+   "end_f": 2522,
+   "text": "1995'ten"
+  },
+  {
+   "start_f": 3798,
+   "end_f": 3892,
+   "text": "Yani"
+  },
+  {
+   "start_f": 4267,
+   "end_f": 4394,
+   "text": "COP31"
+  },
+  {
+   "start_f": 4697,
+   "end_f": 4814,
+   "text": "Kasım"
+  },
+  {
+   "start_f": 7176,
+   "end_f": 7226,
+   "text": "4."
+  },
+  {
+   "start_f": 7821,
+   "end_f": 7898,
+   "text": "Birleşmiş"
+  }
+ ],
+ "second_transcript": "out/087-mov-resolve-tr.json",
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011087.MOV",
+ "fps": 25,
+ "offset_f": 10,
+ "clip_end_f": 8520,
+ "keep_frames": [
+  [
+   73,
+   188
+  ],
+  [
+   195,
+   264
+  ],
+  [
+   271,
+   361
+  ],
+  [
+   515,
+   620
+  ],
+  [
+   770,
+   914
+  ],
+  [
+   1045,
+   1400
+  ],
+  [
+   1457,
+   1669
+  ],
+  [
+   1817,
+   1940
+  ],
+  [
+   1949,
+   2004
+  ],
+  [
+   2016,
+   2152
+  ],
+  [
+   2261,
+   2384
+  ],
+  [
+   2492,
+   2631
+  ],
+  [
+   2700,
+   2756
+  ],
+  [
+   2903,
+   3009
+  ],
+  [
+   3019,
+   3105
+  ],
+  [
+   3113,
+   3268
+  ],
+  [
+   3284,
+   3364
+  ],
+  [
+   3619,
+   3804
+  ],
+  [
+   3882,
+   4023
+  ],
+  [
+   4059,
+   4167
+  ],
+  [
+   4766,
+   4997
+  ],
+  [
+   5007,
+   5094
+  ],
+  [
+   5105,
+   5513
+  ],
+  [
+   5689,
+   5849
+  ],
+  [
+   6053,
+   6321
+  ],
+  [
+   6332,
+   6412
+  ],
+  [
+   6485,
+   7055
+  ],
+  [
+   7069,
+   7181
+  ],
+  [
+   7477,
+   7592
+  ],
+  [
+   7601,
+   7758
+  ],
+  [
+   7886,
+   8457
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake-marker",
+   "start_f": 615,
+   "end_f": 737,
+   "how": "matched 'Dünya'",
+   "source": "primary",
+   "text": "Dünya ortalaması sanayi öncesine göre ilk kez bu kadar bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 920,
+   "end_f": 1006,
+   "how": "matched '2025'de'",
+   "source": "second",
+   "text": "2025'de de hemen arkasından geldi. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 928,
+   "end_f": 1006,
+   "how": "matched '2025'te'",
+   "source": "primary",
+   "text": "2025'te de hemen arkasından geldi. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2641,
+   "end_f": 2671,
+   "how": "matched 'Bu'",
+   "source": "primary",
+   "text": "Bu masa üç bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2767,
+   "end_f": 2785,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Sera bir daha."
+  },
+  {
+   "kind": "orphan",
+   "start_f": 2823,
+   "end_f": 2826,
+   "how": "fragment between cuts",
+   "source": "primary",
+   "text": "Bir."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2836,
+   "end_f": 2878,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Sera gazı salımları nasıl bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3362,
+   "end_f": 3509,
+   "how": "sentence-start",
+   "source": "second",
+   "text": "Kyoto protokolü de bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3473,
+   "end_f": 3510,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Kyoto protokolü de bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3528,
+   "end_f": 3587,
+   "how": "matched 'Hatırlayanlar'",
+   "source": "primary",
+   "text": "Hatırlayanlar olacaktır. Kyoto protokolü bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4173,
+   "end_f": 4237,
+   "how": "matched 'COP31'",
+   "source": "primary",
+   "text": "COP31 9-20 Kasım arasında bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4267,
+   "end_f": 4517,
+   "how": "matched 'COP31'",
+   "source": "primary",
+   "text": "COP31 9-20 Kasım arasında Ansalya'da ekspo da yapılacak. Bir daha bir daha bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4539,
+   "end_f": 4618,
+   "how": "matched 'COP31'",
+   "source": "primary",
+   "text": "COP31 9-20 Kasım 2026'da bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4658,
+   "end_f": 4744,
+   "how": "matched 'COP31'",
+   "source": "second",
+   "text": "COP31 9-20 Kasım 2026'da bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5530,
+   "end_f": 5681,
+   "how": "matched '1,5'",
+   "source": "primary",
+   "text": "1,5 derecenin geçişi bir daha. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5858,
+   "end_f": 5999,
+   "how": "matched 'Yani'",
+   "source": "primary",
+   "text": "Yani artık soru aşacak mıyız değil ne kadar ve ne kadar süre. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6406,
+   "end_f": 6466,
+   "how": "sentence-start",
+   "source": "second",
+   "text": "Yani bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6449,
+   "end_f": 6467,
+   "how": "sentence-start",
+   "source": "primary",
+   "text": "Yani bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7176,
+   "end_f": 7428,
+   "how": "matched '4.'",
+   "source": "primary",
+   "text": "4. kritik nokta ise benzeri görünmemiş bir model. Türkiye ev sahibi ve başkan Avustralya ise müzakereliği yönetiyor. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7772,
+   "end_f": 7821,
+   "how": "matched 'Birleşmiş'",
+   "source": "primary",
+   "text": "Birleşmiş Milletler iklim de bir daha."
+  }
+ ],
+ "noise_islands": [
+  [
+   745,
+   747
+  ],
+  [
+   1406,
+   1408
+  ],
+  [
+   1705,
+   1707
+  ],
+  [
+   1774,
+   1775
+  ],
+  [
+   2155,
+   2156
+  ],
+  [
+   2420,
+   2426
+  ],
+  [
+   2430,
+   2440
+  ],
+  [
+   2445,
+   2447
+  ],
+  [
+   3864,
+   3865
+  ],
+  [
+   4267,
+   4313
+  ],
+  [
+   4317,
+   4326
+  ],
+  [
+   5595,
+   5597
+  ],
+  [
+   6009,
+   6011
+  ],
+  [
+   6021,
+   6024
+  ],
+  [
+   7434,
+   7435
+  ],
+  [
+   7438,
+   7442
+  ],
+  [
+   7448,
+   7450
+  ],
+  [
+   8462,
+   8464
+  ]
+ ],
+ "tail_trim_frames": 40,
+ "head_trim_frames": 5,
+ "dropped_outside_clip": "İzlediğiniz için teşekkür ederim.",
+ "kept_text": "Gelecek Bilim'de hoşgeldiniz. Bugün sizlerle COP31'i konuşacağız. Bu zirve bu sene Antalya'da yapılıyor. Neden bu kadar önemli? Gelin öncelikle bundan başlayalım. Öncelikle 2024 yıllığı ölçüm tarihinin en sıcak yılı oldu. Dünya ortalaması sanayi öncesine göre ilk kez bir yıl boyunca 1,5 dereceyi aştı. 2025'te hemen arkasından geldi. Kayıtlardaki en sıcak ikinci ya da üçüncü yıl. Şimdi düşünün 9 Kasım'da neredeyse dünyanın tüm ülkeleri bu sorunu konuşmak için tek bir şehre geliyor. O şehir Antalya. Merhaba Gelecek Bilim'de hoşgeldiniz. Bugün Türkiye'nin ilk kez sahipliğini yaptığı dev bir zirveyi konuşacağız. COP31. Çayınızı kahvenizi alın. Arkaya yaslanın. Ben size bu COP'un ne olduğunu bir anlatayım. Öncelikle COP'un anlamına gelelim. Conference of the Parties anlamına geliyor. Yani Türkçesi taraflar konferansı. Masada 198 taraf var. 197 ülke ve Avrupa Birliği. 1995'ten bu yana neredeyse her yıl Birleşmiş Milletler çatısı altında toplanıyorlar. Bu masada üç konu konuşuluyor. Birinci konu. Sera gazı salımları nasıl ve ne kadar azaltılacak. İkinci konu. Parayı kim, kime, ne kadar verecek. Üçüncü konu ise bilimin söylediği ile ülkelerin vaat ettiği arasındaki açık nasıl kapanacak. İşte bu üç önemli konu Antalya'da da konuşulacak. Hatırlayanlar olacaktır. Kyoto protokolü diye bir şey vardı. İşte bu protokolü de Paris Anlaşması da bu masada doğdu. Yani COP sıradan bir toplantı değil. Dünyanın iklim kurallarının yazıldığı bir yer. Peki COP31 neden dönüm noktası? Gelin bir de buna bakalım. COP31 9-20 Kasım arasında Ansalya'da ekspo senterde yapılacak. 12 gün sürecek. Yüzden fazla devlet ve hükümet başkanı 50 ila 70 bin kişi de ziyaretçi olarak bekleniyor. Peki neden bu kadar kritik? 4 tane neden sayabiliriz. Birincisi zaman daralıyor. Birleşmiş Milletler Çevre Programı'nın son raporuna göre ülkeler bütün vaatlerini tuttursa bile dünya bu yüzyıl içinde 2,3 ila 2,5 derece  ısınacak. 1,5 derecenin geçici olarak aşılması ise büyük olasılıkla önümüzdeki 10 yıl içinde gerçekleşecek. Yani artık soru aşacak mıyız'ı geçti ne kadar aşacağız ve ne kadar sürede bu aşım gerçekleşeceği geldi. 2. önemli konu söz değil uygulama zamanı. Türkiye zirveyi uygulama kopu olarak tanımlıyor. Yeni vaatlerden çok verilmiş sözlerin sahaya inmesi konuşulacak. 3. kritik nokta ise sembolik bir sahne. Antalya iklim bilincilerinin sıcak nokta dediği Akdeniz havzasının tam ortasında kalıyor. Kuraklık, orman yangınları, sıcak hava dalgaları bu bölgede iklim değişikliği bir tahmin değil. Her yaz yaşanan bir gerçek oldu adeta. Keza Gelecek Bilimde kanalında da bununla ilgili benzer videolar çekmiştik. 4. kritik nokta ise benzeri görünmemiş bir ev sahipliği modeli. Yani burada şöyle bir şey olacak. Türkiye ev sahibi olacak. Başkan ise Avustralya olacak ve müzakereliği yönetecek. Birleşmiş Milletler iklim tarihinde ilk kez bir zirvenin başkanlığı böyle paylaşılıyor. Biliyorsunuz birlikte yaptığımızı daha önce konuşmuştuk. İşte bu ortaklaşa yapmanın mantığı da bu. Biz ev sahibiz onlar yöneteceği. Kısacası COP31 12 günlük bir toplantıdan çok daha fazlası. Önümüzdeki 10 yılın ekonomik ve çevresel rotasında çizileceği bir kavşak.",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "WINDOW_F": 750,
+  "REPEAT_MAX_SPAN_F": 500,
+  "ORPHAN_F": 37
+ }
+}

@@ -1,0 +1,459 @@
+{
+ "version": 4,
+ "review_flags": [
+  {
+   "kind": "long-retake-review",
+   "start_f": 3092,
+   "end_f": 3563,
+   "source": "second",
+   "how": "sentence/pause start, 22s > 15s: kept, please review",
+   "text": "şu rakama bir bakın Paris anlaşması imzalandığında dünya bu yüz yıl için 3 ile 3,5 derecelik bir  ısınmaya gidiyordu bugün vaatler tam uygulansa bile bu tahmin 2,3 ile 2,5 santigrat dereceymiş durumda yetmez ama boşuna da değil"
+  }
+ ],
+ "long_words": [
+  {
+   "start_f": 117,
+   "end_f": 172,
+   "text": "elektrikli"
+  },
+  {
+   "start_f": 695,
+   "end_f": 772,
+   "text": "ürün"
+  },
+  {
+   "start_f": 1230,
+   "end_f": 1301,
+   "text": "pasaportu"
+  },
+  {
+   "start_f": 1750,
+   "end_f": 1799,
+   "text": "Peki"
+  },
+  {
+   "start_f": 2994,
+   "end_f": 3291,
+   "text": "3,5"
+  },
+  {
+   "start_f": 4234,
+   "end_f": 4295,
+   "text": "Kopun"
+  },
+  {
+   "start_f": 4554,
+   "end_f": 4632,
+   "text": "SKDM"
+  },
+  {
+   "start_f": 6088,
+   "end_f": 6149,
+   "text": "Zirve"
+  }
+ ],
+ "hallucinated": "",
+ "second_transcript": "out/episode/P1011094-tr.json",
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011094.MOV",
+ "fps": 25,
+ "offset_f": 5,
+ "clip_end_f": 6876,
+ "keep_frames": [
+  [
+   158,
+   398
+  ],
+  [
+   408,
+   672
+  ],
+  [
+   755,
+   947
+  ],
+  [
+   956,
+   991
+  ],
+  [
+   1207,
+   1233
+  ],
+  [
+   1263,
+   1406
+  ],
+  [
+   1791,
+   1933
+  ],
+  [
+   1943,
+   1968
+  ],
+  [
+   1978,
+   2056
+  ],
+  [
+   2110,
+   2305
+  ],
+  [
+   2577,
+   2766
+  ],
+  [
+   2774,
+   2843
+  ],
+  [
+   3142,
+   3506
+  ],
+  [
+   3515,
+   3569
+  ],
+  [
+   3650,
+   3665
+  ],
+  [
+   3672,
+   3804
+  ],
+  [
+   3831,
+   3887
+  ],
+  [
+   4007,
+   4125
+  ],
+  [
+   4287,
+   4559
+  ],
+  [
+   4614,
+   4781
+  ],
+  [
+   4866,
+   5107
+  ],
+  [
+   5217,
+   5981
+  ],
+  [
+   6131,
+   6444
+  ],
+  [
+   6532,
+   6852
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake-marker",
+   "start_f": 9,
+   "end_f": 118,
+   "how": "sentence/pause start",
+   "source": "second",
+   "text": "elektrikli araçlar Türkiye'de bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 54,
+   "end_f": 117,
+   "how": "matched 'elektrikli'",
+   "source": "primary",
+   "text": "elektrikli araçlar Türkiye'de bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 670,
+   "end_f": 722,
+   "how": "matched 'Örneğin'",
+   "source": "second",
+   "text": "Örneğin ürün bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 986,
+   "end_f": 1163,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "batarya pasaportu gibi bazı ürünler hayatımıza girecek ve burada kurallar giderek görünür hale bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1228,
+   "end_f": 1253,
+   "how": "matched 'örneğin'",
+   "source": "second",
+   "text": "örneğin bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1443,
+   "end_f": 1752,
+   "how": "matched 'Peki gelelim'",
+   "source": "second",
+   "text": "Peki gelelim nihayet soruya ya Burak bu kadar anlattın COP31 şöyle COP31 böyle şu kararlar bu kararlar ekonomik finansal işte alınan kararlar diyelim bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1449,
+   "end_f": 1750,
+   "how": "matched 'Peki gelelim'",
+   "source": "primary",
+   "text": "Peki gelelim nihai soruya. Ya Burak bu kadar anlattın COP31 şöyle COP31 böyle şu kararlar bu kararlar ekonomik finansal işte alınan kararlar diyelim. Bir daha."
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 2050,
+   "end_f": 2109,
+   "how": "phrase 'bu kadar çok' repeated",
+   "source": "second",
+   "text": "bu kadar çok karardan bahsettim"
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 2065,
+   "end_f": 2112,
+   "how": "phrase 'Bu kadar çok' repeated",
+   "source": "primary",
+   "text": "Bu kadar çok karardan bahsettim."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2302,
+   "end_f": 2526,
+   "how": "sentence/pause start",
+   "source": "second",
+   "text": "kararlar oy birliği ile alınıyor ve en büyük salımcılardan biri olan ABD Paris anlaşmasından iki kez çekildi bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2518,
+   "end_f": 2525,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2841,
+   "end_f": 3024,
+   "how": "matched 'ama'",
+   "source": "second",
+   "text": "ama şu rakama bir bakın Paris anlaşması imzalandığında dünya bu yüz yıl için 3 ile 3 bir bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3563,
+   "end_f": 3645,
+   "how": "marker only (long retake flagged)",
+   "source": "second",
+   "text": "bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3639,
+   "end_f": 3644,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "Bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3881,
+   "end_f": 3950,
+   "how": "matched 'her'",
+   "source": "second",
+   "text": "her onda bir derece daha az bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3890,
+   "end_f": 3950,
+   "how": "matched 'Her'",
+   "source": "primary",
+   "text": "Her onda bir derece daha az. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4123,
+   "end_f": 4234,
+   "how": "matched 'kopun'",
+   "source": "second",
+   "text": "kopun gücü dolaylı karbon piyasası kurallarını belirliyor bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4140,
+   "end_f": 4233,
+   "how": "matched 'Kopun'",
+   "source": "primary",
+   "text": "Kopun gücü dolaylı. Karbon piyasası kurallarını belirliyor. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4790,
+   "end_f": 4840,
+   "how": "matched 'Bu'",
+   "source": "primary",
+   "text": "Bu yüzden COP31'i yaen bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5103,
+   "end_f": 5200,
+   "how": "matched '2'",
+   "source": "second",
+   "text": "2 fosil yakıtlardan uzaklaşma somut bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5121,
+   "end_f": 5199,
+   "how": "matched '2-'",
+   "source": "primary",
+   "text": "2- Fosil yakıtlardan uzaklaşma somit bir daha."
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 5977,
+   "end_f": 6088,
+   "how": "phrase 'zirve sonuçlarında ayrı' repeated",
+   "source": "second",
+   "text": "zirve sonuçlarında ayrı bir videoda belki ele alırız ya da bir canlı yayında"
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 5989,
+   "end_f": 6088,
+   "how": "phrase 'Zirve sonuçlarında ayrı' repeated",
+   "source": "primary",
+   "text": "Zirve sonuçlarında ayrı bir videoda belki ele alırız ya da bir canlı yayında."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6440,
+   "end_f": 6476,
+   "how": "sentence/pause start",
+   "source": "second",
+   "text": "bir de bir daha"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6454,
+   "end_f": 6476,
+   "how": "sentence/pause start",
+   "source": "primary",
+   "text": "Bir de bir daha."
+  }
+ ],
+ "noise_islands": [
+  [
+   35,
+   37
+  ],
+  [
+   2541,
+   2544
+  ],
+  [
+   2548,
+   2551
+  ],
+  [
+   2854,
+   2855
+  ],
+  [
+   3007,
+   3026
+  ],
+  [
+   3084,
+   3087
+  ],
+  [
+   3093,
+   3096
+  ],
+  [
+   3804,
+   3806
+  ],
+  [
+   3809,
+   3811
+  ],
+  [
+   3959,
+   3963
+  ],
+  [
+   3968,
+   3971
+  ],
+  [
+   4570,
+   4572
+  ],
+  [
+   6111,
+   6112
+  ],
+  [
+   6115,
+   6118
+  ],
+  [
+   6482,
+   6483
+  ],
+  [
+   6496,
+   6508
+  ]
+ ],
+ "tail_trim_frames": 18,
+ "head_trim_frames": 20,
+ "dropped_outside_clip": "sonraki videoda görüşmek üzere.",
+ "kept_text": "elektrikli araçlara gelirsek Türkiye'de 2025 yılında satılan her 100 otomobilden yaklaşık 17'si elektrikli araçtı. Evet bir Avrupa değil yeterli değil ama hiç yoktan iyidir. Peki atık ve plastikleri ne demeli? İşte COP31'in atık hedefi ve geri dönüşülemeyen plastikleri yönelik sınırlamaları market tarafından çöp kutusuna kadar alışkanlıklarımızı etkileyecek. Örneğin ürün etiketleri ne olacak? Az önce konuşmuştuk karbonhaya kezlerini ürünlerin üstüne yazabilirler ama şu an zorun değil ileride olacak. Pasaportlarda mesela Örneğin batarya pasaportu gibi ürün bazı kurallarla bu bilgi giderek daha görünür hale gelecek. Peki gelelim zurnanın zırt dediği yere. COP31 dünyayı değiştirebilir mi? Dürüst olacağım. Hiçbir COP dünyayı bir gecede değiştiremez. Bu kadar çok finansal uygulamalı işlerden bahsettim ama kararları zorla uygulatacak bir iklim polisi yok başımızda. Kararlar oy birliğiyle alınıyor ve en büyük salımcılardan biri olan ABD Paris Antlaşması'ndan iki kez çekildi. Bildiğiniz gibi bu kararlar oy birliğiyle alınıyor. Bu çok güzel ama en büyük karbon salımcılarından biri olan ABD Paris Antlaşması'ndan ikinci kez çekildi. Ama şu rakama bir bakın Paris Antlaşması imzalandığında dünya bu yüz yıl için 3 ile 3,5 derecelik bir  ısınmaya gidiyordu. Bugün vaatler tam uygulansa bile bu tahmin 2,3 ile 2,5 santigrat dereceymiş durumda. Yetmez ama boşuna da değil. şöyle yapalım. Yetmez ama evet demiyoruz. Asla onlardan durumu yapma. Burası çok politik oldu. Yetmez ama boşuna da değil. Her onda bir derece daha az sel, daha az kuraklık, daha az kayıp demek. Kopun gücü doğrudan değil ama dolaylı. Karbon piyasası kurallarını belirliyor. Finans akışlarını yönlendiriyor. Ve yatırımcılara rüzgar nereye esiyor sinyalini veriyor. SKDM gibi ticaret kuralları ve TRETS gibi ulusal piyasalarda bu sinyallere göre şekilleniyor. Bu yüzden COP31'i yeni sloganlarla değil, 3 somut soruyla ölçmek gerekiyor. 300 milyar dolarlık finans hedefinin nasıl dolaşacağı netleşecek mi? 2- Fosil yakıtlardan uzaklaşma somut bir takvime bağlanacak mı? 3- Türkiye'nin açıkladığı elektrifikasyon atık ve bina hedeflerine kaç ülkeye imza atacak? Antalya'yı 20 Kasım'da kapılarını kapattığında bu soruların cevabını göreceğiz. Peki, gelecek bilimde izleyicileri buraya kadar izlediyseniz bizi. Siz ne düşünüyorsunuz? Sizce COP31 gibi zirveler küresel  ısınmayı durdurulmada gerçekten etkili olabilir mi? Yoksa sadece diplomatik bir şov mu? Cevaplarınızı yorumlarda bekliyorum. Zirve sonuçlarında ayrı bir videoda veya teknoloji bilim notlarında ele alabiliriz. Bildirimleri kaçırmamak için abone olmayı, hype butonunu kullanmayı ve gelecek bilimdeyi takip etmeyi unutmayın. Bu ve buna benzer videoları kaçırmamak için abone olup arkadaşlarına paylaşabilirsin. Bir de hype butonunu kullanırsan mutlu oluruz. Unutma, gelecek bilimde. Bir sonraki videoda görüşmek üzere. Bir",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "END_HOLD_F": 13,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "HALLU_MIN_ACTIVE": 0.1,
+  "WINDOW_F": 750,
+  "NEAR_F": 250,
+  "PAUSE_F": 12,
+  "MAX_RETAKE_F": 375,
+  "REPEAT_MAX_SPAN_F": 250,
+  "ORPHAN_F": 37
+ }
+}

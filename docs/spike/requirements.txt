@@ -1,0 +1,4 @@
+# Python deps for the spike scripts (system python3 runs the Resolve scripts via rv.sh)
+# python3 -m venv .venv && .venv/bin/pip install -r docs/spike/requirements.txt
+numpy==2.3.4
+imageio-ffmpeg==0.6.0

@@ -1,0 +1,62 @@
+{
+ "P1011088.MOV": {
+  "rec": "373",
+  "wav_clip": "373-Track2.wav",
+  "wav_path": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/373 - 23 Oct 2026/Track2-Combo 2.wav",
+  "synced": true,
+  "frames": 14388,
+  "offset_samples": 62399,
+  "offset_f_exact": -32.49947916666667,
+  "linked": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/373 - 23 Oct 2026/Track2-Combo 2.wav"
+ },
+ "P1011089.MOV": {
+  "rec": "374",
+  "wav_clip": "374-Track2.wav",
+  "wav_path": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/374 - 23 Oct 2026/Track2-Combo 2.wav",
+  "synced": true,
+  "frames": 10992,
+  "offset_samples": -13919,
+  "offset_f_exact": 7.249479166666666,
+  "linked": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/374 - 23 Oct 2026/Track2-Combo 2.wav"
+ },
+ "P1011090.MOV": {
+  "rec": "375",
+  "wav_clip": "375-Track2.wav",
+  "wav_path": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/375 - 23 Oct 2026/Track2-Combo 2.wav",
+  "synced": true,
+  "frames": 14040,
+  "offset_samples": 62399,
+  "offset_f_exact": -32.49947916666667,
+  "linked": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/375 - 23 Oct 2026/Track2-Combo 2.wav"
+ },
+ "P1011091.MOV": {
+  "rec": "376",
+  "wav_clip": "376-Track2.wav",
+  "wav_path": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/376 - 23 Oct 2026/Track2-Combo 2.wav",
+  "synced": true,
+  "frames": 9912,
+  "offset_samples": -11040,
+  "offset_f_exact": 5.75,
+  "linked": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/376 - 23 Oct 2026/Track2-Combo 2.wav"
+ },
+ "P1011093.MOV": {
+  "rec": "377",
+  "wav_clip": "377-Track2.wav",
+  "wav_path": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/377 - 23 Oct 2026/Track2-Combo 2.wav",
+  "synced": false,
+  "frames": 1848,
+  "offset_samples": null,
+  "offset_f_exact": null,
+  "linked": null
+ },
+ "P1011094.MOV": {
+  "rec": "378",
+  "wav_clip": "378-Track2.wav",
+  "wav_path": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/378 - 23 Oct 2026/Track2-Combo 2.wav",
+  "synced": true,
+  "frames": 6876,
+  "offset_samples": -10079,
+  "offset_f_exact": 5.249479166666666,
+  "linked": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/demo/cop/raw/COP/378 - 23 Oct 2026/Track2-Combo 2.wav"
+ }
+}
