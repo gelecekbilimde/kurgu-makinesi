@@ -23,3 +23,6 @@ venv/
 # OS junk
 .DS_Store
 Thumbs.db
+
+# Superpowers brainstorm mockups and plan-execution workspaces
+/.superpowers/

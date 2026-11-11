@@ -1,0 +1,10 @@
+{
+ "_about": "Reading pace per speaker, in script words per second, for the reader's 'as written' durations. Measured from rough-cut episodes; 'default' is used for anyone not listed.",
+ "default": 2.2,
+ "speakers": {
+  "Burak Cankaya": 2.2
+ },
+ "_measured": {
+  "Burak Cankaya": "COP31 (2026-11): 3,224 spoken words over the 1,491 s A-roll, ad-libs included. To be re-measured on script-matched rows only."
+ }
+}

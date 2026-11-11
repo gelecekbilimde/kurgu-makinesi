@@ -1,6 +1,6 @@
 """Assign every kept piece of an episode to a script chapter / subsection.
 
-The script text (docx_to_text.py keeps Word styles as "[Heading2] ..." prefixes) is split by its
+The script text (templates/script/script_doc.py keeps Word styles as "[Heading2] ..." prefixes) is split by its
 headings: chapter level = Heading2, subsection level = Heading3 (manifest "script_levels": [2, 3]).
 Reading starts at the first chapter heading beginning with "1." (else the first chapter heading) and
 stops at a heading in "script_stop" (default ["Kaynakça", "Kaynaklar"]). [EKRAN ...] lines (B-roll
@@ -33,7 +33,7 @@ L1, L2 = ep.m.get("script_levels", [2, 3])
 STOP = tuple(ep.m.get("script_stop", ["Kaynakça", "Kaynaklar"]))
 lines = open(ep.path(ep.m.get("script", "script.txt")), encoding="utf-8").read().splitlines()
 starts = [i for i, l in enumerate(lines) if l.startswith(f"[Heading{L1}]")]
-assert starts, f"no [Heading{L1}] lines in the script: check script_levels / docx_to_text output"
+assert starts, f"no [Heading{L1}] lines in the script: check script_levels / script_doc.py output"
 start = next((i for i in starts if re.match(rf"^\[Heading{L1}\]\s*1\.", lines[i])), starts[0])
 body, heads = [], []                     # heads: (level, title, parent chapter index)
 chap = -1

@@ -22,13 +22,13 @@ All paths below are relative to `.claude/skills/rough-cutting-a-roll/`.
 1. **Raw footage.** Unzip it outside the repo or under `demo/`.
    - Find the host's mic track on the recorder. It's the loud, voiced one (`Track2` on the COP31 shoot).
    - Pair each camera file with its recorder take, using creation time and duration.
-   - Put the clips in script order and write `episode.json`.
+   - Put the clips in script order and write `episode.json`, including `"speaker"`: who is actually on camera. Scripts can name the wrong person.
    - Ask the user when a pairing is unclear.
 2. `bash scripts/rv.sh scripts/resolve_setup.py EP` sets the fps and Turkish transcription. Run it before any timeline exists.
 3. `bash scripts/rv.sh scripts/ingest.py EP` imports, waveform-syncs, and writes `frames` and `offset_f`.
 4. `.venv/bin/python scripts/sync_check.py --fps 25 CAM:WAV …` is an independent sync check. It must agree with `offset_f_exact` within ~0.5 f.
 5. `bash scripts/rv.sh scripts/transcribe.py EP` transcribes the recorder WAV and the camera clip for each clip (one Resolve job at a time).
-6. `python3 scripts/docx_to_text.py script.docx EP/script.txt` keeps the `[Heading2]`/`[Heading3]` styles.
+6. From the repo root, `python3 templates/script/script_doc.py script.docx EP --prompter` writes `EP/script.txt`, with the `[Heading2]`/`[Heading3]` styles kept. For an A/V script (the template in `templates/script/`), it also writes `script.json`, prints the row warnings and the length as written at the speaker's pace, and writes `prompter.txt` for the teleprompter. Old-style scripts work too, without `--prompter`.
 7. `.venv/bin/python scripts/plan_episode.py EP` writes `plans/*.json` and prints the suggestions and flags.
 8. `python3 scripts/sections.py EP` maps every kept piece to a chapter. It prints the chapter starts; check that they are plausible.
 9. `bash scripts/rv.sh scripts/chapters.py chapters EP`, then `… chapters.py master EP`, build the chapter timelines and the master.

@@ -7,7 +7,7 @@
 | `ingest.py EP` | rv.sh | clips (camera, recorder, bin) | media pool, waveform sync; `frames`, `offset_f_exact`, `offset_f` in the manifest |
 | `sync_check.py CAM:WAV …` | .venv | media files | prints the GCC-PHAT lag of camera scratch audio vs the WAV, and a confidence (> ~5 is solid) |
 | `transcribe.py EP` | rv.sh | clips | `transcripts/<stem>-wav-tr.json`, `<stem>-cam-tr.json` |
-| `docx_to_text.py in.docx out.txt` | python3 | the script .docx | text with `[StyleName]` prefixes |
+| `templates/script/script_doc.py in.docx EP [--prompter]` (repo root) | python3 | the script .docx | `EP/script.txt` with `[StyleName]` prefixes; for A/V scripts also `script.json` and `prompter.txt` |
 | `cutplan.py …` | .venv | one clip | one plan (called by plan_episode) |
 | `plan_episode.py EP` | .venv | manifest, transcripts, WAVs, edits | `plans/<stem>-plan.json` |
 | `sections.py EP` | python3 | plans, WAV transcripts, script | `sections.json` |
@@ -57,6 +57,7 @@ All thresholds are in the `P = dict(...)` block at the top of `cutplan.py` and a
 - **Subsections:** `[Heading3]` lines.
 - **Stop:** at "Kaynakça".
 - **Ignored:** `[EKRAN …]` lines, which are the writers' B-roll notes, and (pronunciation hints).
+- **A/V scripts** (per-heading tables GÖRÜNTÜ | SES, the type as a leading `[STOK]`-style tag; see `templates/script/README.md`) are turned by `script_doc.py` into this same shape: each SES cell is body text and each visual is an `[EKRAN: TAG: …]` line, so nothing here changes.
 - **Overrides** in the manifest: `script_levels`, `script_stop`, `transition_words`.
 - **Boundary placement:** a chapter boundary lands on a transition word ("Gelelim", "Peki", "Gelin", "Şimdi") or on a word from the heading's title.
 

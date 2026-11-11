@@ -4,7 +4,8 @@ An episode lives in one directory (e.g. episodes/cop31/) with episode.json:
 {
   "prefix": "COP31",            # timeline name prefix
   "fps": 25, "language": "tr",
-  "script": "script.txt",       # read-aloud script as text (docx_to_text.py), relative to the episode dir
+  "script": "script.txt",       # read-aloud script as text (templates/script/script_doc.py), relative to the episode dir
+  "speaker": "Burak Cankaya",   # who is on camera; script_doc.py uses their pace (templates/script/speakers.json)
   "frozen": [],                 # signed-off chapters (1-based)
   "clips": [                    # in EPISODE ORDER; a clip that is fully replaced by a later one: "skip": "why"
     {"clip": "P1011087.MOV", "bin": "cop31",
