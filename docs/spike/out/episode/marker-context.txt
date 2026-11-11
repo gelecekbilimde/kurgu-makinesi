@@ -1,0 +1,144 @@
+
+### Marker 94 P1011088.MOV src 1512-1513 (0.04s): this clip should be removed, artifact of retake
+  WAV: olan zirveler ise aşağıda... ~Bir ~daha. ~Burayı ~bir ~daha [[ ]] yapalım. |42 Şimdi sizlere bazı notlarla
+  CAM: olan zirveler ise aşağıda... ~Bir ~daha. ~Burayı ~bir ~daha [[ ]] yapalım. |42 Şimdi sizlere bazı notlarla
+
+### Marker 95 P1011088.MOV src 2750-2900 (4.84s): the clip here is a failed retake, it should be removed. next clip retakes this part and continues
+  WAV: ~Küresel [[ uygulama hızlandırıcı ve Belém 1,5 ]] misyonu 80'i
+  CAM: ~Küresel [[ uygulama hızlandırıcı ve Belém 1,5 ]] misyonu 80'i
+
+### Marker 96 P1011088.MOV src 3254-3503 (8.32s): this whole section is failed, retake goes right after these clips end
+  WAV: İşte bu toplantı için kritik şeylerden birisi buydu. [[ Gelelim 2024 yılına COP29'a. COP29 nerede yapıldı? |13 Bakü, kardeş... ~Bir ~daha, ~bir ~daha dur. Bol yapmayalım burayı. |25 Tekrar. |27 ]] ~Gelelim ~COP29'a. |13 ~COP29'de... ~Bir ~daha.
+  CAM: İşte bu toplantı için kritik şeylerden birisi buydu. [[ Gelelim 2024 yılına COP29'a. COP29 nerede yapıldı? |13 Bakü, kardeş... ~Bir ~daha, ~bir ~daha dur. Böyle yapmayalım burayı. |25 Tekrar. |27 ]] ~Gelelim ~COP29'a. |13 ~COP29'de... ~Bir
+
+### Marker 97 P1011088.MOV src 5610-5890 (4.12s): failed part, retake, retake continues from next clip.
+  WAV: Kayıp ve hasar fonu kurulması kararı alınmış. |13 [[ 2021 COP nerede yapılmış? COP26. ~Glasgow, ~İngiltere'de ~yapılmış. ~Kömürün ~kademeli ~azaltılması ~ilk ~kez ~karar ~metni... ~Bir ~daha. |17 Glasgow, İngiltere değil. Bir ]] ~daha. |42 Gelelim COP26'ya. 2021
+  CAM: Kayıp ve hasar fonu kurulması kararı alınmış. [[ 2021 COP nerede yapılmış? COP26. ~Glasgow ~İngiltere'de ~yapılmış. ~Kömürün ~kademeli ~azaltılması ~ilk ~kez ~karar ~metninde. ~Bir ~daha. |17 Glasgow İngiltere değil. ]] ~Bir ~daha. |42 Gelelim COP26'ya. 2021
+
+### Marker 98 P1011088.MOV src 6348-7113 (25.88s): this whole part is failed. the retake continues from the next clip
+  WAV: ~toplantı ~2015 ~bir ~daha. |29 [[ Bundan bir önceki toplantı 2015 yılında COP21 Paris, Fransa'da yapılmış. Paris Antlaşması  ısınmayı 2 santigrat derecenin oldukça antılda tutmak, 1,5 santigrat derece için ise çaba göstermek. Her ülke 5 yılda bir ulusal katkı beyanı yani NDC sunması kararı alınmış. Bunu biraz daha güzel yapalım. Durun. |15 Tekrar. ~Gelelim 2015 COP21'e. ]] ~Paris'in ~bir ~daha. |25 ~Fransa'nın ~Paris ~Antlaşması
+  CAM: ~toplantı ~2015 ~bir ~daha. |29 [[ Bundan bir önceki toplantı 2015 yılında COP21 Paris Fransa'da yapılmış. Paris Antlaşması  ısınmayı 2 santigrat derecenin oldukça antılda tutmak. 1,5 santigrat derece için ise çaba göstermek. Her ülke 5 yılda bir ulusal katkı beyanı yani NDC sunması kararı alınmış. Bunu biraz daha güzel yapalım. Durun. |14 Tekrar. |101 Gelelim 2015 COP21'e. ]] ~Paris'in ~bir ~daha. |25 ~Fransa'nın ~Paris ~Antlaşması
+
+### Marker 99 P1011088.MOV src 8096-8767 (12.32s): failed section, retake continues from the next clip
+  WAV: beyanı yani NDC sunacak. |16 [[ 1997. |18 ~Bir ~daha. ~Bunun dışında da katılımcı her ülkenin 5 yılda bir ~ulusal ~katkı ~beyanı ~sunması ~kararı ~alındı. ~Buna ~NDC ~deniliyor. Ulusal katkı beyanı. |24 Gelelim 1997 COP. |16 Kaç bu? ~Bu ~çok eski yani 1997 COP. ]]
+  CAM: beyanı yani NDC sunacak. |17 [[ 1997. |18 ~Bir ~daha. ~Bunun dışında da katılımcı her ülkenin 5 yılda bir ~ulusal ~katkı ~beyanı ~sunması ~karar ~alındı. ~Buna ~NDC'si ~deniliyor. Ulusal katkı beyanı. |23 Gelelim 1997 COP. |26 Kaç bu? ~Bu ~çok eski ya. 1997 COP. ]]
+
+### Marker 100 P1011088.MOV src 10859-10860 (0.04s): starting of the `COP31` is missing, slightly more headroom here
+  WAV: ~neresinde? ~Yani ~Türkiye'nin ~ne ~sahipliğini ~yapacağı, ~Antalya'da ~yapılacağı [[ ]] COP31 bu zincirin neresinde? |17 İşte Paris Antlaşması'nın
+  CAM: ~neresinde? ~Yani ~Türkiye'nin ~ev ~sahipliğini ~yapacağı, ~Antalya'da ~yapılacağı [[ ]] COP31 bu zincirin neresinde? ~İşte Paris Antlaşması'nın
+
+### Marker 101 P1011088.MOV src 11879-12203 (8.64s): failed part, reteake continues with the next clip
+  WAV: maddeleri. Antalya'da aslında iki masa var. [[ Birinci resmi müzakere masası. Burayı az önce söylediğim gibi Avustralya yönetiyor. Ve çıkan kararlar tüm ülkeleri bağlayan metinler... |99 ~Bir ~daha yapalım. |24 ]] Birincisi resmi müzakere masası. Az önce de bahsettim.
+  CAM: maddeleri Antalya'da aslında iki masa var. [[ Birinci resmi müzakere masası. Burayı az önce söylediğim gibi Avustralya yönetiyor. Ve çıkan kararlar tüm ülkeleri bağlayan metinler... ~Bir ~daha yapalım. |24 ]] Birincisi resmi müzakere masası. Az önce de bahsettim.
+
+### Marker 102 P1011089.MOV src 2417-2456 (1.56s): failed bit trying to say `yenilenebilir`, should be removed, retake continues from the next clip.
+  WAV: 2030 hedefleri yolunda [[ yenilenebilir ]] ~enerji
+  CAM: ~2030 hedefleri yolunda [[ yenilenebilir ]] ~enerji
+
+### Marker 103 P1011089.MOV src 4622-5009 (8.88s): failed bit, retake continues from the next section
+  WAV: yapılacak. |63 [[ İşte bu tüm ~kaynaklardan ~bir ~tir ~bir ~daha. |18 ~Tüm ~kaynaklardan ~ise ~bir ~daha. |27 Bu az önce konuştuğum 300 milyar dolardan da 1,3 trilyon dolar hedefi var. |23 Bunu anlamadım ya. Ucaklaştırıldı. ]] ~Hatırlarsanız
+  CAM: yapılacak. |63 [[ İşte bu ~tüm ~kaynaklardan ~bir ~tir ~bir ~daha. |18 ~Tüm ~kaynaklardan ~ise ~bir ~daha. |27 Bu az önce konuştuğum 300 milyar dolardan da 1,3 trilyon dolar hedefi var. |23 Bunu anlamadım ya bu yaklaştırıldı. ]]
+
+### Marker 104 P1011089.MOV src 6366-6384 (0.72s): speaker say 3.3 but it is not connected to anything, can be removed
+  WAV: 1 dolar için 12 dolara ihtiyaç var. |19 [[ 3.3 ]] ~masanın ~kenarındaki ~büyük ~konu. ~Bir ~daha.
+  CAM: dolar için 12 dolara ihtiyaç var. |19 [[ 3.3 ]] ~masanın ~kenarındaki ~büyük ~konu ~bir ~daha.
+
+### Marker 105 P1011089.MOV src 8191-8347 (4.6s): failed bit, retake continues with the next clip
+  WAV: programı ise uçuş salımlarını dengeleme hedefliyor. [[ Bildiğiniz gibi havacılık salımlarının büyük paydasını oluşturmakta. |37 ~Bir ~daha yapalım. |18 ]] Bildiğiniz gibi havacılık, Karbon Salımlarının da önemli bir paya
+  CAM: Programı ise uçuş salımlarını dengeleme hedefliyor. [[ Bildiğiniz gibi havacılık salımların büyük paydasını oluşturmakta. |37 ~Bir ~daha yapalım. |18 ]] Bildiğiniz gibi havacılık karbon salımlarında önemli bir paya
+
+### Marker 106 P1011089.MOV src 10662-10992 (7.2s): failed bit ending in cough, retake continues with next clip
+  WAV: ~Nihai ~enerji ~bir ~daha. [[ Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak. |93 İzlediğiniz için teşekkür ederim. ]] ~İzlediğiniz
+  CAM: ~Nihai ~enerji ~bir ~daha. [[ Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak. |91 Altyazı M.K. abone ~ol ]]
+
+### Marker 107 P1011090.MOV src 522-578 (2.24s): out of script
+  WAV: üretimindeki artış hızını yarıya indirmek, ~sırayla [[ sayıyorum bu 1, 2 oldu. Binalardaki ]] enerji kullanım yoğunluğunu en az %25'e azaltmak,
+  CAM: üretimindeki artış hızını yarıya indirmek, [[ sırayla sayıyorum bu 1, 2 oldu, ]] binalardaki enerji kullanım yoğunluğunu en az %25 azaltmak, 4.
+
+### Marker 108 P1011090.MOV src 1394-1465 (2.84s): failed bit, retake continues with next clip
+  WAV: karbondioksit azaltımına katkı sağlayabilir. [[ Bunlar gönüllü hedefler, ne ülkenin destek ]] vereceği
+  CAM: karbondioksit azaltımına katkı sağlayabilir. Bunlar [[ gönüllü hedefler, ne ülkenin destek ]] vereceği
+
+### Marker 109 P1011090.MOV src 1761-1811 (2.0s): clip is out of context,. it doesn't connect to the priosr clip nor the next one. therefore, should be removed
+  WAV: ~Türkiye [[ ve COP31 ]] ~Şimdi
+  CAM: ~Türkiye [[ ve COP31 ]] ~Şimdi
+
+### Marker 110 P1011090.MOV src 1914-2433 (18.8s): complete bit is a failed section, retake continues with the next clip
+  WAV: ~Şimdi [[ az önce bahsettim ya rol dağılımına, Avustralya'ya işte müzakereci olacak vs. Peki Türkiye ve COP31'de bizim yani eş sahibi olarak yapacağımız iş ne? Ve bu stratejik önemi anlatayım size gelin. |24 Bir daha olmadı bu. ~Az önce bahsettim ya Avustralya ve Türkiye rol paylaşımı yapmıştı. |12 ]] Gelelim Türkiye'ye ve COP31'e. ~Yani ~ev ~sahipliği ~ve
+  CAM: ~Şimdi [[ az önce bahsettim ya rol dağılımına, Avustralya'ya işte müzakereci olacak vs. Peki Türkiye ve COP31'de bizim yani el sahibi olarak yapacağımız iş ne? Ve bu stratejik önemi anlatayım size gelin. |23 Bir daha olmadı bu. |34 Az önce bahsettim ya Avustralya ve Türkiye rol paylaşımı yapmıştı. |12 ]] Gelelim Türkiye'ye ve COP31'e. ~Yani ~ev ~sahipliği ~ve
+
+### Marker 111 P1011090.MOV src 4313-4651 (10.72s): taslak metinleri, repeated twice. so this bit is a failed part and the retake continues with the next clip
+  WAV: Murat Kurum. |15 Avustralya Müzakere Başkanı [[ Taslak Metinleri Hazırlama ~ve Müzakereleri Yönetme Yetkisi Avustralya İklim Bakanı Chris Bowen'da. |27 Bowen, Bowen bu. |37 ]] ~Bir ~daha. Taslak metinleri hazırlama ve müzakereleri
+  CAM: Murat Kurum. |15 Avustralya Müzakere Başkanı [[ Taslak Metinleri Hazırlama ~ve Müzakereleri Yönetme Yetkisi Avustralya İklim Bakanı Chris Bowen'da. |22 Bowen, Bowen bu. |36 ]] ~Bir ~daha. Taslak Metinleri Hazırlama ve Müzakereleri
+
+### Marker 112 P1011090.MOV src 5404-5893 (11.72s): failed bit, retake continues with next clip
+  WAV: ~5 ~ila ~bir ~daha. ~Pasifik [[ Zirve Öncesi Bakanlar Toplantısı buna Pre-COP'da deniliyor. 5-8 Ekim 2026'da Fiji'de yapılmıştı. Liderler bölümü Tavulu'da toplandı. ~Türkiye'nin ~özel ~konumu ~Türk... ~Bir ~daha. |112 ~Bu ~bir ~daha. Şimdi baştan çekelim. |12 ]] COP yapılmadan önce bir de Pre-COP diye bir toplantı yapıldı. 5-8 Ekim
+  CAM: ~5 ~ila ~bir ~daha. ~Pasifik [[ Zirve Öncesi Bakanlar Toplantısı, buna Pre-COP'da deniliyor. 5-8 Ekim 2026'da Fiji'de yapılmıştı. Liderler Bölümü Tavolu'da toplandı. ~Türkiye'nin ~özel ~konumu, ~bir ~daha. ~Bu ~bir ~daha, şimdi baştan çekelim. |12 ]] COP yapılmadan önce bir de Pre-COP diye bir toplantı yapıldı. 5-8 Ekim
+
+### Marker 113 P1011090.MOV src 6127-6182 (2.2s): failed bit, retake continues with the next clip
+  WAV: Liderler bölümü de Tuvalu'da toplandı. [[ Türkiye'nin özel konumu... Türkiye... ]]
+  CAM: Liderler Bölümü de Tuvalu'da toplandı. [[ Türkiye'nin özel konumu, Türkiye... ]]
+
+### Marker 114 P1011090.MOV src 8939-9023 (3.36s): failed bit, retake continues with next clip
+  WAV: fazla salım yapan büyük tesisleri kapsıyor. |18 [[ Bölgesel yeşil dönüşüm köprüsü olabilir miyiz? Bir ]] ~daha. |53 Peki Türkiye yaptığı bu
+  CAM: fazla salım yapan büyük tesisleri kapsıyor. |18 [[ Bölgesel yeşil dönüşüm köprüsü olabilir miyiz? ]] ~Bir ~daha. |54 Peki Türkiye yaptığı bu
+
+### Marker 115 P1011090.MOV src 9381-9894 (10.36s): speaker adds this bit then says don't include this bit in this part because video got so long
+  WAV: ~Fazla ~marketing ~bir ~daha. |26 [[ Yeşil enerji diye bir kavram yoktur. Bu biraz reklam tarafına girer ama burada bunu kullanalım. Pek sevdiğim bir kavram değildir. Yeşil enerji. |12 ~Ama ~yeşil ~dönüşüm ~dediğimiz ~şey ~karbondioksitten ~karbon ~emisyonundan ~arındırılmış ~enerji ~üretimini ~ve ~bir ~daha. |66 Neyse buraya ekleme boşver fazla uzatmayalım. Çok uzadı video. |37 ]] Türkiye yıllarca Avrupa'ya giden petrol ve doğal
+  CAM: ~fazla ~marketingi ~bir ~daha. |26 [[ Yeşil enerji diye bir kavram yoktur bu biraz reklam tarafına girer ama burada bunu kullanalım. Pek sevdiğim bir kavram değildir yeşil enerji. |12 ~Ama ~yeşil ~dönüşüm ~dediğimiz ~şey ~karbondioksitten ~karbon ~emisyonundan ~arındırılmış ~enerji ~üretimini ~ve ~daha. |68 Neyse buraya ekleme boşver fazla uzatmayalım çok uzadı video. ]] ~Türkiye yıllarca Avrupa'ya giden petrol ve doğal
+
+### Marker 116 P1011090.MOV src 11472-11524 (2.08s): failed bit, retake continues with the next part
+  WAV: Bu AB'nin kendi aldığı bir karar. [[ Ama Türk sanayisi ]] için en az kop kadar önemli. Neden mi?
+  CAM: Bu AB'nin kendi aldığı bir karar. [[ Ama Türk sanayisi ]] için en az kop kadar önemli. Neden mi?
+
+### Marker 117 P1011090.MOV src 12052-12128 (3.04s): failed bit, retake continues with next clip
+  WAV: üretiminin açığa çıkan karbonu hesaplıyorlar. |13 [[ AB'deki ithalatçı bu ]] karbon için AB'nin karbon piyasası
+  CAM: üretiminin açığa çıkan karbonu hesaplıyorlar. [[ AB'deki ithalatçı bu karbon ]] için AB'nin karbon piyasası
+
+### Marker 118 P1011090.MOV src 12363-12425 (2.48s): failed bit, retake continues with next clip
+  WAV: zorunda. Karbon sertifikası dediğimiz şey işte bu. [[ Kesin dönem 1 Ocak ]] 2026'da başladı. 2026
+  CAM: zorunda. Karbon sertifikası dediğimiz şey işte bu. [[ Kesin dönem 1 Ocak ]] 2026'da başladı. 2026
+
+### Marker 119 P1011090.MOV src 13836-14040 (10.56s): failed bit, retake continues with next clip
+  WAV: TR-ETS'nin bu kadar önemli olması nedeni de bu. [[ Para AB kasasına mı gidecek? Türkiye'de dönüşe mi harcanacak? |31 ~Bir ~daha. ]]
+  CAM: TR-ETS'nin bu kadar önemli olmasının nedeni de bu. [[ Para AB kasasına mı gidecek? Türkiye'de dönüşe mi mi harcanacak? |31 ~Bir ~daha. ]]
+
+### Marker 120 P1011091.MOV src 1057-1152 (3.8s): failed bit, retake continues from the next clip
+  WAV: kazanabilir. |59 [[ Peki zirvenin sanayi, teknoloji ve günlük hayata ]] yansımaları
+  CAM: kazanabilir. |60 [[ Peki zirvenin sanayi, teknoloji ve günlük hayata ]] yansımaları
+
+### Marker 121 P1011091.MOV src 2757-2856 (3.96s): failed bit retake continues with the next clip
+  WAV: ~Yenilenebilir [[ elektrikle suyu ayrıştıran elektrolyzörler ]] ve
+  CAM: ~Yenilenebilir [[ elektrikle suyu ayrıştıran elektrolyzörler ve ]] hidrojenin
+
+### Marker 122 P1011091.MOV src 4143-4219 (3.04s): failed bit, retake continues with next clip
+  WAV: olarak kayıt altına alınacak. |43 [[ Elektrik şebekesi ve elektrifikasyon ise çok önemli bir ]] ~konu. ~Bir ~daha.
+  CAM: olarak kayıt altına alınacak. |42 [[ Elektrik şebekesi ve elektrifikasyon ise çok önemli bir ]] ~konu. ~Bir ~daha. |67 Bir
+
+### Marker 123 P1011091.MOV src 4835-4867 (1.28s): failed bit, retake continues with the next clip. the speaker doesn't say retake or anything just repeasts the same thing by starting differently to the sentence
+  WAV: zeka destekli yazılımlar demek. |38 [[ İleri malzemeler. ]] ~Bir ~daha. ~Bir diğer yansıması
+  CAM: zeka destekli yazılımlar demek. ~İleri [[ malzemeler. ]] ~Bir ~daha. |59 Bir diğer yansıması
+
+### Marker 124 P1011091.MOV src 6090-6144 (2.16s): failed bit, retake continues from the next commit
+  WAV: ~insanın... ~Bir ~daha. |51 [[ İş gücü ve enerji faturaları... ]] ~Bir ~daha.
+  CAM: ~insanın... ~Bir ~daha. |51 [[ İş gücü ve enerji faturaları... ]] ~Bir ~daha.
+
+### Marker 125 P1011091.MOV src 7777-7817 (1.6s): failed bit, retake continues with the next clip
+  WAV: görecek çalışanları ve bölgeleri korumaya başlıyor. [[ Faturalar tarafında... |70 ]] Peki gelelim faturalar tarafına.
+  CAM: görecek çalışanları ve bölgeleri korumaya başlıyor. [[ Faturalar tarafında... |70 ]] Peki gelelim faturalar tarafına.
+
+### Marker 126 P1011091.MOV src 8894-8978 (3.36s): failed bit retake contniues with the next clip
+  WAV: İşte bizim hayatımızdan ne değişiyor? Bunu da düşünürsek [[ çatıdaki santral, çatı güneş panelleri ve ev tipi... Bir ]] ~daha. |33 Örneğin çatımızdaki santraller.
+  CAM: İşte bizim hayatımızdan ne değişiyor? Bunu da düşünürsek... [[ Çatıdaki santral, çatı güneş panelleri ve FTP... ]] ~Bir ~daha. ~Örneğin çatımızdaki santraller.
+
+### Marker 127 P1011091.MOV src 9720-9912 (7.32s): failed bit, retake continues with next clip
+  WAV: ~Türkiye'de ~her... ~Bir ~daha. |38 [[ Elektrikli araçlara gelirsek Türkiye'de 2025'de satılan her yüz otomobilden yaklaşık 17'si elektrikliydi. |12 Henüz rakamlar ]] bir Hollanda değil. Evet ama en azından kötünün... Dur.
+  CAM: ~Türkiye'de ~her... ~Bir ~daha. ~Elektrikli [[ araçlara gelirsek... Türkiye'de 2025'de satılan her 100 otomobilden yaklaşık 17'si elektrikliydi. Henüz rakamlar... ]]
+
+### Marker 128 P1011094.MOV src 956-1233 (2.44s): failed bit, retake contnieus from the next clip
+  WAV: yazabilirler ama şu an zorun değil ileride olacak. |14 [[ Pasaportlarda mesela ~batarya ~pasaportu ~gibi ~bazı ~ürünler ~hayatımıza ~girecek ~ve ~burada ~kurallar ~giderek ~görünür ~hale ~bir ~daha. |44 Örneğin batarya ]] pasaportu gibi ürün bazı kurallarla
+  CAM: yazabilirler ama şu an zorun değil ileride olacak [[ pasaportlarda mesela ~mesela ~batarya ~pasaportu ~gibi ~bazı ~ürünler ~hayatımıza ~girecek ~ve ~burada ~kurallar ~giderek ~görünür ~halde ~bir ~daha ~bu ~örneğin batay ]] ~örneğin ~bir ~daha örneğin batarya ve pasaportu gibi ürün bazı kurallarla
+
+### Marker 129 P1011094.MOV src 3515-3804 (8.04s): failed bit, retake contiues from the next clip
+  WAV: 2,5 santigrat dereceymiş durumda. [[ Yetmez ama boşuna da değil. |73 ~Bir ~daha ~şöyle yapalım. |12 Yetmez ama evet demiyoruz. Asla onlardan durumu yapma. Burası çok politik oldu. |28 ]] Yetmez ama boşuna da değil. ~Her ~onda ~bir
+  CAM: 2,5 santigrat dereceymiş durumda ~yetmez [[ ama boşuna da değil ~bir ~daha ~şöyle yapalım yetmez ama evet demiyoruz asla onlarda dur bunu yapma burası çok politik oldu ]] ~yetmez ama boşuna da değil ~her ~onda ~bir

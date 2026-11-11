@@ -1,0 +1,553 @@
+{
+ "version": 5,
+ "review_flags": [],
+ "suggestions": [
+  {
+   "kind": "swallowed-retake",
+   "start_f": 2374,
+   "end_f": 2433,
+   "source": "primary",
+   "how": "'enerji' is 9.7s with 29 active f/letter: a restart was probably merged into it",
+   "text": "2030 hedefleri yolunda yenilenebilir enerji"
+  }
+ ],
+ "long_words": [
+  {
+   "start_f": 1773,
+   "end_f": 1895,
+   "text": "Brezilya"
+  },
+  {
+   "start_f": 2433,
+   "end_f": 2675,
+   "text": "enerji"
+  },
+  {
+   "start_f": 3170,
+   "end_f": 3268,
+   "text": "3.2"
+  },
+  {
+   "start_f": 4984,
+   "end_f": 5284,
+   "text": "Hatırlarsanız"
+  },
+  {
+   "start_f": 6055,
+   "end_f": 6109,
+   "text": "2025-2026"
+  },
+  {
+   "start_f": 10510,
+   "end_f": 10635,
+   "text": "Nihai"
+  }
+ ],
+ "hallucinated": "Peki İzlediğiniz için teşekkür ederim.",
+ "second_transcript": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode/P1011089-tr.json",
+ "next_transcript": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode/375-Track2-tr.json",
+ "edits": null,
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011089.MOV",
+ "fps": 25,
+ "offset_f": 7,
+ "clip_end_f": 10992,
+ "keep_frames": [
+  [
+   117,
+   284
+  ],
+  [
+   294,
+   408
+  ],
+  [
+   471,
+   690
+  ],
+  [
+   697,
+   922
+  ],
+  [
+   933,
+   1173
+  ],
+  [
+   1427,
+   1617
+  ],
+  [
+   1626,
+   1778
+  ],
+  [
+   1881,
+   2164
+  ],
+  [
+   2175,
+   2299
+  ],
+  [
+   2362,
+   2456
+  ],
+  [
+   2650,
+   2784
+  ],
+  [
+   2896,
+   2970
+  ],
+  [
+   2978,
+   3174
+  ],
+  [
+   3247,
+   3440
+  ],
+  [
+   3500,
+   3944
+  ],
+  [
+   3951,
+   4418
+  ],
+  [
+   4429,
+   4564
+  ],
+  [
+   4783,
+   4925
+  ],
+  [
+   4940,
+   5009
+  ],
+  [
+   5265,
+   5521
+  ],
+  [
+   5534,
+   5777
+  ],
+  [
+   5784,
+   6013
+  ],
+  [
+   6024,
+   6177
+  ],
+  [
+   6184,
+   6350
+  ],
+  [
+   6707,
+   6789
+  ],
+  [
+   6848,
+   6958
+  ],
+  [
+   6971,
+   7297
+  ],
+  [
+   7308,
+   7436
+  ],
+  [
+   7667,
+   7765
+  ],
+  [
+   8086,
+   8192
+  ],
+  [
+   8360,
+   8460
+  ],
+  [
+   8470,
+   8606
+  ],
+  [
+   8890,
+   9097
+  ],
+  [
+   9376,
+   9703
+  ],
+  [
+   9713,
+   9973
+  ],
+  [
+   10109,
+   10328
+  ],
+  [
+   10340,
+   10533
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake-marker",
+   "start_f": 1323,
+   "end_f": 1358,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Diğer sordan bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1374,
+   "end_f": 1412,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Diğer sordan bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2787,
+   "end_f": 2855,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Bu sözün işte bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4625,
+   "end_f": 4687,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "İşte bu tüm kaynaklardan bir tir bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4707,
+   "end_f": 4757,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Tüm kaynaklardan ise bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6366,
+   "end_f": 6440,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "3.3 masanın kenarındaki büyük konu. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6493,
+   "end_f": 6632,
+   "how": "content overlap with restart [bir daha.]",
+   "source": "primary",
+   "text": "Masanın kenarındaki büyük konu. Havacılık ve deniz taşımacılığı. Uluslararası bir daha."
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 6787,
+   "end_f": 6851,
+   "how": "phrase 've deniz taşımacılığı.' repeated",
+   "source": "primary",
+   "text": "ve deniz taşımacılığı. Uluslararası uçuşlar"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7447,
+   "end_f": 7572,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Kerosen yerine atık yağlardan ve biyokütlelerden üretilen bu yakıt daha... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7768,
+   "end_f": 7981,
+   "how": "content overlap with restart [Bir daha.]",
+   "source": "primary",
+   "text": "İKAO'nun Korsiya programı ise uçuş salımlarını dengeleme hedefliyor. Denizcilik, Küresel Salımlarının Yaklaşık %3'ünden sorumlu... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8191,
+   "end_f": 8343,
+   "how": "previous unit [Bir daha yapalım.]",
+   "source": "primary",
+   "text": "Bildiğiniz gibi havacılık salımlarının büyük paydasını oluşturmakta. Bir daha yapalım."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8619,
+   "end_f": 8824,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "İMO ise, az önce bahsettiğim kuruluş, gemi yakıtına dünyanın ilk küresel karbon fiyatını getirecek. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9092,
+   "end_f": 9295,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Ama Ekim 2005'teki oylamada ABD'nin de bastırmasıyla karar 57'den 49 oyla bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 10510,
+   "end_f": 10659,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Nihai enerji bir daha."
+  },
+  {
+   "kind": "cross-clip-retake",
+   "start_f": 10664,
+   "end_f": 10768,
+   "how": "clip tail re-said at the head of the next clip",
+   "source": "primary",
+   "text": "Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak."
+  },
+  {
+   "kind": "cross-clip-retake",
+   "start_f": 10664,
+   "end_f": 10951,
+   "how": "clip tail re-said at the head of the next clip",
+   "source": "second",
+   "text": "Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak. abone"
+  }
+ ],
+ "noise_islands": [
+  [
+   33,
+   40
+  ],
+  [
+   46,
+   51
+  ],
+  [
+   446,
+   448
+  ],
+  [
+   1215,
+   1232
+  ],
+  [
+   1235,
+   1238
+  ],
+  [
+   1779,
+   1780
+  ],
+  [
+   1841,
+   1849
+  ],
+  [
+   1856,
+   1862
+  ],
+  [
+   2338,
+   2339
+  ],
+  [
+   2475,
+   2476
+  ],
+  [
+   2498,
+   2576
+  ],
+  [
+   2582,
+   2633
+  ],
+  [
+   2824,
+   2827
+  ],
+  [
+   2830,
+   2831
+  ],
+  [
+   2836,
+   2837
+  ],
+  [
+   3180,
+   3181
+  ],
+  [
+   3187,
+   3227
+  ],
+  [
+   3446,
+   3447
+  ],
+  [
+   5124,
+   5125
+  ],
+  [
+   5214,
+   5215
+  ],
+  [
+   5237,
+   5239
+  ],
+  [
+   6642,
+   6643
+  ],
+  [
+   6656,
+   6657
+  ],
+  [
+   7585,
+   7588
+  ],
+  [
+   7593,
+   7596
+  ],
+  [
+   7993,
+   7996
+  ],
+  [
+   8767,
+   8768
+  ],
+  [
+   8776,
+   8779
+  ],
+  [
+   8792,
+   8793
+  ],
+  [
+   8830,
+   8837
+  ],
+  [
+   8843,
+   8848
+  ],
+  [
+   9310,
+   9311
+  ],
+  [
+   9322,
+   9325
+  ],
+  [
+   9985,
+   9986
+  ],
+  [
+   10537,
+   10538
+  ],
+  [
+   10556,
+   10564
+  ],
+  [
+   10776,
+   10778
+  ],
+  [
+   10798,
+   10801
+  ],
+  [
+   10811,
+   10812
+  ],
+  [
+   10822,
+   10823
+  ],
+  [
+   10865,
+   10874
+  ],
+  [
+   10879,
+   10897
+  ],
+  [
+   10901,
+   10912
+  ]
+ ],
+ "tail_trim_frames": 17,
+ "head_trim_frames": 7,
+ "dropped_outside_clip": "İzlediğiniz için teşekkür ederim. İzlediğiniz için teşekkür ederim.",
+ "kept_text": "Antalya'da bu konular açık açık masayı hatırlayacak. 3 soru öne çıkıyor. 2035 hedefleri yeterli mi? Yeni nesil NDC'lerin toplam etkisi ve hala hedef sunmamış ülkeler. Çünkü tahmin edebileceğiniz üzere bazı ülkeler gerçekten çaba sarf ederken diğer ülkeler çaba sarf etmiyor. Mesela çok basit bir örnek vereyim. Ben Hollanda'dayım. Buradaki yönetmelikler, regulasyonlar, şunlar bunlar çevreyi korumak adına yapılan şeyleri görseniz inanamazsınız. Çok fazla şey var. Belki normalden de fazla. Ama bir yandan da baktığımızda bu toplantıya katılan başka bir ülkenin bu kadar da fosil yakıtları azaltmaya çalışmadığını görüyoruz. İşte burada mesela bu da masaya yatırılacak. Bir başka soru da fosil yakıtlar tekrardan geri dönecek mi? COP28'de fosil yakıtlardan uzaklaşma kabul edilmişti. COP30'da 80'i aşkın ülke somut bir yol haritası istedi ama metin uzlaşma uğruna temizlendi. Brezilya bu yol haritasını gönüllü bir süreçte sürdürüyor. Kolombiya ve Hollanda'da da Nisan 2026'da fosil yakıtlardan çıkış konulu ilk uluslararası konferans düzenlendi. Konunun Antalya'da ne kadar ses getireceği zirvenin en büyük sınavlardan biri olacak. 2030 hedefleri yolunda yenilenebilir enerji kapasitesi 3'e. Enerji verimliliği ise 2'ye katlanacak mı? Bu sözlerin tutulup tutulmadığı da masa yatırılacak. İyi haber 2025'in ilk yarısında yenilenebilir enerji kaynakları dünya elektrik üretiminde ilk kez kömürü geçmişti. 3.2 iklim finansmanı ve kayıp asar fonu gelişmekte olan ülkelerin dönüşüm hızını belirleyen en kritik başlık para. Bakü'de gelişmiş ülkelerin öncülüğünde 2035'e kadar yılda en az 300 milyar dolar toplanması kararlaştırıldı. Çünkü düşünürseniz bu dönüşüm kolay olmuyor. İnsanların ya da şirketlerin bu dönüşüme ayak uydurması için büyük ödenekler ve teşvikler gerekiyor. Basitçe söyleyeyim benim sektör olduğu için rahat söylüyorum. Bir ülkede güneş enerji yatırımları yapılıyorsa orada belirli yönetmelikler veya suplanseler destekler olmak zorunda. Eğer bu varsa o ülkede o dönüşüm gerçekleşebiliyor. Mesela şu anda Romanya'da büyük bir güneş enerji yatırımı mevcut. Ama bazı ülkelerde bu yatırımlar durmuş durumda veya bazı ülkelerde yapılacak. Bu az önce konuştuğum 300 milyar dolardan da 1,3 trilyon dolar hedefi var. Bunu anlamadım ya. Ucaklaştırıldı. Hatırlarsanız Belem'de uyum finansmanı 2035'te 3'e katlanacağı söylenmişti. Yani parasal konulardan bahsediyoruz. İşte Antalya'daki kritik soru da şu olacak. Bu paranın ne kadarı hibe, ne kadarı borç olacak? Ve yoksul ülkeleri yeni bir borç sarmalına sokmadan nasıl aktarılacak? Çünkü dedim ya bu yatırımlar desteksiz olmuyor. Ama kim alacak bu parayı nasıl alacak? Kayıp ve hasar fonu ise iklim felaketlerinden zarar gören ülkeler için önemli bir nokta. Fon ilk döneminde 2025-2026 yılında 250 milyon dolar dağıtacak. Ama gelen talepler 3 milyar dolara yaklaşıyor. Yani masadaki her 1 dolar için 12 dolara ihtiyaç var. Masanın kenarındaki diğer büyük konu ise havacılık ve deniz taşımacılığı hiçbir ülkenin sınırına tam sığmıyor. Bu yüzden kuralları kopta değil, Birleşmiş Milletler'in iki ayrı kuruluşunda yazıyorlar. Havacılık için İKAO, Uluslararası Sivil Havacılık Örgütü. Denizcilik için ise IMO, Uluslararası Denizcilik Örgütü. Havacılıkta Umut, S-A-F yani Sürdürülebilir Havacılık Yakıtı. Kerosen yerine atık yağlardan ve biyokütlelerden üretiliyor bu yakıt. İKAO'nun Korsiya programı ise uçuş salımlarını dengeleme hedefliyor. Bildiğiniz gibi havacılık, Karbon Salımlarının da önemli bir paya sahip. Peki gelelim denizciliğe. Denizcilik, Küresel Salımlarının Yaklaşık %3'ünden sorumlu oluyor. İMO, gemi yakıtına dünyanın ilk küresel karbon fiyatını getirecek. Net sıfır çerçevesini Nisan 2025'te onayladı. Ama Ekim 2005'teki oylamada ABD'nin de bastırmasıyla karar 57'ye 49 oyla bir yıl  ertelendi. Kesin karar Aralık 26'da. Yani Antalya'dan sadece birkaç hafta sonra verilecek. Bu yüzden COP31'den çıkacak mesaj gemicilik dünyasında da yakından izleniyor. Türkiye'nin eylem gündeminde de Yeşil Navlum Koridorları girişimi yer alıyor. gelelim Türkiye'ye. Yani dünyada bir şeyler yapılıyor. Denizcilik, havacılık bir şeyler yapmaya çalışıyor ama Türkiye'nin masaya koyduğu bir hedef var mı? COP31 Başkanlığı eylem gündeminde 10 öncelik ve 2035 içinde 6 küresel hedef açıklamış.",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "END_HOLD_F": 13,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "HALLU_MIN_ACTIVE": 0.1,
+  "WINDOW_F": 750,
+  "NEAR_F": 250,
+  "PAUSE_F": 12,
+  "PAUSE_NOPUNCT_F": 6,
+  "IMM_MAX_F": 150,
+  "MAX_RETAKE_F": 750,
+  "REPEAT_MAX_SPAN_F": 500,
+  "R_FIRST": 6,
+  "FIRST_OVERLAP": 0.4,
+  "ORPHAN_WORDS": 3,
+  "ORPHAN_F": 62,
+  "OVERLAP": 0.5,
+  "OVERLAP2": 0.35,
+  "WEAK_EVIDENCE": 0.3,
+  "R_MIN": 25,
+  "R_MAX": 120,
+  "SWALLOW_DENS": 8.0,
+  "SWALLOW_GAP_F": 3,
+  "SPLIT_TOL_DB": 2.0
+ }
+}

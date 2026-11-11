@@ -1,0 +1,5 @@
+# Python deps for the analysis tools (cutplan, plan_episode, sections, sync_check).
+# The Resolve tools run with the system python3 through scripts/rv.sh and need no extra packages.
+#   python3 -m venv .venv && .venv/bin/pip install -r .claude/skills/rough-cutting-a-roll/requirements.txt
+numpy==2.3.4
+imageio-ffmpeg==0.6.0

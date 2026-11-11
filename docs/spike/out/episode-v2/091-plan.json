@@ -1,0 +1,572 @@
+{
+ "version": 5,
+ "review_flags": [],
+ "suggestions": [],
+ "long_words": [
+  {
+   "start_f": 1134,
+   "end_f": 1336,
+   "text": "yansımaları"
+  },
+  {
+   "start_f": 2466,
+   "end_f": 2774,
+   "text": "Yenilenebilir"
+  },
+  {
+   "start_f": 2831,
+   "end_f": 2958,
+   "text": "ve"
+  },
+  {
+   "start_f": 3262,
+   "end_f": 3331,
+   "text": "batarya"
+  },
+  {
+   "start_f": 4881,
+   "end_f": 4944,
+   "text": "Bir"
+  },
+  {
+   "start_f": 5211,
+   "end_f": 5264,
+   "text": "Daha"
+  },
+  {
+   "start_f": 5731,
+   "end_f": 5785,
+   "text": "İş"
+  },
+  {
+   "start_f": 7253,
+   "end_f": 7311,
+   "text": "Belem'de"
+  },
+  {
+   "start_f": 7501,
+   "end_f": 7608,
+   "text": "Belem'de"
+  }
+ ],
+ "hallucinated": "",
+ "second_transcript": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode/P1011091-tr.json",
+ "next_transcript": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode/378-Track2-tr.json",
+ "edits": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode-v2/edits/P1011091-edits.json",
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011091.MOV",
+ "fps": 25,
+ "offset_f": 6,
+ "clip_end_f": 9912,
+ "keep_frames": [
+  [
+   587,
+   998
+  ],
+  [
+   1228,
+   1384
+  ],
+  [
+   1404,
+   1695
+  ],
+  [
+   2178,
+   2284
+  ],
+  [
+   2292,
+   2470
+  ],
+  [
+   2879,
+   3218
+  ],
+  [
+   3230,
+   3263
+  ],
+  [
+   3319,
+   3492
+  ],
+  [
+   3500,
+   3589
+  ],
+  [
+   3671,
+   3800
+  ],
+  [
+   3809,
+   3947
+  ],
+  [
+   3958,
+   4102
+  ],
+  [
+   4317,
+   4430
+  ],
+  [
+   4439,
+   4565
+  ],
+  [
+   4575,
+   4800
+  ],
+  [
+   4940,
+   5119
+  ],
+  [
+   5257,
+   5424
+  ],
+  [
+   5439,
+   5736
+  ],
+  [
+   6519,
+   6905
+  ],
+  [
+   6913,
+   7259
+  ],
+  [
+   7586,
+   7771
+  ],
+  [
+   7882,
+   8085
+  ],
+  [
+   8448,
+   8889
+  ],
+  [
+   9023,
+   9602
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "editor",
+   "start_f": 49,
+   "end_f": 168,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Peki bu para AB'nin kasasına mı gidecek? Türkiye'deki dönüşüme mi harcanacak?"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 184,
+   "end_f": 323,
+   "how": "content overlap with restart [bir daha.]",
+   "source": "primary",
+   "text": "Fırsat tarafı da var. Karbonu düşünen Türk üreticileri uzak doğuya göre coğrafi bir daha."
+  },
+  {
+   "kind": "editor",
+   "start_f": 185,
+   "end_f": 218,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Fırsat tarafı da var."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 400,
+   "end_f": 543,
+   "how": "content overlap with restart [bir daha.]",
+   "source": "primary",
+   "text": "Şimdi bu işin bir de fırsat tarafı var. Hani sanki hep bize yazacak gibi görünüyor ama karbonu düşünen Türk üreticileri bir daha."
+  },
+  {
+   "kind": "orphan",
+   "start_f": 1056,
+   "end_f": 1061,
+   "how": "dangling phrase start before a cut",
+   "source": "primary",
+   "text": "Peki"
+  },
+  {
+   "kind": "editor",
+   "start_f": 1057,
+   "end_f": 1152,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Peki zirvenin sanayi, teknoloji ve günlük hayata"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1732,
+   "end_f": 1975,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "İşte burada iğme kazanan teknolojiler, yeşil hidrojen, çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2040,
+   "end_f": 2149,
+   "how": "content overlap with restart [bir daha.]",
+   "source": "primary",
+   "text": "Burada iğme kazanan teknolojilerden bahsedebiliriz. Mesela yeşil hidrojen, bir daha."
+  },
+  {
+   "kind": "orphan",
+   "start_f": 2466,
+   "end_f": 2774,
+   "how": "dangling phrase start before a cut",
+   "source": "primary",
+   "text": "Yenilenebilir"
+  },
+  {
+   "kind": "editor",
+   "start_f": 2757,
+   "end_f": 2856,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "elektrikle suyu ayrıştıran elektrolyzörler"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 3601,
+   "end_f": 3625,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Katı hal pilleri bir daha."
+  },
+  {
+   "kind": "editor",
+   "start_f": 4143,
+   "end_f": 4219,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Elektrik şebekesi ve elektrifikasyon ise çok önemli bir"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4144,
+   "end_f": 4249,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Elektrik şebekesi ve elektrifikasyon ise çok önemli bir konu. Bir daha."
+  },
+  {
+   "kind": "editor",
+   "start_f": 4835,
+   "end_f": 4867,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "İleri malzemeler."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4837,
+   "end_f": 4881,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "İleri malzemeler. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5128,
+   "end_f": 5211,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Daha az klinkerli yeni tür çimentolar. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5731,
+   "end_f": 6032,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "İş gücü ve enerji faturaları uluslararası yenilenebilir enerji ajansına göre dünyada yenilenebilir enerji sektöründe çalışan 16 milyon insanın... Bir daha."
+  },
+  {
+   "kind": "editor",
+   "start_f": 6090,
+   "end_f": 6144,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "İş gücü ve enerji faturaları..."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6092,
+   "end_f": 6160,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "İş gücü ve enerji faturaları... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6250,
+   "end_f": 6457,
+   "how": "content overlap with restart [Bir daha.]",
+   "source": "primary",
+   "text": "Peki bizim hayatımıza nasıl yansıyor? Yani bizim gibi mühendislerin iş gücüne ve enerji faturalarına... İşte uluslararası enerji... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 7253,
+   "end_f": 7501,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Belem'de kabul edilen adil geçiş mekanizması bu dönüşünden zarar görecek çalışanları ve bölgeleri korumaya başlamış. Bir daha."
+  },
+  {
+   "kind": "abandoned",
+   "start_f": 7767,
+   "end_f": 7810,
+   "how": "trails off '...', next words repeat it",
+   "source": "second",
+   "text": "Faturalar tarafında..."
+  },
+  {
+   "kind": "editor",
+   "start_f": 7777,
+   "end_f": 7817,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Faturalar tarafında..."
+  },
+  {
+   "kind": "abandoned",
+   "start_f": 7782,
+   "end_f": 7810,
+   "how": "trails off '...', next words repeat it",
+   "source": "primary",
+   "text": "Faturalar tarafında..."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8092,
+   "end_f": 8339,
+   "how": "content overlap with restart [Bir daha.]",
+   "source": "primary",
+   "text": "Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgarın payı arttıkça... Petrol ve gaz krizlerinin elektrik yansımalarına... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8886,
+   "end_f": 8989,
+   "how": "restart 'çatımızdaki' inside attempt [Bir daha.]",
+   "source": "primary",
+   "text": "çatıdaki santral, çatı güneş panelleri ve ev tipi... Bir daha."
+  },
+  {
+   "kind": "editor",
+   "start_f": 8894,
+   "end_f": 8978,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "çatıdaki santral, çatı güneş panelleri ve ev tipi... Bir"
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9587,
+   "end_f": 9681,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Elektrikli araçlara gelirsek Türkiye'de her... Bir daha."
+  },
+  {
+   "kind": "cross-clip-retake",
+   "start_f": 9679,
+   "end_f": 9911,
+   "how": "clip tail re-said at the head of the next clip",
+   "source": "second",
+   "text": "Elektrikli araçlara gelirsek... Türkiye'de 2025'de satılan her 100 otomobilden yaklaşık 17'si elektrikliydi. Henüz rakamlar..."
+  },
+  {
+   "kind": "editor",
+   "start_f": 9720,
+   "end_f": 9882,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Elektrikli araçlara gelirsek Türkiye'de 2025'de satılan her yüz otomobilden yaklaşık 17'si elektrikliydi."
+  },
+  {
+   "kind": "cross-clip-retake",
+   "start_f": 9722,
+   "end_f": 9910,
+   "how": "clip tail re-said at the head of the next clip",
+   "source": "primary",
+   "text": "Elektrikli araçlara gelirsek Türkiye'de 2025'de satılan her yüz otomobilden yaklaşık 17'si elektrikliydi. Henüz rakamlar"
+  },
+  {
+   "kind": "editor",
+   "start_f": 9891,
+   "end_f": 9912,
+   "how": "reviewer marker",
+   "source": "edits",
+   "text": "Henüz rakamlar"
+  }
+ ],
+ "noise_islands": [
+  [
+   351,
+   354
+  ],
+  [
+   361,
+   362
+  ],
+  [
+   365,
+   368
+  ],
+  [
+   552,
+   559
+  ],
+  [
+   573,
+   576
+  ],
+  [
+   1011,
+   1013
+  ],
+  [
+   1170,
+   1209
+  ],
+  [
+   1387,
+   1388
+  ],
+  [
+   1952,
+   1953
+  ],
+  [
+   2482,
+   2623
+  ],
+  [
+   2647,
+   2664
+  ],
+  [
+   2745,
+   2747
+  ],
+  [
+   3635,
+   3641
+  ],
+  [
+   4119,
+   4123
+  ],
+  [
+   5231,
+   5232
+  ],
+  [
+   5238,
+   5241
+  ],
+  [
+   5245,
+   5247
+  ],
+  [
+   6059,
+   6063
+  ],
+  [
+   6068,
+   6070
+  ],
+  [
+   6481,
+   6484
+  ],
+  [
+   6492,
+   6495
+  ],
+  [
+   7261,
+   7262
+  ],
+  [
+   7528,
+   7532
+  ],
+  [
+   8313,
+   8314
+  ],
+  [
+   8366,
+   8368
+  ],
+  [
+   8380,
+   8385
+  ],
+  [
+   8416,
+   8417
+  ]
+ ],
+ "tail_trim_frames": 22,
+ "head_trim_frames": 10,
+ "dropped_outside_clip": "bir Hollanda değil. Evet ama en azından kötünün... Dur. İmansızı. Altyazı M.K.",
+ "kept_text": "Bu işin bir de fırsat tarafı var. Sanki hep bize yazacak gibi görünüyor ama öyle değil. Karbonunu düşüren Türk üreticileri uzak doğuya göre coğrafi yakınlık ve hızlı teslimat avantajını düşük karbonlu üretim ile birleştirdiğinde Avrupa bazarında pay kazanabilir. yansımaları neler olabilir? Yani peki yani bütün bu kararlar fabrikaya, laboratuvarı ve bizim evimize nasıl yansıyacak? Çünkü çok fazla teorik şeylerden konuştuk, kağıt üstündeki şeylerden konuştuk. Ama bana sorarsanız işin en önemli kısmı da bu. Burada iğme kazanan bazı teknolojilerden bahsedelim. Yeşil hidrojen, çelik, gübre ve kimya gibi doğrudan elektrikle çalıştırılması zor sektörlerde fosil yakıtın yerini alabilecek bir aday. ve hidrojenin nasıl sertifikalandırılacağı bu yüzden de kritik olacak. SKDM'nin hidrojeni de kapsaması konunun ihracatçılar için ne kadar somut olduğunu gösteriyor. Bataryalar, batarya konusu da çok önemli. Elektrikli araçlar ve şebekede enerji depolama için litü müyon pillere talep hızla artıyor. Sodü müyon pilleri ise ucuz ve bol ham maddeleriyle yükselişte. Katı hal pilleri ise henüz seri üretimde değiller. Asıl yarış ARGE laboratuvarlarında. Avrupa'da 2027'den itibaren elektrikli araç bataryaları için batarya pasaportu geliyor. Pilin içinde ne olduğu, nereden geldiği ve karbon ayak izi dijital olarak kayıt altına alınacak. Bir diğer teknoloji kânsıması da elektrik şebekesi ve elektrifikasyona. COP31'in 2035'e kadar %35 hedefi aslında bir şebeke meselesi. Daha fazla güneş ve rüzgar, daha güçlü iletimatları, ülkeler arası bağlantılar ve talebeyi tahmin eden yapay zeka destekli yazılımlar demek. Bir diğer yansıması ise ileri malzemeler konusunda. Çimentada karbonun büyük kısmı klinker üretiminden geliyor. Daha az klinkerli yeni tür çimentolar karbon salınımını azaltacak ve bu da geliştirilme aşamasında. Havacılık ve otomotivde ise hafif kompozit malzemeler yakıt tüketimini azaltıyor. Baca gazından karbon yakalayan sisus sistemlerde ise daha verimli tutucu malzemeler üzerinde çalışılıyor. Peki bunun teknolojik yansıması yanı sıra iş gücünde nasıl bir yansıması var? Dersek uluslararası yenilenebilir enerji ajansına göre... Dünyada yenilenebilir enerji sektöründe benim de içinde olduğum çalışan sayısı 16 milyon insanı aşmış. Kömür madenciliği ve işten yanmalı motor üretimi gibi alanlarda istihdam daralırken... Güneş ve rüzgar kurulumu, enerji verimliği denetimi, sürdürülebilirlik raporlaması... Ve batarya kimyası gibi alanlarda yeni meslekler doğuyor. Belem'de kabul edilen adil geçiş mekanizması bu dönüşünden zarar görecek çalışanları ve bölgeleri korumaya başlıyor. Peki gelelim faturalar tarafına. Tablo iki aşamalı. Kısa vadede şebeke yatırımları ve karbon fiyatları maliyet artışı yaratabilir. Orta ve uzun vadede ise yakıt maliyeti sıfır olan güneş ve rüzgarın payı arttıkça... Petrol ve gaz krizlerinin elektrik fiyatlarının yansıması azalabilir. Bildiğiniz üzere her kış Avrupa'da bir kriz oluyor. Özellikle doğal gaz konusunda. İşte bizim hayatımızdan ne değişiyor? Bunu da düşünürsek Örneğin çatımızdaki santraller. Çatı güneş panelleri ve ev tipi bataryalarla tüketici aynı zamanda üretici de olmuş oluyor. Prosumer deniyor bunu hatta. Fazla elektriğini şebekeye satabilir. Buradan da para kazanabilir. Kombi yerine  ısı pompası, özellikle Avrupa'da doğal gazlı kombiden  ısı pompasına geçiş teşvik ediliyor. Tabi ki bu her ülkede oluyor değil. Bazı ülkelerde oluyor ama.",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "END_HOLD_F": 13,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "HALLU_MIN_ACTIVE": 0.1,
+  "WINDOW_F": 750,
+  "NEAR_F": 250,
+  "PAUSE_F": 12,
+  "PAUSE_NOPUNCT_F": 6,
+  "IMM_MAX_F": 150,
+  "MAX_RETAKE_F": 750,
+  "REPEAT_MAX_SPAN_F": 500,
+  "R_FIRST": 6,
+  "FIRST_OVERLAP": 0.4,
+  "ORPHAN_WORDS": 3,
+  "ORPHAN_F": 62,
+  "OVERLAP": 0.5,
+  "OVERLAP2": 0.35,
+  "WEAK_EVIDENCE": 0.3,
+  "R_MIN": 25,
+  "R_MAX": 120,
+  "SWALLOW_DENS": 8.0,
+  "SWALLOW_GAP_F": 3,
+  "SPLIT_TOL_DB": 2.0,
+  "DANGLING_WORDS": 2
+ }
+}

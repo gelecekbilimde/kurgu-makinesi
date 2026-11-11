@@ -1,0 +1,686 @@
+[
+ {
+  "tc": "01:04:28:05",
+  "tl": [
+   6705,
+   6706
+  ],
+  "dur_s": 0.04,
+  "color": "Yellow",
+  "name": "Marker 94",
+  "note": "this clip should be removed, artifact of retake",
+  "clip": "P1011088.MOV",
+  "src": [
+   1512,
+   1513
+  ],
+  "before": "Dönüm noktası olan zirveler ise aşağıda...",
+  "inside": "",
+  "after": "yapalım. Şimdi sizlere bazı notlarla COP'un dönüşüm olan zirvelerini"
+ },
+ {
+  "tc": "01:04:45:08",
+  "tl": [
+   7133,
+   7254
+  ],
+  "dur_s": 4.84,
+  "color": "Yellow",
+  "name": "Marker 95",
+  "note": "the clip here is a failed retake, it should be removed. next clip retakes this part and continues\n",
+  "clip": "P1011088.MOV",
+  "src": [
+   2750,
+   2900
+  ],
+  "before": "2035'e kadar 3'e katlama çağrısı yapıldı.",
+  "inside": "uygulama hızlandırıcı ve Belém 1,5",
+  "after": "misyonu 80'i aşkın"
+ },
+ {
+  "tc": "01:05:03:11",
+  "tl": [
+   7586,
+   7794
+  ],
+  "dur_s": 8.32,
+  "color": "Yellow",
+  "name": "Marker 96",
+  "note": "this whole section is failed, retake goes right after these clips end",
+  "clip": "P1011088.MOV",
+  "src": [
+   3254,
+   3503
+  ],
+  "before": "geçmedi. İşte bu toplantı için kritik şeylerden birisi buydu.",
+  "inside": "Gelelim 2024 yılına COP29'a. COP29 nerede yapıldı? Bakü, kardeş... dur. Bol yapmayalım burayı. Tekrar.",
+  "after": "Gelelim 2024 yılına COP29'a. Kardeş ülke, Azerbaycan'da,"
+ },
+ {
+  "tc": "01:06:18:02",
+  "tl": [
+   9452,
+   9555
+  ],
+  "dur_s": 4.12,
+  "color": "Yellow",
+  "name": "Marker 97",
+  "note": "failed part, retake, retake continues from next clip.",
+  "clip": "P1011088.MOV",
+  "src": [
+   5610,
+   5890
+  ],
+  "before": "Kayıp ve hasar fonu kurulması kararı alınmış.",
+  "inside": "2021 COP nerede yapılmış? COP26. Glasgow, İngiltere değil. Bir",
+  "after": "Gelelim COP26'ya. 2021 yılında Glasgow'da yapılmış. Burada nasıl"
+ },
+ {
+  "tc": "01:06:34:00",
+  "tl": [
+   9850,
+   10497
+  ],
+  "dur_s": 25.88,
+  "color": "Yellow",
+  "name": "Marker 98",
+  "note": "this whole part is failed. the retake continues from the next clip\n",
+  "clip": "P1011088.MOV",
+  "src": [
+   6348,
+   7113
+  ],
+  "before": "ilk kez bir karar metninde burada ortaya çıkmış.",
+  "inside": "Bundan bir önceki toplantı 2015 yılında COP21 Paris, Fransa'da yapılmış. Paris Antlaşması  ısınmayı 2 santigrat derecenin oldukça antılda tutmak, 1,5 santigrat derece için ise çaba göstermek. Her ülke 5 yılda bir ulusal katkı beyanı yani NDC sunması kararı alınmış. Bunu biraz daha güzel yapalım. Durun. Tekrar. 2015 COP21'e.",
+  "after": "Gelelim Fransa'nın Paris şehrinde yapılan COP21'e. 2015'te"
+ },
+ {
+  "tc": "01:07:22:06",
+  "tl": [
+   11056,
+   11364
+  ],
+  "dur_s": 12.32,
+  "color": "Yellow",
+  "name": "Marker 99",
+  "note": "failed section, retake continues from the next clip\n",
+  "clip": "P1011088.MOV",
+  "src": [
+   8096,
+   8767
+  ],
+  "before": "katkı beyanı yani NDC sunacak.",
+  "inside": "1997. dışında da katılımcı her ülkenin 5 yılda bir Ulusal katkı beyanı. Gelelim 1997 COP. Kaç bu? eski yani 1997 COP.",
+  "after": "Bundan önce de 97 yılında Kyoto Japonya'da adını hatırlarsınız"
+ },
+ {
+  "tc": "01:08:25:02",
+  "tl": [
+   12627,
+   12628
+  ],
+  "dur_s": 0.04,
+  "color": "Yellow",
+  "name": "Marker 100",
+  "note": "starting of the `COP31` is missing, slightly more headroom here\n",
+  "clip": "P1011088.MOV",
+  "src": [
+   10859,
+   10860
+  ],
+  "before": "Yorumlarda bu ülkeyi belirtebilirsiniz. gelelim",
+  "inside": "",
+  "after": "COP31 bu zincirin neresinde? İşte Paris Antlaşması'nın 10. yılından sonraki"
+ },
+ {
+  "tc": "01:08:51:08",
+  "tl": [
+   13283,
+   13499
+  ],
+  "dur_s": 8.64,
+  "color": "Yellow",
+  "name": "Marker 101",
+  "note": "failed part, reteake continues with the next clip\n",
+  "clip": "P1011088.MOV",
+  "src": [
+   11879,
+   12203
+  ],
+  "before": "Antalya'da aslında iki masa var.",
+  "inside": "Birinci resmi müzakere masası. Burayı az önce söylediğim gibi Avustralya yönetiyor. Ve çıkan kararlar tüm ülkeleri bağlayan metinler... yapalım.",
+  "after": "Birincisi resmi müzakere masası. Az önce de bahsettim. Burayı Avustralya yönetiyor."
+ },
+ {
+  "tc": "01:11:08:07",
+  "tl": [
+   16707,
+   16746
+  ],
+  "dur_s": 1.56,
+  "color": "Yellow",
+  "name": "Marker 102",
+  "note": "failed bit trying to say `yenilenebilir`, should be removed, retake continues from the next clip. \n",
+  "clip": "P1011089.MOV",
+  "src": [
+   2417,
+   2456
+  ],
+  "before": "biri olacak. 2030 hedefleri yolunda",
+  "inside": "yenilenebilir",
+  "after": "kapasitesi 3'e. Enerji verimliliği ise 2'ye katlanacak"
+ },
+ {
+  "tc": "01:12:15:14",
+  "tl": [
+   18389,
+   18611
+  ],
+  "dur_s": 8.88,
+  "color": "Yellow",
+  "name": "Marker 103",
+  "note": "failed bit, retake continues from the next section\n",
+  "clip": "P1011089.MOV",
+  "src": [
+   4622,
+   5009
+  ],
+  "before": "durumda veya bazı ülkelerde yapılacak.",
+  "inside": "İşte bu tüm Bu az önce konuştuğum 300 milyar dolardan da 1,3 trilyon dolar hedefi var. Bunu anlamadım ya. Ucaklaştırıldı.",
+  "after": "Belem'de uyum finansmanı 2035'te 3'e katlanacağı"
+ },
+ {
+  "tc": "01:13:06:08",
+  "tl": [
+   19658,
+   19676
+  ],
+  "dur_s": 0.72,
+  "color": "Yellow",
+  "name": "Marker 104",
+  "note": "speaker say 3.3 but it is not connected to anything, can be removed\n",
+  "clip": "P1011089.MOV",
+  "src": [
+   6366,
+   6384
+  ],
+  "before": "her 1 dolar için 12 dolara ihtiyaç var.",
+  "inside": "3.3",
+  "after": "Masanın kenarındaki diğer büyük konu ise havacılık ve deniz taşımacılığı hiçbir"
+ },
+ {
+  "tc": "01:13:41:00",
+  "tl": [
+   20525,
+   20640
+  ],
+  "dur_s": 4.6,
+  "color": "Yellow",
+  "name": "Marker 105",
+  "note": "failed bit, retake continues with the next clip\n",
+  "clip": "P1011089.MOV",
+  "src": [
+   8191,
+   8347
+  ],
+  "before": "programı ise uçuş salımlarını dengeleme hedefliyor.",
+  "inside": "Bildiğiniz gibi havacılık salımlarının büyük paydasını oluşturmakta. yapalım.",
+  "after": "Bildiğiniz gibi havacılık, Karbon Salımlarının da önemli bir paya sahip. Peki gelelim"
+ },
+ {
+  "tc": "01:14:42:23",
+  "tl": [
+   22073,
+   22253
+  ],
+  "dur_s": 7.2,
+  "color": "Yellow",
+  "name": "Marker 106",
+  "note": "failed bit ending in cough, retake continues with next clip\n",
+  "clip": "P1011089.MOV",
+  "src": [
+   10662,
+   224
+  ],
+  "before": "içinde 6 küresel hedef açıklamış.",
+  "inside": "Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak. İzlediğiniz için teşekkür ederim. pardon.",
+  "after": "2035 yılına kadar nihai enerji tüketiminde elektriğin payını %35'e"
+ },
+ {
+  "tc": "01:14:59:02",
+  "tl": [
+   22477,
+   22533
+  ],
+  "dur_s": 2.24,
+  "color": "Yellow",
+  "name": "Marker 107",
+  "note": "out of script\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   522,
+   578
+  ],
+  "before": "atık üretimindeki artış hızını yarıya indirmek,",
+  "inside": "sayıyorum bu 1, 2 oldu. Binalardaki",
+  "after": "enerji kullanım yoğunluğunu en az %25'e azaltmak, 4."
+ },
+ {
+  "tc": "01:15:32:22",
+  "tl": [
+   23322,
+   23393
+  ],
+  "dur_s": 2.84,
+  "color": "Yellow",
+  "name": "Marker 108",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   1394,
+   1465
+  ],
+  "before": "karbondioksit azaltımına katkı sağlayabilir.",
+  "inside": "Bunlar gönüllü hedefler, ne ülkenin destek",
+  "after": "vereceği Antalya'da belli olacak."
+ },
+ {
+  "tc": "01:15:40:11",
+  "tl": [
+   23511,
+   23561
+  ],
+  "dur_s": 2.0,
+  "color": "Yellow",
+  "name": "Marker 109",
+  "note": "clip is out of context,. it doesn't connect to the priosr clip nor the next one. therefore, should be removed\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   1761,
+   1811
+  ],
+  "before": "Antalya'da belli olacak.",
+  "inside": "ve COP31",
+  "after": "az önce bahsettim ya rol dağılımına, Avustralya'ya işte müzakereci olacak"
+ },
+ {
+  "tc": "01:15:42:11",
+  "tl": [
+   23561,
+   24031
+  ],
+  "dur_s": 18.8,
+  "color": "Yellow",
+  "name": "Marker 110",
+  "note": "complete bit is a failed section, retake continues with the next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   1914,
+   2433
+  ],
+  "before": "belli olacak. ve COP31",
+  "inside": "az önce bahsettim ya rol dağılımına, Avustralya'ya işte müzakereci olacak vs. Peki Türkiye ve COP31'de bizim yani eş sahibi olarak yapacağımız iş ne? Ve bu stratejik önemi anlatayım size gelin. Bir daha olmadı bu. önce bahsettim ya Avustralya ve Türkiye rol paylaşımı yapmıştı.",
+  "after": "Gelelim Türkiye'ye ve COP31'e. Yani ev sahipliğimize ve bunun stratejik"
+ },
+ {
+  "tc": "01:17:01:19",
+  "tl": [
+   25544,
+   25812
+  ],
+  "dur_s": 10.72,
+  "color": "Yellow",
+  "name": "Marker 111",
+  "note": "taslak metinleri, repeated twice. so this bit is a failed part and the retake continues with the next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   4313,
+   4651
+  ],
+  "before": "Bakanı Murat Kurum. Avustralya Müzakere Başkanı",
+  "inside": "Taslak Metinleri Hazırlama Müzakereleri Yönetme Yetkisi Avustralya İklim Bakanı Chris Bowen'da. Bowen, Bowen bu.",
+  "after": "Taslak metinleri hazırlama ve müzakereleri yönetme yetkisi Avustralya İklim Bakanı"
+ },
+ {
+  "tc": "01:17:28:06",
+  "tl": [
+   26206,
+   26499
+  ],
+  "dur_s": 11.72,
+  "color": "Yellow",
+  "name": "Marker 112",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   5404,
+   5893
+  ],
+  "before": "yapalım demişiz. Biraz zorlama gibi olduğunu düşünüyorum.",
+  "inside": "Zirve Öncesi Bakanlar Toplantısı buna Pre-COP'da deniliyor. 5-8 Ekim 2026'da Fiji'de yapılmıştı. Liderler bölümü Tavulu'da toplandı. Şimdi baştan çekelim.",
+  "after": "COP yapılmadan önce bir de Pre-COP diye bir toplantı yapıldı. 5-8 Ekim 2026'da Fiji'de."
+ },
+ {
+  "tc": "01:17:48:18",
+  "tl": [
+   26718,
+   26773
+  ],
+  "dur_s": 2.2,
+  "color": "Yellow",
+  "name": "Marker 113",
+  "note": "failed bit, retake continues with the next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   6127,
+   6182
+  ],
+  "before": "Liderler bölümü de Tuvalu'da toplandı.",
+  "inside": "Türkiye'nin özel konumu... Türkiye...",
+  "after": "Türkiye'nin gördüğünüz üzere özel bir konumu var. Türkiye 1992'de gelişmiş"
+ },
+ {
+  "tc": "01:19:14:00",
+  "tl": [
+   28850,
+   28934
+  ],
+  "dur_s": 3.36,
+  "color": "Yellow",
+  "name": "Marker 114",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   8939,
+   9023
+  ],
+  "before": "tondan fazla salım yapan büyük tesisleri kapsıyor.",
+  "inside": "Bölgesel yeşil dönüşüm köprüsü olabilir miyiz? Bir",
+  "after": "Peki Türkiye yaptığı bu şeylerle aldığı kararlarla bölgesel yeşil dönüşüm"
+ },
+ {
+  "tc": "01:19:23:17",
+  "tl": [
+   29092,
+   29351
+  ],
+  "dur_s": 10.36,
+  "color": "Yellow",
+  "name": "Marker 115",
+  "note": "speaker adds this bit then says don't include this bit in this part because video got so long\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   9381,
+   9894
+  ],
+  "before": "bölgesel yeşil dönüşüm köprüsü olabilir mi?",
+  "inside": "Yeşil enerji diye bir kavram yoktur. Bu biraz reklam tarafına girer ama burada bunu kullanalım. Pek sevdiğim bir kavram değildir. Yeşil enerji. Neyse buraya ekleme boşver fazla uzatmayalım. Çok uzadı video.",
+  "after": "Türkiye yıllarca Avrupa'ya giden petrol ve doğal gazın geçiş ülkesi olarak görüldü."
+ },
+ {
+  "tc": "01:20:12:23",
+  "tl": [
+   30323,
+   30375
+  ],
+  "dur_s": 2.08,
+  "color": "Yellow",
+  "name": "Marker 116",
+  "note": "failed bit, retake continues with the next part\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   11472,
+   11524
+  ],
+  "before": "Bu AB'nin kendi aldığı bir karar.",
+  "inside": "Ama Türk sanayisi",
+  "after": "için en az kop kadar önemli. Neden mi? Çünkü Türkiye'nin"
+ },
+ {
+  "tc": "01:20:34:12",
+  "tl": [
+   30862,
+   30938
+  ],
+  "dur_s": 3.04,
+  "color": "Yellow",
+  "name": "Marker 117",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   12052,
+   12128
+  ],
+  "before": "üretiminin açığa çıkan karbonu hesaplıyorlar.",
+  "inside": "AB'deki ithalatçı bu",
+  "after": "karbon için AB'nin karbon piyasası fiyatına bağlı sertifika"
+ },
+ {
+  "tc": "01:20:46:06",
+  "tl": [
+   31156,
+   31218
+  ],
+  "dur_s": 2.48,
+  "color": "Yellow",
+  "name": "Marker 118",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011090.MOV",
+  "src": [
+   12363,
+   12425
+  ],
+  "before": "zorunda. Karbon sertifikası dediğimiz şey işte bu.",
+  "inside": "Kesin dönem 1 Ocak",
+  "after": "2026'da başladı. 2026 ithalatı için sertifika"
+ },
+ {
+  "tc": "01:21:19:21",
+  "tl": [
+   31996,
+   32260
+  ],
+  "dur_s": 10.56,
+  "color": "Yellow",
+  "name": "Marker 119",
+  "note": "failed bit, retake continues with next clip",
+  "clip": "P1011090.MOV",
+  "src": [
+   13836,
+   218
+  ],
+  "before": "bu kadar önemli olması nedeni de bu.",
+  "inside": "Para AB kasasına mı gidecek? Türkiye'de dönüşe mi harcanacak? Peki bu para AB'nin kasasına mı gidecek? Türkiye'deki dönüşüme mi harcanacak? Fırsat tarafı da var.",
+  "after": "Bu işin bir de fırsat tarafı var. Sanki hep bize yazacak gibi görünüyor ama öyle değil. Karbonunu"
+ },
+ {
+  "tc": "01:21:46:21",
+  "tl": [
+   32671,
+   32766
+  ],
+  "dur_s": 3.8,
+  "color": "Yellow",
+  "name": "Marker 120",
+  "note": "failed bit, retake continues from the next clip\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   1057,
+   1152
+  ],
+  "before": "Avrupa bazarında pay kazanabilir.",
+  "inside": "Peki zirvenin sanayi, teknoloji ve günlük hayata",
+  "after": "yansımaları neler"
+ },
+ {
+  "tc": "01:22:20:03",
+  "tl": [
+   33503,
+   33602
+  ],
+  "dur_s": 3.96,
+  "color": "Yellow",
+  "name": "Marker 121",
+  "note": "failed bit retake continues with the next clip\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   2757,
+   2856
+  ],
+  "before": "fosil yakıtın yerini alabilecek bir aday.",
+  "inside": "elektrikle suyu ayrıştıran elektrolyzörler",
+  "after": "ve hidrojenin nasıl sertifikalandırılacağı"
+ },
+ {
+  "tc": "01:23:05:22",
+  "tl": [
+   34647,
+   34723
+  ],
+  "dur_s": 3.04,
+  "color": "Yellow",
+  "name": "Marker 122",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   4143,
+   4219
+  ],
+  "before": "ayak izi dijital olarak kayıt altına alınacak.",
+  "inside": "Elektrik şebekesi ve elektrifikasyon ise çok önemli bir",
+  "after": "Bir diğer teknoloji kânsıması da elektrik şebekesi ve elektrifikasyona. COP31'in"
+ },
+ {
+  "tc": "01:23:27:12",
+  "tl": [
+   35187,
+   35219
+  ],
+  "dur_s": 1.28,
+  "color": "Yellow",
+  "name": "Marker 123",
+  "note": "failed bit, retake continues with the next clip. the speaker doesn't say retake or anything just repeasts the same thing by starting differently to the sentence\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   4835,
+   4867
+  ],
+  "before": "talebeyi tahmin eden yapay zeka destekli yazılımlar demek.",
+  "inside": "İleri malzemeler.",
+  "after": "diğer yansıması ise ileri malzemeler konusunda. Çimentada karbonun büyük"
+ },
+ {
+  "tc": "01:23:54:12",
+  "tl": [
+   35862,
+   35916
+  ],
+  "dur_s": 2.16,
+  "color": "Yellow",
+  "name": "Marker 124",
+  "note": "failed bit, retake continues from the next commit\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   6090,
+   6144
+  ],
+  "before": "daha verimli tutucu malzemeler üzerinde çalışılıyor.",
+  "inside": "İş gücü ve enerji faturaları...",
+  "after": "Peki bunun teknolojik yansıması yanı sıra iş gücünde nasıl bir yansıması var? Dersek"
+ },
+ {
+  "tc": "01:24:33:14",
+  "tl": [
+   36839,
+   36879
+  ],
+  "dur_s": 1.6,
+  "color": "Yellow",
+  "name": "Marker 125",
+  "note": "failed bit, retake continues with the next clip\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   7777,
+   7817
+  ],
+  "before": "görecek çalışanları ve bölgeleri korumaya başlıyor.",
+  "inside": "Faturalar tarafında...",
+  "after": "Peki gelelim faturalar tarafına. Tablo iki aşamalı. Kısa vadede şebeke"
+ },
+ {
+  "tc": "01:25:01:10",
+  "tl": [
+   37535,
+   37619
+  ],
+  "dur_s": 3.36,
+  "color": "Yellow",
+  "name": "Marker 126",
+  "note": "failed bit retake contniues with the next clip\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   8894,
+   8978
+  ],
+  "before": "İşte bizim hayatımızdan ne değişiyor? Bunu da düşünürsek",
+  "inside": "çatıdaki santral, çatı güneş panelleri ve ev tipi... Bir",
+  "after": "Örneğin çatımızdaki santraller. Çatı güneş panelleri ve ev tipi bataryalarla"
+ },
+ {
+  "tc": "01:25:27:13",
+  "tl": [
+   38188,
+   38371
+  ],
+  "dur_s": 7.32,
+  "color": "Yellow",
+  "name": "Marker 127",
+  "note": "failed bit, retake continues with next clip\n",
+  "clip": "P1011091.MOV",
+  "src": [
+   9720,
+   9912
+  ],
+  "before": "Tabi ki bu her ülkede oluyor değil. Bazı ülkelerde oluyor ama.",
+  "inside": "Elektrikli araçlara gelirsek Türkiye'de 2025'de satılan her yüz otomobilden yaklaşık 17'si elektrikliydi. Henüz rakamlar",
+  "after": "araçlara gelirsek Türkiye'de 2025 yılında satılan her 100 otomobilden yaklaşık"
+ },
+ {
+  "tc": "01:26:02:17",
+  "tl": [
+   39067,
+   39128
+  ],
+  "dur_s": 2.44,
+  "color": "Yellow",
+  "name": "Marker 128",
+  "note": "failed bit, retake contnieus from the next clip\n",
+  "clip": "P1011094.MOV",
+  "src": [
+   956,
+   1233
+  ],
+  "before": "yazabilirler ama şu an zorun değil ileride olacak.",
+  "inside": "Pasaportlarda mesela Örneğin batarya",
+  "after": "pasaportu gibi ürün bazı kurallarla bu bilgi giderek daha görünür"
+ },
+ {
+  "tc": "01:26:53:08",
+  "tl": [
+   40333,
+   40534
+  ],
+  "dur_s": 8.04,
+  "color": "Yellow",
+  "name": "Marker 129",
+  "note": "failed bit, retake contiues from the next clip\n",
+  "clip": "P1011094.MOV",
+  "src": [
+   3515,
+   3804
+  ],
+  "before": "2,5 santigrat dereceymiş durumda.",
+  "inside": "Yetmez ama boşuna da değil. yapalım. Yetmez ama evet demiyoruz. Asla onlardan durumu yapma. Burası çok politik oldu.",
+  "after": "Yetmez ama boşuna da değil. Her onda bir derece daha az sel, daha"
+ }
+]

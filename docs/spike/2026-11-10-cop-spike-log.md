@@ -446,3 +446,235 @@ Timings (CPU, no NVIDIA GPU): WAVs 373: 140 s, 374: 120 s, 375: 140 s, 376: 135 
 - **255 pieces, all durations match the plans frame for frame; 42785 f = 28:31:10** (source 64728 f = 43:09:03 → 34% removed).
 - V1 video; A1 camera scratch (stereo, disabled); A2 recorder WAV (mono).
 - **93 markers**: Blue = clip boundary (with source → cut frame counts), Red = "bir daha" retake, Yellow = repeated phrase, Purple = orphan, Cyan = cut found only by the second transcript, **Pink = long retake kept, needs a decision**.
+
+---
+
+# Part 7 — Episode review: the reviewer's failed-bit markers
+
+## 32. Reading ranged review markers (`21_read_episode_markers.py`)
+
+The reviewer watched `COP31 episode rough v1` and approved the cuts (natural, no clipped words). They left **36 yellow
+markers, most of them ranged**: the marker's range covers a *failed bit*, and the good take starts right where the
+range ends. Notes are in the marker text. `21_read_episode_markers.py` maps each marker (start and end) back through the
+episode's pieces to clip + source frames, prints the kept words before, inside and after the range, and writes
+`out/episode/review-markers.json`.
+
+Convention to keep: **ranged marker = remove this range; the retake starts at the marker end.**
+
+## 33. What the 36 markers are
+
+Cross-checked against the engine's own cuts near each marker (±2 s):
+
+| Class | # | What happened | Signal available |
+|---|---|---|---|
+| A. Cue found, wrong extent | 18 | Engine cut the "bir daha" cue but not (all of) the failed attempt. Typical: the cue is its own sentence, so the "sentence start" fallback picks the cue itself; leftovers "Bir" / "yapalım" (from "bir daha yapalım"); nested attempts (a failed retake of a retake); 3 of these are the pink long-retake flags, which the reviewer confirmed as failed. | Strong: cue + script position of the retake |
+| B. Verbatim script read, then rephrased | 7 | Host reads a heading or a line's bold lead-in from the prompter ("3.3", "Türkiye'nin özel konumu…", "İş gücü ve enerji faturaları…", "İleri malzemeler."), stops, then says it conversationally. No cue word. | Strong: the attempt matches script text verbatim; the next span maps to the same script position |
+| C. Silent restart | 7 | Mid-sentence stumble, restart with no cue ("…ne ülkenin destek / …vereceği", "Kesin dönem 1 Ocak"). Whisper often *collapses* the repeat, so the words aren't even in the transcript twice. | Weak: a pause inside a sentence + repeated audio; needs re-transcribing the short island or acoustic matching |
+| D. Editorial | 3 | Off-script ad-lib ("sayıyorum bu 1, 2 oldu"), out-of-context fragment ("ve COP31"), an aside the host himself retracts ("Neyse… boşver, uzatmayalım"). | Script alignment can *flag*, never decide |
+| E. Padding | 1 | Head of "COP31" clipped after a repeat cut. | Planner padding |
+
+New cue words heard: "tekrar", "dur/durun", "baştan (çekelim)", "olmadı", "pardon", "bir daha yapalım".
+
+## 34. Looking at every marker in both transcripts (`22_marker_context.py`)
+
+Prints each marker's range in context, for the recorder (WAV) and camera (CAM) transcripts, with the
+words the plan removes (`~`) and audio pauses (`|frames`). Caches per-clip audio features as
+`out/episode/<clip>-frames.npz`. Findings that shaped v5:
+
+- **Chains.** A retake is often attempt 1 / cue / attempt 2 / cue / final take. v4 compared each cue with
+  the very next words, i.e. with another failed attempt.
+- **Cue as its own sentence.** "…olabilir miyiz? Bir daha." v4's "sentence start" fallback then *is*
+  the cue, so only "Bir daha." was cut and the failed sentence stayed (markers 114, 119, 124…).
+- **Stop-word matches.** v4 matched the restart word "Bir" against "önemli bir" (marker 122).
+- **More cue words**: "Tekrar.", "Dur/Durun.", "Şimdi baştan çekelim.", "Bir daha olmadı bu.", "pardon",
+  meta sentences "Bol yapmayalım burayı", "Bunu biraz daha güzel yapalım", and a discard cue
+  "Neyse buraya ekleme boşver, fazla uzatmayalım. Çok uzadı video." (drop the whole digression).
+- **Trailing "..."**: Whisper marks abandoned speech with an ellipsis ("Türkiye'nin özel konumu…",
+  "Faturalar tarafında…"); the next words repeat it.
+- **Silent restarts are swallowed by the ASR**: in all 7 "C" markers the word right after the failed
+  bit is stretched over the whole retake: "1,5" = 157 f with 68 active frames per letter, "enerji"
+  242 f / 29, "vereceği" 136 f / 11, "yansımaları" 202 f / 15 — against p50 1.6, p99 8.2 over all words.
+  The repeat isn't in the text at all, so it can only be *suggested* (the range is a guess).
+- **Retakes across a clip cut**: 089 ends with an attempt re-said at the start of 090; 090 ends with
+  "…Bir daha." and the restart is the first sentence of 091.
+
+## 35. Planner v5 (`23_cutplan_v5.py`) + episode driver (`24_plan_episode.py`)
+
+Audio side unchanged from v4 (islands, ownership, breath trim, padding, end hold). New retake engine
+(the full rules are in the script's docstring):
+
+1. **Units**: words grouped by sentence punctuation and audio pauses ≥ 12 f (≥ 6 f for a transcript
+   without punctuation); a "bir daha" splits its unit.
+2. **Cue clusters**: consecutive cue units. Strong = "bir daha" or discard words (always cut);
+   weak = "Tekrar./Dur./Durun./pardon/olmadı/baştan" or a short meta sentence ("…yapalım", ≤ 5 words,
+   ≤ 2 content words): cut only with evidence (the previous unit overlaps the restart), else suggested.
+3. **Processed right to left**, so when an earlier cue is handled the later failed attempts are
+   already gone and its restart text is the *final* take. Discard clusters go last.
+4. **Attempt start**: the unit right before the cue is always part of the attempt; earlier units are
+   added while their content overlaps the restart (IDF-weighted 5-letter stems, numbers by digits:
+   "2015'te" = "2015"; ≥ 0.5, or ≥ 0.35 with 2+ shared stems), at most 30 s back, never past the
+   previous cue. Then the start moves forward to the earliest of those units that overlaps the
+   restart's *first* 6 stems (≥ 0.4) or begins with the restart's first word — the restart re-says the
+   attempt from its beginning. Inside a unit, the restart's first content word marks the start unless
+   the words before it are stop words, a heading number ("3.3"), or also re-said.
+5. **Abandoned** "…" units whose content the next words repeat; **heading numbers** read alone
+   ("3.3"); **cross-clip**: the clip's tail re-said at the head of the next clip (`--next`).
+6. **Repeated 3-word phrase** (v4 R2b) now also across removed cue words and up to 20 s, but only
+   when both occurrences start a unit (a restart, not an addition mid-sentence).
+7. **Second transcript** only adds cuts the primary didn't make (an unpunctuated transcript's 6 s
+   attempt guess must not widen a punctuated primary's cut).
+8. **Orphans** (≤ 3 words, < 2.5 s, cut on both sides) after all cuts are merged.
+9. **Whisper stock phrases** dropped even over a cough ("İzlediğiniz için teşekkür ederim").
+10. **Mixed-island split** favours the kept word among frames within 2 dB of the quietest (marker
+    100: the onset of "COP31" was clipped by a split 3 frames too late).
+11. **Suggestions** (not removed): swallowed retakes (kept word > 1.6 s with > 8 active frames per
+    letter → range from the unit start to the first silence inside the word), weak cues without
+    evidence, long retakes (> 30 s).
+12. `--edits <clip>-edits.json`: the editor's remove ranges in source frames (exact, not snapped).
+
+`24_plan_episode.py 23_cutplan_v5.py episode-v2` plans all six clips into `out/episode-v2/` with
+`--second` and `--next`. **Clip 087 comes out frame-identical to the approved plan.**
+
+## 36. Scoring against the reviewer (`25_eval_markers.py`)
+
+Maps every marker range through the v1 pieces to source frames and reports, per marker, how much the
+new plan removes or suggests; plus *extra removals* (kept in v1, removed now, outside all markers)
+and *restored* spans (removed in v1, kept now). Iterations (all frames of the 34 ranged markers):
+
+| step | removed | suggested | extra removals |
+|---|---|---|---|
+| first v5 | 47% | 6% | 104 s (094 camera transcript has no punctuation → 30 s "sentences") |
+| + punctuation-aware units, absorb fix, meta-verb limit | 57% | 5% | 38 s |
+| + right-to-left, 6 s cap from the attempt end | 67% | 8% | 37 s |
+| + restart-beginning check, cue words skipped as restart word | 67% | 8% | 28 s |
+| + second transcript only where primary cut nothing, unit-start restart match | 68% | 8% | 16.5 s |
+
+By marker (36): **20 fully removed, 5 partly, 8 suggested, 3 missed.**
+
+| Class | n | result |
+|---|---|---|
+| A cue found, wrong extent | 18 | 11 full; 5 partly (a second failed attempt with no cue after it: 110, 112, 119, 128, 129); 2 missed (99: host *added* to the previous take, the reviewer kept the first; 103: "Bunu anlamadım ya" meta remark) |
+| B verbatim script read, rephrased | 7 | 6 full, 1 suggested (120, swallowed) |
+| C silent restart | 7 | all 7 suggested (Fuchsia ranged markers); 1 more suggestion elsewhere (8/9 precision) |
+| D editorial | 3 | 2 removed (fragment "ve COP31", the "boşver" digression), 1 left (off-script ad-lib, editor's call) |
+| E padding | 1 | fixed |
+
+Remaining extra removals (16.5 s) are all explainable: "Dönüm noktası olan zirveler ise aşağıda…"
+and "2022 COP nerede yapılmış?" (abandoned before a "Bir daha", the reviewer had kept them), a
+duplicated "İkincisi ise Türkiye'nin yönettiği eylem gündemi…" (v1 kept both takes), "yapalım"
+(= marker 94), and one wrong cut: the label "Avustralya Müzakere Başkanı" before a re-read sentence
+(word timings are back-to-back there, no pause to split on).
+
+## 37. Chapters (`26_sections.py`) and timeline v2 (`27_build_episode_v2.py`)
+
+`26_sections.py` assigns every kept piece to a script heading: kept words → 3-gram votes for the
+heading they land in; a dynamic programme picks the non-decreasing heading sequence with the fewest
+disagreeing votes (152 of 215 pieces vote; 1129/1198 votes agree); a boundary that could sit anywhere
+in a run of vote-less pieces moves to the first piece opening with a transition word ("Gelelim
+Türkiye'ye…", "Peki zirvenin…", "Peki gelelim nihai soruya"). Output `out/episode-v2/sections.json`.
+
+**`COP31 episode rough v2`**: 215 pieces, durations match plans, **38960 f = 25:58** (v1 28:31).
+Clip colour per chapter (Orange, Lime, Teal, Violet, Pink, Navy) on video and audio items.
+Chapters start at 0:00, 3:34, 8:01, 14:28, 19:32, 23:38.
+
+Marker legend (Yellow is now reserved for the editor):
+Blue clip · Green chapter · Sky subsection · Red cue retake · Rose repeated phrase · Purple other
+removal · Cyan second-transcript-only · **Fuchsia (ranged) suggested failed bit, not removed** ·
+**Pink (ranged) long retake, not removed** · **Yellow (ranged) = editor: remove this range**
+(recolour a Fuchsia/Pink marker to Yellow to accept it).
+
+## 38. Chapter timelines, the A-roll master, and the review loop (`28_chapters.py`, `29_markers_to_edits.py`)
+
+Decision (with the reviewer): **one timeline per chapter**, regenerated from the plans while the chapter
+is being rough-cut; once a chapter is signed off it is **frozen** and becomes the editor's (hand edits,
+later B-roll). The full A-roll is assembled from the chapters.
+
+- Manifest `out/episode-v2/episode.json`: timeline prefix, clips in order (bin + plan), `frozen` chapters.
+- `28_chapters.py chapters [N…]` rebuilds `COP31 ch1 Açılış` … `COP31 ch6 COP31 dünyayı değiştirebilir mi`
+  in bin `COP31 chapters`, skipping frozen ones. Each gets the same markers/colours as the full timeline,
+  restricted to its pieces. Result: 3:34 / 4:27 / 6:27 / 5:04 / 4:05 / 2:20 — **sum 38960 f, identical
+  to the flat v2 timeline**; durations match the plans in every chapter.
+- `28_chapters.py master` rebuilds `COP31 A-roll`: a frozen chapter goes in as its **nested chapter
+  timeline**, every other chapter as flat pieces from the plans. Tested with ch1 frozen: V1[0] = the
+  nested `COP31 ch1 Açılış` (5352 f), flat pieces from 95352 on, total 38960 f. Because the nested
+  chapter's audio lands on A1 (the stereo track), the camera-scratch audio is muted per *item*
+  (`SetClipEnabled(False)` on flat scratch items) instead of disabling the track.
+- `28_chapters.py freeze N` / `unfreeze N` edit the manifest.
+- Every timeline built this way writes a map `out/episode-v2/timelines/<name>.json` (timeline frame →
+  clip + source range per flat piece; nested chapters listed separately).
+- `29_markers_to_edits.py <timeline> <plandir> [Yellow] [--dry]` reads the editor's **ranged** Yellow
+  markers, maps them to source ranges per clip and merges them into `<plandir>/edits/<clip>-edits.json`;
+  the planner applies them with `--edits` (exact frames). Point markers and ranges on a frozen chapter are
+  only reported. Dry run on the reviewer's v1 markers (map rebuilt from the v1 plans): all 34 ranges
+  mapped to 67 per-piece source ranges in 5 clips; the 6 point markers were reported.
+
+Review loop for a chapter: mark failed bits as Yellow ranges in `COP31 chN …` →
+`29_markers_to_edits.py` → `24_plan_episode.py 23_cutplan_v5.py episode-v2` → `26_sections.py` →
+`28_chapters.py chapters N` → `28_chapters.py master`.
+
+Gotchas:
+- **Resolve refuses some characters in timeline names** (`§`, `:`, `?`): `CreateEmptyTimeline` returns
+  None. Worse, the script carried on and `AppendToTimeline` appended the chapter to the *current*
+  timeline (`COP31 episode rough v2` grew by 5352 f; rebuilt). Both builders now assert the new
+  timeline exists, and chapter names keep only letters, digits, spaces and `,'-`.
+- Timelines are media pool items (`GetClipProperty("Type") == "Timeline"`), so a timeline can be appended
+  to another with `AppendToTimeline([{"mediaPoolItem": timeline_item}])`: that's the nesting.
+
+## 39. Applying the reviewer's v1 markers as edits (2026-11-11)
+
+`29_markers_to_edits.py "COP31 episode rough v1" out/episode-v2 Yellow` (map for v1 rebuilt from the v1
+plans) → 67 source ranges in `out/episode-v2/edits/` (088: 21, 089: 9, 090: 21, 091: 11, 094: 5); the
+6 point markers were reported, not applied (2 of them are v1's own Yellow repeat markers — why
+Yellow is now reserved). Engine-only plans kept for comparison in `out/episode-v2-engine/`.
+Re-plan → **100% of the marked frames removed**, 087 still identical. Fixes this needed in v5:
+
+- **Editor range vs swallowed word.** "1,5" (157 f, holding the final take) started inside marker 95;
+  marking the word removed dropped its audio islands → 3 s of the good take gone. Editor ranges now
+  only mark words ≥ 90% inside them (the audio is cut exactly by the range anyway).
+- **Dangling phrase starts.** 1–2 kept words opening a phrase and running into a cut ("…yarıya
+  indirmek, sırayla | <ad-lib>", "…çekildi. Ama | şu rakama…") are removed, but only when the cut is
+  the editor's or the second transcript's, or when the restart opens with the same word. NOT before
+  an ordinary retake: "Şimdi gelelim | <attempt> | COP31 bu zincirin neresinde?" must stay.
+- **Late split cap.** A mixed-island split favouring a preceding kept word may go at most 3 f past
+  that word's end (the removed word's ASR start can be 7+ f late).
+- **Suggestions overlapping an editor range are dropped** (the editor already decided).
+- **Chapter boundary by heading words.** Chapter 5's spoken heading survives only inside the
+  swallowed word "yansımaları" ("…yansımaları neler olabilir?"); a boundary may now also snap to a
+  piece with a word (≥ 6 letters) of the new heading's title among its first five words.
+
+Chapters rebuilt: 3:34 / 4:11 / 6:08 / 4:46 / 3:56 / 2:14; `COP31 A-roll` **37287 f = 24:51**
+(engine-only v2 25:58, v1 28:31, source 43:09). One suggestion left (094 "Örneğin ürün", Fuchsia).
+Remaining extra removals vs v1 (16.8 s) are the ones listed in §36.
+
+## 40. Packaged as a project skill (`.claude/skills/rough-cutting-a-roll/`)
+
+The A-roll rough cutter is shipped as a Claude Code project skill: `SKILL.md` (pipeline, review loop,
+marker legend, common mistakes), `reference.md` (planner rules, plan format, limits, API gotchas),
+`requirements.txt` and `scripts/`. The spike's hard-coded paths, clip names and bins are replaced by
+one manifest per episode: `episodes/<slug>/episode.json` (`scripts/episode.py`), with transcripts,
+plans, `sections.json`, edits and timeline maps under the same directory (`/episodes/` is gitignored).
+
+| skill tool | from spike |
+|---|---|
+| `rv.sh` (Linux + macOS paths, `PYTHONIOENCODING`) | `rv.sh` |
+| `resolve_setup.py` (fps, Turkish transcription package, language) | `03_set_fps.py`, `06_install_turkish.py` |
+| `ingest.py` (manifest-driven, offsets back into the manifest) | `16_ingest.py` |
+| `sync_check.py` | `17_xcorr_sync.py` |
+| `transcribe.py` (WAV + camera per clip) | `18_transcribe_batch.py` |
+| `docx_to_text.py` | `10_docx_to_text.py` |
+| `cutplan.py` | `23_cutplan_v5.py` |
+| `plan_episode.py` | `24_plan_episode.py` |
+| `sections.py` (heading levels / stop words configurable) | `26_sections.py` |
+| `chapters.py` | `28_chapters.py` |
+| `markers_to_edits.py` | `29_markers_to_edits.py` |
+
+Verification (2026-11-11):
+- `episodes/cop31/` manifest rebuilt from the spike data (offsets locked to the ones used, 093 as
+  `skip`): `plan_episode.py` reproduces all six plans **identically** (keep_frames, suggestions,
+  removals) and `sections.py` reproduces `sections.json` identically.
+- `resolve_setup.py`, `chapters.py chapters` / `master` and `markers_to_edits.py --dry` against the
+  live project: same chapter lengths, piece and marker counts, A-roll 37287 f.
+- `ingest.py` on two clips into a scratch bin `skilltest`: offsets +5.75 / +5.25 f, equal to the spike;
+  `sync_check.py` gives +5.64 / +5.12 f (confidence 6.6 / 7.3).
+- `transcribe.py` on the same two clips (4 Resolve jobs, 376 s in total): all four transcripts are
+  word-for-word identical to the spike's. The scratch bin and `episodes/skilltest/` were deleted afterwards.

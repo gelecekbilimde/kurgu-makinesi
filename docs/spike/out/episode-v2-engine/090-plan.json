@@ -1,0 +1,688 @@
+{
+ "version": 5,
+ "review_flags": [],
+ "suggestions": [
+  {
+   "kind": "swallowed-retake",
+   "start_f": 1395,
+   "end_f": 1480,
+   "source": "primary",
+   "how": "'vereceği' is 5.4s with 11 active f/letter: a restart was probably merged into it",
+   "text": "Bunlar gönüllü hedefler, ne ülkenin destek vereceği"
+  },
+  {
+   "kind": "swallowed-retake",
+   "start_f": 11483,
+   "end_f": 11510,
+   "source": "primary",
+   "how": "'için' is 2.3s with 10 active f/letter: a restart was probably merged into it",
+   "text": "Ama Türk sanayisi için"
+  },
+  {
+   "kind": "swallowed-retake",
+   "start_f": 12059,
+   "end_f": 12100,
+   "source": "primary",
+   "how": "'karbon' is 3.8s with 12 active f/letter: a restart was probably merged into it",
+   "text": "AB'deki ithalatçı bu karbon"
+  },
+  {
+   "kind": "swallowed-retake",
+   "start_f": 12363,
+   "end_f": 12393,
+   "source": "primary",
+   "how": "'2026'da' is 4.0s with 13 active f/letter: a restart was probably merged into it",
+   "text": "Kesin dönem 1 Ocak 2026'da"
+  }
+ ],
+ "long_words": [
+  {
+   "start_f": 1459,
+   "end_f": 1595,
+   "text": "vereceği"
+  },
+  {
+   "start_f": 1629,
+   "end_f": 1777,
+   "text": "Türkiye"
+  },
+  {
+   "start_f": 1798,
+   "end_f": 1919,
+   "text": "Şimdi"
+  },
+  {
+   "start_f": 2303,
+   "end_f": 2345,
+   "text": "Az"
+  },
+  {
+   "start_f": 2902,
+   "end_f": 3006,
+   "text": "Birleşmiş"
+  },
+  {
+   "start_f": 4354,
+   "end_f": 4490,
+   "text": "ve"
+  },
+  {
+   "start_f": 5363,
+   "end_f": 5417,
+   "text": "Pasifik"
+  },
+  {
+   "start_f": 6682,
+   "end_f": 6854,
+   "text": "2001'de"
+  },
+  {
+   "start_f": 7853,
+   "end_f": 7945,
+   "text": "Eleştirmenler"
+  },
+  {
+   "start_f": 10178,
+   "end_f": 10244,
+   "text": "Hızla"
+  },
+  {
+   "start_f": 10654,
+   "end_f": 10697,
+   "text": "Avrupa,"
+  },
+  {
+   "start_f": 11510,
+   "end_f": 11568,
+   "text": "için"
+  },
+  {
+   "start_f": 11754,
+   "end_f": 11804,
+   "text": "SKBM"
+  },
+  {
+   "start_f": 12100,
+   "end_f": 12196,
+   "text": "karbon"
+  },
+  {
+   "start_f": 12393,
+   "end_f": 12492,
+   "text": "2026'da"
+  },
+  {
+   "start_f": 13103,
+   "end_f": 13156,
+   "text": "Faturayı"
+  },
+  {
+   "start_f": 13622,
+   "end_f": 13665,
+   "text": "TR-ETS"
+  }
+ ],
+ "hallucinated": "",
+ "second_transcript": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode/P1011090-tr.json",
+ "next_transcript": "/home/ssoysal/Projects/gelecek-bilimde/kurgu/docs/spike/out/episode/376-Track2-tr.json",
+ "edits": null,
+ "units": "frames",
+ "range": "half-open [start,end)",
+ "clip": "P1011090.MOV",
+ "fps": 25,
+ "offset_f": -33,
+ "clip_end_f": 14040,
+ "keep_frames": [
+  [
+   272,
+   418
+  ],
+  [
+   434,
+   512
+  ],
+  [
+   522,
+   814
+  ],
+  [
+   827,
+   927
+  ],
+  [
+   941,
+   1465
+  ],
+  [
+   1516,
+   1634
+  ],
+  [
+   2329,
+   2433
+  ],
+  [
+   2442,
+   2506
+  ],
+  [
+   2611,
+   2696
+  ],
+  [
+   2793,
+   2906
+  ],
+  [
+   2987,
+   3370
+  ],
+  [
+   3382,
+   3488
+  ],
+  [
+   3495,
+   3913
+  ],
+  [
+   3929,
+   4014
+  ],
+  [
+   4021,
+   4125
+  ],
+  [
+   4148,
+   4254
+  ],
+  [
+   4705,
+   4859
+  ],
+  [
+   4956,
+   5196
+  ],
+  [
+   5404,
+   5518
+  ],
+  [
+   5900,
+   6033
+  ],
+  [
+   6041,
+   6120
+  ],
+  [
+   6308,
+   6379
+  ],
+  [
+   6590,
+   6687
+  ],
+  [
+   6834,
+   6971
+  ],
+  [
+   6983,
+   7127
+  ],
+  [
+   7138,
+   7295
+  ],
+  [
+   7306,
+   7660
+  ],
+  [
+   7721,
+   7857
+  ],
+  [
+   7925,
+   8603
+  ],
+  [
+   8613,
+   8749
+  ],
+  [
+   8759,
+   8926
+  ],
+  [
+   9086,
+   9243
+  ],
+  [
+   9926,
+   10048
+  ],
+  [
+   10236,
+   10529
+  ],
+  [
+   10877,
+   11036
+  ],
+  [
+   11057,
+   11232
+  ],
+  [
+   11240,
+   11395
+  ],
+  [
+   11404,
+   11524
+  ],
+  [
+   11538,
+   11760
+  ],
+  [
+   11776,
+   12041
+  ],
+  [
+   12052,
+   12128
+  ],
+  [
+   12145,
+   12425
+  ],
+  [
+   12442,
+   12641
+  ],
+  [
+   12823,
+   12971
+  ],
+  [
+   13145,
+   13304
+  ],
+  [
+   13459,
+   13627
+  ],
+  [
+   13732,
+   13843
+  ]
+ ],
+ "removed": [
+  {
+   "kind": "retake-marker",
+   "start_f": 48,
+   "end_f": 219,
+   "how": "previous unit [bir daha pardon.]",
+   "source": "primary",
+   "text": "Nihai enerji tüketiminde elektriğin payını %35'e çıkarmak, 2035'e kadar ise, bir daha pardon."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 1629,
+   "end_f": 2303,
+   "how": "content overlap with restart [Bir daha olmadı bu.]",
+   "source": "primary",
+   "text": "Türkiye ve COP31 Şimdi az önce bahsettim ya rol dağılımına, Avustralya'ya işte müzakereci olacak vs. Peki Türkiye ve COP31'de bizim yani eş sahibi olarak yapacağımız iş ne? Ve bu stratejik önemi anlatayım size gelin. Bir daha olmadı bu."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2510,
+   "end_f": 2580,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Yani ev sahipliği ve stratejik önemi olanı bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 2750,
+   "end_f": 2782,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Şimdi peki bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 4267,
+   "end_f": 4697,
+   "how": "content overlap with restart [Bir daha.]",
+   "source": "primary",
+   "text": "Avustralya Müzakere Başkanı Taslak Metinleri Hazırlama ve Müzakereleri Yönetme Yetkisi Avustralya İklim Bakanı Chris Bowen'da. Bowen, Bowen bu. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5216,
+   "end_f": 5363,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Pasifik Zirve Öncesi Bakanlar Toplantısı Pre-COP dediğimiz toplantıda 5 ila bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5513,
+   "end_f": 5721,
+   "how": "content overlap with restart [Bir daha.]",
+   "source": "primary",
+   "text": "5-8 Ekim 2026'da Fiji'de yapılmıştı. Liderler bölümü Tavulu'da toplandı. Türkiye'nin özel konumu Türk... Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 5841,
+   "end_f": 5888,
+   "how": "previous unit [bir daha. Şimdi baştan çekelim.]",
+   "source": "primary",
+   "text": "Bu bir daha. Şimdi baştan çekelim."
+  },
+  {
+   "kind": "abandoned",
+   "start_f": 6130,
+   "end_f": 6176,
+   "how": "trails off '...', next words repeat it",
+   "source": "second",
+   "text": "Türkiye'nin özel konumu, Türkiye..."
+  },
+  {
+   "kind": "abandoned",
+   "start_f": 6171,
+   "end_f": 6176,
+   "how": "trails off '...', next words repeat it",
+   "source": "primary",
+   "text": "Türkiye..."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 6384,
+   "end_f": 6567,
+   "how": "unit starts like the restart ('Türkiye') [bir daha.]",
+   "source": "primary",
+   "text": "Türkiye İklim Sözleşmesi'nde ilginç bir yerde duruyor. 1992'de gelişmiş ülkeler listesine yazılmış bulun bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 8942,
+   "end_f": 9032,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Bölgesel yeşil dönüşüm köprüsü olabilir miyiz? Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9259,
+   "end_f": 9353,
+   "how": "content overlap with restart [bir daha.]",
+   "source": "primary",
+   "text": "Yeşil enerji kavramını çok sevmem. Fazla marketing bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 9382,
+   "end_f": 9887,
+   "how": "discard: back to previous cut [bir daha. Neyse buraya ekleme boşver fazla uzatmayalım. Çok uzadı video.]",
+   "source": "primary",
+   "text": "Yeşil enerji diye bir kavram yoktur. Bu biraz reklam tarafına girer ama burada bunu kullanalım. Pek sevdiğim bir kavram değildir. Yeşil enerji. Ama yeşil dönüşüm dediğimiz şey karbondioksitten karbon emisyonundan arındırılmış enerji üretimini ve bir daha. Neyse buraya ekleme boşver fazla uzatmayalım. Çok uzadı video."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 10053,
+   "end_f": 10178,
+   "how": "previous unit [Bir daha.]",
+   "source": "primary",
+   "text": "Hızla artan rüzgar ve güneş kapasitesiyle şimdi hedef temiz elektrik. Bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 10541,
+   "end_f": 10573,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Avrupa ve Doğu Orta bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 10598,
+   "end_f": 10654,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Avrupa, Orta Doğu ve Afrika bir daha."
+  },
+  {
+   "kind": "retake-repeat",
+   "start_f": 10654,
+   "end_f": 10796,
+   "how": "phrase 'Avrupa, Orta Doğu,' repeated",
+   "source": "primary",
+   "text": "Avrupa, Orta Doğu, Afrika ve Asya'nın aynı masaya oturduğu Antalya."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12657,
+   "end_f": 12685,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Yılda %50 bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12719,
+   "end_f": 12809,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Yılda 50 tonun altında ithalat yapanlar bu şeyden bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 12967,
+   "end_f": 13103,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Faturayı ithalatçı ödüyor ama maliyet doğal olarak Türk ihracatçı bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 13317,
+   "end_f": 13420,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "Ürün üretildiği ülkede zaten bir karbon fiyatı ödediyse bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 13622,
+   "end_f": 13680,
+   "how": "previous unit [bir daha.]",
+   "source": "primary",
+   "text": "TR-ETS bir daha."
+  },
+  {
+   "kind": "retake-marker",
+   "start_f": 13839,
+   "end_f": 13975,
+   "how": "content overlap with restart [Bir daha.]",
+   "source": "primary",
+   "text": "Para AB kasasına mı gidecek? Türkiye'de dönüşe mi harcanacak? Bir daha."
+  }
+ ],
+ "noise_islands": [
+  [
+   0,
+   5
+  ],
+  [
+   226,
+   227
+  ],
+  [
+   233,
+   236
+  ],
+  [
+   248,
+   249
+  ],
+  [
+   1480,
+   1493
+  ],
+  [
+   1669,
+   1671
+  ],
+  [
+   1683,
+   1688
+  ],
+  [
+   1696,
+   1700
+  ],
+  [
+   1745,
+   1748
+  ],
+  [
+   1817,
+   1819
+  ],
+  [
+   2698,
+   2700
+  ],
+  [
+   4654,
+   4658
+  ],
+  [
+   4886,
+   4888
+  ],
+  [
+   4941,
+   4942
+  ],
+  [
+   5732,
+   5740
+  ],
+  [
+   6205,
+   6206
+  ],
+  [
+   6698,
+   6795
+  ],
+  [
+   7691,
+   7693
+  ],
+  [
+   10198,
+   10200
+  ],
+  [
+   10209,
+   10211
+  ],
+  [
+   10579,
+   10580
+  ],
+  [
+   10818,
+   10824
+  ],
+  [
+   10832,
+   10836
+  ],
+  [
+   10844,
+   10846
+  ],
+  [
+   13113,
+   13116
+  ],
+  [
+   13123,
+   13126
+  ],
+  [
+   13701,
+   13704
+  ],
+  [
+   13947,
+   13949
+  ],
+  [
+   13981,
+   13983
+  ],
+  [
+   13995,
+   14002
+  ],
+  [
+   14005,
+   14008
+  ]
+ ],
+ "tail_trim_frames": 13,
+ "head_trim_frames": 15,
+ "dropped_outside_clip": "",
+ "kept_text": "2035 yılına kadar nihai enerji tüketiminde elektriğin payını %35'e çıkarmak, atık üretimindeki artış hızını yarıya indirmek, sırayla sayıyorum bu 1, 2 oldu. Binalardaki enerji kullanım yoğunluğunu en az %25'e azaltmak, 4. Sanayide döngüsel malzeme kullanım oranını en az %15'e çıkarmak, 2030'a kadar iklim değişikliğini eğitim müfedatlarına almak, iklim uygulama köprüsü ile ülkelerin hedeflerini yatırım yapılabilir projelere dönüştürmek, başkanlık bunun yeni bir fon olmadığını vurguluyor özellikle. Başkanlığın hesabına göre bu hedefler 2035'e kadar 8,5 ile 10 milyar ton karbondioksit azaltımına katkı sağlayabilir. Bunlar gönüllü hedefler, ne ülkenin destek vereceği Antalya'da belli olacak. Az önce bahsettim ya Avustralya ve Türkiye rol paylaşımı yapmıştı. Gelelim Türkiye'ye ve COP31'e. Yani ev sahipliğimize ve bunun stratejik önemine. Şimdi bizim rolümüz tam olarak ne burada? Bir diplomasi düğümü nasıl çözüldü? Birleşmiş Milletler'de COP'lara bölgeler sırayla ev sahipliği yapıyor. 2026'da sıra Türkiye ve Avustralya'nın da içinde olduğu 28 ülkelik Batı Avrupa ve diğerleri grubundaydı. İki ülkede 2022'de aday oldu. Avustralya Pasifik ada ülkeleriyle birlikte bir Pasifik COP'u istiyordu. Yaklaşık 3 yıl süren tıkanıklıkla işin ucu ilginç bir yere varmıştı. Çünkü ben de başta çok düşündüm. Avustralya nereye, Türkiye nereye diye. İşin ucu uzlaşma çıkmazsa zirve Birleşmiş Milletler İklim Sekreterliği'nin bulunduğu Almanya'nın Bonkent'ine çıkacaktı. Yani kalacaktı. Çözüm ise Kasım 2025'de Belen'den gelmiş oldu. Türkiye ev sahibi olacak ve COP31 başkanı olacaktı. Başkan, Çevre, Şehircilik ve İklim Değişikliği Bakanı Murat Kurum. Taslak metinleri hazırlama ve müzakereleri yönetme yetkisi Avustralya İklim Bakanı Chris Bowen'da. Yani anlayacağınız üzere onlar istemiş, biz istemişiz. Almanya olmasın derken tamam abi biz bunu birlikte yapalım demişiz. Biraz zorlama gibi olduğunu düşünüyorum. Pasifik Zirve Öncesi Bakanlar Toplantısı buna Pre-COP'da deniliyor. COP yapılmadan önce bir de Pre-COP diye bir toplantı yapıldı. 5-8 Ekim 2026'da Fiji'de. Burada Liderler bölümü de Tuvalu'da toplandı. Türkiye'nin gördüğünüz üzere özel bir konumu var. Türkiye 1992'de gelişmiş ülkeler listesine yazıldı. 2001'de de gelişmekte olan ülkelere para vermekle yükümlü ülkeler listesinden çıkarıldı. Bu ara konum yüzünden Türkiye, Yeşil İklim Fonu gibi kaynaklardan doğrudan yararlanamıyor. Ev sahipliği, iklim finansmanına erişim ve yatırım çekme konusunda önemli bir diplomatik kaldıraç. Türkiye, Paris Antlaşması'nı 2021'de onayladı ve 2053 net sıfır hedefini açıkladı. Kasım 2025'de sunduğu 2035 hedefine göre salımlarını 643 milyon ton karbondioksit eşdeğerinde sınırlayacak. Hükümet bunu olağan senaryoya göre 466 milyon tonluk bir azaltım olarak sunuyor. Eleştirmenler ise bu hedefin salımların 2035'e kadar artmaya devam etmesine izin verdiğini söylüyor. Bağımsız bir değerlendirme kuruluşu olan Climate Action Tracker hedefi kritik derecede yetersiz buluyor. Türkiye'nin vitrinde göstermek istediği adımlar da var. Temmuz 2025'de iklim kanunu çıkardı. Ağustos 2026'da ise Türkiye Emisyon Ticaret Sistemi TR-ETS yönetmeliği yürürlüğe girdi. Yani sadece teorik değil bakın biz bir şeyler de yapıyoruz pratikte demek için yapılmış eylemlerde bunlar. Sistem bir pilot dönemle başlıyor ve yılda 50 bin tondan fazla salım yapan büyük tesisleri kapsıyor. Peki Türkiye yaptığı bu şeylerle aldığı kararlarla bölgesel yeşil dönüşüm köprüsü olabilir mi? Türkiye yıllarca Avrupa'ya giden petrol ve doğal gazın geçiş ülkesi olarak görüldü. Hızla artan rüzgar ve güneş kapasitesiyle yani kurulu gücüyle şimdi hedefi Türkiye'nin temiz elektrik, yeşil hidrojen ve kritik mineral tedarik zincirinde bölgesel bir merkez olabilmek. Avrupa, Orta Doğu, Afrika ve Asya'nın aynı masaya oturduğu Antalya bu iddia içinde bir vitrin olacak. SKDM yani Türk sanayisinin kapısındaki karbon gümrüğü. Şimdi çok önemli bir ayrımı yapalım. AB'nin sınırda karbon düzenleme mekanizması yani SKDM bir kop kararı değil. Bu AB'nin kendi aldığı bir karar. Ama Türk sanayisi için en az kop kadar önemli. Neden mi? Çünkü Türkiye'nin ihracatının yaklaşık %40'ı AB'ye gidiyor. SKBM şöyle işliyor kısaca. Demir, çelik, alüminyum, çimento, gübre, elektrik ve hidrojen AB'ye girerken üretiminin açığa çıkan karbonu hesaplıyorlar. AB'deki ithalatçı bu karbon için AB'nin karbon piyasası fiyatına bağlı sertifika almak zorunda. Karbon sertifikası dediğimiz şey işte bu. Kesin dönem 1 Ocak 2026'da başladı. 2026 ithalatı için sertifika satışı Şubat 2027'de başlayacak. Eğer yılda 50 tonun altında ithalat yapıyorsanız bundan muafsınız. Ama fazlaysa muaf değilsiniz. Faturayı ithalatçı ödüyor ama maliyet doğal olarak ihracatçıya yansıyor. İşin kilit noktası burada. Ürün üretildiği ülkede zaten bir karbon fiyatı ödediyse tutar AB'deki yükümlülükten düşülebiliyor. İşte TR-ETS'nin bu kadar önemli olması nedeni de bu.",
+ "params": {
+  "ACTIVE_DB": -45.0,
+  "MERGE_F": 3,
+  "MAX_GAP_F": 11,
+  "PRE_F": 2,
+  "POST_F": 3,
+  "BREATH_DB": -33.0,
+  "BREATH_VOICE": 0.5,
+  "TAIL_BREATH_DB": -42.0,
+  "PAD_SIL_DB": -50.0,
+  "MIN_RELEASE_F": 2,
+  "END_HOLD_F": 13,
+  "TAIL_TRIM_MAX_F": 8,
+  "TAIL_MIN_RUN_F": 3,
+  "HEAD_MIN_RUN_F": 3,
+  "HEAD_TRIM_MAX_F": 12,
+  "SNAP_F": 3,
+  "LONG_WORD_F": 40,
+  "HALLU_MIN_ACTIVE": 0.1,
+  "WINDOW_F": 750,
+  "NEAR_F": 250,
+  "PAUSE_F": 12,
+  "PAUSE_NOPUNCT_F": 6,
+  "IMM_MAX_F": 150,
+  "MAX_RETAKE_F": 750,
+  "REPEAT_MAX_SPAN_F": 500,
+  "R_FIRST": 6,
+  "FIRST_OVERLAP": 0.4,
+  "ORPHAN_WORDS": 3,
+  "ORPHAN_F": 62,
+  "OVERLAP": 0.5,
+  "OVERLAP2": 0.35,
+  "WEAK_EVIDENCE": 0.3,
+  "R_MIN": 25,
+  "R_MAX": 120,
+  "SWALLOW_DENS": 8.0,
+  "SWALLOW_GAP_F": 3,
+  "SPLIT_TOL_DB": 2.0
+ }
+}

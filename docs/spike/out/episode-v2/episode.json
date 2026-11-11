@@ -1,0 +1,30 @@
+{
+ "prefix": "COP31",
+ "clips": [
+  {
+   "bin": "spike-372",
+   "plan": "087-plan.json"
+  },
+  {
+   "bin": "cop-episode",
+   "plan": "088-plan.json"
+  },
+  {
+   "bin": "cop-episode",
+   "plan": "089-plan.json"
+  },
+  {
+   "bin": "cop-episode",
+   "plan": "090-plan.json"
+  },
+  {
+   "bin": "cop-episode",
+   "plan": "091-plan.json"
+  },
+  {
+   "bin": "cop-episode",
+   "plan": "094-plan.json"
+  }
+ ],
+ "frozen": []
+}
