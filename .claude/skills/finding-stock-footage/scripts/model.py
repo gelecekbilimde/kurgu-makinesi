@@ -40,3 +40,12 @@ class Candidate:
     @property
     def long_side(self):
         return max(self.width, self.height)
+
+
+MAX_LONG_SIDE = 3840
+
+
+def best_rendition(renditions):
+    """The largest (width, height, url) with a url, real dimensions and long side <= 3840, or None."""
+    ok = [r for r in renditions if r[2] and r[0] > 0 and r[1] > 0 and max(r[0], r[1]) <= MAX_LONG_SIDE]
+    return max(ok, key=lambda r: r[0] * r[1], default=None)
