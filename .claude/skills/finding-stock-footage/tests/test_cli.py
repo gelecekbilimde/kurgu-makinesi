@@ -99,6 +99,25 @@ class Cli(unittest.TestCase):
         reqs = self.results()["requests"]
         self.assertIn("R2: 0/2 aday bulundu", reqs[1]["notes"])
 
+    def test_failure_in_later_row_keeps_earlier_results(self):
+        from unittest import mock
+        import finder
+        real = find_stock.find
+        calls = []
+
+        def flaky(req, *a, **kw):
+            calls.append(req.code)
+            if req.code == "R2":
+                raise RuntimeError("beklenmeyen")
+            return real(req, *a, **kw)
+        batch = self.tmp / "req.json"
+        batch.write_text(json.dumps([{"code": "R1", "query": "rocket launch"}, {"code": "R2", "query": "x"}]))
+        with mock.patch.object(find_stock, "find", flaky):
+            code, _, err = self.run_cli("--batch", str(batch), "--out", str(self.out))
+        self.assertEqual(code, 1)
+        self.assertEqual([r["code"] for r in self.results()["requests"]], ["R1"])
+        self.assertTrue((self.out / "kaynaklar.txt").read_text())
+
     def test_batch_needs_out(self):
         batch = self.tmp / "req.json"
         batch.write_text("[]")

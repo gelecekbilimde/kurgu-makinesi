@@ -2,6 +2,7 @@
 
 Named http_client (not http) so it does not shadow the standard library.
 """
+import http.client
 import json
 import os
 import time
@@ -30,6 +31,8 @@ def _reason(err):
         return "istek sınırı aşıldı (429)" if err.code == 429 else f"HTTP {err.code}"
     if isinstance(err, urllib.error.URLError):
         return f"bağlantı hatası ({err.reason})"
+    if isinstance(err, http.client.HTTPException):
+        return f"bağlantı kesildi ({type(err).__name__})"
     return f"bağlantı hatası ({type(err).__name__})"
 
 
@@ -53,7 +56,7 @@ class Http:
         try:
             with self._open(full, headers) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-        except (urllib.error.URLError, OSError, ValueError) as err:
+        except (urllib.error.URLError, http.client.HTTPException, OSError, ValueError) as err:
             raise SourceError(slug, _reason(err)) from None
         self.cache.put_response(slug, key, data, now)
         return data
@@ -71,6 +74,7 @@ class Http:
             if expected is not None and got != int(expected):
                 raise OSError(f"eksik indirme ({got}/{expected} bayt)")
             os.replace(part, dest)
-        except (urllib.error.URLError, OSError, ValueError) as err:
+        except (urllib.error.URLError, http.client.HTTPException, OSError, ValueError) as err:
             part.unlink(missing_ok=True)
-            raise SourceError(slug, _reason(err) if isinstance(err, urllib.error.URLError) else str(err)) from None
+            raise SourceError(slug, _reason(err) if isinstance(err, (urllib.error.URLError, http.client.HTTPException))
+                              else str(err)) from None

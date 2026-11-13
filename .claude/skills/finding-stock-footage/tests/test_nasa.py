@@ -42,6 +42,14 @@ class CreditRule(unittest.TestCase):
         for meta, want in cases:
             self.assertEqual(nasa.credit_for(meta), want, meta)
 
+    def test_center_code_alone_or_after_nasa(self):
+        self.assertTrue(nasa.credit_for({"XMP:Credit": "SpaceX HQ"})[1])
+        self.assertTrue(nasa.credit_for({"XMP:Credit": "ARC Films"})[1])
+        self.assertFalse(nasa.credit_for({"XMP:Credit": "NASA/KSC"})[1])
+        self.assertFalse(nasa.credit_for({"XMP:Credit": "GSFC"})[1])
+        self.assertFalse(nasa.credit_for({"XMP:Credit": "NASA's Goddard Space Flight Center"})[1])
+        self.assertFalse(nasa.credit_for({"XMP:Credit": "JPL-Caltech"})[1])
+
     def test_center_must_be_a_word(self):
         self.assertTrue(nasa.credit_for({"XMP:Credit": "Mars Society"})[1])  # "Mars" is not "MSFC"/"ARC"
         self.assertTrue(nasa.credit_for({"XMP:Credit": "Archer Aviation"})[1])  # contains "arc" but not as a word
@@ -56,6 +64,8 @@ class Adapter(unittest.TestCase):
         c = run()[0][THIRD]
         self.assertEqual(c.credit, "NASA / Rocket Lab")
         self.assertIn("NASA dışı içerik (Rocket Lab): kullanım hakkını kontrol et", c.warnings)
+        self.assertTrue(c.third_party)
+        self.assertFalse(run()[0][PLAIN].third_party)
 
     def test_plain_candidate(self):
         c = run()[0][PLAIN]

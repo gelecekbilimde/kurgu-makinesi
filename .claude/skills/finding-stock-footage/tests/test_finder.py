@@ -13,7 +13,8 @@ NOW = datetime(2026, 11, 13, 10, 0, tzinfo=timezone.utc)
 
 
 class FakeSource:
-    def __init__(self, slug, items, priority=1, fail=None):
+    def __init__(self, slug, items, priority=1, fail=None, crash=None):
+        self.crash = crash
         self.slug, self.items, self.priority, self.fail = slug, items, priority, fail
         self.pulled = 0
 
@@ -23,6 +24,8 @@ class FakeSource:
             yield c
         if self.fail:
             raise SourceError(self.slug, self.fail)
+        if self.crash:
+            raise self.crash
 
 
 def A(i, **kw):
@@ -115,6 +118,20 @@ class Finder(unittest.TestCase):
                                       FakeSource("b", [B(1)])], count=1)
         self.assertEqual(self.ids(picks), ["b1"])
         self.assertIn("a: istek sınırı aşıldı (429)", notes)
+
+    def test_unexpected_source_error_noted(self):
+        picks, notes = self.run_find([FakeSource("a", [], crash=TypeError("'NoneType' object is not iterable")),
+                                      FakeSource("b", [B(1)])], count=1)
+        self.assertEqual(self.ids(picks), ["b1"])
+        self.assertTrue(any(n.startswith("a: ") for n in notes))
+
+    def test_unexpected_download_error_noted(self):
+        def boom(slug, url, dest):
+            raise RuntimeError("bozuk yanıt")
+        self.http.download = boom
+        picks, notes = self.run_find([FakeSource("a", [A(1)])], count=1)
+        self.assertEqual(picks, [])
+        self.assertTrue(any("bozuk yanıt" in n for n in notes))
 
     def test_failed_download_replaced(self):
         self.http.fail_downloads = {A(1).download_url}

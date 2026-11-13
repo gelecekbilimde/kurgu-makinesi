@@ -67,6 +67,9 @@ def _round_robin(req, sources, taken, wanted_have, notes):
             except SourceError as err:
                 notes.append(str(err))
                 return None
+            except Exception as err:  # noqa: BLE001  (a broken adapter must not stop the other sources)
+                notes.append(f"{slug}: beklenmeyen hata ({type(err).__name__}: {err})")
+                return None
             pulled[slug] += 1
             key = (c.source, c.id)
             if key not in req.exclude and key not in taken and _passes(req, c.duration_s, c.width, c.height):
@@ -119,6 +122,10 @@ def find(req, sources, cache, http, now):
                 http.download(item.source, item.download_url, cache.clip_path(item.source, item.id))
             except SourceError as err:
                 notes.append(str(err))
+                continue
+            except Exception as err:  # noqa: BLE001
+                cache.clip_path(item.source, item.id).with_suffix(".part").unlink(missing_ok=True)
+                notes.append(f"{item.source}: indirme hatası ({type(err).__name__}: {err})")
                 continue
         side = cache.write_sidecar(item, req.query, now)
         picks.append(Pick(side, cache.clip_path(item.source, item.id), from_cache))

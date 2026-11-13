@@ -78,7 +78,7 @@ One file per source in `scripts/sources/<slug>.py`, all with the same small inte
 | Source | What the API gives (checked 2026-11-13) | Adapter notes |
 |---|---|---|
 | **Pixabay** | `GET /api/videos/?key&q`; per hit `videos.{large,medium,small,tiny}` with url/width/height/size, `duration`, `user`, `pageURL`, `tags`. No orientation filter for video. 100 requests / 60 s. | Orientation from width/height. `large` (usually 3840×2160) may be empty; fall back to `medium`. No fps in the API: `fps` is null. |
-| **NASA** | `GET /search?q&media_type=video` gives `nasa_id`, title, description, keywords, center. File list from `GET /asset/{nasa_id}` (`~orig.mp4`, `~large.mp4`, `~medium.mp4`, ...). `metadata.json` in that list has `QuickTime:ImageWidth/ImageHeight`, `QuickTime:VideoFrameRate`, `QuickTime:Duration`, `XMP:Credit`, `XMP:Creator`. No key. | Two extra requests per candidate (asset list, metadata): fetch them only for as many hits as needed, and cache both. Use `~orig.mp4` when it is at most 3840 px wide, else `~large.mp4`. Plain NASA means `XMP:Credit` (else `XMP:Creator`) is empty or names NASA, a NASA center or JPL ("NASA", "NASA/JPL-Caltech", "NASA/Bill Ingalls", "KSC"); anything else (Rocket Lab, SpaceX, ESA, ...) marks the candidate `third_party` with a warning, and the credit line reads `NASA / <credit>`. Flagged clips rank like any other (decided). Page link: `https://images.nasa.gov/details/<nasa_id>`. |
+| **NASA** | `GET /search?q&media_type=video` gives `nasa_id`, title, description, keywords, center. File list from `GET /asset/{nasa_id}` (`~orig.mp4`, `~large.mp4`, `~medium.mp4`, ...). `metadata.json` in that list has `QuickTime:ImageWidth/ImageHeight`, `QuickTime:VideoFrameRate`, `QuickTime:Duration`, `XMP:Credit`, `XMP:Creator`. No key. | Two extra requests per candidate (asset list, metadata): fetch them only for as many hits as needed, and cache both. Use `~orig.mp4` when it is at most 3840 px wide, else `~large.mp4`. Plain NASA means `XMP:Credit` (else `XMP:Creator`) is empty or names NASA, a NASA center or JPL ("NASA", "NASA/JPL-Caltech", "NASA/Bill Ingalls", "KSC"); anything else (Rocket Lab, SpaceX, ESA, ...) marks the candidate `third_party` (a boolean in the sidecar and `results.json`) with a warning; a center code alone counts as NASA only when the credit is nothing but center codes ("KSC"), so "SpaceX HQ" stays third party, and the credit line reads `NASA / <credit>`. Flagged clips rank like any other (decided). Page link: `https://images.nasa.gov/details/<nasa_id>`. |
 | **Pexels** | `GET /v1/videos/search?query&orientation&size&per_page`, header `Authorization: <key>`; per video `video_files` with quality/width/height/fps/link, `duration`, `user.name/url`, `url`. 200 requests / hour. | Pass `orientation=portrait` for vertical. Pexels asks for a visible link to Pexels and credit to the creator. |
 
 ## The cache: `assets/stock/`
@@ -106,7 +106,7 @@ In `--out`:
         "page_url": "https://pixabay.com/videos/id-1234567/", "creator": "kullanici",
         "licence": "Pixabay Content License", "credit": "Pixabay / kullanici",
         "width": 3840, "height": 2160, "fps": null, "duration_s": 14.0, "orientation": "horizontal",
-        "from_cache": false, "warnings": []}
+        "from_cache": false, "warnings": [], "third_party": false}
      ]}
   ]
 }

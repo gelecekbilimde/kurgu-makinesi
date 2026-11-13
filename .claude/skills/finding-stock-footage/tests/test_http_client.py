@@ -120,6 +120,18 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(dest.read_bytes(), b"x" * 100_000)
         self.assertFalse(dest.with_suffix(".part").exists())
 
+    def test_incomplete_read_is_a_source_error(self):
+        import http.client
+        from unittest import mock
+        err = http.client.IncompleteRead(b"x", 10)
+        with mock.patch("http_client.urllib.request.urlopen", side_effect=err):
+            with self.assertRaises(SourceError):
+                self.http.get_json("s", self.base + "/json", {"q": "inc"})
+            dest = self.root / "clips" / "y.mp4"
+            with self.assertRaises(SourceError):
+                self.http.download("s", self.base + "/file", dest)
+        self.assertFalse(dest.with_suffix(".part").exists())
+
     def test_https_upgrade(self):
         from http_client import upgrade
         self.assertEqual(upgrade("http://images-assets.nasa.gov/a.mp4"), "https://images-assets.nasa.gov/a.mp4")

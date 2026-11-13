@@ -13,7 +13,7 @@ from finder import Pick  # noqa: E402
 
 NOW = datetime(2026, 11, 13, 10, 0, tzinfo=timezone.utc)
 KEYS = {"code", "file", "source", "id", "page_url", "creator", "licence", "credit", "width", "height", "fps",
-        "duration_s", "orientation", "from_cache", "warnings"}
+        "duration_s", "orientation", "from_cache", "warnings", "third_party"}
 
 
 class Deliver(unittest.TestCase):

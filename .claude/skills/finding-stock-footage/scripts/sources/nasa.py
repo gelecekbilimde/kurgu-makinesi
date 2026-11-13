@@ -14,7 +14,8 @@ SLUG = "nasa"
 NEEDS_KEY = False
 PAGE_SIZE = 20
 LICENCE = "NASA Images and Media Usage Guidelines"
-NASA_WORDS = {"NASA", "JPL", "ARC", "AFRC", "GRC", "GSFC", "JSC", "KSC", "LARC", "MSFC", "SSC", "WFF", "HQ"}
+NASA_WORDS = {"NASA", "JPL"}
+CENTERS = {"ARC", "AFRC", "GRC", "GSFC", "JSC", "KSC", "LARC", "MSFC", "SSC", "WFF", "HQ"}
 LARGE_LONG_SIDE = 1920
 
 
@@ -33,7 +34,9 @@ def credit_for(meta):
     if not credit:
         return "NASA", False
     words = set(re.findall(r"[A-Z]+", credit.upper()))
-    if words & NASA_WORDS:
+    # NASA or JPL anywhere; a center code only when the credit is nothing but center codes ("KSC"),
+    # so "SpaceX HQ" or "ARC Films" stay third party
+    if words & NASA_WORDS or words <= CENTERS:
         return (credit if credit.upper().startswith("NASA") else f"NASA / {credit}"), False
     return f"NASA / {credit}", True
 
@@ -111,4 +114,5 @@ class Source:
                          creator=credit, title=hit.get("title", ""), description=hit.get("description", ""),
                          keywords=list(hit.get("keywords", [])), width=width, height=height,
                          fps=float(fps) if isinstance(fps, (int, float)) else None, duration_s=duration,
-                         download_url=fix_url(href), licence=LICENCE, credit=credit, warnings=warnings)
+                         download_url=fix_url(href), licence=LICENCE, credit=credit, warnings=warnings,
+                         third_party=third_party)

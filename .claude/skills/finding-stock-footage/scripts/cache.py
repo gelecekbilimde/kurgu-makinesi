@@ -58,7 +58,7 @@ class Cache:
                     "keywords": keywords, "width": c.width, "height": c.height, "fps": c.fps,
                     "duration_s": c.duration_s, "orientation": c.orientation, "creator": c.creator,
                     "credit": c.credit, "licence": c.licence, "page_url": c.page_url,
-                    "warnings": list(c.warnings), "added": now.isoformat()}
+                    "warnings": list(c.warnings), "third_party": c.third_party, "added": now.isoformat()}
         _add_unique(side["keywords"], query)
         _write_json(self.sidecar_path(c.source, c.id), side)
         return side

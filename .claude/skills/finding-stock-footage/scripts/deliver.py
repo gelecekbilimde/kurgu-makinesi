@@ -12,7 +12,7 @@ _FOLD = str.maketrans({"ç": "c", "ğ": "g", "ı": "i", "ö": "o", "ş": "s", "�
                        "Ç": "c", "Ğ": "g", "İ": "i", "I": "i", "Ö": "o", "Ş": "s", "Ü": "u", "Â": "a", "Î": "i",
                        "Û": "u"})
 CANDIDATE_FIELDS = ("source", "id", "page_url", "creator", "licence", "credit", "width", "height", "fps",
-                    "duration_s", "orientation", "warnings")
+                    "duration_s", "orientation", "warnings", "third_party")
 
 
 def slugify(text):
@@ -70,6 +70,7 @@ def add_request(out, results, query, code, orientation, picks, notes):
         cand = {"code": f"{code}-{n}", "file": name, **{k: e.get(k) for k in CANDIDATE_FIELDS},
                 "from_cache": pick.from_cache}
         cand["warnings"] = list(cand["warnings"] or [])
+        cand["third_party"] = bool(cand["third_party"])
         request["candidates"].append(cand)
         n += 1
     return request

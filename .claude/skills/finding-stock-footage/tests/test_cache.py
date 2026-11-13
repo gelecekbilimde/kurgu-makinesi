@@ -36,7 +36,7 @@ class CacheTests(unittest.TestCase):
         self.assertEqual(s["file"], "clips/pixabay/42.mp4")
         self.assertIn("rocket launch", s["keywords"])
         for key in ("source", "id", "title", "description", "keywords", "width", "height", "fps", "duration_s",
-                    "orientation", "creator", "credit", "licence", "page_url", "warnings", "added"):
+                    "orientation", "creator", "credit", "licence", "page_url", "warnings", "third_party", "added"):
             self.assertIn(key, s)
 
     def test_sidecar_adds_query(self):

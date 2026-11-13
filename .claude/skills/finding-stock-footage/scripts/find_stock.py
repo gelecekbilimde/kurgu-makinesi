@@ -69,6 +69,18 @@ def _summary_line(c):
     return line + ("  önbellekten" if c["from_cache"] else "")
 
 
+def _run_rows(rows, a, sources, cache, http, now, out, results, delivered_now):
+    for row in rows:
+        req = Request(query=row["query"], code=row["code"],
+                      orientation=row.get("orientation", a.orientation), count=row.get("count", a.count),
+                      min_duration=a.min_duration, max_duration=a.max_duration, fresh=a.fresh,
+                      exclude=deliver.delivered(results, row["code"]))
+        picks, notes = find(req, sources, cache, http, now)
+        entry = deliver.add_request(out, results, req.query, req.code, req.orientation, picks, notes)
+        new = entry["candidates"][len(entry["candidates"]) - len(picks):] if picks else []
+        delivered_now.append((new, notes))
+
+
 def main(argv, env=os.environ, http_factory=Http, now=None):
     try:
         a = parse(argv)
@@ -95,16 +107,10 @@ def main(argv, env=os.environ, http_factory=Http, now=None):
         sources, run_notes = load_sources(a.config, env, http, only=only)
         results = deliver.load_results(out)
         delivered_now = []
-        for row in rows:
-            req = Request(query=row["query"], code=row["code"],
-                          orientation=row.get("orientation", a.orientation), count=row.get("count", a.count),
-                          min_duration=a.min_duration, max_duration=a.max_duration, fresh=a.fresh,
-                          exclude=deliver.delivered(results, row["code"]))
-            picks, notes = find(req, sources, cache, http, now)
-            entry = deliver.add_request(out, results, req.query, req.code, req.orientation, picks, notes)
-            new = entry["candidates"][len(entry["candidates"]) - len(picks):] if picks else []
-            delivered_now.append((new, notes))
-        deliver.save(out, results, run_notes, now)
+        try:
+            _run_rows(rows, a, sources, cache, http, now, out, results, delivered_now)
+        finally:
+            deliver.save(out, results, run_notes, now)  # rows done so far keep their results and credits
 
         for new, notes in delivered_now:
             for c in new:

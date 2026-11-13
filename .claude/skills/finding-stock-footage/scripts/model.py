@@ -28,6 +28,7 @@ class Candidate:
     licence: str
     credit: str
     warnings: list = field(default_factory=list)
+    third_party: bool = False
 
     @property
     def orientation(self):
