@@ -1,0 +1,29 @@
+{
+ "collection": {
+  "version": "1.1",
+  "href": "http://images-api.nasa.gov/asset/MAF_20190917_Artemis%201%20ES%20Join_BROLL",
+  "items": [
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/MAF_20190917_Artemis 1 ES Join_BROLL~orig.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/MAF_20190917_Artemis 1 ES Join_BROLL~large.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/MAF_20190917_Artemis 1 ES Join_BROLL~medium.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/MAF_20190917_Artemis 1 ES Join_BROLL~mobile.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/MAF_20190917_Artemis 1 ES Join_BROLL~preview.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/MAF_20190917_Artemis 1 ES Join_BROLL~small.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/MAF_20190917_Artemis 1 ES Join_BROLL/metadata.json"
+   }
+  ]
+ }
+}

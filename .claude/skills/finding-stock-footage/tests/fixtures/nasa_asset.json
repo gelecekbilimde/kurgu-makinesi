@@ -1,0 +1,29 @@
+{
+ "collection": {
+  "version": "1.1",
+  "href": "http://images-api.nasa.gov/asset/GSFC_20160909_M12368_OSIRIS_launch",
+  "items": [
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/GSFC_20160909_M12368_OSIRIS_launch~orig.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/GSFC_20160909_M12368_OSIRIS_launch~large.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/GSFC_20160909_M12368_OSIRIS_launch~medium.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/GSFC_20160909_M12368_OSIRIS_launch~mobile.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/GSFC_20160909_M12368_OSIRIS_launch~preview.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/GSFC_20160909_M12368_OSIRIS_launch~small.mp4"
+   },
+   {
+    "href": "http://images-assets.nasa.gov/video/GSFC_20160909_M12368_OSIRIS_launch/metadata.json"
+   }
+  ]
+ }
+}
