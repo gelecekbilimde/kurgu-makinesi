@@ -85,10 +85,12 @@ setup_extractor() {
 
 # Files under a directory: relative, NUL-separated, sorted, junk filtered.
 # The manifest is excluded: it lives inside the pack but does not describe itself.
+# assets/stock/ is the stock footage cache of the finding-stock-footage skill, not part of the
+# brand pack, so neither verify nor manifest looks at it.
 list_files() {
   ( cd "$1" && find . -type f \
       ! -name '.DS_Store' ! -name 'Thumbs.db' ! -path '*/__MACOSX/*' \
-      ! -path "./$MANIFEST_NAME" \
+      ! -path "./$MANIFEST_NAME" ! -path './stock/*' \
       -print0 | LC_ALL=C sort -z )
 }
 
