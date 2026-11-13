@@ -1,0 +1,7 @@
+{
+  "sources": [
+    {"slug": "pixabay", "url": "https://pixabay.com/api/videos/", "priority": 1, "isEnabled": true},
+    {"slug": "nasa", "url": "https://images-api.nasa.gov", "priority": 2, "isEnabled": true},
+    {"slug": "pexels", "url": "https://api.pexels.com/v1/videos/", "priority": 3, "isEnabled": false}
+  ]
+}
