@@ -57,27 +57,34 @@ def _round_robin(req, sources, taken, wanted_have, notes):
     iters = [(s.slug, iter(s.search(req.query, req.orientation))) for s in sources]
     pulled = {slug: 0 for slug, _ in iters}
     out = []
-    while iters and wanted_have < req.count + SPARE:
-        for slug, it in list(iters):
+    def next_usable(slug, it):
+        """The source's next candidate that passes the filters, or None when it is done."""
+        while pulled[slug] < INSPECT_PER_SOURCE:
             try:
-                if pulled[slug] >= INSPECT_PER_SOURCE:
-                    raise StopIteration
                 c = next(it)
-                pulled[slug] += 1
             except StopIteration:
-                iters.remove((slug, it))
-                continue
+                return None
             except SourceError as err:
                 notes.append(str(err))
+                return None
+            pulled[slug] += 1
+            key = (c.source, c.id)
+            if key not in req.exclude and key not in taken and _passes(req, c.duration_s, c.width, c.height):
+                return c
+        return None
+
+    while iters and wanted_have < req.count + SPARE:
+        for slug, it in list(iters):
+            c = next_usable(slug, it)
+            if c is None:
                 iters.remove((slug, it))
                 continue
-            key = (c.source, c.id)
-            if key in req.exclude or key in taken or not _passes(req, c.duration_s, c.width, c.height):
-                continue
-            taken.add(key)
+            taken.add((c.source, c.id))
             out.append(c)
             if c.orientation == req.orientation:
                 wanted_have += 1
+            if wanted_have >= req.count + SPARE:
+                break
     return out
 
 

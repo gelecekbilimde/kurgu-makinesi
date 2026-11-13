@@ -52,6 +52,11 @@ class Finder(unittest.TestCase):
         self.assertEqual(self.ids(picks), ["a1", "b1", "a2", "b2"])
         self.assertEqual(notes, [])
 
+    def test_round_robin_skips_filtered_within_a_turn(self):
+        a = FakeSource("a", [A(1, duration_s=200), A(2), A(3)])
+        picks, _ = self.run_find([a, FakeSource("b", [B(1), B(2)])], count=3)
+        self.assertEqual(self.ids(picks), ["a2", "b1", "a3"])
+
     def test_vertical_first_then_fill(self):
         a = FakeSource("a", [A(1), A(2, width=1080, height=1920), A(3)])
         picks, _ = self.run_find([a], orientation="vertical", count=3)

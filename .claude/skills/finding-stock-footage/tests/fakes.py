@@ -13,7 +13,7 @@ def fixture(name):
 
 class FakeHttp:
     """get_json returns the response whose key is a substring of the URL (longest key wins);
-    a value that is an Exception is raised. Records every call."""
+    a value that is an Exception is raised; a callable is called with the params. Records every call."""
 
     def __init__(self, responses=None, cache=None, fail_downloads=()):
         self.responses = responses or {}
@@ -29,6 +29,8 @@ class FakeHttp:
         if not keys:
             raise SourceError(slug, f"HTTP 404 ({url})")
         value = self.responses[keys[0]]
+        if callable(value):
+            value = value(params)
         if isinstance(value, Exception):
             raise value
         return value
