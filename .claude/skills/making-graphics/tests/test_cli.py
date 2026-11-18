@@ -210,6 +210,40 @@ class Cli(unittest.TestCase):
         self.assertTrue(any("G1" in n for n in notes), notes)
         self.assertIn("G1", se)
 
+    def test_batch_malformed_rows_do_not_stop_others(self):
+        f = self.d / "rows.json"
+        bad = [{"code": "B1", "fields": {"value": "1"}},
+               {"template": "demo", "code": "B2", "fields": ["value=1"]},
+               {"template": "demo", "code": "B3", "fields": {"value": "1"}, "frames": "abc"},
+               {"template": "demo", "code": "a/b", "fields": {"value": "1"}},
+               {"template": "demo", "code": "B5", "fields": {"value": "1"}, "resolution": "8k"},
+               "not a row"]
+        f.write_text(json.dumps(bad + [{"template": "demo", "code": "OK", "fields": {"value": "1"}}]))
+        code, _, se, run = self.main("--batch", str(f))
+        self.assertEqual(code, 0, se)
+        self.assertEqual([r["code"] for r in self.results()["renders"]], ["OK-1"])
+        self.assertEqual(len(self.results()["notes"]), 6, self.results()["notes"])
+
+    def test_template_edit_rerenders(self):
+        self.main("demo", "--set", "value=1")
+        html = self.root / "templates/demo/demo/index.html"
+        html.write_text(html.read_text().replace("<h1", "<h2").replace("</h1>", "</h2>"))
+        _, _, _, run = self.main("demo", "--set", "value=1")
+        self.assertEqual(len(run.renders()), 1)
+
+    def test_kit_edit_rerenders(self):
+        import stage
+        self.main("demo", "--set", "value=1")
+        kit = self.d / "kit.js"
+        kit.write_text(stage.KIT.read_text() + "\n// changed\n")
+        old = stage.KIT
+        stage.KIT = kit
+        try:
+            _, _, _, run = self.main("demo", "--set", "value=1")
+        finally:
+            stage.KIT = old
+        self.assertEqual(len(run.renders()), 1)
+
     def test_batch_needs_out(self):
         f = self.d / "rows.json"
         f.write_text("[]")

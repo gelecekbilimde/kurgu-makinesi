@@ -49,6 +49,12 @@ class Store(unittest.TestCase):
         self.assertIsNone(self.a.lookup("number", "abc"))
         self.assertEqual(self.a.write_index(), [])
 
+    def test_underscore_dirs_are_not_entries(self):
+        p = self.d / "assets/graphics/_preview/demo"
+        p.mkdir(parents=True)
+        (p / "vars.json").write_text('{"title": "x"}')
+        self.assertEqual(self.a.write_index(), [])
+
     def test_index_rebuilds_from_vars(self):
         self.a.store("number", "abc", {"template": "number"}, self.file, self.poster)
         self.a.store("quote", "def", {"template": "quote"}, self.file, self.poster)

@@ -11,8 +11,9 @@ from pathlib import Path
 
 
 def render_id(template, template_version, design, design_hash, variant, vertical, frames, fps, resolution, output,
-              values):
-    parts = dict(template=template, template_version=template_version, design=design, design_hash=design_hash,
+              values, template_hash=""):
+    parts = dict(template=template, template_version=template_version, template_hash=template_hash,
+                 design=design, design_hash=design_hash,
                  variant=variant, vertical=vertical, frames=frames, fps=fps, resolution=resolution, output=output,
                  values=values)
     blob = json.dumps(parts, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
@@ -52,7 +53,7 @@ class Archive:
         out = []
         for vars_path in sorted(self.root.glob("*/*/vars.json")):
             d = vars_path.parent
-            if d.name.endswith(".tmp"):
+            if d.name.endswith(".tmp") or d.parent.name.startswith("_"):
                 continue
             render = self.lookup(d.parent.name, d.name)
             entry = json.loads(vars_path.read_text(encoding="utf-8"))

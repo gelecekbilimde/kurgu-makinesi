@@ -21,7 +21,9 @@ Exit codes: 0 rendered, 2 the request doesn't fit the template, 1 any other fail
 """
 import argparse
 import json
+import hashlib
 import os
+import re
 import sys
 import tempfile
 from dataclasses import dataclass, field
@@ -139,8 +141,33 @@ def _first_text(t, values):
     return next((values[f.name] for f in t.fields if f.type == "text" and values.get(f.name)), "")
 
 
+_CODE = re.compile(r"^[\w.-]+$")
+
+
+def _check_row(row):
+    if not isinstance(row, dict):
+        raise RequestError(["satır bir nesne olmalı: {\"template\", \"fields\", ...}"])
+    problems = []
+    if not isinstance(row.get("template"), str) or not row.get("template"):
+        problems.append("satırda \"template\" (şablon adı) yok")
+    if not isinstance(row.get("fields") or {}, dict):
+        problems.append("\"fields\" bir nesne olmalı: {\"alan\": \"değer\"}")
+    for k in ("frames", "fps"):
+        v = row.get(k)
+        if v is not None and (isinstance(v, bool) or not isinstance(v, int) or v <= 0):
+            problems.append(f"\"{k}\" pozitif bir tam sayı olmalı ({v!r} verildi)")
+    if row.get("resolution") not in (None, "4k", "1080p"):
+        problems.append(f"\"resolution\" 4k ya da 1080p olmalı ({row.get('resolution')!r} verildi)")
+    code = row.get("code")
+    if code is not None and not (isinstance(code, str) and _CODE.match(code)):
+        problems.append(f"\"code\" yalnızca harf, rakam, nokta, tire ve alt çizgi içerebilir ({code!r} verildi)")
+    if problems:
+        raise RequestError(problems)
+
+
 def resolve(row, ctx):
     """Validate one request row; returns everything a render needs, or raises RequestError."""
+    _check_row(row)
     try:
         design = row.get("design") or ctx.design or designs.Config(ctx.root).design
         ddir = designs.design_dir(ctx.root, design)
@@ -175,12 +202,23 @@ def resolve(row, ctx):
                 frames=frames, vertical=vertical, resolution=resolution, background=background)
 
 
+def template_hash(t):
+    """Hash of the template's files (without samples.json) and the kit, so an edit re-renders even without a
+    version bump."""
+    h = hashlib.sha256()
+    for p in sorted(x for x in t.dir.rglob("*") if x.is_file() and x.name != "samples.json"):
+        h.update(p.relative_to(t.dir).as_posix().encode() + b"\0" + p.read_bytes() + b"\0")
+    h.update(Path(stage.KIT).read_bytes())
+    return h.hexdigest()
+
+
 def render_row(row, ctx):
     """Render (or reuse from the archive) one request row and deliver it into ctx.out; returns its results entry."""
     r = resolve(row, ctx)
     t = r["t"]
     dhash = designs.design_hash(r["ddir"])
-    id = render_id(template=t.name, template_version=t.version, design=r["design"], design_hash=dhash,
+    id = render_id(template=t.name, template_version=t.version, template_hash=template_hash(t), design=r["design"],
+                   design_hash=dhash,
                    variant=r["variant"], vertical=r["vertical"], frames=r["frames"], fps=r["fps"],
                    resolution=r["resolution"], output=r["output"], values=r["values"])
     sources = [r["values"][f.name] for f in t.fields if f.type == "source" and r["values"].get(f.name)]
@@ -309,12 +347,12 @@ def run_batch(rows, ctx, out, now):
     done, notes = [], []
     try:
         for i, row in enumerate(rows, 1):
-            label = row.get("code") or f"satır {i}"
+            label = (row.get("code") if isinstance(row, dict) else None) or f"satır {i}"
             try:
                 done.append(render_row(row, ctx))
             except RequestError as err:
                 notes += [f"{label}: {p}" for p in err.problems]
-            except hf.ToolError as err:
+            except Exception as err:  # noqa: BLE001  (one bad row never stops the others)
                 notes.append(f"{label}: {err}")
     finally:
         if done or notes:

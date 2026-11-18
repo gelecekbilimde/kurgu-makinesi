@@ -36,5 +36,20 @@ class Env(unittest.TestCase):
         self.assertTrue(seen["text"])
 
 
+class MissingTools(unittest.TestCase):
+    def missing(self, cmd, **kw):
+        raise FileNotFoundError(2, "No such file or directory", cmd[0])
+
+    def test_missing_hyperframes_points_to_setup(self):
+        with self.assertRaises(hf.ToolError) as cm:
+            hf.run(hf.hf_cmd("render"), Path("."), runner=self.missing)
+        self.assertIn("setup.py", str(cm.exception))
+
+    def test_missing_ffmpeg_points_to_dnf(self):
+        with self.assertRaises(hf.ToolError) as cm:
+            hf.run(["ffmpeg", "-i", "x"], Path("."), runner=self.missing)
+        self.assertIn("dnf install ffmpeg", str(cm.exception))
+
+
 if __name__ == "__main__":
     unittest.main()

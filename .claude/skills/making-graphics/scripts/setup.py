@@ -18,8 +18,7 @@ if str(HERE) not in sys.path:
 
 import hf  # noqa: E402
 
-FFMPEG_HINT = ("FFmpeg ve FFprobe bulunamadı. Önce RPM Fusion deposunu etkinleştirin "
-               "(https://rpmfusion.org/Configuration), sonra çalıştırın: sudo dnf install ffmpeg")
+FFMPEG_HINT = hf.FFMPEG_HINT
 
 
 def check(which=shutil.which, run=subprocess.run):

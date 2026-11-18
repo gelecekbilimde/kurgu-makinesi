@@ -66,7 +66,9 @@
 
   document.fonts.ready.then(() => {
     const W = $("root").getBoundingClientRect().width;
-    kit.fit($("num"), W - 2 * kit.tokenNum("--margin-x") * W / 100);
+    const margin = kit.tokenNum("--margin-x") * W / 100;
+    /* the ring reaches 12% past the number on each side: keep number and ring inside the margins */
+    kit.fit($("num"), (W - 2 * margin) / (v.hand ? 1.24 : 1));
     const rootBox = $("root").getBoundingClientRect();
     if (v.hand) {
       const n = $("num").getBoundingClientRect();
@@ -79,11 +81,11 @@
       ring.setAttribute("viewBox", "0 0 " + w + " " + h);
       $("ringPath").setAttribute("d", ringPath(w, h));
       const note = $("note");
-      const nb = note.getBoundingClientRect();
-      const margin = kit.tokenNum("--margin-x") * W / 100;
+      let nb = note.getBoundingClientRect();
       const beside = n.right - rootBox.left + padX * 1.2;
-      /* beside the number when it fits inside the frame margin, otherwise above it */
+      /* beside the number when it fits inside the frame margin, otherwise above it (shrunk to fit if needed) */
       const above = kit.orientation() === "vertical" || beside + nb.width > W - margin;
+      if (above) { kit.fit($("noteText"), W - margin - (n.left - rootBox.left) - nb.width * 0.08); nb = note.getBoundingClientRect(); }
       note.style.left = (above ? n.left - rootBox.left : beside) + "px";
       note.style.top = (above ? n.top - rootBox.top - padY - nb.height * 1.1
                               : n.top - rootBox.top + n.height * 0.05) + "px";

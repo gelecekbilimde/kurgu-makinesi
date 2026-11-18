@@ -192,3 +192,16 @@ class Scaffolded(unittest.TestCase):
         self.assertEqual(code, 0, se.getvalue())
         s = probe(tmp / "o" / "deneme-1.mov")
         self.assertEqual((int(s["nb_read_frames"]), s["width"]), (50, 1920))
+
+
+@unittest.skipUnless(helpers.LIVE, "GRAPHICS_LIVE=1 değil")
+class NumberVertical(unittest.TestCase):
+    def test_live_number_vertical_long_hand_stays_in_frame(self):
+        code, out, err = render_cli("number", "--set", "value=-1.234.567,89^-12", "--set", "unit=ışık yılı ğüş",
+                                    "--set", "hand=Ğüşçöİ ıı el yazısı not, kırk karakterli",
+                                    "--vertical", "--resolution", "1080p")
+        self.assertEqual(code, 0, err)
+        r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(out / "number-1.mov"), "-vf",
+                            "select=eq(n\\,120),alphaextract,crop=10:ih:iw-10:0", "-frames:v", "1", "-f", "rawvideo",
+                            "-pix_fmt", "gray", "-"], capture_output=True, check=True)
+        self.assertEqual(max(r.stdout), 0, "nothing may touch the right edge of the frame")
