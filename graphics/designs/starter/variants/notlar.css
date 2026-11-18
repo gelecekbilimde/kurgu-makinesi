@@ -1,0 +1,6 @@
+/* Teknoloji ve Bilim Notları: kutup ışığı yeşili, çizgili defter */
+:root {
+  --series: #8FE0B0;
+  --tick: #3FBF78;
+  --motif: url("assets/motifs/notlar.svg");
+}

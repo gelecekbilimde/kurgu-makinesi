@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<script src="design/motion.js"></script>
+<style>
+  .block { position: absolute; left: var(--margin-x); top: 50%; transform: translateY(-50%); }
+  #label { margin-bottom: calc(var(--label-size) * 1.6); }
+  :root[data-orientation="vertical"] .block { top: auto; bottom: 34%; transform: none; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="chapter-title" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+  <div class="page"></div>
+  <div id="content">
+    <div class="pattern" id="pattern"></div>
+    <div class="motif" id="motif"></div>
+    <div class="block">
+      <div class="label" id="label"></div>
+      <div class="head" id="line1"></div>
+      <div class="head second" id="line2"></div>
+    </div>
+  </div>
+</div>
+<script>
+  const v = kit.vars();
+  const $ = (id) => document.getElementById(id);
+  $("pattern").classList.add(kit.token("--page-pattern"));
+  $("label").textContent = v.label;
+  $("line1").textContent = v.line1;
+  $("line2").textContent = v.line2;
+  if (!v.label) $("label").remove();
+  if (!v.line2) $("line2").remove();
+  const motif = kit.token("--motif") !== "none";
+  if (!motif) $("motif").remove();
+  document.fonts.ready.then(() => {
+    const W = $("root").getBoundingClientRect().width;
+    const vertical = kit.orientation() === "vertical";
+    const maxW = W * (vertical ? 0.84 : motif ? 0.5 : 0.84);
+    ["line1", "line2"].forEach((id) => $(id) && kit.fit($(id), maxW));
+    calm.entry(document.querySelectorAll(".block > *"));
+    if (motif) calm.entry([$("motif")]);
+    calm.exit($("content"));
+    calm.start();
+  });
+</script>
+</body>
+</html>

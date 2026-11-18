@@ -1,0 +1,6 @@
+/* Ev (varsayılan): kısa videolar ve tek seferlik videolar, ay gümüşü, motif yok */
+:root {
+  --series: #C7CBD3;
+  --tick: #8E94A0;
+  --motif: none;
+}

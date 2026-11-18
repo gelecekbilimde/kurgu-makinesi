@@ -1,0 +1,9 @@
+[{"label": "ev", "fields": {"label": "BÖLÜM 2 / 5", "line1": "Hawking ışıması", "line2": "nasıl çalışır?"}},
+ {"label": "uzay", "variant": "uzay", "fields": {"label": "UZAY GÜNDEMİ", "line1": "Kara delikler", "line2": "buharlaşır mı?"}},
+ {"label": "diyalog", "variant": "diyalog", "fields": {"label": "BİLİM DİYALOG", "line1": "Bir fizikçiyle", "line2": "kuantum üzerine"}},
+ {"label": "kurgu", "variant": "kurgu", "fields": {"label": "BİLİM Mİ KURGU MU", "line1": "Işınlanma", "line2": "mümkün mü?"}},
+ {"label": "muhendislik", "variant": "muhendislik", "fields": {"label": "MÜHENDİSLİK SOHBETLERİ", "line1": "Köprüler neden", "line2": "sallanır?"}},
+ {"label": "notlar", "variant": "notlar", "fields": {"label": "TEKNOLOJİ VE BİLİM NOTLARI", "line1": "Pil teknolojisi", "line2": "nereye gidiyor?"}},
+ {"label": "dikey", "variant": "uzay", "vertical": true, "fields": {"label": "UZAY GÜNDEMİ", "line1": "Kara delikler", "line2": "buharlaşır mı?"}},
+ {"label": "en-uzun", "fields": {"label": "GÜNEŞ SİSTEMİ'NİN İLK IŞIĞI · ĞÜŞÇÖİ ÇİZ", "line1": "Güneş Sistemi'nin ilk ışığı: Ğüşçöİ ve ıııı uzun bir başlıkğ", "line2": "İkinci satır da tam altmış karakter uzunluğunda olsun: ğüşçö"}},
+ {"label": "tek-satir", "fields": {"line1": "Sonuç"}}]

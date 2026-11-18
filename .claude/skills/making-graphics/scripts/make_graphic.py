@@ -6,6 +6,7 @@
                                                         #   "frames"?}, ...]
   python3 make_graphic.py --list [--json]               # templates of the active design and their fields
   python3 make_graphic.py --reindex                     # rebuild assets/graphics/index.json from the archive
+  python3 make_graphic.py --samples <template> [--out DIR]  # render the template's samples.json + contact.png
 
 Repeat --set for a list field (--set bars="Mars=3,7" --set bars="Dünya=9,8"). Lengths are frames.
 Exit codes: 0 rendered, 2 the request doesn't fit the template, 1 any other failure.
@@ -28,6 +29,7 @@ import designs  # noqa: E402
 import hf  # noqa: E402
 import manifest  # noqa: E402
 import render  # noqa: E402
+import review  # noqa: E402
 import stage  # noqa: E402
 from archive import Archive, render_id  # noqa: E402
 
@@ -71,12 +73,13 @@ def parse(argv):
     p.add_argument("--list", action="store_true")
     p.add_argument("--json", action="store_true")
     p.add_argument("--reindex", action="store_true")
+    p.add_argument("--samples", metavar="ŞABLON")
     p.add_argument("--root", default=str(DEFAULT_ROOT))
     p.add_argument("--archive", default=str(DEFAULT_ARCHIVE))
     a = p.parse_args(argv)
-    modes = [a.template is not None, a.batch is not None, a.list, a.reindex]
+    modes = [a.template is not None, a.batch is not None, a.list, a.reindex, a.samples is not None]
     if sum(modes) != 1:
-        raise UsageError("bir şablon adı, --batch, --list veya --reindex verin (yalnızca biri)")
+        raise UsageError("bir şablon adı, --batch, --list, --reindex veya --samples verin (yalnızca biri)")
     if a.batch and not a.out:
         raise UsageError("--batch için --out gerekli")
     return a
@@ -229,6 +232,8 @@ def main(argv, env=os.environ, run=hf.run, now=None):
             return 0
         if a.list:
             return list_templates(ctx, a.json)
+        if a.samples:
+            return run_samples(a.samples, ctx, Path(a.out) if a.out else None, now)
         if a.batch:
             with open(a.batch, encoding="utf-8") as f:
                 rows = json.load(f)
@@ -282,6 +287,26 @@ def run_batch(rows, ctx, out, now):
         print("Hiç grafik üretilemedi.", file=sys.stderr)
         return 2 if rows else 1
     _report(done, out)
+    return 0
+
+
+def run_samples(name, ctx, out, now):
+    design = ctx.design or designs.Config(ctx.root).design
+    t = manifest.load(designs.template_dir(ctx.root, design, name))
+    path = t.dir / "samples.json"
+    if not path.is_file():
+        raise RequestError([f"'{name}' şablonunun samples.json dosyası yok"])
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    out = out or ctx.home / "Downloads" / "grafik" / "_samples" / name
+    ctx.out, ctx.results = out, deliver.load_results(out)
+    try:
+        entries = review.samples(name, rows, lambda row: render_row(row, ctx))
+    finally:
+        deliver.save(out, ctx.results, [], now)
+    posters = [ctx.archive.root / name / e["archive_id"] / "poster.png" for e in entries]
+    sheet = review.contact_sheet(posters, out / "contact.png", run=ctx.run)
+    _report(entries, out)
+    print(f"Temas sayfası: {sheet}")
     return 0
 
 

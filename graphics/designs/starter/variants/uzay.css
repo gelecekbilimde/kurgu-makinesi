@@ -1,0 +1,6 @@
+/* Uzay Gündemi: Rigel mavisi, yörüngeler */
+:root {
+  --series: #7FA8FF;
+  --tick: #4F7DF0;
+  --motif: url("assets/motifs/uzay.svg");
+}

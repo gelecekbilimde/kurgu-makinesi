@@ -1,0 +1,7 @@
+/* Mühendislik Sohbetleri: buz mavisi, milimetrik kağıt ve ölçü çizgisi */
+:root {
+  --series: #9FE6F2;
+  --tick: #4FC9DE;
+  --motif: url("assets/motifs/muhendislik.svg");
+  --page-pattern: graph;
+}

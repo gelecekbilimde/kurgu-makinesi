@@ -23,6 +23,7 @@
   }
 
   function vars() {
+    orientation();
     const raw = (window.__hyperframes && window.__hyperframes.getVariables) ? window.__hyperframes.getVariables() : {};
     const t = types();
     const out = {};
@@ -36,6 +37,16 @@
     }
     return out;
   }
+
+  /* <html data-orientation="horizontal|vertical"> so tokens can switch sizes for 9:16. */
+  function orientation() {
+    const r = root();
+    const o = r && parseFloat(r.getAttribute("data-height")) > parseFloat(r.getAttribute("data-width"))
+      ? "vertical" : "horizontal";
+    document.documentElement.setAttribute("data-orientation", o);
+    return o;
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", orientation);
 
   const duration = () => parseFloat(root().getAttribute("data-duration"));
   const fps = () => parseFloat(root().getAttribute("data-fps") || "25");
@@ -76,22 +87,23 @@
     shape.style.strokeDashoffset = String(len * (1 - clamp01(p)));
   }
 
-  /* Shrink text to fit a width (never grow past the CSS size). */
+  /* Shrink text to fit a width, never growing past its CSS size. Measures the laid-out text itself (a Range over
+   * its contents), so it works for any font the design loads; call it after document.fonts.ready. */
+  function textWidth(el) {
+    const r = document.createRange();
+    r.selectNodeContents(el);
+    return r.getBoundingClientRect().width;
+  }
   function fit(el, maxWidthPx) {
-    const cs = getComputedStyle(el);
-    const size = parseFloat(cs.fontSize);
-    if (!(window.__hyperframes && window.__hyperframes.fitTextFontSize)) {
-      el.style.fontSize = size * Math.min(1, maxWidthPx / Math.max(1, el.scrollWidth)) + "px";
-      return;
-    }
-    const r = window.__hyperframes.fitTextFontSize(el.textContent, {
-      fontFamily: cs.fontFamily, fontWeight: cs.fontWeight, maxWidth: maxWidthPx,
-    });
-    el.style.fontSize = Math.min(size, r.fontSize) + "px";
+    el.style.fontSize = "";
+    const size = parseFloat(getComputedStyle(el).fontSize);
+    const w = textWidth(el);
+    if (w > maxWidthPx) el.style.fontSize = (size * maxWidthPx / w) + "px";
   }
 
   const frameFns = [];
   function onFrame(fn) {
+    orientation();
     frameFns.push(fn);
     fn(0);
   }
@@ -100,5 +112,5 @@
     for (const fn of frameFns) fn(t);
   });
 
-  window.kit = { vars, duration, fps, onFrame, progress, ease, token, tokenNum, reveal, draw, fit, clamp01 };
+  window.kit = { vars, orientation, duration, fps, onFrame, progress, ease, token, tokenNum, reveal, draw, fit, textWidth, clamp01 };
 })();
