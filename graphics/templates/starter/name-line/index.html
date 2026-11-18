@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<script src="design/motion.js"></script>
+<style>
+  .scrim { position: absolute; inset: 0; background: var(--lower-scrim); }
+  .lower { position: absolute; left: var(--lower-x); bottom: var(--lower-bottom); text-shadow: var(--text-shadow); }
+  .name { font-size: var(--lower-name-size); line-height: 1; font-weight: var(--head-weight); white-space: nowrap; }
+  .role { font-size: var(--lower-role-size); margin-top: calc(var(--lower-role-size) * .35); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="name-line" data-start="0" data-duration="5" data-width="1920" data-height="1080">
+  <div id="content">
+    <div class="scrim" id="scrim"></div>
+    <div class="lower" id="lower">
+      <div class="name" id="name"></div>
+      <div class="role ital" id="role"></div>
+    </div>
+  </div>
+</div>
+<script>
+  const v = kit.vars();
+  const $ = (id) => document.getElementById(id);
+  $("name").textContent = v.name;
+  $("role").textContent = v.role; if (!v.role) $("role").remove();
+  document.fonts.ready.then(() => {
+    const W = $("root").getBoundingClientRect().width;
+    const maxW = W - 2 * kit.tokenNum("--lower-x") * W / 100;
+    ["name", "role"].forEach((id) => $(id) && kit.fit($(id), maxW));
+    calm.entry([$("scrim")]);
+    calm.entry(document.querySelectorAll("#lower > *"));
+    calm.exit($("content"));
+    calm.start();
+  });
+</script>
+</body>
+</html>

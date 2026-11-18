@@ -1,0 +1,5 @@
+[{"label": "ev", "fields": {"name": "Burak Cankaya", "role": "sunucu, Gelecek Bilimde"}},
+ {"label": "diyalog", "variant": "diyalog", "fields": {"name": "Dr. Ayşe Yılmaz", "role": "kuantum fizikçisi, Boğaziçi Üniversitesi"}},
+ {"label": "yalniz-isim", "fields": {"name": "Ali Vural"}},
+ {"label": "dikey", "variant": "uzay", "vertical": true, "fields": {"name": "Burak Cankaya", "role": "sunucu, Gelecek Bilimde"}},
+ {"label": "en-uzun", "fields": {"name": "Prof. Dr. Ğüşçöİ Iııı Çağlayangil-Öztürk", "role": "Ğüşçöİ ıııı Üniversitesi, Astrofizik Bölümü, uzun unvanlı ad"}}]

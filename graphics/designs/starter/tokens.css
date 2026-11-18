@@ -78,6 +78,12 @@
   --bar-color: var(--ink);
   --bar-opacity-min: .55;
   --bar-max-width: 8cqw;
+  --lower-x: 6cqw;
+  --lower-bottom: 4.2cqw;
+  --lower-name-size: 3.4cqw;
+  --lower-role-size: 2.2cqw;
+  --lower-scrim: linear-gradient(0deg, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .3) 18%, transparent 34%);
+  --text-shadow: 0 .2cqw 1.2cqw rgba(0, 0, 0, .6);
   --bar-gap: .9;                      /* gap as a share of a bar's width */
   --bar-value-size: 1.6cqw;
   --bar-label-size: 1.25cqw;
@@ -112,4 +118,9 @@
   --number-size: 30cqw;
   --hand-stroke: .3cqw;
   --text-width: 84cqw;
+  --lower-x: 8cqw;
+  --lower-bottom: 30cqw;
+  --lower-name-size: 7cqw;
+  --lower-role-size: 4.4cqw;
+  --lower-scrim: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .5) 22%, rgba(0, 0, 0, .25) 32%, transparent 44%);
 }

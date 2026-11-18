@@ -1,0 +1,5 @@
+{"name": "name-line", "description": "İsim satırı (alt yazı): konuşanın adı ve unvanı, şeffaf arka plan, görüntünün üstüne",
+ "version": 1, "status": "final", "output": "overlay", "canvas": "frame", "vertical": true,
+ "frames": {"default": 125, "min": 75, "max": 250},
+ "fields": [{"name": "name", "type": "text", "required": true, "max_len": 40, "help": "konuşanın adı"},
+            {"name": "role", "type": "text", "max_len": 60, "help": "unvanı veya kurumu (italik, seri renginde)"}]}

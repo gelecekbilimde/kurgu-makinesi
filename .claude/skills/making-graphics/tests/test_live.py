@@ -97,3 +97,15 @@ class StarterTemplates(unittest.TestCase):
         self.assertEqual(code, 0, err)
         s = probe(out / "bar-chart-1.mp4")
         self.assertEqual(int(s["nb_read_frames"]), 175)
+
+    def test_live_name_line_alpha(self):
+        code, out, err = render_cli("name-line", "--set", "name=Burak Cankaya", "--set", "role=sunucu, Gelecek Bilimde",
+                                    "--resolution", "1080p")
+        self.assertEqual(code, 0, err)
+        mov = out / "name-line-1.mov"
+        s = probe(mov)
+        self.assertEqual(s["codec_name"], "prores")
+        self.assertTrue(s["pix_fmt"].startswith("yuva"), s["pix_fmt"])
+        r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(mov), "-vf", "select=eq(n\\,90),alphaextract,crop=8:8:0:0",
+                            "-frames:v", "1", "-f", "rawvideo", "-pix_fmt", "gray", "-"], capture_output=True, check=True)
+        self.assertEqual(max(r.stdout), 0, "top-left corner must be fully transparent")
