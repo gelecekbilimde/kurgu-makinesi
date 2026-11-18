@@ -1,0 +1,10 @@
+{"name": "demo", "description": "Test şablonu", "version": 1, "status": "draft",
+ "output": "fullscreen", "output_by": {"field": "state", "map": {"static": "still"}},
+ "canvas": "frame", "vertical": true, "frames": {"default": 150, "min": 75, "max": 375},
+ "fields": [{"name": "value", "type": "number", "required": true},
+            {"name": "explanation", "type": "text", "max_len": 40, "help": "kısa açıklama"},
+            {"name": "highlight", "type": "highlight", "of": "explanation"},
+            {"name": "state", "type": "enum", "values": ["static", "moving"]},
+            {"name": "bars", "type": "list", "item": "pair", "numeric": true, "min_items": 2, "max_items": 8},
+            {"name": "steps", "type": "list", "item": "text", "max_len": 10},
+            {"name": "source", "type": "source"}]}
