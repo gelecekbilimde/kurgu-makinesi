@@ -190,5 +190,5 @@ class Scaffolded(unittest.TestCase):
             code = make_graphic.main(["deneme", "--set", "title=Deneme başlığı", "--frames", "50", "--resolution",
                                       "1080p", "--root", str(root), "--archive", str(tmp / "a"), "--out", str(tmp / "o")])
         self.assertEqual(code, 0, se.getvalue())
-        s = probe(tmp / "o" / "deneme-1.mp4")
+        s = probe(tmp / "o" / "deneme-1.mov")
         self.assertEqual((int(s["nb_read_frames"]), s["width"]), (50, 1920))
