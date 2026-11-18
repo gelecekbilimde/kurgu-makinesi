@@ -55,3 +55,26 @@ class Smoke(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def render_cli(*args):
+    """Run make_graphic.py against the real graphics/ root into a temp out/archive; returns (code, out, stderr)."""
+    import contextlib
+    import io
+    import make_graphic
+    tmp = tempfile.mkdtemp(prefix="grafik-live-")
+    out = Path(tmp) / "out"
+    se = io.StringIO()
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(se):
+        code = make_graphic.main([*args, "--out", str(out), "--archive", str(Path(tmp) / "archive")])
+    return code, out, se.getvalue()
+
+
+@unittest.skipUnless(helpers.LIVE, "GRAPHICS_LIVE=1 değil")
+class StarterTemplates(unittest.TestCase):
+    def test_live_chapter_title(self):
+        code, out, err = render_cli("chapter-title", "--set", "line1=Hawking ışıması", "--set", "line2=nasıl çalışır?",
+                                    "--resolution", "1080p")
+        self.assertEqual(code, 0, err)
+        s = probe(out / "chapter-title-1.mp4")
+        self.assertEqual((int(s["nb_read_frames"]), s["codec_name"], s["width"], s["height"]), (100, "h264", 1920, 1080))
