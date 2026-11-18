@@ -1,0 +1,6 @@
+[{"label": "static", "fields": {"state": "static"}},
+ {"label": "wireframe", "frames": 100, "fields": {"state": "wireframe"}},
+ {"label": "revolve", "frames": 150, "fields": {"state": "revolve"}},
+ {"label": "revolve-wireframe", "frames": 150, "fields": {"state": "revolve-wireframe"}},
+ {"label": "star", "frames": 75, "fields": {"state": "star"}},
+ {"label": "star-noname", "frames": 75, "fields": {"state": "star-noname"}}]

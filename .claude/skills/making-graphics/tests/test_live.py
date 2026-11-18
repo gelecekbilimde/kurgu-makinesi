@@ -109,3 +109,52 @@ class StarterTemplates(unittest.TestCase):
         r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(mov), "-vf", "select=eq(n\\,90),alphaextract,crop=8:8:0:0",
                             "-frames:v", "1", "-f", "rawvideo", "-pix_fmt", "gray", "-"], capture_output=True, check=True)
         self.assertEqual(max(r.stdout), 0, "top-left corner must be fully transparent")
+
+
+def png_size_alpha(path):
+    r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=width,height,pix_fmt", "-of", "json",
+                        str(path)], capture_output=True, text=True, check=True)
+    s = json.loads(r.stdout)["streams"][0]
+    return s["width"], s["height"], s["pix_fmt"]
+
+
+def mean_diff(video, n, png):
+    """Mean absolute difference (0-255, all four channels) between frame n of video and a PNG."""
+    sel = f"select=eq(n\\,{n})" if n >= 0 else "reverse"
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-i", str(png), "-filter_complex",
+                        f"[0]{sel},format=rgba,setpts=0[a];[1]format=rgba[b];[a][b]blend=all_mode=difference,"
+                        "format=gray,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-",
+                        "-frames:v", "1", "-f", "null", "-"], capture_output=True, text=True, check=True)
+    vals = [float(x.split("=")[1]) for x in r.stdout.split() if x.startswith("lavfi.signalstats.YAVG=")]
+    return vals[0]
+
+
+@unittest.skipUnless(helpers.LIVE, "GRAPHICS_LIVE=1 değil")
+class Watermark(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.files = {}
+        for state, frames in (("static", None), ("revolve", 150), ("star", 75), ("wireframe", 50)):
+            args = ["watermark", "--set", f"state={state}"] + (["--frames", str(frames)] if frames else [])
+            code, out, err = render_cli(*args)
+            if code != 0:
+                raise AssertionError(err)
+            cls.files[state] = next(out.glob("watermark-1.*"))
+
+    def test_live_watermark_static_png(self):
+        w, h, fmt = png_size_alpha(self.files["static"])
+        self.assertEqual((w, h), (3800, 2600))
+        self.assertIn("a", fmt)
+
+    def test_live_watermark_states_same_canvas(self):
+        for state in ("revolve", "star", "wireframe"):
+            s = probe(self.files[state])
+            self.assertEqual((s["width"], s["height"]), (3800, 2600), state)
+            self.assertTrue(s["pix_fmt"].startswith("yuva"), state)
+
+    def test_live_watermark_chains(self):
+        for state in ("revolve", "star", "wireframe"):
+            n = int(probe(self.files[state])["nb_read_frames"])
+            for frame in (0, n - 1):
+                with self.subTest(state=state, frame=frame):
+                    self.assertLess(mean_diff(self.files[state], frame, self.files["static"]), 2.0)

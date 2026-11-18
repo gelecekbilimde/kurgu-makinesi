@@ -56,8 +56,18 @@
   --logo-wire-globe: 3;
   --logo-wire-land: 2.2;
   --logo-wire-text-fill: .55;
+  --logo-wire-globe-opacity: .8;
+  --logo-wire-land-opacity: .7;
+  --logo-wire-text-stroke: .5;        /* logo units (the globe is 160 units across) */
+  --logo-back: .6;                    /* opacity of letters on the far side, colour */
+  --logo-back-wire: .3;               /* the same, wireframe */
+  --logo-grow: 1.16;
+  --logo-perspective: 780;            /* logo units */
+  --logo-wire-fade: .6;               /* seconds, colour <-> wireframe */
   --star-head: #FFF6E8;
   --star-glow: #FFB46A;
+  --star-start: .3;                   /* seconds */
+  --star-travel: 2.4;                 /* seconds */
 
   /* sizes (frame-relative) */
   --head-size: 6.4cqw;

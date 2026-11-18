@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<style>
+  /* One world for every state: logo units, viewBox -90 -30 380 260 (the star needs the width), globe centre at
+   * (100, 100), radius 80. The canvas maps 1 unit to 10 px, so the globe is 1600 px across. */
+  .layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .txt { position: absolute; inset: 0; }
+  .ch { position: absolute; left: 0; top: 0; line-height: 1; white-space: pre; font-family: var(--font-head); }
+  .ch > span { position: absolute; left: 0; top: 0; }
+  .ch .c { color: var(--logo-text); }
+  .ch .w { color: color-mix(in srgb, var(--logo-wire) calc(var(--logo-wire-text-fill) * 100%), transparent); }
+  #gc .globe { fill: var(--logo-globe); }
+  #gc .land { fill: var(--logo-land); }
+  #gw .globe { fill: none; stroke: var(--logo-wire); stroke-opacity: var(--logo-wire-globe-opacity); stroke-width: var(--logo-wire-globe); }
+  #gw .land { fill: none; stroke: var(--logo-wire); stroke-opacity: var(--logo-wire-land-opacity);
+    stroke-width: var(--logo-wire-land); stroke-linejoin: round; }
+  .trail-a { stop-color: var(--star-head); stop-opacity: 0; }
+  .trail-b { stop-color: var(--star-head); stop-opacity: .95; }
+  .head { fill: var(--star-head); }
+  .glow { fill: var(--star-glow); opacity: .25; }
+  #measure { position: absolute; visibility: hidden; left: 0; top: 0; white-space: pre; line-height: 1; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="watermark" data-start="0" data-duration="6" data-width="3800" data-height="2600">
+  <div class="txt" id="back"></div>
+  <svg class="layer" id="globe" viewBox="-90 -30 380 260">
+    <defs><clipPath id="disc"><circle cx="100" cy="100" r="80"/></clipPath></defs>
+    <g id="gc">
+      <circle class="globe" cx="100" cy="100" r="80"/>
+      <g clip-path="url(#disc)" class="land">
+        <path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/>
+        <path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/>
+        <path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/>
+      </g>
+    </g>
+    <g id="gw">
+      <circle class="globe" cx="100" cy="100" r="79"/>
+      <g clip-path="url(#disc)" class="land">
+        <path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/>
+        <path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/>
+        <path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/>
+      </g>
+    </g>
+  </svg>
+  <div class="txt" id="front"></div>
+  <svg class="layer" id="starLayer" viewBox="-90 -30 380 260">
+    <defs>
+      <linearGradient id="trail" x1="0" x2="1"><stop offset="0" class="trail-a"/><stop offset="1" class="trail-b"/></linearGradient>
+      <filter id="blur" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <g id="star">
+      <line x1="0" y1="0" x2="-80" y2="-27" stroke="url(#trail)" stroke-width="2.4" stroke-linecap="round"/>
+      <circle class="head" r="3.4" filter="url(#blur)"/>
+      <circle class="glow" r="9" filter="url(#blur)"/>
+    </g>
+  </svg>
+  <div id="measure"></div>
+</div>
+<script>
+  const v = kit.vars();
+  const $ = (id) => document.getElementById(id);
+  const state = v.state || "static";
+  const wireState = state === "wireframe" || state === "revolve-wireframe";
+  const named = state !== "star-noname";
+
+  const VB = { x: -90, y: -30, w: 380, h: 260 };
+  const W = $("root").getBoundingClientRect().width, k = W / VB.w;
+  const px = (u) => (u - VB.x) * k, py = (u) => (u - VB.y) * k;
+  const CX = px(100), CY = py(100), R = 80 * k, FS = 33 * k;
+  const P = kit.tokenNum("--logo-perspective") * k;
+  const SW = kit.tokenNum("--logo-wire-text-stroke") * k;
+
+  /* The wordmark as single letters, positioned like the R3 logo (centred on x=100, baselines 96 and 128). */
+  const LINES = [{ t: "gelecek", base: 96, italic: false, weight: "var(--head-weight)", ls: -0.5 },
+                 { t: "bilimde", base: 128, italic: true, weight: "var(--head-second-weight)", ls: 0 }];
+  const letters = [];
+  const lines = [];
+
+  function build() {
+    const m = $("measure");
+    LINES.forEach((L, li) => {
+      m.innerHTML = "";
+      m.style.fontSize = FS + "px"; m.style.fontStyle = L.italic ? "italic" : "normal";
+      m.style.fontWeight = getComputedStyle($("root")).getPropertyValue(L.weight.slice(4, -1)).trim();
+      m.style.fontFamily = kit.token("--font-head");
+      const spans = L.t.split("").map((c) => { const s = document.createElement("span"); s.textContent = c; m.append(s); return s; });
+      const probe = document.createElement("span"); probe.style.cssText = "display:inline-block;width:0;height:0;vertical-align:baseline"; m.append(probe);
+      const bo = probe.offsetTop;                             /* baseline offset from the span top */
+      const ws = spans.map((s) => s.getBoundingClientRect().width + L.ls * k);
+      const total = ws.reduce((a, b) => a + b, 0);
+      const midY = py(L.base - 11), dy = midY - CY;
+      const r = Math.sqrt(Math.max(R * R - dy * dy, 1)) * 1.02;
+      const line = { r, baseY: py(L.base) };
+      lines.push(line);
+      let x = -total / 2;
+      L.t.split("").forEach((c, i) => {
+        const el = document.createElement("div"); el.className = "ch";
+        el.style.font = m.style.fontStyle + " " + m.style.fontWeight + " " + FS + "px " + m.style.fontFamily;
+        const cs = document.createElement("span"); cs.className = "c"; cs.textContent = c;
+        const wsn = document.createElement("span"); wsn.className = "w"; wsn.textContent = c;
+        wsn.style.webkitTextStroke = SW + "px " + kit.token("--logo-wire");
+        el.append(cs, wsn);
+        el.style.width = ws[i] + "px";
+        el.style.transformOrigin = (ws[i] / 2) + "px " + bo + "px";
+        letters.push({ el, cs, wsn, line, m: x + ws[i] / 2, w: ws[i], bo });
+        x += ws[i];
+      });
+    });
+    m.remove();
+  }
+
+  const smooth = (a, b, x) => { const u = kit.clamp01((x - a) / (b - a)); return u * u * (3 - 2 * u); };
+  const inout = kit.ease("in-out-cubic");
+
+  /* revolve: curvature c (0 flat .. 1 on the sphere), grow sc, ring angle phi, as fractions of the clip */
+  function revolveAt(f, grow) {
+    if (f < .06) return { c: 0, sc: 1, phi: 0 };
+    if (f < .20) { const u = inout((f - .06) / .14); return { c: u, sc: 1 + (grow - 1) * u, phi: 0 }; }
+    if (f < .84) return { c: 1, sc: grow, phi: 2 * Math.PI * inout((f - .20) / .64) };
+    if (f < .96) { const u = inout((f - .84) / .12); return { c: 1 - u, sc: grow - (grow - 1) * u, phi: 0 }; }
+    return { c: 0, sc: 1, phi: 0 };
+  }
+
+  function draw(t) {
+    const D = kit.duration();
+    const fade = kit.tokenNum("--logo-wire-fade");
+    /* wireframe states fade in from and back out to the colour logo, so every clip starts and ends on static */
+    const w = wireState ? Math.min(kit.progress(t, 0, fade, "in-out-sine"), 1 - kit.progress(t, D - fade - 1 / kit.fps(), fade, "in-out-sine")) : 0;
+    $("gc").style.opacity = String(1 - w);
+    $("gw").style.opacity = String(w);
+    const back = kit.tokenNum("--logo-back") * (1 - w) + kit.tokenNum("--logo-back-wire") * w;
+    const rv = state.startsWith("revolve") ? revolveAt(t / D, kit.tokenNum("--logo-grow")) : { c: 0, sc: 1, phi: 0 };
+
+    letters.forEach((l) => {
+      l.cs.style.opacity = String(1 - w);
+      l.wsn.style.opacity = String(w);
+      const L = l.line;
+      let X, Z, th;
+      if (rv.c < 1e-3) { X = l.m; Z = L.r; th = 0; }
+      else { const reff = L.r / rv.c; th = l.m / reff; X = reff * Math.sin(th); Z = (L.r - reff) + reff * Math.cos(th); }
+      const cp = Math.cos(rv.phi), sp = Math.sin(rv.phi);
+      const Xr = X * cp + Z * sp, Zr = -X * sp + Z * cp;
+      const ang = rv.phi + th;
+      /* perspective with the front of the sphere as the picture plane: the flat state projects at exactly 1:1 */
+      const f = P / (P - (Zr - L.r));
+      const sx = rv.sc * f, ax = CX + Xr * sx, ay = CY + (L.baseY - CY) * sx;
+      l.el.style.transform = "translate(" + (ax - l.w / 2) + "px," + (ay - l.bo) + "px) scale(" + (sx * Math.cos(ang)) + "," + sx + ")";
+      l.el.style.opacity = String(back + (1 - back) * smooth(-.12, .12, Math.cos(ang)));
+      const layer = Zr < 0 ? $("back") : $("front");      /* the globe sits at z = 0 and hides what is behind it */
+      if (l.el.parentNode !== layer) layer.append(l.el);
+    });
+
+    /* shooting star: a long straight path from far outside to far outside, fading in and out */
+    const star = $("star");
+    if (state.startsWith("star")) {
+      const start = kit.tokenNum("--star-start");
+      const travel = Math.min(kit.tokenNum("--star-travel"), Math.max(D - 2 * start, 0.2));
+      const u = kit.clamp01((t - start) / travel);
+      const e = kit.ease("in-out-sine")(u);
+      const x = -70 + (280 + 70) * e, y = 26 + (145 - 26) * e;
+      star.setAttribute("transform", "translate(" + x + " " + y + ")");
+      const o = u <= 0 || u >= 1 ? 0 : Math.min(kit.clamp01(u / .24), 1 - kit.clamp01((u - .78) / .22));
+      star.style.opacity = String(o);
+    } else {
+      star.style.opacity = "0";
+    }
+  }
+
+  document.fonts.ready.then(() => {
+    if (named) build();
+    kit.onFrame(draw);
+  });
+</script>
+</body>
+</html>

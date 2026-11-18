@@ -1,0 +1,7 @@
+{"name": "watermark", "description": "Yaşayan logo (filigran): static, wireframe, revolve, revolve-wireframe, star, star-noname; sabit yüksek çözünürlüklü şeffaf tuval, kurgucu ölçekler ve konumlar",
+ "version": 1, "status": "final", "output": "overlay", "output_by": {"field": "state", "map": {"static": "still"}},
+ "canvas": {"width": 3800, "height": 2600}, "vertical": false,
+ "frames": {"default": 150, "min": 25, "max": 500},
+ "fields": [{"name": "state", "type": "enum", "required": true,
+             "values": ["static", "wireframe", "revolve", "revolve-wireframe", "star", "star-noname"],
+             "help": "durum: static (PNG), wireframe, revolve, revolve-wireframe, star, star-noname"}]}

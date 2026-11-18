@@ -80,7 +80,14 @@ Prototype: `reference/watermark-v9.html`. The `watermark` template rebuilds it, 
 | star-noname | The same, globe only. |
 
 - Every animated state starts and ends on the exact static logo, so the states chain seamlessly.
+  - The wireframe states fade in from the colour logo and back out to it.
+  - `star-noname` starts and ends on the globe without the name.
 - All states share one canvas, with the globe at the same place. The editor scales and positions it in Resolve.
+  - Canvas: 3800×2600 px, transparent; the globe is 1600 px across, at the centre.
+  - `static` is a PNG; the other states are ProRes 4444 `.mov`.
+- Suggested lengths: revolve 150 frames (6 s, the default), wireframe 100, star 75.
+  - The star crosses in `--star-travel` seconds (2.4), starting `--star-start` (0.3) in, whatever the clip length.
+- Change from the prototype: the wordmark is projected so that its flat state is exactly the static logo's size. In v9 it looked about 11% larger whenever it was flat.
 
 **Rejected during the session:** extruded (thick 3D) letters, a curved or elliptical star path, a persistent header.
 
