@@ -1,5 +1,5 @@
 {"name": "chapter-title", "description": "Bölüm başlığı: etiket, iki satır başlık (ikinci satır seri renginde)",
- "version": 1, "status": "draft", "output": "fullscreen", "canvas": "frame", "vertical": true,
+ "version": 1, "status": "final", "output": "fullscreen", "canvas": "frame", "vertical": true,
  "frames": {"default": 100, "min": 50, "max": 250},
  "fields": [{"name": "label", "type": "text", "max_len": 40, "help": "üstteki küçük etiket, örn. BÖLÜM 2 / 5"},
             {"name": "line1", "type": "text", "required": true, "max_len": 60, "help": "başlığın ilk satırı"},
