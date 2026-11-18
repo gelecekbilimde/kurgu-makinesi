@@ -1,0 +1,111 @@
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+ .lg { display:grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 18px; margin-bottom: 30px; }
+ .pn { background:#000; border-radius:8px; outline:1px solid #222; padding: 0 0 14px; }
+ .pn .art { aspect-ratio: 260/220; position: relative; }
+ .pn h3 { color:#ECE6DA; font: 600 13px 'JetBrains Mono', monospace; letter-spacing:.1em; margin: 8px 16px 2px; }
+ .pn p { color:#8F8A80; font-size:13px; margin: 0 16px; }
+ .ctx { position:relative; aspect-ratio:16/9; width:100%; border-radius:6px; overflow:hidden; background:url(/files/speaker.jpg) center/cover; container-type:inline-size; margin-bottom: 8px; }
+ .wm { position:absolute; right:2.5cqw; bottom:2.5cqw; width:11cqw; aspect-ratio: 260/220; }
+ .cap { font-size:13px; color: var(--text-secondary); margin-bottom: 26px; }
+ .sec { margin: 0 0 8px; font: 600 12px 'JetBrains Mono', monospace; letter-spacing: .12em; color: var(--text-secondary); }
+ .l3 { position:absolute; inset:0; }
+ .l3 .scene { position:absolute; inset:0; overflow:hidden; }
+ .l3 .grow { position:absolute; left:0; top:0; width:100%; height:100%; transform-style: preserve-3d; }
+ .l3 .ring { position:absolute; width:0; height:0; transform-style: preserve-3d; }
+ .l3 .ch { position:absolute; font-family:'Fraunces', serif; line-height:1; white-space:pre; backface-visibility:visible; }
+ @keyframes rev {
+   0%, 14% { transform: rotateY(0deg); animation-timing-function: cubic-bezier(.5,0,.9,.6); }
+   44% { transform: rotateY(110deg); animation-timing-function: linear; }
+   58% { transform: rotateY(250deg); animation-timing-function: cubic-bezier(.1,.4,.3,1); }
+   84%, 100% { transform: rotateY(360deg); }
+ }
+ @keyframes grow {
+   0% { transform: scale(1); animation-timing-function: cubic-bezier(.3,0,.2,1); }
+   12% { transform: scale(1.16); }
+   84% { transform: scale(1.16); animation-timing-function: cubic-bezier(.4,0,.2,1); }
+   94%, 100% { transform: scale(1); }
+ }
+</style>
+<h2>The living watermark, v7: longer star path</h2>
+<p class="subtitle">Changes: thicker wireframe with a filled, see-through name; the name grows first, then revolves around a real sphere and comes back from the other side a little later. Loops every 5–6 s here; in a video they'd play now and then.</p>
+<div class="lg">
+<div class="pn"><div class="art"><svg viewBox="-30 -10 260 220" style="width:100%;height:100%;display:block;overflow:hidden"><defs><linearGradient id="tra" x1="0" x2="1"><stop offset="0" stop-color="#FFF6E8" stop-opacity="0"/><stop offset="1" stop-color="#FFF6E8" stop-opacity=".95"/></linearGradient><filter id="gla" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><defs><clipPath id="ga"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="80" fill="#0B5F7A"/><g clip-path="url(#ga)" fill="#19B34A"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g><text x="100" y="96" text-anchor="middle" font-family="Fraunces" font-size="33" letter-spacing="-.5" fill="#fff">gelecek</text><text x="100" y="128" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="300" font-size="33" fill="#fff">bilimde</text></svg></div><h3>1 · Static</h3><p>The finished logo, full colour.</p></div>
+<div class="pn"><div class="art"><svg viewBox="-30 -10 260 220" style="width:100%;height:100%;display:block;overflow:hidden"><defs><linearGradient id="trb" x1="0" x2="1"><stop offset="0" stop-color="#FFF6E8" stop-opacity="0"/><stop offset="1" stop-color="#FFF6E8" stop-opacity=".95"/></linearGradient><filter id="glb" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><defs><clipPath id="gb"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="79" fill="none" stroke="#ECE6DA" stroke-opacity=".8" stroke-width="3"/><g clip-path="url(#gb)" fill="none" stroke="#ECE6DA" stroke-opacity=".7" stroke-width="2.2" stroke-linejoin="round"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g><text x="100" y="96" text-anchor="middle" font-family="Fraunces" font-size="33" letter-spacing="-.5" fill="#ECE6DA" fill-opacity=".55" stroke="#ECE6DA" stroke-width=".5">gelecek</text><text x="100" y="128" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="300" font-size="33" fill="#ECE6DA" fill-opacity=".55" stroke="#ECE6DA" stroke-width=".5">bilimde</text></svg></div><h3>2 · Wireframe (v2)</h3><p>Thicker globe lines; the name is filled now, still see-through.</p></div>
+<div class="pn"><div class="art"><div class="l3" data-mode="color"><svg viewBox="-30 -10 260 220" style="position:absolute;inset:0;width:100%;height:100%"><defs><clipPath id="gc"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="80" fill="#0B5F7A"/><g clip-path="url(#gc)" fill="#19B34A"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g></svg><div class="scene"></div></div></div><h3>3 · Revolving name (v2)</h3><p>The name grows, then travels around the sphere in 3D: it bends at the edges, disappears behind, and comes back from the other side a little later, then settles.</p></div>
+<div class="pn"><div class="art"><div class="l3" data-mode="wire"><svg viewBox="-30 -10 260 220" style="position:absolute;inset:0;width:100%;height:100%"><defs><clipPath id="gc2"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="79" fill="none" stroke="#ECE6DA" stroke-opacity=".8" stroke-width="3"/><g clip-path="url(#gc2)" fill="none" stroke="#ECE6DA" stroke-opacity=".7" stroke-width="2.2" stroke-linejoin="round"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g></svg><div class="scene"></div></div></div><h3>3b · Revolving name, wireframe</h3><p>The same in the wireframe state.</p></div>
+<div class="pn"><div class="art"><svg viewBox="-90 -30 380 260" style="width:100%;height:100%;display:block;overflow:hidden"><defs><linearGradient id="trd" x1="0" x2="1"><stop offset="0" stop-color="#FFF6E8" stop-opacity="0"/><stop offset="1" stop-color="#FFF6E8" stop-opacity=".95"/></linearGradient><filter id="gld" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><defs><clipPath id="gd"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="80" fill="#0B5F7A"/><g clip-path="url(#gd)" fill="#19B34A"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g><text x="100" y="96" text-anchor="middle" font-family="Fraunces" font-size="33" letter-spacing="-.5" fill="#fff">gelecek</text><text x="100" y="128" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="300" font-size="33" fill="#fff">bilimde</text><g><animateTransform attributeName="transform" type="translate" values="-70 26;-70 26;280 145" keyTimes="0;.55;1" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 1 1;.25 0 .75 1"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.66;.9;1" dur="5s" repeatCount="indefinite"/><line x1="0" y1="0" x2="-80" y2="-27" stroke="url(#trd)" stroke-width="2.4" stroke-linecap="round"/><circle r="3.4" fill="#FFF6E8" filter="url(#gld)"/><circle r="9" fill="#FFB46A" opacity=".25" filter="url(#gld)"/></g></svg></div><h3>4a · Shooting star, with name</h3><p>A shooting star passes in front of the logo.</p></div>
+<div class="pn"><div class="art"><svg viewBox="-90 -30 380 260" style="width:100%;height:100%;display:block;overflow:hidden"><defs><linearGradient id="tre" x1="0" x2="1"><stop offset="0" stop-color="#FFF6E8" stop-opacity="0"/><stop offset="1" stop-color="#FFF6E8" stop-opacity=".95"/></linearGradient><filter id="gle" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><defs><clipPath id="ge"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="80" fill="#0B5F7A"/><g clip-path="url(#ge)" fill="#19B34A"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g><g><animateTransform attributeName="transform" type="translate" values="-70 26;-70 26;280 145" keyTimes="0;.55;1" dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 1 1;.25 0 .75 1"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.66;.9;1" dur="5s" repeatCount="indefinite"/><line x1="0" y1="0" x2="-80" y2="-27" stroke="url(#tre)" stroke-width="2.4" stroke-linecap="round"/><circle r="3.4" fill="#FFF6E8" filter="url(#gle)"/><circle r="9" fill="#FFB46A" opacity=".25" filter="url(#gle)"/></g></svg></div><h3>4b · Shooting star, globe only</h3><p>The same, globe only.</p></div>
+</div>
+<div class="sec">IN CONTEXT · WATERMARK SIZE OVER FOOTAGE</div>
+<div class="ctx"><div class="wm" style="width:16cqw; aspect-ratio:380/260"><svg viewBox="-90 -30 380 260" style="width:100%;height:100%;display:block;overflow:hidden"><defs><linearGradient id="trf" x1="0" x2="1"><stop offset="0" stop-color="#FFF6E8" stop-opacity="0"/><stop offset="1" stop-color="#FFF6E8" stop-opacity=".95"/></linearGradient><filter id="glf" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><defs><clipPath id="gf"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="79" fill="none" stroke="#ECE6DA" stroke-opacity=".8" stroke-width="3"/><g clip-path="url(#gf)" fill="none" stroke="#ECE6DA" stroke-opacity=".7" stroke-width="2.2" stroke-linejoin="round"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g><text x="100" y="96" text-anchor="middle" font-family="Fraunces" font-size="33" letter-spacing="-.5" fill="#ECE6DA" fill-opacity=".55" stroke="#ECE6DA" stroke-width=".5">gelecek</text><text x="100" y="128" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="300" font-size="33" fill="#ECE6DA" fill-opacity=".55" stroke="#ECE6DA" stroke-width=".5">bilimde</text><g><animateTransform attributeName="transform" type="translate" values="-70 26;-70 26;280 145" keyTimes="0;.55;1" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 1 1;.25 0 .75 1"/><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.66;.9;1" dur="6s" repeatCount="indefinite"/><line x1="0" y1="0" x2="-80" y2="-27" stroke="url(#trf)" stroke-width="2.4" stroke-linecap="round"/><circle r="3.4" fill="#FFF6E8" filter="url(#glf)"/><circle r="9" fill="#FFB46A" opacity=".25" filter="url(#glf)"/></g></svg></div></div><div class="cap">Resting in wireframe, a star passing.</div>
+<div class="ctx"><div class="wm"><div class="l3" data-mode="wire"><svg viewBox="-30 -10 260 220" style="position:absolute;inset:0;width:100%;height:100%"><defs><clipPath id="gg"><circle cx="100" cy="100" r="80"/></clipPath></defs><circle cx="100" cy="100" r="79" fill="none" stroke="#ECE6DA" stroke-opacity=".8" stroke-width="3"/><g clip-path="url(#gg)" fill="none" stroke="#ECE6DA" stroke-opacity=".7" stroke-width="2.2" stroke-linejoin="round"><path d="M10 70 C 40 48, 64 62, 78 46 C 92 30, 112 40, 122 30 C 136 18, 150 20, 160 10 L 0 0 Z"/><path d="M150 110 C 162 96, 184 100, 200 92 L 200 200 L 160 200 C 168 176, 140 168, 146 146 C 150 132, 142 122, 150 110 Z"/><path d="M0 150 C 20 140, 40 150, 52 168 C 60 182, 50 196, 40 200 L 0 200 Z"/></g></svg><div class="scene"></div></div></div></div><div class="cap">Resting in wireframe, the name revolving.</div>
+
+<script>
+(function(){
+  var states = [];
+  function build(el){
+    var W = el.clientWidth, k = W / 260;
+    var cx = 130 * k, cy = 110 * k, R = 80 * k, fs = 33 * k;
+    var wire = el.dataset.mode === 'wire';
+    var scene = el.querySelector('.scene'); var old = scene.querySelector('svg'); if (old) el.insertBefore(old, scene); scene.innerHTML = '';
+    scene.style.perspective = (W * 3) + 'px';
+    scene.style.perspectiveOrigin = cx + 'px ' + cy + 'px';
+    var world = document.createElement('div'); world.className = 'grow'; scene.appendChild(world);
+    var g = el.querySelector(':scope > svg'); if (g) { g.style.transform = 'translateZ(0px)'; world.appendChild(g); }
+    var grow = document.createElement('div'); grow.className = 'grow';
+    grow.style.transformOrigin = cx + 'px ' + cy + 'px';
+    world.appendChild(grow);
+    var ctx = document.createElement('canvas').getContext('2d');
+    var st = { grow: grow, lines: [], back: wire ? .3 : .6 };
+    [{t:'gelecek', base:96, it:false, w:400, ls:-.5}, {t:'bilimde', base:128, it:true, w:300, ls:0}].forEach(function(L){
+      var font = (L.it ? 'italic ' : '') + L.w + ' ' + fs + 'px Fraunces';
+      ctx.font = font;
+      var ws = [].map.call(L.t, function(c){ return ctx.measureText(c).width + L.ls * k; });
+      var total = ws.reduce(function(a,b){return a+b;}, 0);
+      var midY = (L.base - 11 + 10) * k, dy = midY - cy;
+      var r = Math.sqrt(Math.max(R*R - dy*dy, 1)) * 1.02;
+      var ring = document.createElement('div'); ring.className = 'ring';
+      ring.style.left = cx + 'px'; ring.style.top = midY + 'px';
+      var line = { ring: ring, r: r, letters: [] }, x = -total / 2;
+      L.t.split('').forEach(function(c, i){
+        var sp = document.createElement('span'); sp.className = 'ch'; sp.textContent = c;
+        sp.style.font = font; sp.style.color = wire ? 'rgba(236,230,218,.6)' : '#fff';
+        sp.style.left = (-ws[i] / 2) + 'px'; sp.style.top = (-fs * 0.55) + 'px';
+        ring.appendChild(sp); line.letters.push({ el: sp, m: x + ws[i] / 2 }); x += ws[i];
+      });
+      grow.appendChild(ring); st.lines.push(line);
+    });
+    return st;
+  }
+  function ease(u){ u = Math.min(Math.max(u, 0), 1); return u < .5 ? 4*u*u*u : 1 - Math.pow(-2*u + 2, 3) / 2; }
+  function smooth(a, b, x){ var u = Math.min(Math.max((x - a) / (b - a), 0), 1); return u * u * (3 - 2 * u); }
+  var DUR = 6000;
+  function frame(now){
+    var t = (now % DUR) / DUR, c, sc, phi;
+    if (t < .06) { c = 0; sc = 1; phi = 0; }
+    else if (t < .20) { var u = ease((t - .06) / .14); c = u; sc = 1 + .16 * u; phi = 0; }
+    else if (t < .84) { c = 1; sc = 1.16; phi = 2 * Math.PI * ease((t - .20) / .64); }
+    else if (t < .96) { var v = ease((t - .84) / .12); c = 1 - v; sc = 1.16 - .16 * v; phi = 0; }
+    else { c = 0; sc = 1; phi = 0; }
+    states.forEach(function(st){
+      st.grow.style.transform = 'scale(' + sc + ')';
+      st.lines.forEach(function(L){
+        L.ring.style.transform = 'rotateY(' + phi + 'rad)';
+        L.letters.forEach(function(l){
+          var tr, ang;
+          if (c < 1e-3) { tr = 'translateX(' + l.m + 'px) translateZ(' + L.r + 'px)'; ang = phi; }
+          else { var reff = L.r / c, th = l.m / reff; ang = phi + th;
+                 tr = 'translateZ(' + (L.r - reff) + 'px) rotateY(' + th + 'rad) translateZ(' + reff + 'px)'; }
+          l.el.style.transform = tr;
+          l.el.style.opacity = st.back + (1 - st.back) * smooth(-.12, .12, Math.cos(ang));
+        });
+      });
+    });
+    requestAnimationFrame(frame);
+  }
+  function all(){ states = [].map.call(document.querySelectorAll('.l3'), build); }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ all(); requestAnimationFrame(frame); });
+  window.addEventListener('resize', function(){ clearTimeout(window.__l3t); window.__l3t = setTimeout(all, 150); });
+})();
+</script>
