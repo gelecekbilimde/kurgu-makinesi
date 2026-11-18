@@ -167,6 +167,9 @@ def validate(t, raw):
         if f.type == "list":
             values[f.name] = _list_value(f, given, problems)
             continue
+        if isinstance(given, list):
+            problems.append(f"{f.name}: tek değer alır, {len(given)} değer verildi")
+            continue
         text = str(given).strip()
         if f.type == "number":
             m = _NUMBER.match(text)
