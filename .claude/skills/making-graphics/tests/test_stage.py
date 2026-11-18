@@ -37,6 +37,14 @@ class Stage(unittest.TestCase):
         self.assertEqual(a["data-fps"], "25")
         self.assertEqual((a["data-width"], a["data-height"]), ("1920", "1080"))
 
+    def test_stage_marks_background(self):
+        t = manifest.load(designs.template_dir(self.root, "demo", "demo"))
+        values = manifest.validate(t, {"value": "1"})
+        d = stage.stage(t, self.design, "a", values, False, 25, 25, self.tmp / "s1", background=True)
+        self.assertRegex((d / "index.html").read_text(), r'<html[^>]*data-background="page"')
+        d = stage.stage(t, self.design, "a", values, False, 25, 25, self.tmp / "s2")
+        self.assertRegex((d / "index.html").read_text(), r'<html[^>]*data-background="none"')
+
     def test_stage_vertical(self):
         _, d = self.do(vertical=True, frames=100, fps=50)
         a = root_attrs((d / "index.html").read_text())

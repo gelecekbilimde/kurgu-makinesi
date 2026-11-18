@@ -91,6 +91,12 @@ Prototype: `reference/watermark-v9.html`. The `watermark` template rebuilds it, 
 
 **Rejected during the session:** extruded (thick 3D) letters, a curved or elliptical star path, a persistent header.
 
+## Overlay and page
+
+- Every render is a transparent overlay by default. `base.css` hides the page, the dot grid and the series motif when `<html data-background="none">`, and gives text a soft shadow.
+- `--background` keeps the page, for a full-screen `.mp4`.
+- The bars are partly transparent (`--bar-opacity-min`), so footage shows through them in overlays.
+
 ## Decisions by the editors
 
 (empty: record decisions here, with the date and why)

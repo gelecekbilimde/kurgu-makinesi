@@ -56,7 +56,7 @@ class SamplesCli(unittest.TestCase):
                                          env={"HOME": d}, run=run, now=NOW)
             self.assertEqual(code, 0, se.getvalue())
             self.assertEqual(len(run.renders()), 2)
-            self.assertTrue((out / "01-kisa-1.mp4").is_file())
+            self.assertTrue((out / "01-kisa-1.mov").is_file())
             self.assertTrue((out / "contact.png").is_file())
 
     def test_samples_without_file(self):

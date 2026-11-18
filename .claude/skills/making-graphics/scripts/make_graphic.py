@@ -2,6 +2,7 @@
 
   python3 make_graphic.py <template> --set alan=değer [--set ...] [--fields-file F] [--variant V] [--vertical]
                           [--frames N] [--fps 25] [--resolution 4k|1080p] [--out DIR] [--code C] [--design D] [--fresh]
+                          [--background]
   python3 make_graphic.py --batch rows.json --out DIR   # [{"template", "code"?, "fields": {}, "variant"?, "vertical"?,
                                                         #   "frames"?}, ...]
   python3 make_graphic.py --list [--json]               # templates of the active design and their fields
@@ -13,6 +14,8 @@
   python3 make_graphic.py --preview <template> [--set ...] [--variant V] [--vertical] [--port P]
   python3 make_graphic.py --stop-preview <template>
 
+Every graphic is a transparent ProRes 4444 .mov by default (overlays on any footage in Resolve); --background renders
+an .mp4 on the design's page instead. Templates whose output is "still" give a transparent .png.
 Repeat --set for a list field (--set bars="Mars=3,7" --set bars="Dünya=9,8"). Lengths are frames.
 Exit codes: 0 rendered, 2 the request doesn't fit the template, 1 any other failure.
 """
@@ -76,6 +79,7 @@ def parse(argv):
     p.add_argument("--code")
     p.add_argument("--design")
     p.add_argument("--fresh", action="store_true")
+    p.add_argument("--background", action="store_true")
     p.add_argument("--batch")
     p.add_argument("--list", action="store_true")
     p.add_argument("--json", action="store_true")
@@ -149,6 +153,9 @@ def resolve(row, ctx):
     except manifest.FieldError as err:
         raise RequestError(err.problems) from None
     output = manifest.output_for(t, values)
+    background = bool(row.get("background"))
+    if output != "still":
+        output = "fullscreen" if background else "overlay"
     fps = int(row.get("fps") or ctx.fps)
     default, lo, hi = manifest.frame_limits(t, fps)
     frames = int(row.get("frames") or default)
@@ -165,7 +172,7 @@ def resolve(row, ctx):
         if vertical and not t.vertical:
             raise RequestError([f"'{t.name}' şablonunun dikey (9:16) sürümü yok"])
     return dict(t=t, design=design, ddir=ddir, values=values, variant=variant, output=output, fps=fps,
-                frames=frames, vertical=vertical, resolution=resolution)
+                frames=frames, vertical=vertical, resolution=resolution, background=background)
 
 
 def render_row(row, ctx):
@@ -179,7 +186,8 @@ def render_row(row, ctx):
     sources = [r["values"][f.name] for f in t.fields if f.type == "source" and r["values"].get(f.name)]
     entry = dict(template=t.name, version=t.version, design=r["design"], variant=r["variant"],
                  vertical=r["vertical"], frames=r["frames"], fps=r["fps"], resolution=r["resolution"],
-                 output=r["output"], values=r["values"], sources=sources, archive_id=id)
+                 output=r["output"], background=r["background"], values=r["values"], sources=sources,
+                 archive_id=id)
     existing = None if (ctx.fresh or row.get("fresh")) else ctx.archive.lookup(t.name, id)
     if existing:
         return deliver.add(ctx.out, ctx.results, row.get("code") or t.name, {**entry, "from_archive": True},
@@ -187,7 +195,7 @@ def render_row(row, ctx):
     with tempfile.TemporaryDirectory(prefix="grafik-") as tmp:
         tmp = Path(tmp)
         staged = stage.stage(t, r["ddir"], r["variant"], r["values"], r["vertical"], r["frames"], r["fps"],
-                             tmp / "project")
+                             tmp / "project", background=r["background"])
         out_file = render.render(staged, r["output"], r["resolution"], t.fixed_canvas, r["vertical"], r["fps"],
                                  tmp / ("render" + render.EXT[r["output"]]), run=ctx.run)
         if r["output"] == "still":
@@ -269,7 +277,7 @@ def main(argv, env=os.environ, run=hf.run, now=None):
                 rows = json.load(f)
             return run_batch(rows, ctx, Path(a.out), now)
         row = {"template": a.template, "code": a.code, "fields": fields_from_args(a.set, a.fields_file),
-               "variant": a.variant, "vertical": a.vertical, "frames": a.frames}
+               "variant": a.variant, "vertical": a.vertical, "frames": a.frames, "background": a.background}
         return run_single(row, ctx, Path(a.out) if a.out else None, now)
     except RequestError as err:
         print("Geçersiz istek:", file=sys.stderr)

@@ -43,14 +43,40 @@ class Cli(unittest.TestCase):
         code, so, se, run = self.main("demo", "--set", "value=10^67", "--set", "source=NASA, 2024")
         self.assertEqual(code, 0, se)
         r = self.results()["renders"][0]
-        self.assertEqual(r["file"], "demo-1.mp4")
+        self.assertEqual(r["file"], "demo-1.mov")
         self.assertEqual((r["template"], r["design"], r["variant"], r["frames"], r["fps"], r["resolution"]),
                          ("demo", "demo", "a", 150, 25, "4k"))
         self.assertEqual(r["sources"], ["NASA, 2024"])
         self.assertFalse(r["from_archive"])
         self.assertEqual((self.out / "kaynaklar.txt").read_text(), "NASA, 2024\n")
         self.assertTrue((self.archive / "demo" / r["archive_id"] / "vars.json").is_file())
-        self.assertIn("demo-1.mp4", so)
+        self.assertIn("demo-1.mov", so)
+
+    def test_fullscreen_defaults_to_alpha_mov(self):
+        code, _, se, run = self.main("demo", "--set", "value=1")
+        self.assertEqual(code, 0, se)
+        r = self.results()["renders"][0]
+        self.assertEqual((r["file"], r["output"], r["background"]), ("demo-1.mov", "overlay", False))
+        self.assertIn("--format mov", " ".join(run.renders()[0]))
+
+    def test_background_flag_gives_mp4(self):
+        code, _, se, run = self.main("demo", "--set", "value=1", "--background")
+        self.assertEqual(code, 0, se)
+        r = self.results()["renders"][0]
+        self.assertEqual((r["file"], r["output"], r["background"]), ("demo-1.mp4", "fullscreen", True))
+        self.assertIn("--format mp4", " ".join(run.renders()[0]))
+
+    def test_background_is_part_of_archive_id(self):
+        self.main("demo", "--set", "value=1")
+        _, _, _, run = self.main("demo", "--set", "value=1", "--background")
+        self.assertEqual(len(run.renders()), 1)
+
+    def test_batch_row_background(self):
+        f = self.d / "rows.json"
+        f.write_text(json.dumps([{"template": "demo", "code": "G1", "fields": {"value": "1"}, "background": True}]))
+        code, _, se, _ = self.main("--batch", str(f))
+        self.assertEqual(code, 0, se)
+        self.assertEqual(self.results()["renders"][0]["file"], "G1-1.mp4")
 
     def test_archive_reuse(self):
         self.main("demo", "--set", "value=1")
@@ -58,7 +84,7 @@ class Cli(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(run.renders(), [])
         self.assertTrue(self.results()["renders"][1]["from_archive"])
-        self.assertEqual(self.results()["renders"][1]["file"], "demo-2.mp4")
+        self.assertEqual(self.results()["renders"][1]["file"], "demo-2.mov")
 
     def test_fresh_forces_render(self):
         self.main("demo", "--set", "value=1")
@@ -149,7 +175,7 @@ class Cli(unittest.TestCase):
     def test_default_out_dir(self):
         code, so, se, _ = self.main("demo", "--set", "value=1", "--set", "explanation=Güneş Işığı", out=False)
         self.assertEqual(code, 0, se)
-        self.assertTrue((self.home / "Downloads/grafik/demo-gunes-isigi/demo-1.mp4").is_file())
+        self.assertTrue((self.home / "Downloads/grafik/demo-gunes-isigi/demo-1.mov").is_file())
 
     def test_list_json_shape(self):
         code, so, _, _ = self.main("--list", "--json", out=False)
@@ -171,7 +197,7 @@ class Cli(unittest.TestCase):
                                  {"template": "fixed", "code": "G2", "fields": {"state": "b"}}]))
         code, _, se, _ = self.main("--batch", str(f))
         self.assertEqual(code, 0, se)
-        self.assertEqual([r["file"] for r in self.results()["renders"]], ["G1-1.mp4", "G2-1.mov"])
+        self.assertEqual([r["file"] for r in self.results()["renders"]], ["G1-1.mov", "G2-1.mov"])
 
     def test_batch_bad_row_does_not_stop_others(self):
         f = self.d / "rows.json"

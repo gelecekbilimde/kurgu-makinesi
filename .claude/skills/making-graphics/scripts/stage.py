@@ -35,7 +35,7 @@ def _set_attrs(tag, attrs):
     return tag
 
 
-def _rewrite(html, root_attrs, variables, types):
+def _rewrite(html, root_attrs, variables, types, background):
     m = re.search(r"<[a-zA-Z][^>]*\sdata-composition-id=[^>]*>", html)
     if not m:
         raise ValueError("index.html içinde data-composition-id taşıyan bir kök öğe yok")
@@ -44,7 +44,8 @@ def _rewrite(html, root_attrs, variables, types):
     h = re.search(r"<html\b[^>]*>", html)
     if not h:
         raise ValueError("index.html içinde <html> etiketi yok")
-    html = html[:h.start()] + _set_attrs(h.group(0), {"data-composition-variables": f"'{decl}'"}) + html[h.end():]
+    html_attrs = {"data-composition-variables": f"'{decl}'", "data-background": "page" if background else "none"}
+    html = html[:h.start()] + _set_attrs(h.group(0), html_attrs) + html[h.end():]
     script = f'<script id="kit-types" type="application/json">{json.dumps(types)}</script>\n'
     if "</head>" in html:
         return html.replace("</head>", script + "</head>", 1)
@@ -57,7 +58,9 @@ def _encode(value):
     return "" if value is None else str(value)
 
 
-def stage(t, design, variant, values, vertical, frames, fps, dest):
+def stage(t, design, variant, values, vertical, frames, fps, dest, background=False):
+    """background=False marks <html data-background="none">: the design drops its page so the render is a
+    transparent overlay; True ("page") keeps it, for a full-screen clip on the design's page colour."""
     designs.check_variant(design, variant)
     dest = Path(dest)
     if dest.exists():
@@ -78,7 +81,7 @@ def stage(t, design, variant, values, vertical, frames, fps, dest):
     variables = [{"id": f.name, "type": "string", "label": f.help or f.name, "default": ""} for f in t.fields]
     types = {f.name: f.type for f in t.fields}
     index = dest / "index.html"
-    index.write_text(_rewrite(index.read_text(encoding="utf-8"), attrs, variables, types), encoding="utf-8")
+    index.write_text(_rewrite(index.read_text(encoding="utf-8"), attrs, variables, types, background), encoding="utf-8")
     (dest / "vars.json").write_text(json.dumps({k: _encode(v) for k, v in values.items()}, ensure_ascii=False),
                                     encoding="utf-8")
     return dest

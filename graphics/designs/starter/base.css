@@ -30,3 +30,10 @@ html, body { background: transparent; }
 .hl { background-image: linear-gradient(var(--hl-fill), var(--hl-fill)); background-repeat: no-repeat;
   background-position: 0 85%; background-size: 0% 38%; }
 .ital { font-style: italic; font-weight: 300; color: var(--series); }
+
+/* Transparent overlay (the default render): no page, no dot grid, no motif; text keeps a soft shadow so it reads
+ * over footage. --background renders keep the page (data-background="page"). */
+:root[data-background="none"] .page,
+:root[data-background="none"] .pattern,
+:root[data-background="none"] .motif { display: none; }
+:root[data-background="none"] #content { text-shadow: var(--text-shadow); }

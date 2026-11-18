@@ -141,7 +141,7 @@ This is where design decisions get made. The skill's reference doc tells Claude 
 |---|---|
 | Frame rate | 25 by default (the camera rate); `--fps` overrides |
 | Resolution | 3840×2160 by default; `--resolution 1080p` for speed; vertical is 2160×3840; fixed-canvas templates ignore both |
-| Format | per the manifest's `output` |
+| Format | every graphic is a transparent ProRes 4444 `.mov` by default, so it overlays any footage; `--background` renders an `.mp4` on the design's page instead; `still` templates give a transparent `.png` |
 | Length | integer frames, the template's default unless `--frames` is given, checked against its min/max |
 
 - `--out` defaults to `~/Downloads/grafik/<template>-<slug>/` when called on its own. The B-roll skill passes episode paths.
@@ -235,6 +235,11 @@ This is where design decisions get made. The skill's reference doc tells Claude 
 - **SKILL.md wording:** follow the finder's style, with triggers in the description, steps, batch usage and Turkish messages.
 
 ## Decided after review
+
+- **Everything is an overlay** (user, 2026-11-18).
+  - The user asked for every graphic to be usable over footage. Chroma key was considered and rejected: the logo and series greens and blues would be keyed out, and thin strokes and glows would fringe.
+  - So every render is transparent ProRes 4444 by default. Staging marks `<html data-background="none">` and the design hides its page.
+  - `--background` (or `"background": true` in a batch row) gives the full-screen `.mp4` on the page.
 
 - **Framework only** (user, 2026-11-18). The repo ships the framework, and editors own the design. The brainstorm design ships as an editable, clearly labelled starter example.
 - **FFmpeg on the machine** (user, 2026-11-13). The user installs FFmpeg and FFprobe on the host with RPM Fusion, then `dnf install ffmpeg`. Renders run locally, not in Docker. Setup checks for them and prints the install hint in Turkish; it never runs sudo.
