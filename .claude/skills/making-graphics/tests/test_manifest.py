@@ -86,6 +86,12 @@ class Validate(unittest.TestCase):
         self.assertEqual(v["value"]["exp"], "-3")
         self.assertIn("value", errors({"value": "abc"})[0])
 
+    def test_number_accepts_turkish_thousands(self):
+        v = manifest.validate(load(), {"value": "-1.234.567,89^-12"})
+        self.assertEqual(v["value"], {"base": "-1.234.567,89", "exp": "-12", "text": "-1.234.567,89^-12"})
+        self.assertEqual(manifest.validate(load(), {"value": "384.400"})["value"]["base"], "384.400")
+        self.assertIn("value", errors({"value": "1.23.4"})[0])
+
     def test_enum_rejects_unknown(self):
         p = errors({"value": "1", "state": "flying"})
         self.assertIn("static", p[0])

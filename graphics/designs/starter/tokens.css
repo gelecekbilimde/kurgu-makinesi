@@ -66,6 +66,12 @@
   --hand-size: 2.6cqw;
   --source-size: 1.05cqw;
   --margin-x: 8cqw;
+  --number-size: 16cqw;
+  --number-weight: 300;
+  --number-exp-scale: .38;
+  --number-unit-scale: .44;
+  --hand-stroke: .14cqw;
+  --text-width: 52cqw;
 
   /* motion: "calm" */
   --motion-ease: out-cubic;
@@ -91,4 +97,7 @@
   --body-size: 4.2cqw;
   --hand-size: 5.6cqw;
   --source-size: 2.2cqw;
+  --number-size: 30cqw;
+  --hand-stroke: .3cqw;
+  --text-width: 84cqw;
 }

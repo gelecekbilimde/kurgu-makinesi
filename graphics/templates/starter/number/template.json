@@ -1,0 +1,9 @@
+{"name": "number", "description": "Tek sayı vurgusu: büyük değer (üslü olabilir), birim, açıklama, vurgu, el yazısı not, kaynak",
+ "version": 1, "status": "draft", "output": "fullscreen", "canvas": "frame", "vertical": true,
+ "frames": {"default": 150, "min": 75, "max": 375},
+ "fields": [{"name": "value", "type": "number", "required": true, "help": "değer: 3,7 ya da 10^67"},
+            {"name": "unit", "type": "text", "max_len": 20, "help": "birim, örn. yıl"},
+            {"name": "explanation", "type": "text", "max_len": 140, "help": "sayının altındaki açıklama"},
+            {"name": "highlight", "type": "highlight", "of": "explanation", "help": "açıklamada vurgulanacak kısım"},
+            {"name": "hand", "type": "text", "max_len": 40, "help": "sayının yanına el yazısı not (sayı da daire içine alınır)"},
+            {"name": "source", "type": "source", "max_len": 80, "help": "kaynak, açıklamanın altına KAYNAK · … olarak yazılır"}]}

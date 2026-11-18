@@ -78,3 +78,13 @@ class StarterTemplates(unittest.TestCase):
         self.assertEqual(code, 0, err)
         s = probe(out / "chapter-title-1.mp4")
         self.assertEqual((int(s["nb_read_frames"]), s["codec_name"], s["width"], s["height"]), (100, "h264", 1920, 1080))
+
+    def test_live_number_sources(self):
+        code, out, err = render_cli("number", "--set", "value=10^67", "--set", "unit=yıl",
+                                    "--set", "explanation=Güneş kütlesindeki bir kara deliğin buharlaşma süresi",
+                                    "--set", "highlight=buharlaşma süresi", "--set", "source=NASA, 2024",
+                                    "--resolution", "1080p")
+        self.assertEqual(code, 0, err)
+        self.assertEqual((out / "kaynaklar.txt").read_text(), "NASA, 2024\n")
+        s = probe(out / "number-1.mp4")
+        self.assertEqual(int(s["nb_read_frames"]), 150)

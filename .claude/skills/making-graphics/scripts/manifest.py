@@ -12,7 +12,7 @@ FIELD_TYPES = ("text", "highlight", "number", "enum", "list", "source")
 OUTPUTS = ("overlay", "fullscreen", "still")
 REQUIRED_KEYS = ("name", "description", "version", "output", "canvas", "frames", "fields")
 BASE_FPS = 25
-_NUMBER = re.compile(r"^\s*(-?\d+(?:[.,]\d+)?)\s*(?:\^\s*(-?\d+))?\s*$")
+_NUMBER = re.compile(r"^\s*(-?(?:\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)?))\s*(?:\^\s*(-?\d+))?\s*$")
 
 
 class ManifestError(Exception):
