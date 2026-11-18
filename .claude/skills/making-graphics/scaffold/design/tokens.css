@@ -1,0 +1,129 @@
+/* Blank design tokens. Every visual value a template may read is listed here, empty: fill in the ones your
+ * templates use (the starter design's tokens.css shows example values). Durations are seconds without a unit.
+ * Fonts: put them under fonts/ with their licence files and declare them with @font-face here, e.g.
+ *   @font-face { font-family: "Ad"; src: url("fonts/ad/Ad.ttf") format("truetype"); font-weight: 100 900; }
+ */
+
+:root {
+  /* page */
+  --page: ;
+  --page-pattern: ;               /* dots | graph | none */
+  --dot: ;
+  --dot-pitch: ;
+  --dot-size: ;
+  --grid-minor: ;
+  --grid-major: ;
+  --pattern-fade: ;
+
+  /* type */
+  --font-head: ;
+  --font-label: ;
+  --font-hand: ;
+  --head-weight: ;
+  --head-second-weight: ;
+  --label-weight: ;
+  --label-tracking: ;
+  --hand-weight: ;
+  --hand-rotate: ;
+
+  /* colour */
+  --ink: ;
+  --body: ;
+  --label: ;
+  --dim: ;
+  --hl: ;
+  --hl-fill: ;
+  --scrim: ;
+  --rule: ;
+
+  /* series (overridden by variants) */
+  --series: ;
+  --tick: ;
+  --motif: ;
+
+  /* logo (only the logo uses these) */
+  --logo-globe: ;
+  --logo-land: ;
+  --logo-text: ;
+  --logo-wire: ;
+  --logo-wire-globe: ;
+  --logo-wire-land: ;
+  --logo-wire-text-fill: ;
+  --logo-wire-globe-opacity: ;
+  --logo-wire-land-opacity: ;
+  --logo-wire-text-stroke: ;        /* logo units (the globe is 160 units across) */
+  --logo-back: ;                    /* opacity of letters on the far side, colour */
+  --logo-back-wire: ;               /* the same, wireframe */
+  --logo-grow: ;
+  --logo-perspective: ;            /* logo units */
+  --logo-wire-fade: ;               /* seconds, colour <-> wireframe */
+  --star-head: ;
+  --star-glow: ;
+  --star-start: ;                   /* seconds */
+  --star-travel: ;                 /* seconds */
+
+  /* sizes (frame-relative) */
+  --head-size: ;
+  --label-size: ;
+  --body-size: ;
+  --hand-size: ;
+  --source-size: ;
+  --margin-x: ;
+  --number-size: ;
+  --number-weight: ;
+  --number-exp-scale: ;
+  --number-unit-scale: ;
+  --hand-stroke: ;
+  --text-width: ;
+  --chart-head-size: ;
+  --chart-width: ;
+  --chart-height: ;
+  --bar-color: ;
+  --bar-opacity-min: ;
+  --bar-max-width: ;
+  --lower-x: ;
+  --lower-bottom: ;
+  --lower-name-size: ;
+  --lower-role-size: ;
+  --lower-scrim: ;
+  --text-shadow: ;
+  --bar-gap: ;                      /* gap as a share of a bar's width */
+  --bar-value-size: ;
+  --bar-label-size: ;
+
+  /* motion: "calm" */
+  --motion-ease: ;
+  --motion-rise: ;                 /* cqw */
+  --motion-delay: ;
+  --motion-stagger: ;
+  --motion-in: ;
+  --motion-hl-at: ;
+  --motion-hl: ;
+  --motion-hl-ease: ;
+  --motion-draw-at: ;
+  --motion-draw: ;
+  --motion-hand-at: ;
+  --motion-hand: ;
+  --motion-bar-at: ;
+  --motion-bar: ;
+  --motion-bar-stagger: ;
+  --motion-out: ;
+}
+
+:root[data-orientation="vertical"] {
+  --dot-pitch: ;
+  --dot-size: ;
+  --head-size: ;
+  --label-size: ;
+  --body-size: ;
+  --hand-size: ;
+  --source-size: ;
+  --number-size: ;
+  --hand-stroke: ;
+  --text-width: ;
+  --lower-x: ;
+  --lower-bottom: ;
+  --lower-name-size: ;
+  --lower-role-size: ;
+  --lower-scrim: ;
+}

@@ -82,3 +82,18 @@ def stage(t, design, variant, values, vertical, frames, fps, dest):
     (dest / "vars.json").write_text(json.dumps({k: _encode(v) for k, v in values.items()}, ensure_ascii=False),
                                     encoding="utf-8")
     return dest
+
+
+def bake_defaults(dest):
+    """Write vars.json into the composition's declared defaults, for previews and snapshots (which can't take
+    --variables-file)."""
+    dest = Path(dest)
+    index = dest / "index.html"
+    html = index.read_text(encoding="utf-8")
+    values = json.loads((dest / "vars.json").read_text(encoding="utf-8"))
+    m = re.search(r"data-composition-variables='([^']*)'", html)
+    decl = json.loads(m.group(1).replace("&apos;", "'"))
+    for d in decl:
+        d["default"] = values.get(d["id"], "")
+    new = "data-composition-variables='" + json.dumps(decl, ensure_ascii=False).replace("'", "&apos;") + "'"
+    index.write_text(html[:m.start()] + new + html[m.end():], encoding="utf-8")

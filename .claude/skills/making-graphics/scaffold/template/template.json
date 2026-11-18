@@ -1,0 +1,4 @@
+{"name": "{name}", "description": "Yeni şablon: ne gösterdiğini bir cümleyle yazın", "version": 1, "status": "draft",
+ "output": "fullscreen", "canvas": "frame", "vertical": false,
+ "frames": {"default": 100, "min": 50, "max": 250},
+ "fields": [{"name": "title", "type": "text", "required": true, "max_len": 60, "help": "başlık"}]}

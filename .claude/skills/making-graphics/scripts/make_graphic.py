@@ -7,6 +7,11 @@
   python3 make_graphic.py --list [--json]               # templates of the active design and their fields
   python3 make_graphic.py --reindex                     # rebuild assets/graphics/index.json from the archive
   python3 make_graphic.py --samples <template> [--out DIR]  # render the template's samples.json + contact.png
+  python3 make_graphic.py --showcase [--design D] [--out DIR] # one page showing every template of a design
+  python3 make_graphic.py --new-design NAME [--from D]      # blank design (or a copy) under graphics/designs/
+  python3 make_graphic.py --new-template NAME [--from T]    # blank template (or a copy) in the active design
+  python3 make_graphic.py --preview <template> [--set ...] [--variant V] [--vertical] [--port P]
+  python3 make_graphic.py --stop-preview <template>
 
 Repeat --set for a list field (--set bars="Mars=3,7" --set bars="Dünya=9,8"). Lengths are frames.
 Exit codes: 0 rendered, 2 the request doesn't fit the template, 1 any other failure.
@@ -29,7 +34,9 @@ import designs  # noqa: E402
 import hf  # noqa: E402
 import manifest  # noqa: E402
 import render  # noqa: E402
+import preview  # noqa: E402
 import review  # noqa: E402
+import scaffold  # noqa: E402
 import stage  # noqa: E402
 from archive import Archive, render_id  # noqa: E402
 
@@ -74,12 +81,21 @@ def parse(argv):
     p.add_argument("--json", action="store_true")
     p.add_argument("--reindex", action="store_true")
     p.add_argument("--samples", metavar="ŞABLON")
+    p.add_argument("--showcase", action="store_true")
+    p.add_argument("--new-design", metavar="AD")
+    p.add_argument("--new-template", metavar="AD")
+    p.add_argument("--from", dest="from_", metavar="KAYNAK")
+    p.add_argument("--preview", metavar="ŞABLON")
+    p.add_argument("--stop-preview", metavar="ŞABLON")
+    p.add_argument("--port", type=int)
     p.add_argument("--root", default=str(DEFAULT_ROOT))
     p.add_argument("--archive", default=str(DEFAULT_ARCHIVE))
     a = p.parse_args(argv)
-    modes = [a.template is not None, a.batch is not None, a.list, a.reindex, a.samples is not None]
+    modes = [a.template is not None, a.batch is not None, a.list, a.reindex, a.samples is not None, a.showcase,
+             a.new_design is not None, a.new_template is not None, a.preview is not None, a.stop_preview is not None]
     if sum(modes) != 1:
-        raise UsageError("bir şablon adı, --batch, --list, --reindex veya --samples verin (yalnızca biri)")
+        raise UsageError("bir şablon adı ya da --batch, --list, --reindex, --samples, --showcase, --new-design, "
+                         "--new-template, --preview, --stop-preview verin (yalnızca biri)")
     if a.batch and not a.out:
         raise UsageError("--batch için --out gerekli")
     return a
@@ -234,6 +250,20 @@ def main(argv, env=os.environ, run=hf.run, now=None):
             return list_templates(ctx, a.json)
         if a.samples:
             return run_samples(a.samples, ctx, Path(a.out) if a.out else None, now)
+        if a.showcase:
+            return run_showcase(ctx, Path(a.out) if a.out else None, now)
+        if a.new_design:
+            d = scaffold.new_design(ctx.root, a.new_design, from_=a.from_)
+            print(f"Tasarım oluşturuldu: {d}")
+            print("Etkinleştirmek için graphics/config.json içinde \"design\" değerini değiştirin.")
+            return 0
+        if a.new_template:
+            design = ctx.design or designs.Config(ctx.root).design
+            d = scaffold.new_template(ctx.root, design, a.new_template, from_=a.from_)
+            print(f"Şablon oluşturuldu: {d}")
+            return 0
+        if a.preview or a.stop_preview:
+            return run_preview(a, ctx)
         if a.batch:
             with open(a.batch, encoding="utf-8") as f:
                 rows = json.load(f)
@@ -307,6 +337,42 @@ def run_samples(name, ctx, out, now):
     sheet = review.contact_sheet(posters, out / "contact.png", run=ctx.run)
     _report(entries, out)
     print(f"Temas sayfası: {sheet}")
+    return 0
+
+
+def run_showcase(ctx, out, now):
+    design = ctx.design or designs.Config(ctx.root).design
+    out = out or ctx.home / "Downloads" / "grafik" / "_showcase" / design
+    ctx.out, ctx.results, ctx.design = out / "media", deliver.load_results(out / "media"), design
+    try:
+        page = review.showcase(ctx.root, design, out, lambda row: render_row(row, ctx), run=ctx.run)
+    finally:
+        deliver.save(ctx.out, ctx.results, [], now)
+    print(f"Vitrin sayfası: {page}")
+    return 0
+
+
+def run_preview(a, ctx):
+    design = ctx.design or designs.Config(ctx.root).design
+    name = a.preview or a.stop_preview
+    dest = ctx.archive.root / "_preview" / name
+    if a.stop_preview:
+        preview.stop(dest, run=ctx.run)
+        print(f"Önizleme durduruldu: {name}")
+        return 0
+    t = manifest.load(designs.template_dir(ctx.root, design, name))
+    fields = fields_from_args(a.set, a.fields_file)
+    if not fields and (t.dir / "samples.json").is_file():
+        rows = json.loads((t.dir / "samples.json").read_text(encoding="utf-8"))
+        fields = rows[0].get("fields", {}) if rows else {}
+    ddir = designs.design_dir(ctx.root, design)
+    variant = a.variant or designs.default_variant(ddir)
+    try:
+        url = preview.preview(t, ddir, variant, a.vertical, fields, dest, port=a.port, run=ctx.run)
+    except manifest.FieldError as err:
+        raise RequestError(err.problems) from None
+    print(f"Önizleme: {url}")
+    print(f"Durdurmak için: make_graphic.py --stop-preview {name}")
     return 0
 
 

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<!-- Visual values come only from the design: tokens.css, the chosen variant, and anything the design ships. -->
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<script src="kit/hf-kit.js"></script>
+<style>
+  #root { position: absolute; inset: 0; overflow: hidden; container-type: inline-size; background: var(--page);
+    color: var(--ink); font-family: var(--font-head); }
+  #title { position: absolute; left: 8cqw; top: 50%; transform: translateY(-50%); font-size: var(--head-size);
+    white-space: nowrap; }
+</style>
+</head>
+<body>
+<!-- The CLI writes the length, fps and size into this root for every render; don't rely on these values. -->
+<div id="root" data-composition-id="{name}" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+  <div id="title"></div>
+</div>
+<script>
+  const v = kit.vars();
+  const title = document.getElementById("title");
+  title.textContent = v.title;
+  document.fonts.ready.then(() => {
+    /* Motion is a pure function of time t (seconds): no clock, timers or requestAnimationFrame. */
+    kit.onFrame((t) => {
+      const p = kit.progress(t, 0.2, 0.8, "out-cubic");
+      const out = kit.progress(t, kit.duration() - 0.3, 0.3, "linear");
+      title.style.opacity = String(p * (1 - out));
+    });
+  });
+</script>
+</body>
+</html>

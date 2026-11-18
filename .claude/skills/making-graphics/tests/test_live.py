@@ -158,3 +158,25 @@ class Watermark(unittest.TestCase):
             for frame in (0, n - 1):
                 with self.subTest(state=state, frame=frame):
                     self.assertLess(mean_diff(self.files[state], frame, self.files["static"]), 2.0)
+
+
+@unittest.skipUnless(helpers.LIVE, "GRAPHICS_LIVE=1 değil")
+class Scaffolded(unittest.TestCase):
+    def test_live_new_template_renders(self):
+        import contextlib
+        import io
+        import scaffold
+        import make_graphic
+        tmp = Path(tempfile.mkdtemp(prefix="grafik-scaffold-"))
+        root = tmp / "graphics"
+        shutil.copytree(helpers.REPO / "graphics" / "designs" / "starter", root / "designs" / "starter",
+                        ignore=shutil.ignore_patterns("reference"))
+        (root / "config.json").write_text('{"design": "starter"}')
+        scaffold.new_template(root, "starter", "deneme")
+        se = io.StringIO()
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(se):
+            code = make_graphic.main(["deneme", "--set", "title=Deneme başlığı", "--frames", "50", "--resolution",
+                                      "1080p", "--root", str(root), "--archive", str(tmp / "a"), "--out", str(tmp / "o")])
+        self.assertEqual(code, 0, se.getvalue())
+        s = probe(tmp / "o" / "deneme-1.mp4")
+        self.assertEqual((int(s["nb_read_frames"]), s["width"]), (50, 1920))
