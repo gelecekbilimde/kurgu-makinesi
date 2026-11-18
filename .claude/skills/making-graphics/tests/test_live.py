@@ -88,3 +88,12 @@ class StarterTemplates(unittest.TestCase):
         self.assertEqual((out / "kaynaklar.txt").read_text(), "NASA, 2024\n")
         s = probe(out / "number-1.mp4")
         self.assertEqual(int(s["nb_read_frames"]), 150)
+
+    def test_live_bar_chart_8_bars(self):
+        bars = [f"--set=bars={y}={v}" for y, v in zip(range(1960, 2041, 10), (317, 326, 339, 354, 370, 390, 414, 425))]
+        code, out, err = render_cli("bar-chart", "--set", "line1=Atmosferdeki CO₂", "--set", "line2=her yıl artıyor",
+                                    *bars, "--set", "unit=ppm", "--set", "source=NOAA GML",
+                                    "--set", "hand=+%34", "--set", "hand_bar=2030", "--resolution", "1080p")
+        self.assertEqual(code, 0, err)
+        s = probe(out / "bar-chart-1.mp4")
+        self.assertEqual(int(s["nb_read_frames"]), 175)

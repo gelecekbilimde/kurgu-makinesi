@@ -1,0 +1,11 @@
+{"name": "bar-chart", "description": "Çubuk grafik: başlık, 2-8 çubuk (etiket=değer), birim, kaynak, bir çubuğu işaret eden el yazısı not",
+ "version": 1, "status": "draft", "output": "fullscreen", "canvas": "frame", "vertical": false,
+ "frames": {"default": 175, "min": 100, "max": 375},
+ "fields": [{"name": "label", "type": "text", "max_len": 40, "help": "üstteki küçük etiket"},
+            {"name": "line1", "type": "text", "required": true, "max_len": 50, "help": "başlığın ilk satırı"},
+            {"name": "line2", "type": "text", "max_len": 50, "help": "ikinci satır (italik, seri renginde)"},
+            {"name": "bars", "type": "list", "item": "pair", "numeric": true, "required": true, "min_items": 2, "max_items": 8, "max_len": 24, "help": "çubuklar, her biri etiket=değer; --set bars=2024=425 tekrarlanır"},
+            {"name": "unit", "type": "text", "max_len": 30, "help": "değerlerin birimi, kaynak satırının başına yazılır"},
+            {"name": "source", "type": "source", "max_len": 80, "help": "kaynak"},
+            {"name": "hand", "type": "text", "max_len": 30, "help": "bir çubuğu işaret eden el yazısı not"},
+            {"name": "hand_bar", "type": "text", "one_of_labels": "bars", "help": "notun işaret ettiği çubuğun etiketi (verilmezse sonuncusu)"}]}

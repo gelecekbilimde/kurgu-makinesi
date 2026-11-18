@@ -72,6 +72,15 @@
   --number-unit-scale: .44;
   --hand-stroke: .14cqw;
   --text-width: 52cqw;
+  --chart-head-size: 4.6cqw;
+  --chart-width: 72cqw;
+  --chart-height: 24cqw;
+  --bar-color: var(--ink);
+  --bar-opacity-min: .55;
+  --bar-max-width: 8cqw;
+  --bar-gap: .9;                      /* gap as a share of a bar's width */
+  --bar-value-size: 1.6cqw;
+  --bar-label-size: 1.25cqw;
 
   /* motion: "calm" */
   --motion-ease: out-cubic;
@@ -86,6 +95,9 @@
   --motion-draw: 1.4;
   --motion-hand-at: 1.6;
   --motion-hand: 1;
+  --motion-bar-at: .7;
+  --motion-bar: .9;
+  --motion-bar-stagger: .08;
   --motion-out: .3;
 }
 
