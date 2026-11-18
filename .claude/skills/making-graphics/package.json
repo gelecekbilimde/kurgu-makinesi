@@ -1,0 +1,8 @@
+{
+  "name": "making-graphics",
+  "private": true,
+  "description": "Pinned HyperFrames for the making-graphics skill (installed with npm ci; node_modules is gitignored).",
+  "dependencies": {
+    "hyperframes": "0.9.41"
+  }
+}

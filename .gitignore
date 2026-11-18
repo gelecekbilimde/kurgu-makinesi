@@ -26,3 +26,4 @@ Thumbs.db
 
 # Superpowers brainstorm mockups and plan-execution workspaces
 /.superpowers/
+/.claude/skills/making-graphics/node_modules/
