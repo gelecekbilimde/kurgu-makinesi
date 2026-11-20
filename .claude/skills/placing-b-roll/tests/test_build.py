@@ -136,6 +136,17 @@ class PlacedTest(unittest.TestCase):
         self.assertTrue(problems)
         self.assertEqual(new["start"], 20)  # the plan records what is really on the timeline
 
+    def test_one_to_one_clip_off_by_one_is_recorded_as_seen(self):
+        it = plan_item("R1#1", "k", 0, 50, "/m/a.mp4")
+        seen = {"uid": "u9", "track": 2, "start": 0, "end": 49, "file": "/m/a.mp4", "src_in": 0, "src_out": 49,
+                "props": {}}
+        new, problems = build.placed(it, seen, ratio=1.0)
+        self.assertEqual((new["end"], new["src_out"]), (49, 49))
+        self.assertNotIn("seen", new)
+        self.assertTrue(problems)
+        new, problems = build.placed(it, seen, ratio=30 / 25)  # a rate-rounded clip keeps the plan
+        self.assertEqual((new["end"], new["seen"]["end"], problems), (50, 49, []))
+
     def test_nothing_placed(self):
         new, problems = build.placed(plan_item("R1#1", "k", 0, 50, "/m/a.mp4"), None)
         self.assertIsNone(new["uid"])
@@ -214,6 +225,22 @@ class SummaryTest(unittest.TestCase):
         self.assertIn("R099: satırı kayboldu (1 düzenleyici öğesi)", text)
         self.assertEqual(lines[-2:], ["Gereken şablonlar:", "  - metin şablonu"])
 
+    def test_rows_with_editor_entries_are_listed_as_not_updated(self):
+        rows = {"a": {"id": "R015", "start": 600, "end": 900}, "b": {"id": "R012", "start": 0, "end": 500},
+                "c": {"id": "R020", "start": 1000, "end": 1100}}
+        items = [plan_item("R015#1", "a", 600, 700, "/m/a.mp4", editor=True),
+                 plan_item("R015#2", "a", 700, 900, "/m/b.mp4"),
+                 dict(plan_item("R012#1", "b", 0, 100, None, editor=True), deleted=True),
+                 plan_item("R020#1", "c", 1000, 1100, "/m/c.mp4"),
+                 plan_item("E1", None, 2000, 2100, "/m/e.mp4", editor=True),
+                 plan_item("R099#1", "vanished", 0, 10, "/m/v.mp4", editor=True)]
+        lines = build.summary([(3, rows, items)], {"rows": {}}, {"rows": {}}, {})
+        self.assertIn("Düzenleyicide (güncellenmiyor): R012, R015", lines)
+
+    def test_no_editor_rows_no_line(self):
+        lines = build.summary([(3, {"a": {"id": "R1", "start": 0, "end": 5}}, [])], {"rows": {}}, {"rows": {}}, {})
+        self.assertFalse(any(x.startswith("Düzenleyicide") for x in lines))
+
     def test_no_needs_says_none(self):
         lines = build.summary([(3, {}, [])], {"rows": {}}, {"rows": {}}, {})
         self.assertEqual(lines[-1], "Gereken şablonlar: yok")
@@ -237,6 +264,33 @@ class MasterTest(unittest.TestCase):
 
     def test_unfrozen_chapter_timeline_not_used(self):
         self.assertEqual(build.master_entries(["P ch1 A"], existing={"P ch1 A"}, frozen=set()), [(1, None)])
+
+
+class FakeMasterPool:
+    def __init__(self, fail=()):
+        self.fail, self.appended = set(fail), []
+
+    def AppendToTimeline(self, specs):
+        m = specs[0]["mediaPoolItem"]
+        if m.GetClipProperty("Name") in self.fail:
+            return []
+        self.appended.append(m.GetClipProperty("Name"))
+        return ["item"]
+
+
+class NestTest(unittest.TestCase):
+    def test_failed_append_does_not_advance_or_mark_and_is_reported(self):
+        clips = {n: FakeMpi(None) for n in ("A B-roll", "B", "C B-roll")}
+        for n, m in clips.items():
+            m.props.update(Name=n, Frames=str({"A B-roll": 100, "B": 50, "C B-roll": 30}[n]))
+        mp = FakeMasterPool(fail={"B"})
+        marks, total, lines = build.nest_chapters(
+            mp, [(1, "A B-roll"), (2, "B"), (3, "C B-roll"), (4, None)], ["T1", "T2", "T3", "T4"], clips.get)
+        self.assertEqual(mp.appended, ["A B-roll", "C B-roll"])
+        self.assertEqual(marks, [(0, "T1", "chapter start (A B-roll)"), (100, "T3", "chapter start (C B-roll)")])
+        self.assertEqual(total, 130)
+        self.assertTrue(any(x.startswith("ch2:") and "eklenemedi" in x for x in lines), lines)
+        self.assertTrue(any(x.startswith("ch4:") for x in lines))
 
 
 class FreezeTest(unittest.TestCase):

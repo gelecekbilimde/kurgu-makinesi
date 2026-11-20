@@ -71,11 +71,12 @@ def still_marks(item):
 RATE_SLACK = ("end", "src_in", "src_out")
 
 
-def placed(item, seen):
-    """(plan item with uid/props/file as read back right after placing, problems). A placement that differs from
-    the plan only by clip-rate rounding (at most 1 frame in end/src_in/src_out) keeps the planned values plus a
+def placed(item, seen, ratio=1.0):
+    """(plan item with uid/props/file as read back right after placing, problems). ratio: clip_ratio of the
+    placed clip. For a clip whose rate differs from the timeline (ratio != 1), a placement that differs from the
+    plan only by clip-rate rounding (at most 1 frame in end/src_in/src_out) keeps the planned values plus a
     `seen` snapshot for read-back, so the next build matches it; any other difference (clipped by an overlap,
-    wrong length) is recorded as placed and reported."""
+    wrong length, any 1:1 clip off by a frame) is recorded as placed and reported."""
     if seen is None:
         return dict(item, uid=None), [f"{item['id']}: yerleştirilemedi"]
     want = dict(item, file=canon(item.get("file")))
@@ -84,7 +85,7 @@ def placed(item, seen):
     base.pop("seen", None)
     if not diff:
         return base, []
-    if all(k in RATE_SLACK and abs(seen[k] - want[k]) <= 1 for k in diff):
+    if ratio != 1 and all(k in RATE_SLACK and abs(seen[k] - want[k]) <= 1 for k in diff):
         return dict(base, seen={k: seen[k] for k in ("start", "end", "src_in", "src_out")}), []
     new = dict(base, **{k: seen[k] for k in CHECK})
     return new, [f"{item['id']}: yerleşim farklı ({', '.join(f'{k} {want.get(k)} -> {seen.get(k)}' for k in diff)})"]
@@ -125,12 +126,16 @@ def marker_args(item, used):
 
 def summary(chapters, fetched, requests, ids):
     """Summary lines for the built chapters. chapters: [(N, rows.json chapter rows, plan items)]; ids: row key ->
-    row id (script). Lines: rows placed, placeholders by reason, stok yetmedi, rows not found in the chapter,
-    satırı kayboldu, then "Gereken şablonlar" (distinct need lines)."""
-    placed_rows, by_reason, short, missing, lost, needs = [], {}, [], [], [], []
+    row id (script). Lines: rows placed, rows the editor owns (any editor entry: build no longer updates them),
+    placeholders by reason, stok yetmedi, rows not found in the chapter, satırı kayboldu, then "Gereken şablonlar"
+    (distinct need lines)."""
+    placed_rows, editor_rows, by_reason, short, missing, lost, needs = [], [], {}, [], [], [], []
     for _, rows, items in chapters:
         live = {i["row"] for i in items if i.get("row") and not i.get("deleted") and i.get("kind") != "placeholder"}
+        owned = {i["row"] for i in items if i.get("editor") and i.get("row") is not None}
         for key, row in sorted(((k, r) for k, r in rows.items() if r), key=lambda kr: kr[1]["start"]):
+            if key in owned:
+                editor_rows.append(row["id"])
             if key in live:
                 placed_rows.append(row["id"])
             for a in fetched.get("rows", {}).get(key, []):
@@ -140,10 +145,13 @@ def summary(chapters, fetched, requests, ids):
             for q in requests.get("rows", {}).get(key, []):
                 if q.get("kind") == "placeholder" and q.get("need") and q["need"] not in needs:
                     needs.append(q["need"])
+        editor_rows += [ids.get(k, k) for k in rows if rows[k] is None and k in owned]
         short += plan.shortfalls(rows, fetched)
         missing += [ids.get(k, k) for k, r in rows.items() if r is None]
         lost += plan.lost(items, rows)
     out = [f"Yerleştirilen satırlar: {', '.join(placed_rows) or 'yok'}"]
+    if editor_rows:
+        out.append(f"Düzenleyicide (güncellenmiyor): {', '.join(editor_rows)}")
     if by_reason:
         out.append("Yer tutucular: " + "; ".join(f"{r}: {', '.join(v)}" for r, v in sorted(by_reason.items())))
     out += short
@@ -166,6 +174,27 @@ def episode_credits(plan_chapters, fetched, tools=None):
             if line not in out:
                 out.append(line)
     return out
+
+
+def nest_chapters(mp, entries, titles, lookup):
+    """Append master_entries to the current timeline in order. lookup(timeline name) -> its media-pool item.
+    A failed append is reported and skipped: the record frame does not advance and the chapter gets no marker.
+    Returns ([(record frame, chapter title, note)] for the chapter markers, total frames, report lines)."""
+    rec, marks, lines = 0, [], []
+    for n, src in entries:
+        if src is None:
+            lines.append(f"ch{n}: ne B-roll ne dondurulmuş A-roll zaman çizelgesi var, eklenmedi")
+            continue
+        mpi = lookup(src)
+        got = mp.AppendToTimeline([{"mediaPoolItem": mpi}]) if mpi is not None else None
+        if not got:
+            lines.append(f"ch{n}: {src} eklenemedi; ana zaman çizelgesinde bu bölüm yok")
+            continue
+        frames = int(mpi.GetClipProperty("Frames"))
+        marks.append((rec, titles[n - 1], f"chapter start ({src})"))
+        lines.append(f"ch{n}: {src} iç içe eklendi ({frames} kare)")
+        rec += frames
+    return marks, rec, lines
 
 
 def master_entries(chapter_names, existing, frozen):

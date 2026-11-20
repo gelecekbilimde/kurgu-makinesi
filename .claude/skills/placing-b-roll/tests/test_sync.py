@@ -65,6 +65,7 @@ class Item:
 class Timeline:
     def __init__(self):
         self.items, self.markers, self.delete_fails = [], {}, False
+        self.raise_on_marker_delete = None  # customData whose delete raises (Resolve went away)
 
     def GetStartFrame(self):
         return S0
@@ -94,6 +95,8 @@ class Timeline:
         return next((m for m in self.markers.values() if m["customData"] == cd), {})
 
     def DeleteMarkerByCustomData(self, cd):
+        if cd == self.raise_on_marker_delete:
+            raise RuntimeError("Resolve went away")
         n = len(self.markers)
         self.markers = {f: m for f, m in self.markers.items() if m["customData"] != cd}
         return len(self.markers) < n
@@ -121,6 +124,8 @@ class MediaPool:
         self.tl, self.files, self.root, self.cur = tl, files, Folder("root"), None
         self.return_nothing, self.fail_import, self.fail_folder, self.raise_on_append = False, set(), False, None
         self.appends = 0
+        self.imports = []  # every path ImportMedia was asked for
+        self.import_as = {}  # path -> the File Path Resolve reports for it (a mismatched import)
 
     def GetRootFolder(self):
         return self.root
@@ -139,10 +144,11 @@ class MediaPool:
     def ImportMedia(self, paths):
         out = []
         for p in paths:
+            self.imports.append(p)
             if p in self.fail_import:
                 continue
             type_, fps = self.files[p]
-            m = Mpi(p, type_, fps)
+            m = Mpi(self.import_as.get(p, p), type_, fps)
             self.cur.clips.append(m)
             out.append(m)
         return out
@@ -253,7 +259,7 @@ class RateRoundingTest(unittest.TestCase):
         it = stock("R1#1", "k", 0, 189, "/m/slow.mp4")
         seen = {"uid": "u", "track": 2, "start": 0, "end": 188, "file": "/m/slow.mp4", "src_in": 0, "src_out": 188,
                 "props": {}}
-        rec, probs = build.placed(it, seen)
+        rec, probs = build.placed(it, seen, ratio=24 / 25)
         self.assertEqual((rec["end"], rec["src_out"], rec["seen"]["end"], probs), (189, 189, 188, []))
         self.assertFalse(plan.readback([rec], [seen])[0]["editor"])
         trimmed = dict(seen, end=150, src_out=150)
@@ -263,7 +269,45 @@ class RateRoundingTest(unittest.TestCase):
         self.assertNotIn("seen", back)
 
 
+class MediaTest(unittest.TestCase):
+    def test_existing_clip_in_target_bin_is_reused(self):
+        r = Rig(FILES)
+        there = Mpi("/m/x/../a.mp4")
+        r.ch_bin.clips.append(there)  # imported after the index was made (or missed by it)
+        self.assertIs(r.media.get("/m/a.mp4", r.ch_bin), there)
+        self.assertEqual(r.mp.imports, [])
+
+    def test_mismatched_import_is_imported_once_and_reported_once(self):
+        r = Rig(FILES)
+        r.mp.import_as = {"/m/a.mp4": "/elsewhere/a.mp4"}
+        want = [stock("R1#1", "k", 0, 100, "/m/a.mp4"), stock("R2#1", "j", 200, 300, "/m/a.mp4"),
+                stock("R3#1", "i", 400, 500, "/m/b.mp4")]
+        items, c, probs = r.run([], want)
+        self.assertEqual(r.mp.imports, ["/m/a.mp4", "/m/b.mp4"])
+        self.assertEqual(sum("farklı" in p for p in probs), 1, probs)
+        self.assertEqual(c["added"], 1)
+        self.assertTrue(r.in_sync(items))
+        with self.assertRaises(sync.Problem):
+            r.media.get("/m/a.mp4", r.ch_bin)
+        self.assertEqual(r.mp.imports, ["/m/a.mp4", "/m/b.mp4"])
+
+
 class FailureTest(unittest.TestCase):
+    def test_plan_saved_right_after_removes(self):
+        r = Rig(FILES)
+        old = [holder("R1#1", "k", 0, 100, "/m/p.png", "R1 YAZI: x"), stock("R2#1", "j", 200, 300, "/m/a.mp4")]
+        items, _, _ = r.run([], old)
+        new = [holder("R1#1", "k", 0, 100, "/m/p.png", "R1 YAZI: x"), stock("R2#1", "j", 200, 300, "/m/b.mp4")]
+        r.tl.raise_on_marker_delete = "broll:R1#1"  # raises after a.mp4 was deleted, before any other save
+        with self.assertRaises(RuntimeError):
+            r.run(items, new)
+        self.assertEqual([i["id"] for i in r.saved], ["R1#1"])
+        self.assertTrue(r.in_sync(r.saved))
+        r.tl.raise_on_marker_delete = None
+        items2, c, probs = r.run(r.saved, new)
+        self.assertEqual((c["added"], c["removed"], c["editor"], probs), (1, 0, 0, []))
+        self.assertTrue(r.in_sync(items2))
+
     def test_failed_delete_keeps_items_and_their_markers(self):
         r = Rig(FILES)
         old = [stock("R1#1", "k", 0, 100, "/m/a.mp4"), holder("R1#2", "k", 0, 100, "/m/p.png", "R1 YAZI: x")]

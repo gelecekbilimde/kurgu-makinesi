@@ -235,17 +235,14 @@ def cmd_master(a):
     if not tl:
         sys.exit(f"'{name}' oluşturulamadı")
     make_current(p, tl)
-    rec, marks = 0, []
-    for n, src in plan_:
-        if src is None:
-            print(f"ch{n}: ne B-roll ne dondurulmuş A-roll zaman çizelgesi var, eklenmedi", file=sys.stderr)
-            continue
-        mpi = timeline_by_name(p, src).GetMediaPoolItem()
-        got = mp.AppendToTimeline([{"mediaPoolItem": mpi}])
-        frames = int(mpi.GetClipProperty("Frames"))
-        marks.append((rec, titles[n - 1], f"chapter start ({src})"))
-        print(f"ch{n}: {src} iç içe eklendi ({frames} kare, {bool(got)})", file=sys.stderr)
-        rec += frames
+
+    def lookup(src):
+        t = timeline_by_name(p, src)
+        return t.GetMediaPoolItem() if t is not None else None
+
+    marks, rec, lines = glue.nest_chapters(mp, plan_, titles, lookup)
+    for line in lines:
+        print(line, file=sys.stderr)
     for fr, nm, note in marks:
         tl.AddMarker(fr, "Green", nm, note, 1)
     print(f"{name}: {rec} kare, zaman çizelgesi uzunluğu {tl.GetEndFrame() - tl.GetStartFrame()}", file=sys.stderr)

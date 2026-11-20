@@ -10,7 +10,12 @@ import plan
 
 
 class Problem(Exception):
-    """A Resolve step that failed; Turkish, fit for the summary."""
+    """A Resolve step that failed; Turkish, fit for the summary. reported: the same problem was already
+    reported this run (callers don't list it again)."""
+
+    def __init__(self, msg, reported=False):
+        super().__init__(msg)
+        self.reported = reported
 
 
 def subfolder(mp, parent, name):
@@ -36,18 +41,27 @@ def index_paths(folder, out=None):
 
 
 class Media:
-    """Imports into our bins only, reusing an item already imported anywhere under '<prefix> B-roll'."""
+    """Imports into our bins only, reusing an item already imported anywhere under '<prefix> B-roll'.
+    An import that comes back with another file path is remembered for the run: never imported again, reported
+    once (later gets raise a Problem with reported=True)."""
 
     def __init__(self, mp, top):
         self.mp, self.root, self.paths = mp, mp.GetRootFolder(), index_paths(top)
+        self.failed = {}  # canonical path -> problem text of a mismatched import
 
     def get(self, path, folder):
         """the media-pool item of path; raises Problem when it can't be imported"""
         key = glue.canon(path)
         if key in self.paths:
             return self.paths[key]
+        if key in self.failed:
+            raise Problem(self.failed[key], reported=True)
         if folder is None:
             raise Problem(f"klasör yok, içe aktarılmadı: {path}")
+        for c in folder.GetClipList() or []:  # already in the target bin (imported after the index was made)
+            if glue.canon(c.GetClipProperty("File Path")) == key:
+                self.paths[key] = c
+                return c
         self.mp.SetCurrentFolder(folder)
         try:
             got = self.mp.ImportMedia([path]) or []
@@ -57,7 +71,8 @@ class Media:
             raise Problem(f"içe aktarılamadı: {path}")
         mpi = got[0]
         if glue.canon(mpi.GetClipProperty("File Path")) != key:
-            raise Problem(f"içe aktarılan dosya farklı: {path} -> {mpi.GetClipProperty('File Path')}")
+            self.failed[key] = f"içe aktarılan dosya farklı: {path} -> {mpi.GetClipProperty('File Path')}"
+            raise Problem(self.failed[key])
         self.paths[key] = mpi
         return mpi
 
@@ -99,7 +114,7 @@ def place(mp, tl, s0, fps, item, mpi):
     probs = []
     if extra and not tl.DeleteClips(extra):
         probs.append(f"{item['id']}: fazladan yerleşen {len(extra)} öğe silinemedi")
-    rec, p2 = glue.placed(item, mine)
+    rec, p2 = glue.placed(item, mine, glue.clip_ratio(mpi, fps))
     return rec, probs + p2
 
 
@@ -122,6 +137,8 @@ def sync_items(tl, mp, media, ch_bin, fps, last_items, desired, save):
     for i in remove:
         if i not in survivors:
             tl.DeleteMarkerByCustomData(glue.CUSTOM + i["id"])
+    # recorded at once: a raise before the next save must not turn our removed items into editor deletes
+    save(sorted(keep + survivors, key=lambda i: (i["start"], i["track"], i["id"])))
 
     kept = []
     for i, old_id in glue.rebind(keep, desired):
@@ -143,7 +160,8 @@ def sync_items(tl, mp, media, ch_bin, fps, last_items, desired, save):
         try:
             mpi = media.get(i["file"], ch_bin)
         except Problem as err:
-            problems.append(f"{i['id']}: {err}")
+            if not err.reported:
+                problems.append(f"{i['id']}: {err}")
             continue
         rec, probs = place(mp, tl, s0, fps, i, mpi)
         problems += probs
@@ -181,5 +199,6 @@ def file_candidates(mp, media, ch_bin, chapter_rows, fetched, items):
             for f in files:
                 media.get(f, row_bin)
         except Exception as err:  # noqa: BLE001  (bins are a convenience; the timeline and plan are done)
-            problems.append(f"{row['id']} adayları: {err}")
+            if not getattr(err, "reported", False):
+                problems.append(f"{row['id']} adayları: {err}")
     return problems

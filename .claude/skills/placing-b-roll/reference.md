@@ -83,7 +83,7 @@ That makes read-back fragile, and a row filled from several candidates has sever
 - `mediaType: 1` on a "Video + Audio" stock clip left no audio item. The B-roll timeline's only audio item is the nested chapter.
 
 ## Files in `episodes/<ep>/broll/` (all frames, half-open `[start, end)`)
-- `requests.json`: `{"units": "frames", "rows": {"<row key>": [Request, ...]}}`, one request per tag. Request = `{"tag", "kind": "stock", "query"}` | `{"tag", "kind": "graphic", "template", "fields", "variant"?, "background"?}` | `{"tag", "kind": "kaynak", "url"}` | `{"tag", "kind": "placeholder", "reason", "need"?}`. Reasons written by `requests`: `arşiv`, `link yok`, `tür yok` (tag `?`). Claude writes `şablon yok` + `need`.
+- `requests.json`: `{"units": "frames", "rows": {"<row key>": [Request, ...]}}`, one request per tag. Request = `{"tag", "kind": "stock", "query"}` | `{"tag", "kind": "graphic", "template", "fields", "variant"?, "background"?}` | `{"tag", "kind": "kaynak", "url"}` | `{"tag", "kind": "placeholder", "reason", "need"?}`. Reasons written by `requests`: `arşiv`, `link yok`, `tür yok` (tag `?`). Claude writes `şablon yok` + `need`. `fetch` adds an `istek yok` placeholder asset (not a request) for each tag of a found row with no request; it is looked at again on every fetch. A mixed `[KAMERA, X]` row's assets all go on track 3, and its graphics are rendered with `background: false`.
 - `layout/ch<N>.json`: `{"units", "timeline", "frames", "pieces": [[rec, clip, a, b]]}`, read live from the frozen chapter's V1.
 - `rows.json`: `{"units", "fps", "chapters": {"<N>": {"timeline", "rows": {"<key>": {"id", "start", "end"} | null}}}}`. `null` = not found in the chapter.
 - `fetched.json`: one asset per request (see `fetch.py` docstring): `track`, `files`, `hold`/`hold_from`, `note`, `request_hash`.
@@ -96,15 +96,16 @@ That makes read-back fragile, and a row filled from several candidates has sever
 ch<N> '<timeline>': <a> eklendi, <r> kaldırıldı, <k> korundu (<e> düzenleyici öğesi)
   Uyarı: <problem>
 Yerleştirilen satırlar: R012, R015
+Düzenleyicide (güncellenmiyor): R015, R023      (rows with any editor entry: build leaves the whole row alone)
 Yer tutucular: <reason>: R015 (YAZI), R019 (GRAFİK); <reason>: ...
 R015: stok yetmedi (40 kare boş)              (candidates shorter than the row)
 Bölümde bulunamadı: R007                        (row not found in its chapter)
-<row key>: satırı kayboldu (2 düzenleyici öğesi) (editor entries whose row left the script)
+<row id>: satırı kayboldu (2 düzenleyici öğesi)  (editor entries whose row left the script)
 Gereken şablonlar:                              ("Gereken şablonlar: yok" when none)
   - <need line>
 -> plan.json, kaynaklar.txt
 ```
-A row whose items are all the editor's is no longer in "Yerleştirilen satırlar" (the editor owns it now).
+A row whose items are all the editor's is no longer in "Yerleştirilen satırlar" (the editor owns it now). The summary covers only the chapters built in that run. `istek yok` under "Yer tutucular" = a found row with no request for that tag.
 
 ## Task 9 acceptance run (2026-11-20, `episodes/cop31-broll`, Resolve `demo`, COP31B only, project saved)
 **The editor's UI edits were simulated through the API**, not done by hand in the UI (controller ruling): move = `DeleteClips` + `AppendToTimeline` of the same media and source range at another record frame (a UI move may keep the uid; the API cannot move), trim = `SetRightOffset`, zoom = `SetProperty("ZoomX"/"ZoomY")`, delete = `DeleteClips`, add = `AppendToTimeline` on V2 in a gap, marker = `AddMarker` without customData. Real UI moves and trims remain unverified (see 4).
