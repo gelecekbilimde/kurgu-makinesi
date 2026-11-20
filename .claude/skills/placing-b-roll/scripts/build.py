@@ -157,12 +157,12 @@ def summary(chapters, fetched, requests, ids):
     return out
 
 
-def episode_credits(plan_chapters, fetched):
+def episode_credits(plan_chapters, fetched, tools=None):
     """kaynaklar.txt lines over plan.json chapters: chapter order, then timeline order inside a chapter
-    (frames restart at 0 on every chapter's B-roll timeline)."""
+    (frames restart at 0 on every chapter's B-roll timeline). tools: credits.tool_credits fallback."""
     out = []
     for n in sorted(plan_chapters, key=int):
-        for line in credits.collect(plan_chapters[n]["items"], fetched):
+        for line in credits.collect(plan_chapters[n]["items"], fetched, tools):
             if line not in out:
                 out.append(line)
     return out

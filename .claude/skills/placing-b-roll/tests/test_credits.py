@@ -30,6 +30,25 @@ class CreditsTest(unittest.TestCase):
         unknown = item("E2", None, 800, 900, "/elsewhere/own.mp4", editor=True, uid="y")
         self.assertEqual(credits.collect(self.items + [e, unknown], self.fe)[-1], "Unused / Pexels")
 
+    def test_editor_placed_candidate_of_an_earlier_fetch_is_credited(self):
+        """live (Task 9): the editor dragged R015-2 from the row bin; it came from an earlier query of the row,
+        so fetched.json no longer lists it, but the stock tool's results.json does."""
+        with tempfile.TemporaryDirectory() as d:
+            os.makedirs(os.path.join(d, "stok"))
+            os.makedirs(os.path.join(d, "grafik"))
+            with open(os.path.join(d, "stok", "results.json"), "w", encoding="utf-8") as fh:
+                fh.write('{"requests": [{"candidates": [{"file": "old.mp4", "credit": "Pixabay / bellergy"}]}]}')
+            with open(os.path.join(d, "grafik", "results.json"), "w", encoding="utf-8") as fh:
+                fh.write('{"renders": [{"file": "G9-1.mp4", "sources": ["IEA", "ESA"]}]}')
+            tools = credits.tool_credits(d)
+            old = os.path.realpath(os.path.join(d, "stok", "old.mp4"))
+            g = os.path.realpath(os.path.join(d, "grafik", "G9-1.mp4"))
+            e = [item("E1", None, 700, 800, old, editor=True, uid="x"),
+                 item("E2", None, 800, 900, g, editor=True, uid="y")]
+            self.assertEqual(credits.collect(self.items + e, self.fe, tools)[-3:],
+                             ["Pixabay / bellergy", "IEA", "ESA"])
+            self.assertEqual(credits.tool_credits(os.path.join(d, "missing")), {})
+
     def test_write(self):
         with tempfile.TemporaryDirectory() as d:
             p = os.path.join(d, "broll", "kaynaklar.txt")

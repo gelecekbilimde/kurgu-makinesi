@@ -196,7 +196,8 @@ def cmd_build(a):
         for x in probs:
             print(f"  Uyarı: {x}", file=sys.stderr)
     kp = ep.path("broll", "kaynaklar.txt")
-    credits.write(kp, glue.episode_credits(data["chapters"], ctx["canon_fetched"]))
+    credits.write(kp, glue.episode_credits(data["chapters"], ctx["canon_fetched"],
+                                          credits.tool_credits(ep.path("broll"))))
     ids = {r.key: r.id for r in script_rows}
     for line in glue.summary(built, fetched, requests, ids):
         print(line, file=sys.stderr)

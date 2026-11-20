@@ -81,3 +81,58 @@ That makes read-back fragile, and a row filled from several candidates has sever
 - `freeze EP 3` → `ch3: B-roll dondurulmuş, atlandı` (timeline identical). `unfreeze` → ch3 was rebuilt with the changed request.
 - `master` nests ch3 and ch4 B-roll in order (9201 + 7168 = 16369 f) with Green chapter markers. With A-roll ch5 frozen and no B-roll, it nests the A-roll ch5 timeline. Re-running leaves exactly one `COP31B B-roll` timeline.
 - `mediaType: 1` on a "Video + Audio" stock clip left no audio item. The B-roll timeline's only audio item is the nested chapter.
+
+## Files in `episodes/<ep>/broll/` (all frames, half-open `[start, end)`)
+- `requests.json`: `{"units": "frames", "rows": {"<row key>": [Request, ...]}}`, one request per tag. Request = `{"tag", "kind": "stock", "query"}` | `{"tag", "kind": "graphic", "template", "fields", "variant"?, "background"?}` | `{"tag", "kind": "kaynak", "url"}` | `{"tag", "kind": "placeholder", "reason", "need"?}`. Reasons written by `requests`: `arşiv`, `link yok`, `tür yok` (tag `?`). Claude writes `şablon yok` + `need`.
+- `layout/ch<N>.json`: `{"units", "timeline", "frames", "pieces": [[rec, clip, a, b]]}`, read live from the frozen chapter's V1.
+- `rows.json`: `{"units", "fps", "chapters": {"<N>": {"timeline", "rows": {"<key>": {"id", "start", "end"} | null}}}}`. `null` = not found in the chapter.
+- `fetched.json`: one asset per request (see `fetch.py` docstring): `track`, `files`, `hold`/`hold_from`, `note`, `request_hash`.
+- `plan.json`: the placed items and the editor's entries (see `plan.py` docstring).
+- `kaynaklar.txt`: one credit line per distinct source on the B-roll timelines, chapter order then timeline order. Credits come from `fetched.json`, falling back to the tools' `stok/results.json` and `grafik/results.json` (a candidate of an earlier query that the editor dragged from a row bin is still credited). An editor's own outside clip has no known credit.
+- `stok/`, `grafik/`, `kaynak/`, `stills/`: the delivered files; never deleted.
+
+## Summary lines (`build`, stderr)
+```
+ch<N> '<timeline>': <a> eklendi, <r> kaldırıldı, <k> korundu (<e> düzenleyici öğesi)
+  Uyarı: <problem>
+Yerleştirilen satırlar: R012, R015
+Yer tutucular: <reason>: R015 (YAZI), R019 (GRAFİK); <reason>: ...
+R015: stok yetmedi (40 kare boş)              (candidates shorter than the row)
+Bölümde bulunamadı: R007                        (row not found in its chapter)
+<row key>: satırı kayboldu (2 düzenleyici öğesi) (editor entries whose row left the script)
+Gereken şablonlar:                              ("Gereken şablonlar: yok" when none)
+  - <need line>
+-> plan.json, kaynaklar.txt
+```
+A row whose items are all the editor's is no longer in "Yerleştirilen satırlar" (the editor owns it now).
+
+## Task 9 acceptance run (2026-11-20, `episodes/cop31-broll`, Resolve `demo`, COP31B only, project saved)
+**The editor's UI edits were simulated through the API**, not done by hand in the UI (controller ruling): move = `DeleteClips` + `AppendToTimeline` of the same media and source range at another record frame (a UI move may keep the uid; the API cannot move), trim = `SetRightOffset`, zoom = `SetProperty("ZoomX"/"ZoomY")`, delete = `DeleteClips`, add = `AppendToTimeline` on V2 in a gap, marker = `AddMarker` without customData. Real UI moves and trims remain unverified (see 4).
+
+Commands: `RV="bash .claude/skills/rough-cutting-a-roll/scripts/rv.sh"`, `B=.claude/skills/placing-b-roll/scripts`. Snapshot scripts (read-only, scratchpad): `snap.py` dumps the frozen A-roll ch3/ch4 (every track's items uid/start/left/duration/colour plus markers); `sb.py` dumps the ch3/ch4 B-roll V1-V3 (uid, start, end, left/right offsets, file, ZoomX/Y, colour) plus markers.
+
+1. Baseline `$RV $B/broll_resolve.py build episodes/cop31-broll`:
+   ```
+   ch3 'COP31B ch3 COP31'in ana gündem maddeleri B-roll': 0 eklendi, 0 kaldırıldı, 4 korundu (0 düzenleyici öğesi)
+   ch4 'COP31B ch4 Türkiye ve COP31 B-roll': 0 eklendi, 0 kaldırıldı, 4 korundu (0 düzenleyici öğesi)
+   Yerleştirilen satırlar: R012, R015, R023
+   Yer tutucular: şablon yok: R015 (YAZI), R019 (GRAFİK), R023 (YAZI)
+   Gereken şablonlar:
+     - metin etiketi şablonu: görüntünün üstünde kısa yazı/etiket (overlay)
+     - dünya haritası şablonu: şehirler arasında çizilen bağlantı çizgileri
+   ```
+   Timeline: ch3 V2 `G012-1.mp4` 805..1067 + `G012-1-hold-262.png` 1067..1311 (R012 = 805..1311; bar-chart, `background: true`, `output: fullscreen`), V2 `R015-7` 5871..6081, V3 R015 YAZI placeholder 5871..6081 + Lavender marker. ch4 V2 R019 GRAFİK placeholder 302..746 + marker, V2 `R023-1` 5003..5128 + `R023-2` 5128..5317, V3 R023 YAZI placeholder 5003..5317 + marker. The only GRAFİK rows of ch3/ch4 are R012 and R019.
+2. Edits (`edits.py`):
+   ```
+   trim R015-7_pixabay-141045.mp4 210 R 1288 -> True 180 R 1318 283fca75      (ch3 V2, 30 clip frames off the end)
+   zoom R023-2-YAZI-4fa6176b.png True True 1.3 bc3d3be7                       (ch4 V3)
+   delete R023-1_pixabay-130940.mp4 9315b242 True                              (ch4 V2)
+   move: delete R023-2_pixabay-47516.mp4 a05bc7be True; re-appended at 5500 [(5500, 189, 'ca8f5f9e')]   (ch4 V2)
+   add [(3000, 100, 'b612ab5d')]                                               (ch3 V2, R015-2 from the row bin)
+   marker True                                                                 (ch3 @2000 Blue "editör notu", no customData)
+   ```
+3. `build` → ch3 `0 eklendi, 0 kaldırıldı, 5 korundu (2 düzenleyici öğesi)`, ch4 `0 eklendi, 0 kaldırıldı, 5 korundu (4 düzenleyici öğesi)`. B-roll snapshot after the edits == after the build (every uid, range, offset, zoom, marker). plan.json: R015#1 editor (5871..6051), E1 ch3 (added), R023#1 and R023#2 `deleted` (not refilled), E1 ch4 (moved clip at 5500), R023#3 editor (ZoomX 1.3).
+4. Request change on an untouched row: R019's `need` rewritten, then `fetch` (`1 istek getirildi, 5 istek önceki getirmeden`) and `build` → ch3 `0/0`, ch4 `1 eklendi, 1 kaldırıldı, 4 korundu (4 düzenleyici öğesi)`. Only R019's placeholder still was replaced (new uid, new hash) and its marker re-added; "Gereken şablonlar" shows the new line. Every edited item and the editor marker were unchanged.
+5. Three more builds: all `0 eklendi, 0 kaldırıldı` in both chapters; B-roll snapshot identical. Frozen A-roll ch3/ch4 snapshot identical to the one taken before the first build ever (`snap0 == snap7`). `timelines/*.json` unchanged since `chapters.py chapters` (mtimes 12:35-12:36).
+6. `kaynaklar.txt` = `Pixabay / bellergy` (R015-2, editor-added, ch3 3000), `Pixabay / MLTD` (R015-7, ch3 5871), `Pixabay / LadislavBur` (R023-2, moved, ch4 5500): exactly the three stock files on the timelines. The deleted R023-1 (`miukia_aki`) is gone. G012 has no source field. **Bug found and fixed here:** before the fix the editor-added R015-2 had no line, because it came from an earlier query of the row that `fetched.json` no longer lists; credits now fall back to the tools' `results.json` (`test_editor_placed_candidate_of_an_earlier_fetch_is_credited`).
+7. Clip rates: the placed stock is 30 (R015-7, R015-2) and 29.97 (R023-2). **No placed clip is 23.976/24 fps** (the only one, R023-3 at 24000/1001, is an unused candidate in the row bin), so the live 23.976 neighbour-churn check could not run; it is covered offline by `RateRoundingTest.test_ratio_ntsc_film`.
