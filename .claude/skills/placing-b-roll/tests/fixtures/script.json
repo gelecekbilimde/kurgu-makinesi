@@ -1,0 +1,145 @@
+{
+ "format": 1,
+ "title": "T",
+ "header": "",
+ "front": [],
+ "headings": [
+  {
+   "level": 2,
+   "title": "Künye"
+  },
+  {
+   "level": 2,
+   "title": "1. Açılış"
+  },
+  {
+   "level": 3,
+   "title": "Alt başlık"
+  },
+  {
+   "level": 2,
+   "title": "2. Gelişme"
+  }
+ ],
+ "rows": [
+  {
+   "id": "R001",
+   "key": "k0000001",
+   "heading": 1,
+   "tags": [
+    "KAMERA"
+   ],
+   "visual": "görsel",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R002",
+   "key": "k0000002",
+   "heading": 2,
+   "tags": [
+    "STOK"
+   ],
+   "visual": "roket fırlatma",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R003",
+   "key": "k0000003",
+   "heading": 2,
+   "tags": [
+    "GRAFİK"
+   ],
+   "visual": "görsel",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R004",
+   "key": "k0000004",
+   "heading": 3,
+   "tags": [
+    "KAMERA"
+   ],
+   "visual": "görsel",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R005",
+   "key": "k0000005",
+   "heading": 3,
+   "tags": [
+    "STOK",
+    "YAZI"
+   ],
+   "visual": "görsel",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R006",
+   "key": "k0000006",
+   "heading": 3,
+   "tags": [
+    "KAYNAK"
+   ],
+   "visual": "görsel",
+   "links": [
+    "https://example.com/a"
+   ],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R007",
+   "key": "k0000007",
+   "heading": 3,
+   "tags": [
+    "KAYNAK"
+   ],
+   "visual": "görsel",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  },
+  {
+   "id": "R008",
+   "key": "k0000008",
+   "heading": 3,
+   "tags": [
+    "ARŞİV"
+   ],
+   "visual": "görsel",
+   "links": [],
+   "refs": [],
+   "ses": "metin",
+   "est_s": 10,
+   "warnings": []
+  }
+ ],
+ "notes": [],
+ "kaynakca": [],
+ "speaker": "X",
+ "total_s": 80
+}
