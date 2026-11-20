@@ -1,4 +1,4 @@
-import os, subprocess, tempfile, unittest
+import os, subprocess, sys, tempfile, unittest
 from pathlib import Path
 import helpers  # noqa: F401
 import stills
@@ -102,15 +102,16 @@ class ScreenshotTest(unittest.TestCase):
             self.assertEqual(stills.screenshot("https://x", Path(t) / "a.png", runner=runner), "sayfa açılmadı")
 
 
-class LastFrameTest(unittest.TestCase):
-    def test_cmd(self):
+class FrameAtTest(unittest.TestCase):
+    def test_cmd_selects_exact_frame(self):
         fake = FakeRun()
         with tempfile.TemporaryDirectory() as t:
             out = Path(t) / "h.png"
-            self.assertTrue(stills.last_frame(Path(t) / "v.mp4", out, runner=fake))
+            self.assertTrue(stills.frame_at(Path(t) / "v.mp4", 263, out, runner=fake))
         cmd = fake.tool_calls("ffmpeg")[0]
-        i = cmd.index("-sseof")
-        self.assertEqual(cmd[i:i + 4], ["-sseof", "-0.1", "-i", str(Path(t) / "v.mp4")])
+        self.assertNotIn("-sseof", cmd)
+        self.assertEqual(cmd[cmd.index("-i") + 1], str(Path(t) / "v.mp4"))
+        self.assertEqual(cmd[cmd.index("-vf") + 1], r"select=eq(n\,263)")
         self.assertEqual(cmd[-3:], ["-frames:v", "1", str(out)])
 
 
@@ -137,6 +138,28 @@ class LiveTest(unittest.TestCase):
         self.assertEqual(alpha(10, 10), 0)  # transparent above the band
         self.assertEqual(alpha(10, 900), 153)  # band
         print(f"\nSTILLS_LIVE çıktıları: {out}")
+
+    def test_live_hold_frame_is_built_chart(self):
+        """A real bar-chart render: the hold frame (POSTER_AT) is the built chart, brighter than the faded end."""
+        import fetch
+        out = Path(os.environ.get("STILLS_OUT") or tempfile.mkdtemp(prefix="stills-"))
+        gdir = out / "grafik"
+        p = subprocess.run([sys.executable, str(fetch.MAKE_GRAPHIC), "bar-chart", "--set", "line1=Katılımcı sayısı",
+                            "--set", "bars=2024=425", "--set", "bars=2020=414", "--set", "source=UNFCCC",
+                            "--frames", "375", "--background", "--resolution", "1080p", "--code", "GLIVE",
+                            "--out", str(gdir)], capture_output=True, text=True, cwd=str(fetch.REPO))
+        self.assertEqual(p.returncode, 0, p.stderr)
+        video = sorted(gdir.glob("GLIVE-*.mp4"))[-1]
+        n = round(375 * fetch.POSTER_AT)
+        self.assertTrue(stills.frame_at(video, n, out / "hold.png"))
+        self.assertTrue(stills.frame_at(video, 374, out / "last.png"))
+
+        def luma(png):
+            raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(png), "-f", "rawvideo", "-pix_fmt", "gray",
+                                  "-"], capture_output=True).stdout
+            return sum(raw) / len(raw)
+        self.assertGreater(luma(out / "hold.png"), luma(out / "last.png"))
+        print(f"\nbekletme karesi {n}: {out / 'hold.png'} (son kare: {out / 'last.png'})")
 
 
 if __name__ == "__main__":

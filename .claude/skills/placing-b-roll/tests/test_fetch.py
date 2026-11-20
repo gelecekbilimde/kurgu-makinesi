@@ -146,13 +146,15 @@ class GraphicTest(FetchBase):
         fake = FakeRun()
         self.run_fetch(fake)
         self.assertEqual([r["frames"] for r in fake.batches["graphic"][0]], [100, 200, 375])
-        self.assertIsNone(self.asset(K2)["hold"])
-        self.assertIsNone(self.asset(K3)["hold"])
+        for k in (K2, K3):
+            self.assertEqual((self.asset(k)["hold"], self.asset(k)["hold_from"]), (None, None))
         hold = self.asset(K5)["hold"]
         self.assertTrue(hold.startswith(str(self.d / "broll" / "stills")))
         self.assertTrue(Path(hold).exists())
-        (ff,) = [c for c in fake.tool_calls("ffmpeg") if "-sseof" in c]
+        self.assertEqual(self.asset(K5)["hold_from"], 262)  # round(375 * 0.7), make_graphic's POSTER_AT
+        (ff,) = [c for c in fake.tool_calls("ffmpeg") if any(x.startswith("select=") for x in c)]
         self.assertIn(str(self.d / "broll" / "grafik" / "G005-1.mp4"), ff)
+        self.assertIn(r"select=eq(n\,262)", ff)
 
     def test_coverage_change_refetches_graphic(self):
         self.setup({K2: [graphic("bar-chart")]}, {K2: 200})

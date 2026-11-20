@@ -3,7 +3,9 @@
 fetched.json: {"units": "frames", "rows": {"<key>": [Asset, ...]}}, one Asset per request, in request order:
   {"tag", "kind": "stock"|"graphic"|"kaynak"|"placeholder", "request_hash", "track": 2|3,
    "files": [{"file": abs path, "code", "frames": int|null (null = still), "credit": str|null}],
-   "hold": abs path|null, "note": str|null}
+   "hold": abs path|null, "hold_from": int|null, "note": str|null}
+hold/hold_from: set only when the row is longer than the template maximum; the graphic plays [0, hold_from) and the
+hold still (frame hold_from) covers the rest of the row, so the outro never plays.
 A request is fetched again only when its request_hash (sha1 of the canonical request JSON, plus the row's
 coverage frames for graphics) changes. Delivered files are never deleted. A placeholder's note starts with its
 reason ("aday bulunamadı", "geçersiz istek: ...", "arşiv", ...). A placeholder caused by a tool crash gets
@@ -32,6 +34,9 @@ REPO = SKILLS.parents[1]
 FIND_STOCK = SKILLS / "finding-stock-footage" / "scripts" / "find_stock.py"
 MAKE_GRAPHIC = SKILLS / "making-graphics" / "scripts" / "make_graphic.py"
 BASE_FPS = 25  # make_graphic.py --list gives frame limits at 25 fps
+# A graphic held past its template maximum is held from this point (the graphic is fully built, before its outro):
+# make_graphic.py:50 POSTER_AT, the frame the graphics skill takes as the poster.
+POSTER_AT = 0.7
 NOT_FOUND = "aday bulunamadı"
 INVALID = "geçersiz istek"
 GRAPHIC_FAILED = "grafik üretilemedi"
@@ -148,9 +153,9 @@ class _Fetch:
 
     # ---- assets -------------------------------------------------------------------------------------------
     @staticmethod
-    def asset(req, h, kind, track, files, hold=None, note=None):
+    def asset(req, h, kind, track, files, hold=None, note=None, hold_from=None):
         return {"tag": req.get("tag"), "kind": kind, "request_hash": h, "track": track, "files": files,
-                "hold": hold, "note": note}
+                "hold": hold, "hold_from": hold_from, "note": note}
 
     def placeholder(self, job, note, retry=False):
         req, row = job["req"], job["row"]
@@ -230,17 +235,18 @@ class _Fetch:
             summary.archive += bool(r.get("from_archive"))
             video = out / r["file"]
             still = r.get("output") == "still"
-            hold, note = None, None
+            hold, hold_from, note = None, None, None
             if not still and j["cov"] > j["max"]:
-                hp = Path(self.broll, "stills", f"{r['code']}-hold.png")
-                if hp.exists() or stills.last_frame(video, hp, runner=self.runner):
-                    hold = str(hp)
+                n = round(r["frames"] * POSTER_AT)
+                hp = Path(self.broll, "stills", f"{r['code']}-hold-{n}.png")
+                if hp.exists() or stills.frame_at(video, n, hp, runner=self.runner):
+                    hold, hold_from = str(hp), n
                 else:
-                    note = "son kare alınamadı"
+                    note = "bekletme karesi alınamadı"
             files = [{"file": str(video), "code": r["code"], "frames": None if still else r["frames"],
                       "credit": "; ".join(r.get("sources") or []) or None}]
             track = 2 if r.get("background", self.background(j["req"])) else 3
-            j["asset"] = self.asset(j["req"], j["hash"], "graphic", track, files, hold, note)
+            j["asset"] = self.asset(j["req"], j["hash"], "graphic", track, files, hold, note, hold_from)
 
     def run_kaynak(self, jobs):
         used = set()

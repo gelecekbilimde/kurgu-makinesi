@@ -1,5 +1,5 @@
 """Stills for B-roll rows: placeholders (FFmpeg drawtext), KAYNAK screenshots (HyperFrames' Chrome) and the
-last frame of a graphic that is shorter than its row (hold).
+fully built frame of a graphic that is shorter than its row (hold).
 
 Every function takes a `runner` (default subprocess.run) so tests never start FFmpeg or Chrome.
 """
@@ -122,11 +122,12 @@ def screenshot(url, out, timeout_s=30, runner=subprocess.run):
     return None
 
 
-def last_frame(video, out, runner=subprocess.run):
-    """The last frame of video as a PNG. True when out was written."""
+def frame_at(video, n, out, runner=subprocess.run):
+    """Frame n (0-based, exact: decoded and selected by index) of video as a PNG. True when out was written."""
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    cmd = ["ffmpeg", "-y", "-loglevel", "error", "-sseof", "-0.1", "-i", str(video), "-frames:v", "1", str(out)]
+    cmd = ["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-vf", f"select=eq(n\\,{int(n)})",
+           "-fps_mode", "passthrough", "-frames:v", "1", str(out)]
     try:
         p = runner(cmd, capture_output=True, text=True)
     except FileNotFoundError:
