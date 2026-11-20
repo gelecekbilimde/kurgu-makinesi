@@ -65,7 +65,8 @@ class StockTest(FetchBase):
         self.assertEqual(cmd[cmd.index("--out") + 1], str(self.d / "broll" / "stok"))
         a = self.asset(K2)
         self.assertEqual(self.fetched["units"], "frames")
-        self.assertEqual((a["tag"], a["kind"], a["track"], a["hold"], a["note"]), ("STOK", "stock", 2, None, None))
+        self.assertEqual((a["tag"], a["kind"], a["track"], a["hold"], a["note"], a["code"]),
+                         ("STOK", "stock", 2, None, None, "R002"))
         self.assertEqual([f["code"] for f in a["files"]], ["R002-1", "R002-2", "R002-3"])
         self.assertEqual([f["frames"] for f in a["files"]], [250, 162, 100])
         self.assertEqual(a["files"][0]["credit"], "Pixabay / user1")
@@ -106,6 +107,33 @@ class StockTest(FetchBase):
         for f in old_files:
             self.assertTrue(Path(f).exists())  # old candidates are not deleted
         self.assertEqual((s.fetched, s.cached), (1, 1))
+
+    def test_changed_second_request_keeps_its_own_code(self):
+        a, b = stock("rocket launch"), stock("launch pad")
+        self.setup({K5: [a, b]}, {K5: 175})
+        fake = FakeRun(stock={"R005": [10, 10, 10], "R005b": [10, 10, 10]})
+        self.run_fetch(fake)
+        self.assertEqual([r["code"] for r in fake.batches["stock"][0]], ["R005", "R005b"])
+        self.assertEqual([x["code"] for x in self.fetched["rows"][K5]], ["R005", "R005b"])
+        first_a = self.asset(K5, 0)
+
+        self.write_requests({K5: [a, stock("empty launch pad")]})
+        self.run_fetch(fake)
+        self.assertEqual(fake.batches["stock"][1], [{"code": "R005b", "query": "empty launch pad",
+                                                     "orientation": "horizontal", "count": 3}])
+        self.assertEqual(self.asset(K5, 0), first_a)
+        self.assertEqual(self.asset(K5, 1)["code"], "R005b")
+        self.assertEqual([f["code"] for f in self.asset(K5, 1)["files"]], ["R005b-4", "R005b-5", "R005b-6"])
+
+    def test_inserted_request_never_takes_a_kept_code(self):
+        a = stock("rocket launch")
+        self.setup({K5: [a]}, {K5: 175})
+        fake = FakeRun(stock={"R005": [10], "R005b": [10]})
+        self.run_fetch(fake)
+        self.write_requests({K5: [stock("launch pad"), a]})  # new request in front of the fetched one
+        self.run_fetch(fake)
+        self.assertEqual([r["code"] for r in fake.batches["stock"][1]], ["R005b"])
+        self.assertEqual([x["code"] for x in self.fetched["rows"][K5]], ["R005b", "R005"])
 
     def test_finder_crash_is_retried(self):
         self.setup({K2: [stock("rocket launch")]}, {K2: 175})
@@ -164,6 +192,20 @@ class GraphicTest(FetchBase):
         self.run_fetch(fake)
         self.assertEqual(fake.batches["graphic"][0][0]["frames"], 250)
 
+    def test_changed_second_request_keeps_its_own_code(self):
+        a = graphic("bar-chart", {"line1": "a", "bars": ["x=1"]})
+        self.setup({K5: [a, graphic("name-line", {"name": "Begüm"})]}, {K5: 200})
+        fake = FakeRun()
+        self.run_fetch(fake)
+        self.assertEqual([r["code"] for r in fake.batches["graphic"][0]], ["G005", "G005b"])
+        first_a = self.asset(K5, 0)
+        self.write_requests({K5: [a, graphic("name-line", {"name": "Begüm Dursun"})]})
+        self.run_fetch(fake)
+        self.assertEqual([r["code"] for r in fake.batches["graphic"][1]], ["G005b"])
+        self.assertEqual(self.asset(K5, 0), first_a)
+        self.assertEqual(self.asset(K5, 1)["code"], "G005b")
+        self.assertEqual(self.asset(K5, 1)["files"][0]["code"], "G005b-2")
+
     def test_failed_graphic_gives_placeholder(self):
         self.setup({K2: [graphic("bar-chart")], K3: [graphic("bar-chart")]}, {K2: 200, K3: 200})
         s = self.run_fetch(FakeRun(graphic_fail={"G002": "çubuk değeri sayı değil"}))
@@ -208,6 +250,26 @@ class KaynakAndPlaceholderTest(FetchBase):
         a = self.asset(K6)
         self.assertEqual((a["kind"], a["note"], a["track"]), ("placeholder", "sayfa engelli olabilir", 2))
         self.assertEqual(s.placeholders, {"sayfa engelli olabilir": 1})
+
+    def test_kaynak_not_opened_is_retried(self):
+        self.setup({K6: [{"tag": "KAYNAK", "kind": "kaynak", "url": "https://example.com/a"}]}, {K6: 100})
+        self.run_fetch(FakeRun(shot_rc=1))
+        a = self.asset(K6)
+        self.assertEqual((a["kind"], a["note"], a["request_hash"]), ("placeholder", "sayfa açılmadı", None))
+        stills._chrome.cache_clear()
+        self.run_fetch(FakeRun())
+        self.assertEqual(self.asset(K6)["kind"], "kaynak")
+        self.assertIsNotNone(self.asset(K6)["request_hash"])
+
+    def test_kaynak_blocked_is_not_retried(self):
+        self.setup({K6: [{"tag": "KAYNAK", "kind": "kaynak", "url": "https://example.com/a"}]}, {K6: 100})
+        self.run_fetch(FakeRun(shot_size=1000))
+        self.assertIsNotNone(self.asset(K6)["request_hash"])
+        stills._chrome.cache_clear()
+        fake = FakeRun()
+        self.run_fetch(fake)
+        self.assertEqual(fake.tool_calls("chrome-headless-shell"), [])
+        self.assertEqual(self.asset(K6)["note"], "sayfa engelli olabilir")
 
     def test_placeholder_requests(self):
         self.setup({K8: [{"tag": "ARŞİV", "kind": "placeholder", "reason": "arşiv"}],

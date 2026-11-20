@@ -3,13 +3,15 @@
 fetched.json: {"units": "frames", "rows": {"<key>": [Asset, ...]}}, one Asset per request, in request order:
   {"tag", "kind": "stock"|"graphic"|"kaynak"|"placeholder", "request_hash", "track": 2|3,
    "files": [{"file": abs path, "code", "frames": int|null (null = still), "credit": str|null}],
-   "hold": abs path|null, "hold_from": int|null, "note": str|null}
+   "hold": abs path|null, "hold_from": int|null, "note": str|null, "code": str|null}
+code: the request's code for the tools (R005, G005, R005b ...): stable per request, never shared by two requests
+of a row; null for placeholder requests.
 hold/hold_from: set only when the row is longer than the template maximum; the graphic plays [0, hold_from) and the
 hold still (frame hold_from) covers the rest of the row, so the outro never plays.
 A request is fetched again only when its request_hash (sha1 of the canonical request JSON, plus the row's
 coverage frames for graphics) changes. Delivered files are never deleted. A placeholder's note starts with its
-reason ("aday bulunamadı", "geçersiz istek: ...", "arşiv", ...). A placeholder caused by a tool crash gets
-request_hash null, so the next fetch tries again.
+reason ("aday bulunamadı", "geçersiz istek: ...", "arşiv", ...). A placeholder caused by a tool crash or a
+page that did not open gets request_hash null, so the next fetch tries again.
 """
 import hashlib
 import json
@@ -82,14 +84,33 @@ def _number(row_id):
     return m.group(0) if m else row_id
 
 
-def _code(base, used):
-    """base, then base + b, c, ... so two requests of one row never share a code."""
-    code, n = base, 0
-    while code in used:
-        n += 1
-        code = base + chr(ord("a") + n)
-    used.add(code)
-    return code
+def _suffixed(base, i):
+    """the i-th (0-based) request of a row: base, base + b, base + c, ..."""
+    return base if i == 0 else base + chr(ord("a") + i)
+
+
+def _base(req, row_id):
+    return {"stock": row_id, "graphic": "G" + _number(row_id), "kaynak": row_id}.get(req.get("kind"))
+
+
+def _codes(row_id, reqs_, hits):
+    """One code per request of a row, stable and unique: a reused asset keeps its stored code; any other request
+    gets the code of its index in the row (R005, R005b, ...), moved on to the next free suffix if a reused
+    asset of another request already holds it. Placeholder requests get None."""
+    codes, taken = [None] * len(reqs_), set()
+    for i, req in enumerate(reqs_):
+        if hits[i] is not None and _base(req, row_id):
+            codes[i] = hits[i].get("code") or _suffixed(_base(req, row_id), i)
+            taken.add(codes[i])
+    for i, req in enumerate(reqs_):
+        base = _base(req, row_id)
+        if hits[i] is None and base:
+            n = i
+            while _suffixed(base, n) in taken:
+                n += 1
+            codes[i] = _suffixed(base, n)
+            taken.add(codes[i])
+    return codes
 
 
 def _read(path, default):
@@ -258,8 +279,8 @@ class _Fetch:
                 out = Path(self.broll, "kaynak", f"{base}-{n}.png")
             used.add(out)
             note = stills.screenshot(j["req"]["url"], out, runner=self.runner)
-            if note:
-                j["asset"] = self.placeholder(j, note)
+            if note:  # a page that did not open may open next time; a blocked one stays blocked
+                j["asset"] = self.placeholder(j, note, retry=note == stills.FAILED)
                 continue
             files = [{"file": str(out), "code": out.stem, "frames": None, "credit": j["req"]["url"]}]
             j["asset"] = self.asset(j["req"], j["hash"], "kaynak", 2, files)
@@ -287,23 +308,26 @@ def run(ep, runner=subprocess.run):
                 continue
             current.append(key)
             old = list(fetched["rows"].get(key, []))
-            used = set()
-            for i, req in enumerate(requests.get(key, [])):
-                cov = row["end"] - row["start"]
-                h = request_hash(req, cov)
-                job = {"key": key, "i": i, "req": req, "row": row, "cov": cov, "hash": h,
-                       "visual": script_rows[key].visual if key in script_rows else "", "asset": None}
-                jobs.append(job)
+            cov = row["end"] - row["start"]
+            row_reqs = requests.get(key, [])
+            hashes = [request_hash(req, cov) for req in row_reqs]
+            hits = []
+            for h in hashes:
                 hit = next((a for a in old if a.get("request_hash") == h), None)
                 if hit is not None:
                     old.remove(hit)
-                    job["asset"] = hit
+                hits.append(hit)
+            codes = _codes(row["id"], row_reqs, hits)
+            for i, req in enumerate(row_reqs):
+                job = {"key": key, "i": i, "req": req, "row": row, "cov": cov, "hash": hashes[i],
+                       "code": codes[i], "visual": script_rows[key].visual if key in script_rows else "",
+                       "asset": hits[i]}
+                jobs.append(job)
+                if hits[i] is not None:
+                    hits[i]["code"] = codes[i]
                     summary.cached += 1
                     continue
                 kind = req.get("kind")
-                base = {"stock": row["id"], "graphic": "G" + _number(row["id"]), "kaynak": row["id"]}.get(kind)
-                if base:
-                    job["code"] = _code(base, used)
                 problems = reqs.validate(req, f.templates() if kind == "graphic" else {})
                 job["todo"] = f"{INVALID}: " + "; ".join(problems) if problems else kind
 
@@ -320,6 +344,9 @@ def run(ep, runner=subprocess.run):
         f.run_graphic([j for j in todo if j["todo"] == "graphic"], summary)
         f.run_kaynak([j for j in todo if j["todo"] == "kaynak"])
     finally:  # rows done so far keep what they got, even when a later step fails
+        for j in todo:
+            if j["asset"] is not None:
+                j["asset"]["code"] = j["code"]
         for key in current:
             assets = [j["asset"] for j in jobs if j["key"] == key]
             if all(a is not None for a in assets):
