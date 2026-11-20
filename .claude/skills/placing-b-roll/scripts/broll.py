@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""B-roll placement tools. Usage: broll.py requests EP | broll.py align EP | broll.py fetch EP"""
+"""B-roll placement tools. Usage: broll.py requests EP | align EP | fetch EP | freeze EP N... | unfreeze EP N...
+freeze/unfreeze (offline) edit "broll_frozen" (1-based) in episode.json: a chapter whose B-roll is signed off is
+never rebuilt by 'broll_resolve.py build'."""
 import argparse
 import json
 import os
@@ -83,6 +85,16 @@ def cmd_fetch(a):
     return 0
 
 
+def cmd_freeze(a):
+    ep = episode.Episode(a.episode)
+    fr = set(ep.m.get("broll_frozen", []))
+    fr = fr | set(a.chapters) if a.cmd == "freeze" else fr - set(a.chapters)
+    ep.m["broll_frozen"] = sorted(fr)
+    ep.save()
+    print(f"B-roll'u dondurulmuş bölümler: {ep.m['broll_frozen']}", file=sys.stderr)
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -95,6 +107,12 @@ def main(argv=None):
     p = sub.add_parser("fetch", help="stok, grafik, ekran görüntüsü ve yer tutucuları getir (align gerekir)")
     p.add_argument("episode")
     p.set_defaults(fn=cmd_fetch)
+    for name, help_ in (("freeze", "bölümlerin B-roll'unu dondur (build artık dokunmaz)"),
+                        ("unfreeze", "B-roll dondurmasını kaldır")):
+        p = sub.add_parser(name, help=help_)
+        p.add_argument("episode")
+        p.add_argument("chapters", nargs="+", type=int)
+        p.set_defaults(fn=cmd_freeze)
     a = ap.parse_args(argv)
     return a.fn(a) or 0
 
