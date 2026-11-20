@@ -55,6 +55,13 @@ class ChapterWordsTest(unittest.TestCase):
         # "kesik" lies in the cut-out part; "—" normalises to nothing; "Önce" starts before the piece (clamped)
         self.assertEqual(got, [(0, 7, "önce"), (10, 20, "merhaba"), (110, 116, "dünya"), (205, 211, "son")])
 
+    def test_missing_offset_raises_with_clip(self):
+        self.ep.m["clips"][1].pop("offset_f")
+        layout = json.loads((FIXTURES / "layout-ch2.json").read_text(encoding="utf-8"))
+        with self.assertRaises(ValueError) as c:
+            align.chapter_words(self.ep, layout)
+        self.assertIn("P2.MOV", str(c.exception))
+
 
 class AlignRowsTest(unittest.TestCase):
     def test_row_found_and_range(self):
@@ -92,6 +99,26 @@ class AlignRowsTest(unittest.TestCase):
         got = align.align_rows([row("b", long_b), row("a", A)], w)
         self.assertIsNone(got["b"])
         self.assertEqual(got["a"]["first_word"], 3)
+
+    def test_paraphrased_ending_does_not_swallow_next_rows(self):
+        a = "evren sürekli genişliyor ve uzaklaştıkça hızlanıyor bu da demek oluyor ki galaksiler kaçıyor"
+        c = "sonuç olarak bu da demek oluyor ki zaman geriye akmaz"
+        spoken = "evren sürekli genişliyor ve uzaklaştıkça hızlanıyor bu da demek oluyor işte"  # words 0..10
+        w = words_of(spoken + " " + B + " " + c)  # B 11..18, c 19..28
+        got = align.align_rows([row("a", a), row("b", B), row("c", c)], w)
+        self.assertEqual((got["a"]["first_word"], got["a"]["last_word"]), (0, 9))
+        self.assertEqual((got["b"]["first_word"], got["b"]["last_word"]), (11, 18))
+        self.assertEqual((got["c"]["first_word"], got["c"]["last_word"]), (19, 28))
+
+    def test_unspoken_short_row_does_not_jump_ahead(self):
+        short = "uzay çok büyük bir yer"
+        d = "evrende çok büyük bir boşluk var gerçekten"
+        filler = " ".join(f"f{i}" for i in range(55))
+        w = words_of(A + " " + B + " " + filler + " " + d)  # A 0..7, B 8..15, d 71..77
+        got = align.align_rows([row("a", A), row("s", short), row("b", B), row("d", d)], w)
+        self.assertIsNone(got["s"])
+        self.assertEqual((got["b"]["first_word"], got["b"]["last_word"]), (8, 15))
+        self.assertEqual((got["d"]["first_word"], got["d"]["last_word"]), (71, 77))
 
 
 class CoverageTest(unittest.TestCase):

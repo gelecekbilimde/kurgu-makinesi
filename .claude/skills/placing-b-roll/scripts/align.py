@@ -28,7 +28,9 @@ def chapter_words(ep, layout):
     def clip_words(name):
         if name not in cache:
             c = clips[name]
-            off, fps = c.get("offset_f", 0), ep.fps
+            if "offset_f" not in c:
+                raise ValueError(f"{name}: episode.json'da offset_f yok (ingest.py senkronu yapılmamış)")
+            off, fps = c["offset_f"], ep.fps
             with open(ep.wav_tr(c), encoding="utf-8") as f:
                 t = json.load(f)
             ws = []
@@ -58,19 +60,24 @@ def tokens(ses):
 
 
 def _match(toks, texts, cursor):
-    """3-gram hits at or after cursor, in order (row position strictly increasing). -> (first, last, covered)"""
+    """3-gram hits at or after cursor, in order (row position strictly increasing), as one bounded run:
+    the first hit lies within max(60, 3*len) words of the cursor, and each next hit within max(8, len) words
+    of the previous one; the run stops at the first larger gap. -> (first, last, covered)"""
     grams = {}
     for k in range(len(toks) - 2):
         grams.setdefault(tuple(toks[k:k + 3]), []).append(k)
-    last_k, first, last, covered = -1, None, None, set()
+    reach, step = max(60, 3 * len(toks)), max(8, len(toks))
+    last_k, first, prev, last, covered = -1, None, None, None, set()
     for i in range(cursor, len(texts) - 2):
+        if (i - cursor if prev is None else i - prev) > (reach if prev is None else step):
+            break
         ks = [k for k in grams.get(tuple(texts[i:i + 3]), []) if k > last_k]
         if not ks:
             continue
         k = ks[0]
         if first is None:
             first = i
-        last, last_k = i + 2, k
+        prev, last, last_k = i, i + 2, k
         covered.update((k, k + 1, k + 2))
         if k == len(toks) - 3:  # row's last 3-gram: the row is done
             break
