@@ -24,6 +24,14 @@ class ReqsTest(unittest.TestCase):
                          [{"tag": "KAYNAK", "kind": "placeholder", "reason": "link yok"}])
         self.assertEqual(reqs.autofill(row(["STOK"])), [])
 
+    def test_untagged_row_gets_placeholder(self):
+        r = row([])
+        want = [{"tag": "?", "kind": "placeholder", "reason": "tür yok"}]
+        self.assertEqual(reqs.autofill(r), want)
+        self.assertEqual(reqs.pending([r], {"rows": {}}), [r])
+        self.assertEqual(reqs.pending([r], {"rows": {"abc": want}}), [])
+        self.assertEqual(reqs.validate(want[0], TEMPLATES), [])
+
     def test_pending(self):
         r = row(["STOK", "YAZI"])
         data = {"units": "frames", "rows": {"abc": [{"tag": "STOK", "kind": "stock", "query": "x"}]}}
@@ -54,6 +62,10 @@ class CliTest(unittest.TestCase):
             for f in ("script.json", "sections.json"):
                 shutil.copy(FIXTURES / f, d / f)
 
+            sj = json.loads((d / "script.json").read_text(encoding="utf-8"))
+            sj["rows"].append({**sj["rows"][-1], "id": "R009", "key": "k0000009", "tags": [], "visual": "bir galaksi"})
+            (d / "script.json").write_text(json.dumps(sj, ensure_ascii=False), encoding="utf-8")
+
             def run():
                 return subprocess.run([sys.executable, str(SCRIPTS / "broll.py"), "requests", str(d)],
                                       capture_output=True, text=True)
@@ -64,6 +76,8 @@ class CliTest(unittest.TestCase):
             self.assertEqual(data["rows"]["k0000006"][0]["url"], "https://example.com/a")
             self.assertEqual(data["rows"]["k0000008"][0]["reason"], "arşiv")
             self.assertIn("R002", p.stdout)
+            self.assertEqual(data["rows"]["k0000009"][0]["reason"], "tür yok")
+            self.assertNotIn("R009", p.stdout)
             data["rows"]["k0000006"][0]["url"] = "https://edited"
             path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
             self.assertEqual(run().returncode, 0)

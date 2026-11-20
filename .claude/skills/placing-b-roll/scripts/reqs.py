@@ -18,6 +18,9 @@ def save(path, data):
 
 def autofill(row):
     out = []
+    if not row.tags and row.visual.strip():
+        # untagged or unknown tag (e.g. a dropped [YZ]): never a silent gap
+        return [{"tag": "?", "kind": "placeholder", "reason": "tür yok"}]
     for tag in row.tags:
         if tag == "ARŞİV":
             out.append({"tag": tag, "kind": "placeholder", "reason": "arşiv"})
@@ -34,7 +37,8 @@ def pending(rows, data):
     res = []
     for r in rows:
         tags = {q.get("tag") for q in have.get(r.key, [])}
-        if any(t not in tags for t in r.tags):
+        need = r.tags or (["?"] if r.visual.strip() else [])
+        if any(t not in tags for t in need):
             res.append(r)
     return res
 
