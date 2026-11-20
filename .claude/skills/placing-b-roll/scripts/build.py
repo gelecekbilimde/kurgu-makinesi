@@ -36,14 +36,14 @@ def clip_ratio(mpi, fps):
         return 1.0
 
 
-def seen_item(it, s0, track, fps=None):
+def seen_item(it, s0, track, fps):
     """A V2/V3 timeline item as plan.readback's `seen` dict. Source range = left offset + duration (a still's
     left offset is meaningless, so a still reads [0, duration)). props: GetProperty() plus clip colour and speed,
     everything the API shows an editor may change."""
     mpi = it.GetMediaPoolItem()
     start = it.GetStart() - s0
     dur = it.GetDuration()
-    ratio = clip_ratio(mpi, fps) if fps else 1.0
+    ratio = clip_ratio(mpi, fps)
     src_in = 0 if mpi is None or is_still(mpi) else round(it.GetLeftOffset() / ratio)
     props = dict(it.GetProperty() or {})
     props["ClipColor"] = it.GetClipColor() or ""
@@ -68,29 +68,40 @@ def still_marks(item):
     return 0, item["end"] - item["start"] - 1
 
 
+RATE_SLACK = ("end", "src_in", "src_out")
+
+
 def placed(item, seen):
-    """(plan item with uid/props/file as read back right after placing, problems). The plan records what is on
-    the timeline; a placement that differs (clipped by an overlap, wrong length) is reported."""
+    """(plan item with uid/props/file as read back right after placing, problems). A placement that differs from
+    the plan only by clip-rate rounding (at most 1 frame in end/src_in/src_out) keeps the planned values plus a
+    `seen` snapshot for read-back, so the next build matches it; any other difference (clipped by an overlap,
+    wrong length) is recorded as placed and reported."""
     if seen is None:
         return dict(item, uid=None), [f"{item['id']}: yerleştirilemedi"]
     want = dict(item, file=canon(item.get("file")))
     diff = [k for k in CHECK if seen.get(k) != want.get(k)]
-    new = dict(item, uid=seen["uid"], props=seen["props"], **{k: seen[k] for k in CHECK})
-    probs = [f"{item['id']}: yerleşim farklı ({', '.join(f'{k} {want.get(k)} -> {seen.get(k)}' for k in diff)})"
-             ] if diff else []
-    return new, probs
+    base = dict(want, uid=seen["uid"], props=seen["props"])
+    base.pop("seen", None)
+    if not diff:
+        return base, []
+    if all(k in RATE_SLACK and abs(seen[k] - want[k]) <= 1 for k in diff):
+        return dict(base, seen={k: seen[k] for k in ("start", "end", "src_in", "src_out")}), []
+    new = dict(base, **{k: seen[k] for k in CHECK})
+    return new, [f"{item['id']}: yerleşim farklı ({', '.join(f'{k} {want.get(k)} -> {seen.get(k)}' for k in diff)})"]
 
 
 def rebind(keep, desired):
     """[(item, old id)]: a kept item of ours takes the id, marker and code of the desired item it matched, so ids
-    stay unique and a placeholder's marker text follows the script; editor entries are returned unchanged."""
+    stay unique and a placeholder's marker text follows the script. Editor entries, and every item of a row that
+    has one (plan.actions leaves such rows whole), are returned unchanged."""
+    locked = {i["row"] for i in keep if i.get("editor") and i.get("row") is not None}
     free = {}
     for d in desired:
         free.setdefault(tuple(d.get(k) for k in plan.IDENTITY), []).append(d)
     out = []
     for i in keep:
         match = None
-        if not i.get("editor") and i.get("row") is not None:
+        if not i.get("editor") and i.get("row") is not None and i["row"] not in locked:
             cands = free.get(tuple(i.get(k) for k in plan.IDENTITY))
             match = cands.pop(0) if cands else None
         out.append((dict(i, id=match["id"], marker=match["marker"], code=match["code"], kind=match["kind"])

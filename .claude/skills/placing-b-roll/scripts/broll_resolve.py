@@ -24,6 +24,7 @@ import credits  # noqa: E402
 import episode  # noqa: E402
 import plan  # noqa: E402
 import rows as rows_mod  # noqa: E402
+import sync  # noqa: E402
 
 
 def connect():
@@ -91,64 +92,6 @@ def _read(path, default=None):
         return json.load(f)
 
 
-def subfolder(mp, parent, name):
-    for f in parent.GetSubFolderList() or []:
-        if f.GetName() == name:
-            return f
-    f = mp.AddSubFolder(parent, name)
-    if not f:
-        sys.exit(f"'{name}' klasörü oluşturulamadı")
-    return f
-
-
-def index_paths(folder, out=None):
-    """canonical file path -> media-pool item, for every clip under folder (recursive)"""
-    out = {} if out is None else out
-    for c in folder.GetClipList() or []:
-        fp = c.GetClipProperty("File Path")
-        if fp:
-            out.setdefault(glue.canon(fp), c)
-    for f in folder.GetSubFolderList() or []:
-        index_paths(f, out)
-    return out
-
-
-class Media:
-    """Imports into our bins only, reusing an item already imported anywhere under '<prefix> B-roll'."""
-
-    def __init__(self, mp, top):
-        self.mp, self.root, self.paths, self.notes = mp, mp.GetRootFolder(), index_paths(top), []
-
-    def get(self, path, folder):
-        key = glue.canon(path)
-        if key in self.paths:
-            return self.paths[key]
-        self.mp.SetCurrentFolder(folder)
-        got = self.mp.ImportMedia([path]) or []
-        self.mp.SetCurrentFolder(self.root)
-        if not got:
-            self.notes.append(f"içe aktarılamadı: {path}")
-            return None
-        mpi = got[0]
-        if glue.canon(mpi.GetClipProperty("File Path")) != key:
-            self.notes.append(f"içe aktarılan dosya farklı: {path} -> {mpi.GetClipProperty('File Path')}")
-        self.paths[key] = mpi
-        return mpi
-
-
-def track_items(tl, s0, fps):
-    """(seen dicts, uid -> timeline item) of V2 and V3"""
-    seen, by_uid = [], {}
-    for k in (2, 3):
-        if k > tl.GetTrackCount("video"):
-            continue
-        for it in tl.GetItemListInTrack("video", k) or []:
-            s = glue.seen_item(it, s0, k, fps)
-            seen.append(s)
-            by_uid[s["uid"]] = it
-    return seen, by_uid
-
-
 def ensure_tracks(tl):
     while tl.GetTrackCount("video") < 3:
         if not tl.AddTrack("video"):
@@ -163,99 +106,43 @@ def make_current(p, tl):
         sys.exit(f"'{tl.GetName()}' etkin zaman çizelgesi yapılamadı; durduruldu")
 
 
-def place(mp, tl, s0, item, mpi, fps):
-    """Append one plan item; returns the placed video timeline item or None."""
-    still = glue.is_still(mpi)
-    if still:
-        mpi.SetMarkInOut(*glue.still_marks(item))
-    try:
-        got = mp.AppendToTimeline([glue.append_spec(item, mpi, s0, still, glue.clip_ratio(mpi, fps))]) or []
-    finally:
-        if still:
-            mpi.ClearMarkInOut()
-    for it in got:
-        tt = it.GetTrackTypeAndIndex()
-        if tt and tt[0] == "video" and tt[1] == item["track"]:
-            return it
-    return None
-
-
-def build_chapter(ctx, n, chapter_rows, last_items):
-    """One chapter: returns (new plan items, counts, problems)."""
+def build_chapter(ctx, n, chapter_rows, last_items, save):
+    """One chapter: returns (timeline name, plan items | None when nothing was done, counts, problems).
+    save(items) records plan items as soon as the timeline changed."""
     p, mp, ep = ctx["p"], ctx["mp"], ctx["ep"]
     a_name = episode.chapter_timeline_name(ep.m["prefix"], ctx["chapters"][n - 1], n - 1)
     name = glue.broll_name(a_name)
     frozen_tl = timeline_by_name(p, a_name)
     if frozen_tl is None:
-        sys.exit(f"Bölüm {n}: '{a_name}' bulunamadı")
-    ch_bin = subfolder(mp, ctx["top"], f"ch{n}")
+        return name, None, None, [f"'{a_name}' bulunamadı"]
     problems = []
+    try:
+        ch_bin = sync.subfolder(mp, ctx["top"], f"ch{n}")
+    except sync.Problem as err:
+        ch_bin = None
+        problems.append(str(err))
     tl = timeline_by_name(p, name)
     if tl is None:
         mp.SetCurrentFolder(ctx["top"])
         tl = mp.CreateEmptyTimeline(name)
         mp.SetCurrentFolder(mp.GetRootFolder())
         if not tl:
-            sys.exit(f"'{name}' oluşturulamadı")
+            return name, None, None, problems + [f"'{name}' oluşturulamadı"]
         make_current(p, tl)
-        nested = mp.AppendToTimeline([{"mediaPoolItem": frozen_tl.GetMediaPoolItem()}])  # getter only
-        if not nested:
-            sys.exit(f"'{a_name}' iç içe eklenemedi")
+        if not mp.AppendToTimeline([{"mediaPoolItem": frozen_tl.GetMediaPoolItem()}]):  # getter only
+            mp.DeleteTimelines([tl])  # ours and empty: the next build starts clean
+            return name, None, None, problems + [f"'{a_name}' iç içe eklenemedi; '{name}' silindi"]
         if last_items:
             problems.append(f"zaman çizelgesi yoktu, yeniden kuruldu; plan.json'daki {len(last_items)} öğe yok sayıldı")
         last_items = []
+        save([])
     make_current(p, tl)
     ensure_tracks(tl)
-    s0 = tl.GetStartFrame()
-    seen, by_uid = track_items(tl, s0, ctx["ep"].fps)
-    current = plan.readback(last_items, seen)
     desired = [dict(d, file=glue.canon(d["file"])) for d in plan.desired(chapter_rows, ctx["fetched"], ctx["visuals"])]
-    keep, remove, add = plan.actions(current, desired)
-
-    # remove before add: an append over an existing item is cut to the free gap
-    dead = [by_uid[i["uid"]] for i in remove if i.get("uid") in by_uid]
-    if dead and not tl.DeleteClips(dead):
-        problems.append(f"{len(dead)} öğe silinemedi")
-    for i in remove:
-        tl.DeleteMarkerByCustomData(glue.CUSTOM + i["id"])
-
-    kept = []
-    for i, old_id in glue.rebind(keep, desired):
-        if i.get("kind") == "placeholder" and not i.get("editor") and i.get("row") is not None:
-            tl.DeleteMarkerByCustomData(glue.CUSTOM + old_id)  # refreshed below with the current text
-        kept.append(i)
-
-    added = []
-    for i in add:
-        mpi = ctx["media"].get(i["file"], ch_bin)
-        it = place(mp, tl, s0, i, mpi, ep.fps) if mpi else None
-        new, probs = glue.placed(i, glue.seen_item(it, s0, i["track"], ep.fps) if it else None)
-        problems += probs
-        added.append(new)
-
-    used = {int(f) for f in (tl.GetMarkers() or {})}
-    for i in kept + added:
-        if i.get("editor") or i.get("uid") is None:
-            continue
-        m = glue.marker_args(i, used)
-        if m and tl.GetMarkerByCustomData(m["customData"]) in (None, {}):
-            if tl.AddMarker(m["frameId"], m["color"], m["name"], m["note"], m["duration"], m["customData"]):
-                used.add(m["frameId"])
-            else:
-                problems.append(f"{i['id']}: işaretçi eklenemedi")
-
-    items = sorted(kept + added, key=lambda i: (i["start"], i["track"], i["id"]))
-    for key, row in chapter_rows.items():  # unused candidates -> <prefix> B-roll/ch<N>/<row id>
-        if row is None:
-            continue
-        files = plan.unused_candidates(ctx["canon_fetched"]["rows"].get(key, []),
-                                       [i for i in items if i.get("row") == key])
-        if files:
-            row_bin = subfolder(mp, ch_bin, row["id"])
-            for f in files:
-                ctx["media"].get(f, row_bin)
-    counts = {"added": sum(1 for i in added if i.get("uid")), "removed": len(remove), "kept": len(kept),
-              "editor": sum(1 for i in items if i.get("editor"))}
+    items, counts, probs = sync.sync_items(tl, mp, ctx["media"], ch_bin, ep.fps, last_items, desired, save)
+    problems += probs
+    save(items)
+    problems += sync.file_candidates(mp, ctx["media"], ch_bin, chapter_rows, ctx["canon_fetched"], items)
     return name, items, counts, problems
 
 
@@ -278,8 +165,11 @@ def cmd_build(a):
     ctx = {"ep": ep, "p": p, "mp": mp, "fetched": fetched, "visuals": {r.key: r.visual for r in script_rows},
            "chapters": _read(ep.path("sections.json"))["chapters"]}
     ctx["canon_fetched"] = _canon_fetched(fetched)
-    ctx["top"] = subfolder(mp, mp.GetRootFolder(), f"{ep.m['prefix']} B-roll")
-    ctx["media"] = Media(mp, ctx["top"])
+    try:
+        ctx["top"] = sync.subfolder(mp, mp.GetRootFolder(), f"{ep.m['prefix']} B-roll")
+    except sync.Problem as err:
+        sys.exit(str(err))
+    ctx["media"] = sync.Media(mp, ctx["top"])
     built = []
     for n in todo:
         if n in done:
@@ -290,16 +180,21 @@ def cmd_build(a):
             print(f"ch{n}: rows.json'da yok: önce 'broll.py align' ve 'fetch' çalıştırın", file=sys.stderr)
             continue
         last = data["chapters"].get(str(n), {}).get("items", [])
-        name, items, c, probs = build_chapter(ctx, n, ch["rows"], last)
-        data["chapters"][str(n)] = {"timeline": name, "items": items}
-        plan.save(plan_path, data)
-        built.append((n, ch["rows"], items))
-        print(f"ch{n} '{name}': {c['added']} eklendi, {c['removed']} kaldırıldı, {c['kept']} korundu "
-              f"({c['editor']} düzenleyici öğesi)", file=sys.stderr)
+        tl_name = glue.broll_name(episode.chapter_timeline_name(ep.m["prefix"], ctx["chapters"][n - 1], n - 1))
+
+        def save(items, n=n, tl_name=tl_name):
+            data["chapters"][str(n)] = {"timeline": tl_name, "items": items}
+            plan.save(plan_path, data)
+
+        name, items, c, probs = build_chapter(ctx, n, ch["rows"], last, save)
+        if items is None:
+            print(f"ch{n} '{name}': kurulamadı", file=sys.stderr)
+        else:
+            built.append((n, ch["rows"], items))
+            print(f"ch{n} '{name}': {c['added']} eklendi, {c['removed']} kaldırıldı, {c['kept']} korundu "
+                  f"({c['editor']} düzenleyici öğesi)", file=sys.stderr)
         for x in probs:
             print(f"  Uyarı: {x}", file=sys.stderr)
-    for x in ctx["media"].notes:
-        print(f"Uyarı: {x}", file=sys.stderr)
     kp = ep.path("broll", "kaynaklar.txt")
     credits.write(kp, glue.episode_credits(data["chapters"], ctx["canon_fetched"]))
     ids = {r.key: r.id for r in script_rows}
@@ -332,7 +227,7 @@ def cmd_master(a):
     old = timeline_by_name(p, name)
     if old is not None:
         mp.DeleteTimelines([old])
-    top = subfolder(mp, mp.GetRootFolder(), name)
+    top = sync.subfolder(mp, mp.GetRootFolder(), name)
     mp.SetCurrentFolder(top)
     tl = mp.CreateEmptyTimeline(name)
     mp.SetCurrentFolder(mp.GetRootFolder())

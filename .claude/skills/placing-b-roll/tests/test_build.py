@@ -56,7 +56,7 @@ def plan_item(id_, row, start, end, file, track=2, src_in=0, kind="stock", marke
 class SeenTest(unittest.TestCase):
     def test_video_item_relative_frames_and_source_range(self):
         it = FakeItem("u1", S0 + 805, 375, 10, FakeMpi("/m/a.mp4"))
-        s = build.seen_item(it, S0, 2)
+        s = build.seen_item(it, S0, 2, 25)
         self.assertEqual(s["uid"], "u1")
         self.assertEqual((s["track"], s["start"], s["end"], s["file"], s["src_in"], s["src_out"]),
                          (2, 805, 1180, os.path.realpath("/m/a.mp4"), 10, 385))
@@ -66,15 +66,15 @@ class SeenTest(unittest.TestCase):
 
     def test_still_source_range_is_zero_to_length(self):
         it = FakeItem("u2", S0 + 100, 37, 90000, FakeMpi("/m/p.png", "Still"))
-        s = build.seen_item(it, S0, 3)
+        s = build.seen_item(it, S0, 3, 25)
         self.assertEqual((s["src_in"], s["src_out"], s["start"], s["end"]), (0, 37, 100, 137))
 
     def test_generator_without_media_pool_item(self):
-        s = build.seen_item(FakeItem("u3", S0, 50, 0, None), S0, 2)
+        s = build.seen_item(FakeItem("u3", S0, 50, 0, None), S0, 2, 25)
         self.assertIsNone(s["file"])
 
     def test_props_survive_json_roundtrip(self):
-        s = build.seen_item(FakeItem("u1", S0, 5, 0, FakeMpi("/m/a.mp4")), S0, 2)
+        s = build.seen_item(FakeItem("u1", S0, 5, 0, FakeMpi("/m/a.mp4")), S0, 2, 25)
         self.assertEqual(json.loads(json.dumps(s["props"])), s["props"])
 
 
@@ -150,6 +150,14 @@ class RebindTest(unittest.TestCase):
         self.assertEqual(len(out), 1)
         item, old_id = out[0]
         self.assertEqual((item["id"], item["marker"], item["uid"], old_id), ("R1#1", "new text", "u1", "R1#2"))
+
+    def test_locked_row_items_keep_their_ids(self):
+        """a row with an editor entry is left whole: its untouched items must not take ids an editor entry holds"""
+        ed = plan_item("R1#1", "k", 0, 50, "/m/a.mp4", editor=True, uid="u1")
+        ours = plan_item("R1#2", "k", 50, 100, "/m/b.mp4", uid="u2")
+        want = [plan_item("R1#1", "k", 50, 100, "/m/b.mp4")]  # the same placement now numbered #1
+        out = build.rebind([ed, ours], want)
+        self.assertEqual([i["id"] for i, _ in out], ["R1#1", "R1#2"])
 
     def test_editor_and_editor_added_items_untouched(self):
         ed = plan_item("R1#1", "k", 0, 50, "/m/a.mp4", editor=True, uid="u1")

@@ -8,6 +8,9 @@
 All frames, half-open: the item covers [start, end) of the B-roll timeline and plays [src_in, src_out) of its
 file. A still has src_in 0, src_out = its length. editor: the editor changed (or added) the item in Resolve,
 so build never touches it; deleted: the editor deleted our item ("nothing here", never rebuilt, file null).
+seen (optional): {start, end, src_in, src_out} as Resolve placed the item when that differs from the plan only by
+clip-rate rounding (a clip slower or faster than the timeline); read-back compares against it, the identity
+stays the planned one.
 An item's identity is (track, start, end, file, src_in, src_out); props and uid are not part of it.
 """
 import json
@@ -126,8 +129,10 @@ def readback(last, seen):
             out.append(dict(it, editor=True, deleted=True, file=None, uid=None))
             continue
         known.add(it["uid"])
-        if any(s.get(k) != it.get(k) for k in SEEN):
+        ref = dict(it, **(it.get("seen") or {}))  # a rate-rounded placement is compared with what Resolve made
+        if any(s.get(k) != ref.get(k) for k in SEEN):
             it = dict(it, editor=True, **{k: s.get(k) for k in SEEN})
+            it.pop("seen", None)
         out.append(it)
     n = max((_e_number(i["id"]) for i in last), default=0)
     for s in seen:
