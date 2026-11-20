@@ -12,7 +12,7 @@ SHOT_S = 7          # one stock shot lasts about 3-7 s
 LONG_S = 15         # a single visual held longer goes stale
 YAZI_WPS = 3        # on-screen text: 1 s per 3 words
 
-TAGS = ("KAMERA", "STOK", "ARŞİV", "GRAFİK", "YAZI", "KAYNAK", "YZ")
+TAGS = ("KAMERA", "STOK", "ARŞİV", "GRAFİK", "YAZI", "KAYNAK")
 WARN = {
     "too_short": "çok kısa: komşu satırla birleştir",
     "many_shots": "birden fazla çekim gerekebilir",
@@ -25,7 +25,7 @@ WARN = {
 _FOLD = str.maketrans({"Ç": "C", "Ğ": "G", "İ": "I", "Ö": "O", "Ş": "S", "Ü": "U",
                        "Â": "A", "Î": "I", "Û": "U", "̇": None})
 _ALIASES = {"STOCK": "STOK", "ARCHIVE": "ARŞİV", "GRAPHIC": "GRAFİK", "TEXT": "YAZI",
-            "SOURCE": "KAYNAK", "AI": "YZ", "CAMERA": "KAMERA"}
+            "SOURCE": "KAYNAK", "CAMERA": "KAMERA"}
 _QUOTED = re.compile(r"“([^”]*)”|\"([^\"]*)\"|‘([^’]*)’")
 
 
@@ -84,7 +84,7 @@ def check_row(tags, visual, ses, rate):
     if seconds is not None:
         if seconds < MIN_S:
             found.add("too_short")
-        if set(tags) & {"STOK", "ARŞİV", "YZ"} and seconds > SHOT_S:
+        if set(tags) & {"STOK", "ARŞİV"} and seconds > SHOT_S:
             found.add("many_shots")
         if any(t != "KAMERA" for t in tags) and seconds > LONG_S:
             found.add("long")

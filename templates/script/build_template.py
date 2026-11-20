@@ -11,8 +11,8 @@ from docx_build import build_docx  # noqa: E402
 
 HEADER = ["GÖRÜNTÜ", "SES"]
 WIDTHS = [3600, 5400]                      # 40 / 60 % of 9,000 twips
-TAG_HINT = ("GÖRÜNTÜ hücresine bir etiketle başlayın: [KAMERA], [STOK], [ARŞİV], [GRAFİK], [YAZI], [KAYNAK] "
-            "ya da [YZ]. Ekranda yalnızca sunucu olacaksa hücreyi boş bırakın.")
+TAG_HINT = ("GÖRÜNTÜ hücresine bir etiketle başlayın: [KAMERA], [STOK], [ARŞİV], [GRAFİK], [YAZI], [KAYNAK]. "
+            "Ekranda yalnızca sunucu olacaksa hücreyi boş bırakın.")
 FIELDS = [["Başlık", ""], ["Sunucu", ""], ["Yazar", ""], ["Tarih", ""], ["Durum", "taslak"]]
 
 BLOCKS = [

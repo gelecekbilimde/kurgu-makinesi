@@ -16,7 +16,7 @@ P6 = "Türkçesi: Taraflar Konferansı. Bunu hatırlayın lütfen."             
 class Rules(unittest.TestCase):
     def test_constants(self):
         self.assertEqual((rules.MIN_S, rules.SHOT_S, rules.LONG_S, rules.YAZI_WPS), (2, 7, 15, 3))
-        self.assertEqual(rules.TAGS, ("KAMERA", "STOK", "ARŞİV", "GRAFİK", "YAZI", "KAYNAK", "YZ"))
+        self.assertEqual(rules.TAGS, ("KAMERA", "STOK", "ARŞİV", "GRAFİK", "YAZI", "KAYNAK"))
         self.assertEqual(list(rules.WARN), ["too_short", "many_shots", "long", "yazi_short", "source_missing", "no_tag"])
         self.assertEqual(rules.WARN["too_short"], "çok kısa: komşu satırla birleştir")
         self.assertEqual(rules.WARN["source_missing"], "kaynak eksik")
@@ -28,10 +28,12 @@ class Rules(unittest.TestCase):
 
     def test_normalize_tag(self):
         for raw, want in [("stok", "STOK"), ("Stok ", "STOK"), ("STOCK", "STOK"), ("arşiv", "ARŞİV"),
-                          ("ARSIV", "ARŞİV"), ("Grafik", "GRAFİK"), ("GRAFIK", "GRAFİK"), ("yz", "YZ"),
-                          ("AI", "YZ"), ("film", None)]:
+                          ("ARSIV", "ARŞİV"), ("Grafik", "GRAFİK"), ("GRAFIK", "GRAFİK"), ("film", None)]:
             with self.subTest(raw):
                 self.assertEqual(rules.normalize_tag(raw), want)
+
+    def test_yz_is_unknown(self):
+        self.assertEqual(rules.split_visual("[YZ] bir galaksi"), ([], ["YZ"], "bir galaksi"))
 
     def test_split_visual(self):
         for cell, want in [

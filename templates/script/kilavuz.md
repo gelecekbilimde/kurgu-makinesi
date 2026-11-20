@@ -30,7 +30,6 @@ En üstteki tabloyu doldurun: *Başlık*, *Sunucu* (kamerada kim olacak), *Yazar
 | `[GRAFİK]` | bizim ürettiğimiz grafik / animasyon | ne göstereceği **ve** verisi: sayılar, bağlantı ya da `K3, s. 12` |
 | `[YAZI]` | ekranda yazı, isim bandı | yazının kendisi, tırnak içinde |
 | `[KAYNAK]` | makale/rapor ekran görüntüsü | **bağlantı** |
-| `[YZ]` | Adobe Firefly ile üretilecek görsel | tarif (istem olarak kullanılır) |
 
 **Kaynak gösterme:** Kaynakça sondaki numaralı listedir. Hücrede `K3` yazmak "Kaynakça'daki 3. kaynak" demektir; sayfa numarası da ekleyin: `K3, s. 12`.
 
@@ -43,7 +42,7 @@ Kurgu ekibinin senaryoyu okuyan aracı, her satırın sunucunun kendi okuma hız
 | Uyarı | Ne yapmalı |
 |---|---|
 | çok kısa: komşu satırla birleştir | 2 saniyeden kısa görüntü okunmaz; satırı komşusuyla birleştirin |
-| birden fazla çekim gerekebilir | 7 saniyeyi aşan `[STOK]`/`[ARŞİV]`/`[YZ]` görüntüsünü "2–3 çekim" gibi tarif edin |
+| birden fazla çekim gerekebilir | 7 saniyeyi aşan `[STOK]`/`[ARŞİV]` görüntüsünü "2–3 çekim" gibi tarif edin |
 | uzun: bölmeyi veya hareketli grafik kullanmayı düşün | 15 saniyeyi aşan tek görüntü sıkıcılaşır; satırı bölün ya da adım adım açılan bir grafik isteyin |
 | yazı okunamayacak kadar kısa ekranda | ekrandaki yazı, okunma süresine göre uzun; kısaltın |
 | kaynak eksik | `[GRAFİK]` için veri ya da `K` numarası, `[KAYNAK]` için bağlantı ekleyin |
