@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""B-roll placement tools. Usage: broll.py requests EP | broll.py align EP"""
+"""B-roll placement tools. Usage: broll.py requests EP | broll.py align EP | broll.py fetch EP"""
 import argparse
 import json
 import os
@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.join(HERE, "..", "..", "rough-cutting-a-roll", "scrip
 
 import align  # noqa: E402
 import episode  # noqa: E402
+import fetch  # noqa: E402
 import reqs  # noqa: E402
 import rows as rows_mod  # noqa: E402
 
@@ -69,6 +70,19 @@ def cmd_align(a):
     return 0
 
 
+def cmd_fetch(a):
+    ep = episode.Episode(a.episode)
+    try:
+        summary = fetch.run(ep)
+    except (fetch.FetchError, fetch.stills.StillError) as err:
+        print(f"Hata: {err}", file=sys.stderr)
+        return 1
+    for line in summary.lines():
+        print(line, file=sys.stderr)
+    print(f"-> {ep.path('broll', 'fetched.json')}", file=sys.stderr)
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -78,6 +92,9 @@ def main(argv=None):
     p = sub.add_parser("align", help="satırları dondurulmuş bölümlerin karelerine eşle (layout gerekir)")
     p.add_argument("episode")
     p.set_defaults(fn=cmd_align)
+    p = sub.add_parser("fetch", help="stok, grafik, ekran görüntüsü ve yer tutucuları getir (align gerekir)")
+    p.add_argument("episode")
+    p.set_defaults(fn=cmd_fetch)
     a = ap.parse_args(argv)
     return a.fn(a) or 0
 
