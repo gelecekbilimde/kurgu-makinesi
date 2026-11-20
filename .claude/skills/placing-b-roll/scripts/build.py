@@ -4,6 +4,7 @@ Frames: plan items are relative to the B-roll timeline start (s0); Resolve recor
 """
 import os
 
+import credits
 import plan
 
 MARKER_COLOR = "Lavender"
@@ -142,6 +143,17 @@ def summary(chapters, fetched, requests, ids):
         out += ["Gereken şablonlar:"] + [f"  - {n}" for n in needs]
     else:
         out.append("Gereken şablonlar: yok")
+    return out
+
+
+def episode_credits(plan_chapters, fetched):
+    """kaynaklar.txt lines over plan.json chapters: chapter order, then timeline order inside a chapter
+    (frames restart at 0 on every chapter's B-roll timeline)."""
+    out = []
+    for n in sorted(plan_chapters, key=int):
+        for line in credits.collect(plan_chapters[n]["items"], fetched):
+            if line not in out:
+                out.append(line)
     return out
 
 

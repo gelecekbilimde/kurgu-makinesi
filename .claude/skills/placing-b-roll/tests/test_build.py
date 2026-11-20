@@ -211,6 +211,16 @@ class SummaryTest(unittest.TestCase):
         self.assertEqual(lines[-1], "Gereken şablonlar: yok")
 
 
+class CreditsTest(unittest.TestCase):
+    def test_chapter_order_then_timeline_order(self):
+        """live: ch4's R023 (frame 5003) was listed before ch3's R015 (frame 5871)"""
+        fetched = {"rows": {"a": [{"kind": "stock", "files": [{"file": "/m/a.mp4", "credit": "A"}]}],
+                            "b": [{"kind": "stock", "files": [{"file": "/m/b.mp4", "credit": "B"}]}]}}
+        chapters = {"4": {"items": [plan_item("R023#1", "b", 5003, 5100, "/m/b.mp4")]},
+                    "3": {"items": [plan_item("R015#1", "a", 5871, 6000, "/m/a.mp4")]}}
+        self.assertEqual(build.episode_credits(chapters, fetched), ["A", "B"])
+
+
 class MasterTest(unittest.TestCase):
     def test_order_broll_then_frozen_then_note(self):
         names = ["P ch1 A", "P ch2 B", "P ch3 C"]

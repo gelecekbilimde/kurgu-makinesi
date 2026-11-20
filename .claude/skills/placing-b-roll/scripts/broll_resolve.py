@@ -244,7 +244,7 @@ def build_chapter(ctx, n, chapter_rows, last_items):
             else:
                 problems.append(f"{i['id']}: işaretçi eklenemedi")
 
-    items = kept + added
+    items = sorted(kept + added, key=lambda i: (i["start"], i["track"], i["id"]))
     for key, row in chapter_rows.items():  # unused candidates -> <prefix> B-roll/ch<N>/<row id>
         if row is None:
             continue
@@ -300,9 +300,8 @@ def cmd_build(a):
             print(f"  Uyarı: {x}", file=sys.stderr)
     for x in ctx["media"].notes:
         print(f"Uyarı: {x}", file=sys.stderr)
-    all_items = [i for ch in data["chapters"].values() for i in ch["items"]]
     kp = ep.path("broll", "kaynaklar.txt")
-    credits.write(kp, credits.collect(all_items, ctx["canon_fetched"]))
+    credits.write(kp, glue.episode_credits(data["chapters"], ctx["canon_fetched"]))
     ids = {r.key: r.id for r in script_rows}
     for line in glue.summary(built, fetched, requests, ids):
         print(line, file=sys.stderr)
