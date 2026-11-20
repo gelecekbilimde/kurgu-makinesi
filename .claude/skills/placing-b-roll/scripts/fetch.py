@@ -12,6 +12,10 @@ A request is fetched again only when its request_hash (sha1 of the canonical req
 coverage frames for graphics) changes. Delivered files are never deleted. A placeholder's note starts with its
 reason ("aday bulunamadı", "geçersiz istek: ...", "arşiv", ...). A placeholder caused by a tool crash or a
 page that did not open gets request_hash null, so the next fetch tries again.
+A found row with no request for one of its tags gets an "istek yok" placeholder for that tag (request_hash null,
+so it is looked at again on every fetch): no row is ever a silent gap.
+A mixed [KAMERA, X] row is an overlay over the presenter: all its assets go on track 3, and a graphic request is
+rendered with background false (the request is hashed that way too).
 """
 import hashlib
 import json
@@ -42,6 +46,7 @@ POSTER_AT = 0.7
 NOT_FOUND = "aday bulunamadı"
 INVALID = "geçersiz istek"
 GRAPHIC_FAILED = "grafik üretilemedi"
+NO_REQUEST = "istek yok"
 
 
 class FetchError(Exception):
@@ -163,7 +168,9 @@ class _Fetch:
         t = self.templates().get(req.get("template"))
         return bool(req.get("background", bool(t) and t.get("output") == "fullscreen"))
 
-    def track(self, req):
+    def track(self, req, overlay=False):
+        if overlay:
+            return 3
         if req.get("kind") in ("stock", "kaynak"):
             return 2
         if req.get("kind") == "graphic" and req.get("template") in self.templates():
@@ -180,7 +187,7 @@ class _Fetch:
 
     def placeholder(self, job, note, retry=False):
         req, row = job["req"], job["row"]
-        track = self.track(req)
+        track = self.track(req, job.get("overlay"))
         tag = req.get("tag") or "?"
         tag_slug = re.sub(r"[^A-Za-z0-9]+", "", tag.translate(str.maketrans("İŞĞÜÖÇ", "ISGUOC"))) or "x"
         out = Path(self.broll, "stills", f"{row['id']}-{job['i'] + 1}-{tag_slug}-{job['hash'][:8]}.png")
@@ -216,7 +223,7 @@ class _Fetch:
             files = [{"file": str(out / c["file"]), "code": c["code"],
                       "frames": math.floor(c["duration_s"] * self.fps) if c.get("duration_s") is not None else None,
                       "credit": c.get("credit")} for c in new]
-            j["asset"] = self.asset(j["req"], j["hash"], "stock", 2, files)
+            j["asset"] = self.asset(j["req"], j["hash"], "stock", self.track(j["req"], j.get("overlay")), files)
 
     def run_graphic(self, jobs, summary):
         if not jobs:
@@ -266,7 +273,7 @@ class _Fetch:
                     note = "bekletme karesi alınamadı"
             files = [{"file": str(video), "code": r["code"], "frames": None if still else r["frames"],
                       "credit": "; ".join(r.get("sources") or []) or None}]
-            track = 2 if r.get("background", self.background(j["req"])) else 3
+            track = 3 if j.get("overlay") or not r.get("background", self.background(j["req"])) else 2
             j["asset"] = self.asset(j["req"], j["hash"], "graphic", track, files, hold, note, hold_from)
 
     def run_kaynak(self, jobs):
@@ -283,7 +290,7 @@ class _Fetch:
                 j["asset"] = self.placeholder(j, note, retry=note == stills.FAILED)
                 continue
             files = [{"file": str(out), "code": out.stem, "frames": None, "credit": j["req"]["url"]}]
-            j["asset"] = self.asset(j["req"], j["hash"], "kaynak", 2, files)
+            j["asset"] = self.asset(j["req"], j["hash"], "kaynak", self.track(j["req"], j.get("overlay")), files)
 
 
 def run(ep, runner=subprocess.run):
@@ -309,7 +316,11 @@ def run(ep, runner=subprocess.run):
             current.append(key)
             old = list(fetched["rows"].get(key, []))
             cov = row["end"] - row["start"]
+            sr = script_rows.get(key)
+            overlay = sr is not None and rows_mod.is_mixed(sr)
             row_reqs = requests.get(key, [])
+            if overlay:  # the presenter stays visible: overlays only
+                row_reqs = [dict(q, background=False) for q in row_reqs]
             hashes = [request_hash(req, cov) for req in row_reqs]
             hits = []
             for h in hashes:
@@ -320,8 +331,7 @@ def run(ep, runner=subprocess.run):
             codes = _codes(row["id"], row_reqs, hits)
             for i, req in enumerate(row_reqs):
                 job = {"key": key, "i": i, "req": req, "row": row, "cov": cov, "hash": hashes[i],
-                       "code": codes[i], "visual": script_rows[key].visual if key in script_rows else "",
-                       "asset": hits[i]}
+                       "code": codes[i], "visual": sr.visual if sr else "", "asset": hits[i], "overlay": overlay}
                 jobs.append(job)
                 if hits[i] is not None:
                     hits[i]["code"] = codes[i]
@@ -330,6 +340,11 @@ def run(ep, runner=subprocess.run):
                 kind = req.get("kind")
                 problems = reqs.validate(req, f.templates() if kind == "graphic" else {})
                 job["todo"] = f"{INVALID}: " + "; ".join(problems) if problems else kind
+            for n, tag in enumerate(reqs.missing_tags(sr, requests.get(key, [])) if sr else []):
+                req = {"tag": tag, "kind": "placeholder", "reason": NO_REQUEST}
+                jobs.append({"key": key, "i": len(row_reqs) + n, "req": req, "row": row, "cov": cov,
+                             "hash": request_hash(req, cov), "code": None, "visual": sr.visual, "asset": None,
+                             "overlay": overlay, "todo": "placeholder", "retry": True})
 
     todo = [j for j in jobs if j["asset"] is None]
     try:
@@ -339,7 +354,8 @@ def run(ep, runner=subprocess.run):
                 j["asset"] = f.placeholder(j, t)
             elif t == "placeholder":
                 req = j["req"]
-                j["asset"] = f.placeholder(j, req["reason"] + (f": {req['need']}" if req.get("need") else ""))
+                j["asset"] = f.placeholder(j, req["reason"] + (f": {req['need']}" if req.get("need") else ""),
+                                           retry=j.get("retry", False))
         f.run_stock([j for j in todo if j["todo"] == "stock"], summary)
         f.run_graphic([j for j in todo if j["todo"] == "graphic"], summary)
         f.run_kaynak([j for j in todo if j["todo"] == "kaynak"])
@@ -352,7 +368,7 @@ def run(ep, runner=subprocess.run):
             if all(a is not None for a in assets):
                 fetched["rows"][key] = assets
         _write(fetched_path, fetched)
-    summary.fetched = len(todo)
+    summary.fetched = sum(1 for j in todo if not j.get("retry"))  # "istek yok" placeholders are not requests
     for key in current:
         for a in fetched["rows"][key]:
             if a["kind"] == "placeholder":

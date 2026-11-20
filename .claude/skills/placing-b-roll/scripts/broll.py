@@ -37,8 +37,8 @@ def cmd_requests(a):
     if not todo:
         print("Dondurulmuş bölümde B-roll satırı yok.", file=sys.stderr)
     print(f"{len(todo)} satır, {len(pend)} istek bekliyor -> {path}", file=sys.stderr)
-    print(json.dumps([{"id": r.id, "key": r.key, "tags": r.tags, "visual": r.visual, "links": r.links,
-                       "refs": r.refs, "est_s": r.est_s} for r in pend], ensure_ascii=False, indent=1))
+    print(json.dumps([{"id": r.id, "key": r.key, "tags": rows_mod.broll_tags(r), "visual": r.visual,
+                       "links": r.links, "refs": r.refs, "est_s": r.est_s} for r in pend], ensure_ascii=False, indent=1))
     print(f"Şablonlar: {TEMPLATES_CMD}", file=sys.stderr)
     return 0
 

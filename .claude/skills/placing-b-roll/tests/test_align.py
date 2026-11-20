@@ -137,6 +137,13 @@ class CoverageTest(unittest.TestCase):
         got = self.cov(A + " " + B, rs)
         self.assertEqual(got, {"a": {"start": 0, "end": 78}})  # KAMERA rows are not in the output
 
+    def test_mixed_kamera_row_is_covered_and_ends_at_its_last_word(self):
+        rs = [row("a", A), row("m", B, ("KAMERA", "YAZI")), row("c", C)]
+        got = self.cov(A + " " + B + " " + C, rs)
+        self.assertEqual(got["a"], {"start": 0, "end": 78})  # no run-on into the presenter row
+        self.assertEqual(got["m"], {"start": 80, "end": 158})  # its own last word, no run-on into c
+        self.assertEqual(got["c"], {"start": 160, "end": 238})
+
     def test_coverage_stops_at_offscript_gap(self):
         rs = [row("a", A), row("b", B)]
         got = self.cov(A + " bir iki üç dört beş " + B, rs)  # 5 unmatched words between

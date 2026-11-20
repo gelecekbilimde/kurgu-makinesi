@@ -2,6 +2,8 @@
 import json
 import os
 
+import rows as rows_mod
+
 
 def load(path):
     if not os.path.exists(path):
@@ -32,15 +34,20 @@ def autofill(row):
     return out
 
 
+def needed_tags(row):
+    """the tags a row needs one request each for: its B-roll tags, "?" for an untagged row with a visual"""
+    return rows_mod.broll_tags(row) or (["?"] if not row.tags and row.visual.strip() else [])
+
+
+def missing_tags(row, row_requests):
+    """needed tags with no request in row_requests (the row's requests.json list)"""
+    have = {q.get("tag") for q in row_requests or []}
+    return [t for t in needed_tags(row) if t not in have]
+
+
 def pending(rows, data):
     have = data.get("rows", {})
-    res = []
-    for r in rows:
-        tags = {q.get("tag") for q in have.get(r.key, [])}
-        need = r.tags or (["?"] if r.visual.strip() else [])
-        if any(t not in tags for t in need):
-            res.append(r)
-    return res
+    return [r for r in rows if missing_tags(r, have.get(r.key, []))]
 
 
 def validate(req, templates):

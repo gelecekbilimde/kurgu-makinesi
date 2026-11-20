@@ -41,6 +41,17 @@ class RowsTest(unittest.TestCase):
         self.assertEqual([r.id for r in got], ["R005", "R006", "R007", "R008"])
         self.assertEqual(rows.broll_rows(rs, set()), [])
 
+    def test_broll_rows_keep_mixed_kamera_rows(self):
+        rs = rows.load(self.ep)
+        r4 = next(r for r in rs if r.id == "R004")
+        r4.tags = ["KAMERA", "STOK"]  # presenter plus an overlay
+        got = rows.broll_rows(rs, {1, 2})
+        self.assertEqual([r.id for r in got], ["R002", "R003", "R004", "R005", "R006", "R007", "R008"])
+        self.assertNotIn("R001", [r.id for r in got])  # KAMERA only: no B-roll
+        self.assertEqual(rows.broll_tags(r4), ["STOK"])
+        self.assertTrue(rows.is_mixed(r4))
+        self.assertFalse(rows.is_mixed(next(r for r in rs if r.id == "R002")))
+
 
 if __name__ == "__main__":
     unittest.main()

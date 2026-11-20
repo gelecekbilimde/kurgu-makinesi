@@ -114,7 +114,7 @@ class StockTest(FetchBase):
         fake = FakeRun(stock={"R005": [10, 10, 10], "R005b": [10, 10, 10]})
         self.run_fetch(fake)
         self.assertEqual([r["code"] for r in fake.batches["stock"][0]], ["R005", "R005b"])
-        self.assertEqual([x["code"] for x in self.fetched["rows"][K5]], ["R005", "R005b"])
+        self.assertEqual([x["code"] for x in self.fetched["rows"][K5]][:2], ["R005", "R005b"])  # + YAZI: istek yok
         first_a = self.asset(K5, 0)
 
         self.write_requests({K5: [a, stock("empty launch pad")]})
@@ -133,7 +133,7 @@ class StockTest(FetchBase):
         self.write_requests({K5: [stock("launch pad"), a]})  # new request in front of the fetched one
         self.run_fetch(fake)
         self.assertEqual([r["code"] for r in fake.batches["stock"][1]], ["R005b"])
-        self.assertEqual([x["code"] for x in self.fetched["rows"][K5]], ["R005b", "R005"])
+        self.assertEqual([x["code"] for x in self.fetched["rows"][K5]][:2], ["R005b", "R005"])  # + YAZI: istek yok
 
     def test_finder_crash_is_retried(self):
         self.setup({K2: [stock("rocket launch")]}, {K2: 175})
@@ -213,7 +213,7 @@ class GraphicTest(FetchBase):
         self.assertEqual((a["kind"], a["track"]), ("placeholder", 2))
         self.assertIn("çubuk değeri sayı değil", a["note"])
         self.assertEqual(self.asset(K3)["kind"], "graphic")
-        self.assertEqual(s.placeholders, {"grafik üretilemedi": 1})
+        self.assertEqual(s.placeholders, {"grafik üretilemedi": 1, "istek yok": 1})  # K2 is a STOK row
 
     def test_invalid_request_gives_placeholder(self):
         self.setup({K2: [graphic("bar-chart", {"bars": ["x=1"]})], K3: [stock(" ")]}, {K2: 200, K3: 200})
@@ -225,7 +225,7 @@ class GraphicTest(FetchBase):
         self.assertEqual(self.asset(K3)["note"], "geçersiz istek: query boş")
         self.assertNotIn("graphic", fake.batches)
         self.assertNotIn("stock", fake.batches)
-        self.assertEqual(s.placeholders, {"geçersiz istek": 2})
+        self.assertEqual(s.placeholders, {"geçersiz istek": 2, "istek yok": 2})  # tags not matching the rows
 
     def test_unknown_yazi_template_placeholder_on_v3(self):
         self.setup({K5: [{"tag": "YAZI", "kind": "graphic", "template": "alinti", "fields": {}}]}, {K5: 100})
@@ -306,6 +306,64 @@ class KaynakAndPlaceholderTest(FetchBase):
         (self.d / "broll").mkdir()
         with self.assertRaises(fetch.FetchError):
             fetch.run(self.ep, runner=FakeRun())
+
+
+class MissingRequestTest(FetchBase):
+    def test_found_rows_without_a_request_get_istek_yok_placeholders(self):
+        import build
+        yazi = {"tag": "YAZI", "kind": "placeholder", "reason": "şablon yok"}
+        self.setup({K5: [yazi]}, {K2: 100, K5: 100})  # K2 (STOK) has no request; K5 [STOK, YAZI] only YAZI's
+        s = self.run_fetch(FakeRun())
+        a = self.asset(K2)
+        self.assertEqual((a["tag"], a["kind"], a["note"], a["request_hash"]), ("STOK", "placeholder", "istek yok", None))
+        self.assertTrue(Path(a["files"][0]["file"]).exists())
+        self.assertEqual([(x["tag"], x["note"]) for x in self.fetched["rows"][K5]],
+                         [("YAZI", "şablon yok"), ("STOK", "istek yok")])
+        self.assertEqual(s.placeholders, {"istek yok": 2, "şablon yok": 1})
+        rows = json.loads((self.d / "broll" / "rows.json").read_text())["chapters"]["1"]["rows"]
+        text = "\n".join(build.summary([(1, rows, [])], self.fetched, {"rows": {K5: [yazi]}}, IDS))
+        self.assertIn("istek yok: R002 (STOK), R005 (STOK)", text)
+
+    def test_istek_yok_is_reevaluated_when_the_request_arrives(self):
+        self.setup({}, {K2: 100})
+        self.run_fetch(FakeRun())
+        self.assertEqual(self.asset(K2)["note"], "istek yok")
+        self.write_requests({K2: [stock("rocket")]})
+        s = self.run_fetch(FakeRun(stock={"R002": [10]}))
+        self.assertEqual([x["kind"] for x in self.fetched["rows"][K2]], ["stock"])
+        self.assertEqual(s.placeholders, {})
+
+
+class MixedKameraRowTest(FetchBase):
+    def setUp(self):
+        super().setUp()
+        sj = json.loads((self.d / "script.json").read_text(encoding="utf-8"))
+        for r in sj["rows"]:
+            if r["id"] in ("R002", "R003"):
+                r["tags"] = ["KAMERA"] + r["tags"]
+        (self.d / "script.json").write_text(json.dumps(sj, ensure_ascii=False), encoding="utf-8")
+
+    def test_mixed_row_requests_go_on_v3_and_fullscreen_graphics_lose_their_background(self):
+        self.setup({K2: [stock("rocket")], K3: [graphic("bar-chart", {"line1": "a", "bars": ["x=1"]})]},
+                   {K2: 100, K3: 200})
+        fake = FakeRun(stock={"R002": [10]})
+        self.run_fetch(fake)
+        self.assertEqual(fake.batches["graphic"][0][0]["background"], False)
+        self.assertEqual((self.asset(K2)["kind"], self.asset(K2)["track"]), ("stock", 3))
+        self.assertEqual((self.asset(K3)["kind"], self.asset(K3)["track"]), ("graphic", 3))
+
+    def test_mixed_row_placeholder_and_kaynak_on_v3(self):
+        self.setup({K2: [{"tag": "STOK", "kind": "placeholder", "reason": "arşiv"}],
+                    K3: [{"tag": "GRAFİK", "kind": "kaynak", "url": "https://example.com/a"}]}, {K2: 100, K3: 100})
+        self.run_fetch(FakeRun())
+        self.assertEqual((self.asset(K2)["kind"], self.asset(K2)["track"]), ("placeholder", 3))
+        self.assertEqual((self.asset(K3)["kind"], self.asset(K3)["track"]), ("kaynak", 3))
+
+    def test_mixed_row_without_request_gets_istek_yok_on_v3(self):
+        self.setup({}, {K2: 100})
+        self.run_fetch(FakeRun())
+        self.assertEqual((self.asset(K2)["tag"], self.asset(K2)["note"], self.asset(K2)["track"]),
+                         ("STOK", "istek yok", 3))
 
 
 class CliTest(FetchBase):

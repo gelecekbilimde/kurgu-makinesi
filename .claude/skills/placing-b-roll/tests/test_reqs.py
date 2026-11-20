@@ -39,6 +39,12 @@ class ReqsTest(unittest.TestCase):
         data["rows"]["abc"].append({"tag": "YAZI", "kind": "graphic", "template": "baslik", "fields": {}})
         self.assertEqual(reqs.pending([r], data), [])
 
+    def test_pending_mixed_kamera_row_needs_only_its_broll_tags(self):
+        r = row(["KAMERA", "STOK"])
+        self.assertEqual(reqs.pending([r], {"rows": {}}), [r])
+        data = {"rows": {"abc": [{"tag": "STOK", "kind": "stock", "query": "x"}]}}
+        self.assertEqual(reqs.pending([r], data), [])
+
     def test_validate(self):
         ok = {"tag": "GRAFİK", "kind": "graphic", "template": "baslik", "fields": {"text": "a"}}
         self.assertEqual(reqs.validate(ok, TEMPLATES), [])
@@ -84,6 +90,23 @@ class CliTest(unittest.TestCase):
             data = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(data["rows"]["k0000006"][0]["url"], "https://edited")
             self.assertEqual(len(data["rows"]["k0000006"]), 1)
+
+    def test_requests_lists_mixed_kamera_row_with_its_broll_tags(self):
+        with tempfile.TemporaryDirectory() as t:
+            d = make_episode(t, frozen=[1, 2])
+            for f in ("script.json", "sections.json"):
+                shutil.copy(FIXTURES / f, d / f)
+            sj = json.loads((d / "script.json").read_text(encoding="utf-8"))
+            for r in sj["rows"]:
+                if r["id"] == "R004":
+                    r["tags"] = ["KAMERA", "YAZI"]
+            (d / "script.json").write_text(json.dumps(sj, ensure_ascii=False), encoding="utf-8")
+            p = subprocess.run([sys.executable, str(SCRIPTS / "broll.py"), "requests", str(d)],
+                               capture_output=True, text=True)
+            self.assertEqual(p.returncode, 0, p.stderr)
+            pend = {r["id"]: r for r in json.loads(p.stdout)}
+            self.assertEqual(pend["R004"]["tags"], ["YAZI"])
+            self.assertNotIn("R001", pend)  # KAMERA only
 
 
 if __name__ == "__main__":

@@ -42,7 +42,22 @@ def load(ep):
     return out
 
 
+def broll_tags(row):
+    """the row's tags that ask for B-roll (every tag but KAMERA)"""
+    return [t for t in row.tags if t != "KAMERA"]
+
+
+def is_mixed(row):
+    """[KAMERA, X ...]: the presenter stays visible, the other tags are overlays (V3 only)"""
+    return "KAMERA" in row.tags and bool(broll_tags(row))
+
+
+def is_broll(row):
+    """a row that gets B-roll: anything but a KAMERA-only row (untagged rows get a "tür yok" placeholder)"""
+    return not row.tags or bool(broll_tags(row))
+
+
 def broll_rows(rows, frozen):
-    """Non-KAMERA rows of frozen chapters; frozen is the manifest's 1-based set."""
+    """B-roll rows (is_broll) of frozen chapters; frozen is the manifest's 1-based set."""
     f0 = {c - 1 for c in frozen}
-    return [r for r in rows if r.chapter in f0 and "KAMERA" not in r.tags]
+    return [r for r in rows if r.chapter in f0 and is_broll(r)]

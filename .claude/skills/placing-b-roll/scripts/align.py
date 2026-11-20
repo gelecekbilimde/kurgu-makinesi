@@ -4,11 +4,14 @@ chapter_words: transcript words that survive in the chapter's layout (broll/layo
   timeline. A word belongs to a piece when its camera-frame midpoint lies in [src_start, src_end)
   (sections.py convention: camera frame = recorder frame + offset_f).
 align_rows: each row's SES words matched, in script order, to those words with 3-grams.
-coverage: the [start, end) range a B-roll row covers (runs on to the next B-roll row across small gaps).
+coverage: the [start, end) range a B-roll row covers (runs on to the next B-roll row across small gaps; a mixed
+  [KAMERA, X] row is an overlay over the presenter and ends at its own last word).
 """
 import json
 import re
 import sys
+
+import rows as rows_mod
 
 
 def norm(x):  # same as rough-cutting-a-roll/scripts/sections.py
@@ -100,12 +103,13 @@ def align_rows(rows, words):
 
 
 def coverage(rows, spans, words, max_gap=3):
-    """{key: {"start", "end"} | None} for the non-KAMERA rows: a row runs on to the next found row's start when
-    that row is non-KAMERA and at most max_gap words lie between them, else it ends at its last word."""
+    """{key: {"start", "end"} | None} for the B-roll rows (rows.is_broll: KAMERA-only rows are left out): a row
+    runs on to the next found row's start when neither row has KAMERA and at most max_gap words lie between them,
+    else it ends at its last word. A mixed [KAMERA, X] row never runs on (the presenter is on screen)."""
     found = [r for r in rows if spans.get(r.key)]
     out = {}
     for r in rows:
-        if "KAMERA" in r.tags:
+        if not rows_mod.is_broll(r):
             continue
         sp = spans.get(r.key)
         if not sp:
@@ -113,7 +117,7 @@ def coverage(rows, spans, words, max_gap=3):
             continue
         end = words[sp["last_word"]][1]
         i = found.index(r)
-        if i + 1 < len(found):
+        if i + 1 < len(found) and "KAMERA" not in r.tags:
             nxt = found[i + 1]
             ns = spans[nxt.key]
             if "KAMERA" not in nxt.tags and ns["first_word"] - sp["last_word"] - 1 <= max_gap:
