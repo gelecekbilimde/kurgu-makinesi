@@ -18,7 +18,7 @@ Usage: scripts/rv.sh scripts/chapters.py <chapters|master|freeze|unfreeze> <epis
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from episode import Episode
+from episode import Episode, chapter_timeline_name
 CMD, ARGS = sys.argv[1], sys.argv[3:]
 ep = Episode(sys.argv[2])
 if CMD in ("freeze", "unfreeze"):
@@ -50,11 +50,7 @@ for c in ep.clips():
 
 
 def chapter_name(ch):
-    """'COP31 ch1 Açılış': Resolve refuses some characters in timeline names (CreateEmptyTimeline
-    returned None for '§' / ':' / '?'), so: text before the first ':', letters, digits, spaces, ,'-"""
-    title = re.sub(r"^\d+\.\s*", "", sec["chapters"][ch]).split(":")[0]
-    title = re.sub(r"[^\w\s,'-]", "", title).strip()
-    return f"{PRE} ch{ch + 1} {title}"[:80]
+    return chapter_timeline_name(PRE, sec["chapters"][ch], ch)
 
 
 def entries(chapters):

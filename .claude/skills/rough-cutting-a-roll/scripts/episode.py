@@ -20,7 +20,16 @@ Derived files (all relative to the episode dir):
   plans/<stem>-plan.json          sections.json                     (plan_episode.py, sections.py)
   edits/<stem>-edits.json         timelines/<timeline>.json         (markers_to_edits.py, chapters.py)
 """
-import json, os
+import json, os, re
+
+
+def chapter_timeline_name(prefix, chapter_title, ch):
+    """'COP31 ch1 Açılış' (ch is 0-based): Resolve refuses some characters in timeline names
+    (CreateEmptyTimeline returned None for '§' / ':' / '?'), so: text before the first ':',
+    letters, digits, spaces, ,'-"""
+    title = re.sub(r"^\d+\.\s*", "", chapter_title).split(":")[0]
+    title = re.sub(r"[^\w\s,'-]", "", title).strip()
+    return f"{prefix} ch{ch + 1} {title}"[:80]
 
 
 class Episode:
