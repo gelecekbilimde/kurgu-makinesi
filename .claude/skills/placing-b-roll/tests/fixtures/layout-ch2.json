@@ -1,0 +1,10 @@
+{
+ "units": "frames",
+ "timeline": "TEST ch2 Gelişme",
+ "frames": 230,
+ "pieces": [
+  [0, "P1.MOV", 100, 200],
+  [100, "P1.MOV", 300, 400],
+  [200, "P2.MOV", 50, 80]
+ ]
+}

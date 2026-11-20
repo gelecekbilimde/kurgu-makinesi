@@ -1,0 +1,10 @@
+{"language": "tr", "segments": [
+ {"start": "00:00:03:12", "end": "00:00:12:06", "text": "Önce merhaba, kesik dünya",
+  "words": [
+   {"start": "00:00:03:12", "end": "00:00:03:22", "text": "Önce"},
+   {"start": "00:00:04:00", "end": "00:00:04:10", "text": "Merhaba,"},
+   {"start": "00:00:10:00", "end": "00:00:10:10", "text": "kesik"},
+   {"start": "00:00:12:00", "end": "00:00:12:06", "text": "dünya"},
+   {"start": "00:00:12:08", "end": "00:00:12:09", "text": "—"}
+  ]}
+]}
