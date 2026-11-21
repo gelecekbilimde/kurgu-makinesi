@@ -43,8 +43,9 @@ def short_layout(cand, layouts, brolls, fps, end_card_frames):
                        "src_in": it["src_in"] + lo - it["start"], "src_out": it["src_in"] + hi - it["start"],
                        "kind": it["kind"], "props": it.get("props", {}),
                        "anchor": {"chapter": ch, "ch_start": lo, "ch_end": hi}}
-                if "hold_of" in it:
-                    out["hold_of"] = it["hold_of"]
+                for k in ("hold_of", "src_size"):  # src_size: the source picture's [w, h] when known
+                    if k in it:
+                        out[k] = it[k]
                 broll.append(out)
         rec += e - s
     teaser_end = segments[0]["ch_end"] - segments[0]["ch_start"]

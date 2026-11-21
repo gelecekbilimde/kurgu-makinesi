@@ -65,7 +65,7 @@ FIT = {"ZoomX": 1.0, "ZoomY": 1.0, "Pan": 0.0, "Tilt": 0.0}
 
 class DesiredTest(unittest.TestCase):
     def test_tracks_by_kind(self):
-        lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4"),
+        lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080]),
                               bitem(300, 350, "graphic", "/b/grafik/y.mp4", track=3)])
         tracks = {i["kind"]: i["track"] for i in items}
         self.assertEqual(tracks, {"camera": 1, "stock": 2, "graphic": 3, "teaser-caption": 4,
@@ -83,8 +83,9 @@ class DesiredTest(unittest.TestCase):
         self.assertEqual(len({i["id"] for i in items}), len(items))
 
     def test_ids_stable_across_builds(self):
-        _, a = desired([bitem(300, 400, "stock", "/b/stok/a.mp4")])
-        _, b = desired([bitem(210, 260, "stock", "/b/stok/z.mp4"), bitem(300, 400, "stock", "/b/stok/a.mp4")])
+        _, a = desired([bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080])])
+        _, b = desired([bitem(210, 260, "stock", "/b/stok/z.mp4", src_size=[1920, 1080]),
+                        bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080])])
         ids = {(i["file"], i["src_in"]): i["id"] for i in b}
         for i in a:
             self.assertEqual(ids[(i["file"], i["src_in"])], i["id"])
@@ -102,12 +103,25 @@ class DesiredTest(unittest.TestCase):
         self.assertEqual(cams[1]["anchor"], {"chapter": 3, "ch_start": 200, "ch_end": 500})
 
     def test_stock_centre_crop_fill(self):
-        _, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4")])
-        s = by_kind(items, "stock")[0]
+        _, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080]),
+                            bitem(400, 450, "stock", "/b/stok/b.mp4", src_size=[1440, 1080]),
+                            bitem(450, 480, "stock", "/b/stok/c.mp4")])
+        s, sq, unknown = by_kind(items, "stock")
         self.assertEqual(s["props"], {"ZoomX": 3.160494, "ZoomY": 3.160494, "Pan": 0.0, "Tilt": 0.0})
         self.assertIsNone(s.get("flag"))
+        self.assertEqual((sq["props"]["ZoomX"], sq.get("flag")), (2.370370, None))
+        self.assertEqual(unknown["props"], s["props"])  # size unknown: 16:9 assumed, and said so
+        self.assertIn("boyutu bilinmiyor", unknown["flag"])
         self.assertEqual((s["start"], s["end"], s["anchor"]), (150, 250, {"chapter": 3, "ch_start": 300,
                                                                           "ch_end": 400}))
+
+    def test_stock_overlay_not_filled(self):
+        zoomed = bitem(330, 360, "stock", "/b/stok/z.mp4", track=3, src_size=[1920, 1080])
+        zoomed["props"] = dict(zoomed["props"], ZoomX=0.5, ZoomY=0.5)
+        _, items = desired([bitem(300, 330, "stock", "/b/stok/a.mp4", track=3, src_size=[1920, 1080]), zoomed])
+        for o in by_kind(items, "stock"):
+            self.assertEqual((o["track"], o["props"], o.get("background")), (3, FIT, None))
+            self.assertTrue(o["flag"])
 
     def test_screenshot_fit_width_flagged(self):
         _, items = desired([bitem(300, 400, "kaynak", SHOT)])
@@ -148,10 +162,10 @@ class DesiredTest(unittest.TestCase):
             self.assertEqual((i["props"], i.get("background"), i.get("flag")), (FIT, None, None))
 
     def test_editor_transformed_item_flagged(self):
-        zoomed = bitem(300, 400, "stock", "/b/stok/a.mp4")
+        zoomed = bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080])
         zoomed["props"] = dict(zoomed["props"], ZoomX=1.4, ZoomY=1.4, Pan=120.0)
         _, items = desired([zoomed, bitem(400, 450, "kaynak", SHOT, props={"ZoomX": 1.2, "ZoomY": 1.2}),
-                            bitem(450, 480, "stock", "/b/stok/b.mp4")])
+                            bitem(450, 480, "stock", "/b/stok/b.mp4", src_size=[1920, 1080])])
         a, shot, b = (next(i for i in items if i["file"] == f) for f in ("/b/stok/a.mp4", SHOT, "/b/stok/b.mp4"))
         centre = {"ZoomX": 3.160494, "ZoomY": 3.160494, "Pan": 0.0, "Tilt": 0.0}
         self.assertEqual((a["props"], b["props"], shot["props"]), (centre, centre, centre))
@@ -189,10 +203,22 @@ class FlagsTest(unittest.TestCase):
         self.assertEqual(by_frame[350]["customData"], "short:c1:join:2")
         g = by_frame[150]  # flagged overlay, ranged over the item
         self.assertEqual((g["duration"], g["customData"]), (50, "short:c1:flag:1"))
-        wm = [m for m in ms if m["customData"].startswith("short:c1:flag:")]
-        self.assertEqual(len(wm), 2)  # the overlay and the watermark (from frame 50, merged with the join there)
+        flagged = [m for m in ms if m["customData"].startswith("short:c1:flag:")]
+        self.assertEqual(len(flagged), 1)  # Ruling 7: the watermark gets a summary line, no marker
+        self.assertEqual(by_frame[50]["customData"], "short:c1:join:1")  # teaser -> passage
+        lines = splan.flag_lines("c1", items)
+        self.assertEqual(len(lines), 2)
+        self.assertTrue(any("watermark#1" in x for x in lines))
         ph = by_frame[450]  # the placeholder left in the chapter, not copied
         self.assertEqual((ph["duration"], ph["customData"]), (50, "short:c1:placeholder:1"))
+
+    def test_flag_on_a_join_keeps_the_join(self):
+        lay, items = desired([bitem(700, 760, "graphic", GRAPH, track=3)])  # starts on the piece join (350)
+        ms = splan.flags(items, lay, {"id": "c1", "reason": "r"})
+        m = next(m for m in ms if m["frame"] == 350)
+        self.assertEqual(m["duration"], 60)
+        self.assertIn("ek yeri", m["note"])
+        self.assertIn("Ek yeri", m["name"])
 
     def test_editor_items_not_flagged(self):
         lay, items = desired([bitem(300, 350, "graphic", GRAPH, track=3)])
@@ -213,7 +239,8 @@ def seen_of(items):
 
 class ReadbackTest(unittest.TestCase):
     def test_editor_item_kept_by_readback(self):
-        lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4"), bitem(400, 450, "stock", "/b/stok/b.mp4")])
+        lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080]),
+                              bitem(400, 450, "stock", "/b/stok/b.mp4", src_size=[1920, 1080])])
         last = placed(items)
         seen = seen_of(last)
         moved = next(s for s in seen if s["file"] == "/b/stok/a.mp4")
@@ -241,8 +268,25 @@ class ReadbackTest(unittest.TestCase):
         e = next(i for i in cur if i["uid"] == "x1")
         self.assertEqual((e["editor"], e["anchor"]), (True, {"chapter": 3, "ch_start": 250, "ch_end": 270}))
 
+    def test_editor_item_over_a_join_anchored_and_checked(self):
+        lay, items = desired()
+        last = placed(items)
+        over = {"uid": "x1", "track": 3, "start": 330, "end": 380, "file": "/e/logo.png", "src_in": 0,
+                "src_out": 50, "props": FIT}  # across the piece join at 350
+        card = dict(over, uid="x2", start=540, end=600)  # last piece into the end card (550)
+        cur = splan.readback(last, seen_of(last) + [over, card], lay["segments"])
+        e = next(i for i in cur if i["uid"] == "x1")
+        self.assertEqual(e["anchor"], {"pieces": [{"chapter": 3, "ch_start": 480, "ch_end": 500},
+                                                  {"chapter": 3, "ch_start": 700, "ch_end": 730}]})
+        c = next(i for i in cur if i["uid"] == "x2")
+        self.assertEqual(c["anchor"], {"pieces": [{"chapter": 3, "ch_start": 890, "ch_end": 900},
+                                                  {"end_card": 0, "frames": 50}]})
+        self.assertEqual(splan.stale_anchors([e, c], lay), [])
+        self.assertEqual(splan.stale_anchors([e, c], layout(pieces=((200, 500), (700, 910)))), [c])  # card moved
+        self.assertEqual(splan.stale_anchors([e, c], layout(pieces=((200, 510), (700, 900)))), [e, c])
+
     def test_stale_anchor_flagged_not_moved(self):
-        lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4")])
+        lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080])])
         a = dict(next(i for i in items if i["kind"] == "stock"), editor=True)
         same = layout(pieces=((200, 500), (700, 950)))  # later piece longer: a still sits on its words
         self.assertEqual(splan.stale_anchors([a], same), [])
@@ -274,7 +318,7 @@ class SubtitleTest(unittest.TestCase):
     def test_untouched_cues_are_ours(self):
         lay = layout()
         last = placed_cues(lay)
-        keep, ours = splan.subtitle_readback(last, seen_cues(last))
+        keep, ours = splan.subtitle_readback(last, seen_cues(last), lay["segments"], CUES)
         self.assertEqual((keep, ours), ([], last))
         self.assertFalse(splan.subtitles_stale(keep + ours, CUES))
 
@@ -284,24 +328,25 @@ class SubtitleTest(unittest.TestCase):
         seen = seen_cues(last)
         seen[0]["text"] = "Birinci satır düzeltildi"
         seen[1]["start"] += 2  # moved
-        keep, ours = splan.subtitle_readback(last, seen)
+        keep, ours = splan.subtitle_readback(last, seen, lay["segments"], CUES)
         self.assertEqual(ours, [])
         self.assertEqual([(c["uid"], c["editor"], c["text"], c["start"]) for c in keep],
                          [("s0", True, "Birinci satır\ndüzeltildi", 50), ("s1", True, "üçüncü", 82)])
-        again = splan.subtitle_readback(keep, seen)
+        again = splan.subtitle_readback(keep, seen, lay["segments"], CUES)
         self.assertEqual(again, (keep, []))
         # same desired cues: nothing stale, the edited ones are never rewritten
         self.assertFalse(splan.subtitles_stale(keep + ours, CUES))
-        self.assertTrue(splan.subtitles_stale(keep + ours, CUES[:1]))
+        self.assertFalse(splan.subtitles_stale(keep + ours, CUES[:1]))  # the dropped cue is the editor's now
+        self.assertTrue(splan.subtitles_stale(keep + ours, CUES + [{"start": 300, "end": 330, "text": "yeni"}]))
 
     def test_deleted_cue_not_refilled(self):
         lay = layout()
         last = placed_cues(lay)
-        keep, ours = splan.subtitle_readback(last, seen_cues(last)[1:])
+        keep, ours = splan.subtitle_readback(last, seen_cues(last)[1:], lay["segments"], CUES)
         self.assertEqual([(c["uid"], c["editor"], c["deleted"]) for c in keep], [(None, True, True)])
         self.assertEqual([c["uid"] for c in ours], ["s1"])
         self.assertFalse(splan.subtitles_stale(keep + ours, CUES))
-        keep2, ours2 = splan.subtitle_readback(keep + ours, seen_cues(last)[1:])
+        keep2, ours2 = splan.subtitle_readback(keep + ours, seen_cues(last)[1:], lay["segments"], CUES)
         self.assertEqual((keep2, ours2), (keep, ours))
 
     def test_editor_added_cue_and_cue_without_uid(self):
@@ -309,10 +354,37 @@ class SubtitleTest(unittest.TestCase):
         last = [dict(c, uid=None) for c in placed_cues(lay)]
         seen = seen_cues([dict(c, uid=f"r{n}") for n, c in enumerate(last)])
         seen.append({"uid": "new", "start": 200, "end": 220, "text": "eklendi"})
-        keep, ours = splan.subtitle_readback(last, seen)
+        keep, ours = splan.subtitle_readback(last, seen, lay["segments"], CUES)
         self.assertEqual([c["uid"] for c in ours], ["r0", "r1"])  # matched by frames and text, uid learnt
         self.assertEqual([(c["uid"], c["editor"], c["text"]) for c in keep], [("new", True, "eklendi")])
         self.assertFalse(splan.subtitles_stale(keep + ours, CUES))
+
+
+    def test_cues_anchored_and_edited_cue_reanchored(self):
+        lay = layout()
+        last = placed_cues(lay)
+        self.assertEqual(last[0]["anchor"], {"chapter": 3, "ch_start": 200, "ch_end": 230})
+        seen = seen_cues(last)
+        seen[1]["start"], seen[1]["end"] = 90, 130
+        keep, _ = splan.subtitle_readback(last, seen, lay["segments"], CUES)
+        self.assertEqual(keep[0]["anchor"], {"chapter": 3, "ch_start": 240, "ch_end": 280})
+        self.assertEqual(splan.stale_anchors(keep, lay), [])
+        self.assertEqual(splan.stale_anchors(keep, layout(pieces=((210, 500), (700, 900)))), keep)
+
+    def test_reimport_round_trip(self):
+        lay = layout()
+        last = placed_cues(lay)
+        new = [{"start": 50, "end": 90, "text": "yeni birinci"}, {"start": 90, "end": 120, "text": "üçüncü"}]
+        self.assertTrue(splan.subtitles_stale(last, new))  # build adds the re-import marker
+        # the editor deletes the old cues and imports captions.srt: new uids
+        seen = [{"uid": f"n{k}", "start": c["start"], "end": c["end"], "text": c["text"]} for k, c in enumerate(new)]
+        keep, ours = splan.subtitle_readback(last, seen, lay["segments"], new)
+        self.assertEqual([(c["uid"], c["editor"]) for c in ours], [("n0", False), ("n1", False)])
+        self.assertTrue(all(c["deleted"] for c in keep))
+        self.assertFalse(splan.subtitles_stale(keep + ours, new))
+        keep2, ours2 = splan.subtitle_readback(keep + ours, seen, lay["segments"], new)  # next build
+        self.assertEqual([c["uid"] for c in ours2], ["n0", "n1"])
+        self.assertFalse(splan.subtitles_stale(keep2 + ours2, new))
 
 
 class PlanFileTest(unittest.TestCase):
