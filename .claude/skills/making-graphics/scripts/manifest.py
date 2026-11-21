@@ -8,7 +8,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-FIELD_TYPES = ("text", "highlight", "number", "enum", "list", "source")
+FIELD_TYPES = ("text", "highlight", "number", "enum", "list", "source", "words")
 OUTPUTS = ("overlay", "fullscreen", "still")
 REQUIRED_KEYS = ("name", "description", "version", "output", "canvas", "frames", "fields")
 BASE_FPS = 25
@@ -149,7 +149,43 @@ def _list_value(f, raw, problems):
     return out
 
 
-def validate(t, raw):
+def _words_value(f, raw, frames, problems):
+    """Word timings: [{"text", "start", "end"}], integer frames from the graphic's start, [start, end)."""
+    if isinstance(raw, str):
+        try:
+            raw = json.loads(raw)
+        except json.JSONDecodeError:
+            problems.append(f"{f.name}: geçerli bir JSON listesi olmalı")
+            return []
+    if not isinstance(raw, list):
+        problems.append(f"{f.name}: {{text, start, end}} listesi olmalı")
+        return []
+    out, prev_start = [], 0
+    for i, w in enumerate(raw, 1):
+        label = f"{f.name} #{i}"
+        ok = (isinstance(w, dict) and isinstance(w.get("text"), str)
+              and all(type(w.get(k)) is int for k in ("start", "end")))
+        if not ok:
+            problems.append(f"{label}: {{\"text\": metin, \"start\": tam sayı kare, \"end\": tam sayı kare}} olmalı")
+            continue
+        text, start, end = w["text"].strip(), w["start"], w["end"]
+        if not text:
+            problems.append(f"{label}: metin boş olamaz")
+        if not 0 <= start < end:
+            problems.append(f"{label}: 0 <= başlangıç < bitiş olmalı ({start}, {end} verildi)")
+        elif frames is not None and end > frames:
+            problems.append(f"{label}: bitiş {end}, grafiğin {frames} karelik uzunluğunu aşıyor")
+        if start < prev_start:
+            problems.append(f"{label}: başlangıç ({start}) bir önceki kelimeden ({prev_start}) önce olamaz")
+        prev_start = max(prev_start, start)
+        out.append({"text": text, "start": start, "end": end})
+    if f.max_items is not None and len(out) > f.max_items:
+        problems.append(f"{f.name}: en fazla {f.max_items} öğe olabilir ({len(out)} verildi)")
+    return out
+
+
+def validate(t, raw, frames=None):
+    """frames: the render's frame count, the upper bound for words timings; None skips that bound."""
     problems = []
     names = [f.name for f in t.fields]
     for k in raw:
@@ -162,10 +198,13 @@ def validate(t, raw):
         if empty:
             if f.required:
                 problems.append(f"{f.name}: gerekli alan boş")
-            values[f.name] = [] if f.type == "list" else (None if f.type == "number" else "")
+            values[f.name] = [] if f.type in ("list", "words") else (None if f.type == "number" else "")
             continue
         if f.type == "list":
             values[f.name] = _list_value(f, given, problems)
+            continue
+        if f.type == "words":
+            values[f.name] = _words_value(f, given, frames, problems)
             continue
         if isinstance(given, list):
             problems.append(f"{f.name}: tek değer alır, {len(given)} değer verildi")

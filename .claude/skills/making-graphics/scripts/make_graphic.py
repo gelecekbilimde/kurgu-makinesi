@@ -191,6 +191,10 @@ def resolve(row, ctx):
     elif not lo <= frames <= hi:
         raise RequestError([f"uzunluk {frames} kare olamaz; {fps} fps için {lo} ile {hi} kare arası "
                             f"(varsayılan {default})"])
+    try:  # word timings are bounded by the final frame count
+        manifest.validate(t, row.get("fields") or {}, frames=frames)
+    except manifest.FieldError as err:
+        raise RequestError(err.problems) from None
     vertical = bool(row.get("vertical"))
     if t.fixed_canvas:
         vertical, resolution = False, "native"

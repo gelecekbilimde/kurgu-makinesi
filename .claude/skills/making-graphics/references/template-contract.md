@@ -36,6 +36,7 @@ A template is a folder `graphics/templates/<design>/<name>/` with:
 | `number` | `3,7`, `1.234.567,89`, `10^67`, `-1.5^-3` | `{"base", "exp", "text"}` | number syntax |
 | `enum` | one of `values` | string | membership |
 | `list` | repeated `--set` / JSON list | list of strings (`item: "text"`) or `{"label", "value"}` (`item: "pair"`, `label=value`; `numeric: true` makes value a number) | `min_items`, `max_items`, `max_len` per label/item |
+| `words` | JSON list of `{text, start, end}` (frames from the graphic's start) | the same list | order, bounds, `max_items` |
 | `source` | text | string; collected into `kaynaklar.txt` | `max_len` |
 
 Any field may set `required` and `help`. A text field may set `one_of_labels: "<list field>"` (its value must equal one of that list's labels). Unknown fields, missing required fields and every other problem are reported together, in Turkish, with exit code 2.

@@ -29,8 +29,8 @@
     const out = {};
     for (const k of Object.keys(raw)) {
       const v = raw[k];
-      if ((t[k] === "list" || t[k] === "number") && typeof v === "string") {
-        out[k] = v === "" ? (t[k] === "list" ? [] : null) : JSON.parse(v);
+      if ((t[k] === "list" || t[k] === "words" || t[k] === "number") && typeof v === "string") {
+        out[k] = v === "" ? (t[k] === "number" ? null : []) : JSON.parse(v);
       } else {
         out[k] = v;
       }
