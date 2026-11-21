@@ -23,8 +23,9 @@ def tc2f(tc, fps=25):  # same as sections.py
     return (h * 3600 + m * 60 + s) * fps + f
 
 
-def chapter_words(ep, layout):
-    """[(start_f, end_f, norm_text)] on the chapter timeline, in timeline order."""
+def chapter_words(ep, layout, raw=False):
+    """[(start_f, end_f, norm_text)] on the chapter timeline, in timeline order; raw=True adds the word's
+    original transcript text as a 4th element."""
     clips = {c["clip"]: c for c in ep.clips(all_=True)}
     cache = {}
 
@@ -42,7 +43,7 @@ def chapter_words(ep, layout):
                     n = norm(w["text"])
                     if n:
                         a, b = tc2f(w["start"], fps) + off, tc2f(w["end"], fps) + off
-                        ws.append(((a + b) // 2, a, b, n))
+                        ws.append(((a + b) // 2, a, b, n, w["text"]))
             cache[name] = ws
         return cache[name]
 
@@ -51,9 +52,10 @@ def chapter_words(ep, layout):
         if clip not in clips:  # not a camera clip of this episode (title, generator, foreign media): no words
             print(f"uyarı: {layout['timeline']} @{rec}: {clip!r} episode.json'da yok, atlandı", file=sys.stderr)
             continue
-        for mid, s, e, n in clip_words(clip):
+        for mid, s, e, n, text in clip_words(clip):
             if a <= mid < b:
-                out.append((rec + max(s, a) - a, rec + min(e, b) - a, n))
+                t = (rec + max(s, a) - a, rec + min(e, b) - a, n)
+                out.append(t + (text,) if raw else t)
     out.sort()
     return out
 
