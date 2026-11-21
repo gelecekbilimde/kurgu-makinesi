@@ -36,10 +36,12 @@ class Episode:
     def __init__(self, d):
         self.dir = os.path.abspath(d)
         self.file = os.path.join(self.dir, "episode.json")
-        self.m = json.load(open(self.file, encoding="utf-8"))
+        with open(self.file, encoding="utf-8") as f:
+            self.m = json.load(f)
 
     def save(self):
-        json.dump(self.m, open(self.file, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        with open(self.file, "w", encoding="utf-8") as f:
+            json.dump(self.m, f, ensure_ascii=False, indent=1)
 
     def path(self, *p):
         return os.path.join(self.dir, *p)

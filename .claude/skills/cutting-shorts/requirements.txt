@@ -1,0 +1,8 @@
+# Python deps for shorts_media.py (face crop and the teaser cut-out); run with the repo's .venv:
+#   .venv/bin/pip install -r .claude/skills/cutting-shorts/requirements.txt
+# mediapipe's Tasks API needs two model files; shorts_media.py downloads them on first use into
+# .claude/skills/cutting-shorts/.cache/models/ (gitignored): blaze_face_short_range.tflite, selfie_segmenter.tflite.
+# shorts.py and the tests need only the system python3 (stdlib).
+mediapipe==1.2.3
+numpy==2.3.4
+opencv-contrib-python==5.1.0.95  # cv2.ximgproc.guidedFilter (matte edges); mediapipe pulls it in too

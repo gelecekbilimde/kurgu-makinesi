@@ -21,7 +21,7 @@ TELEMETRY_OFF = {"HYPERFRAMES_NO_TELEMETRY": "1", "DO_NOT_TRACK": "1"}
 FULL = (54, 12)
 OVERLAY = (40, 2)
 FULL_BG = "0x303030"
-BAND = ("black@0.6", int(H * 0.72), int(H * 0.2))  # colour, top, height
+BAND = ("black@0.6", 0.72, 0.2)  # colour, top and height as fractions of the frame height
 
 
 class StillError(Exception):
@@ -45,17 +45,18 @@ def _q(value):
     return "'" + str(value).replace("'", r"'\''") + "'"
 
 
-def _text(row_id, tag, text, max_lines):
-    lines = textwrap.wrap(" ".join(str(text or "").split()), WRAP) or []
+def _text(row_id, tag, text, max_lines, wrap=WRAP):
+    lines = textwrap.wrap(" ".join(str(text or "").split()), wrap) or []
     if len(lines) > max_lines:
         lines = lines[:max_lines]
-        lines[-1] = lines[-1][:WRAP - 1].rstrip() + "…"
+        lines[-1] = lines[-1][:wrap - 1].rstrip() + "…"
     return "\n".join([f"{row_id} · {tag}", *lines]) + "\n"
 
 
-def placeholder(out, row_id, tag, text, overlay, runner=subprocess.run):
-    """A 1920x1080 PNG with "<row_id> · <tag>" and the wrapped description: full frame dark grey, or (overlay)
-    transparent with a lower-third band. Raises StillError."""
+def placeholder(out, row_id, tag, text, overlay, runner=subprocess.run, size=(W, H)):
+    """A PNG of `size` (default 1920x1080) with "<row_id> · <tag>" and the wrapped description: full frame dark
+    grey, or (overlay) transparent with a lower-third band. Raises StillError."""
+    w, h = size
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     size, max_lines = OVERLAY if overlay else FULL
@@ -63,15 +64,15 @@ def placeholder(out, row_id, tag, text, overlay, runner=subprocess.run):
     fd, tf = tempfile.mkstemp(prefix=out.stem + "-", suffix=".txt", dir=out.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
-            f.write(_text(row_id, tag, text, max_lines))
+            f.write(_text(row_id, tag, text, max_lines, wrap=WRAP * w // W))
         draw = (f"drawtext=fontfile={_q(font)}:textfile={_q(tf)}:fontsize={size}:fontcolor=white"
                 f":line_spacing={size // 3}:x=(w-text_w)/2")
         if overlay:  # the band padded with transparency (drawbox can't write alpha); drawtext keeps alpha
-            colour, top, height = BAND
-            src = f"color=c={colour}:s={W}x{height}:d=1,format=rgba,pad={W}:{H}:0:{top}:color=black@0"
+            colour, top, height = BAND[0], int(h * BAND[1]), int(h * BAND[2])
+            src = f"color=c={colour}:s={w}x{height}:d=1,format=rgba,pad={w}:{h}:0:{top}:color=black@0"
             vf = f"{draw}:y={top}+({height}-text_h)/2"
         else:
-            src = f"color=c={FULL_BG}:s={W}x{H}:d=1"
+            src = f"color=c={FULL_BG}:s={w}x{h}:d=1"
             vf = f"{draw}:y=(h-text_h)/2"
         cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", src, "-vf", vf, "-frames:v", "1"]
         if overlay:
