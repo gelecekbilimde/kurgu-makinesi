@@ -321,6 +321,9 @@ def build_short(ctx, cand, entry, save):
                                    "yok sayıldı")
         last_items, last_subs, last_segs = [], [], layout["segments"]
     else:
+        if not sbuild.is_ours(tl.GetName(), pre):
+            raise sbuild.NotOurs(f"zaman çizelgesi '{tl.GetName()}': düzenleyici yeniden adlandırmış, atlandı "
+                                 f"(adı '{pre} short <sıra> ...' biçiminde olmalı)")
         new = sbuild.rename_to(tl.GetName(), want_name, pre)
         if new:
             sbuild.assert_ours(tl, pre)
@@ -365,7 +368,7 @@ def build_short(ctx, cand, entry, save):
     rep["flags"] = splan.flag_lines(sid, items) + rep["flags"]
     rep["skipped"] = [f"{sid}: bölüm {s['chapter']} [{s['start']}, {s['end']}) V{s['track']} "
                       f"{os.path.basename(s.get('file') or '')}" for s in layout.get("skipped") or []]
-    markers = splan._merge(splan.flags(items, layout, cand) + sm + extra)
+    markers = splan.merge(splan.flags(items, layout, cand) + sm + extra)
     rep["problems"] += sbuild.set_markers(tl, sid, markers, layout["frames"], pre)
     keep(items=items, segments=layout["segments"], timeline_name=tl.GetName())
     return rep

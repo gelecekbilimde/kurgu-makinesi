@@ -151,7 +151,7 @@ def _rec(short_layout, chapter, s, e):
     return None
 
 
-def _merge(markers):
+def merge(markers):
     """One marker per frame (Resolve refuses a second one): notes joined, the longest range and its customData."""
     by_frame = {}
     for m in markers:
@@ -194,7 +194,7 @@ def flags(items, short_layout, cand):
             out.append(marker(sid, "placeholder", n, *rng, "Yer tutucu",
                               f"bölümde yer tutucu vardı ({os.path.basename(p.get('file') or '')}): "
                               "kopyalanmadı, konuşmacı görünüyor"))
-    return _merge(out)
+    return merge(out)
 
 
 def _maps(anchor, short_layout, start, end):

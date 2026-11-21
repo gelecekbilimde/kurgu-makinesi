@@ -124,6 +124,14 @@ class TodoTest(unittest.TestCase):
         self.assertFalse(any(ln.startswith("c3:") for ln in lines))  # not accepted, not asked for: silent
         self.assertTrue(bad)
 
+    def test_no_teaser_skipped(self):
+        cands = [{"id": "c5", "accepted": True, "frozen": False, "pieces": [{"chapter": 3}], "teaser": None},
+                 {"id": "c6", "accepted": True, "frozen": False, "pieces": [{"chapter": 3}]}]
+        todo, lines, bad = sbuild.todo(cands, [], [3])
+        self.assertEqual(todo, [])
+        self.assertEqual(len([ln for ln in lines if "teaser yok: önce check" in ln]), 2)
+        self.assertTrue(bad)
+
     def test_named_ids(self):
         todo, lines, bad = sbuild.todo(self.CANDS, ["c2", "c3"], [3, 4])
         self.assertEqual(todo, [])
@@ -145,32 +153,135 @@ class CollideTest(unittest.TestCase):
 
 
 class BackgroundTest(unittest.TestCase):
-    def test_black_background_padded(self):
-        calls = []
+    class Run:
+        """ffmpeg fake: writes its output (the temp file); fail=True writes part of it and exits 1."""
 
-        def run(cmd, **kw):
-            calls.append(cmd)
-            open(cmd[-1], "wb").close()
+        def __init__(self):
+            self.calls, self.fail = [], False
+
+        def __call__(self, cmd, **kw):
+            self.calls.append(cmd)
+            with open(cmd[-1], "wb") as f:
+                f.write(b"half" if self.fail else b"padded")
 
             class P:
-                returncode = 0
-                stderr = ""
+                returncode = 1 if self.fail else 0
+                stderr = "killed" if self.fail else ""
             return P()
 
-        with tempfile.TemporaryDirectory() as d:
-            want = [item("graphic", file="/x/G.mp4", background="black", flag="f"),
-                    item("screenshot", file="/x/S.png", background="black", start=70, end=90, src_in=0),
-                    item("stock", file="/x/R.mp4")]
-            got, probs = sbuild.black_backgrounds(want, d, runner=run)
-            self.assertEqual(probs, [])
-            self.assertEqual(got[0]["file"], os.path.join(d, "G-siyah.mp4"))
-            self.assertEqual(got[1]["file"], os.path.join(d, "S-siyah.png"))
-            self.assertEqual(got[2], want[2])
-            self.assertEqual((got[0]["src_in"], got[0]["flag"], got[0]["background"]), (5, "f", "black"))
-            self.assertIn("pad=1080:1920", " ".join(calls[0]))
-            self.assertIn("-frames:v", calls[1])
-            sbuild.black_backgrounds(want, d, runner=run)
-            self.assertEqual(len(calls), 2)  # made once
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.d = self.tmp.name
+        self.out = os.path.join(self.d, "siyah")
+        for name in ("G.mp4", "S.png"):
+            with open(os.path.join(self.d, name), "wb") as f:
+                f.write(b"v1")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def src(self, name):
+        return os.path.join(self.d, name)
+
+    def test_black_background_padded(self):
+        run = self.Run()
+        want = [item("graphic", file=self.src("G.mp4"), background="black", flag="f"),
+                item("screenshot", file=self.src("S.png"), background="black", start=70, end=90, src_in=0),
+                item("stock", file="/x/R.mp4")]
+        got, probs = sbuild.black_backgrounds(want, self.out, runner=run)
+        self.assertEqual(probs, [])
+        self.assertRegex(os.path.basename(got[0]["file"]), r"^G-[0-9a-f]{8}-siyah\.mp4$")
+        self.assertRegex(os.path.basename(got[1]["file"]), r"^S-[0-9a-f]{8}-siyah\.png$")
+        self.assertEqual(got[2], want[2])
+        self.assertEqual((got[0]["src_in"], got[0]["flag"], got[0]["background"]), (5, "f", "black"))
+        self.assertIn("pad=1080:1920", " ".join(run.calls[0]))
+        self.assertIn("-frames:v", run.calls[1])
+        self.assertEqual(sorted(os.listdir(self.out)), sorted(os.path.basename(g["file"]) for g in got[:2]))
+        sbuild.black_backgrounds(want, self.out, runner=run)
+        self.assertEqual(len(run.calls), 2)  # made once
+
+    def test_rerendered_source_gets_a_new_copy(self):  # (a)
+        run = self.Run()
+        want = [item("graphic", file=self.src("G.mp4"), background="black")]
+        first = sbuild.black_backgrounds(want, self.out, runner=run)[0][0]["file"]
+        with open(self.src("G.mp4"), "wb") as f:
+            f.write(b"re-rendered, longer")
+        second = sbuild.black_backgrounds(want, self.out, runner=run)[0][0]["file"]
+        self.assertNotEqual(first, second)
+        self.assertEqual(len(run.calls), 2)
+
+    def test_failed_ffmpeg_leaves_nothing_to_place(self):  # (b)
+        run = self.Run()
+        run.fail = True
+        want = [item("graphic", file=self.src("G.mp4"), background="black")]
+        got, probs = sbuild.black_backgrounds(want, self.out, runner=run)
+        self.assertEqual(got, want)  # the original, unpadded
+        self.assertEqual(len(probs), 1)
+        self.assertEqual(os.listdir(self.out), [])  # no truncated copy, no temp file
+        run.fail = False
+        got, probs = sbuild.black_backgrounds(want, self.out, runner=run)
+        self.assertEqual(probs, [])
+        with open(got[0]["file"], "rb") as f:
+            self.assertEqual(f.read(), b"padded")
+
+    def test_same_stem_elsewhere_gets_its_own_copy(self):  # (c)
+        os.makedirs(os.path.join(self.d, "b"))
+        with open(os.path.join(self.d, "b", "G.mp4"), "wb") as f:
+            f.write(b"v1")
+        run = self.Run()
+        got, _ = sbuild.black_backgrounds(
+            [item("graphic", file=self.src("G.mp4"), background="black"),
+             item("graphic", file=os.path.join(self.d, "b", "G.mp4"), background="black", start=70, end=90)],
+            self.out, runner=run)
+        self.assertNotEqual(got[0]["file"], got[1]["file"])
+        self.assertEqual(len(run.calls), 2)
+
+    def test_missing_source_reported(self):
+        want = [item("graphic", file=self.src("yok.mp4"), background="black")]
+        got, probs = sbuild.black_backgrounds(want, self.out, runner=self.Run())
+        self.assertEqual((got, len(probs)), (want, 1))
+
+
+class CreateTimelineTest(unittest.TestCase):
+    class Mp:
+        def __init__(self, rate):
+            self.rate, self.deleted = rate, []
+
+        def GetRootFolder(self):
+            return "root"
+
+        def SetCurrentFolder(self, f):
+            return True
+
+        def CreateEmptyTimeline(self, name):
+            mp = self
+
+            class Tl:
+                def __init__(self):
+                    self.s = {}
+
+                def GetName(self):
+                    return name
+
+                def SetSetting(self, k, v):
+                    self.s[k] = v
+                    return True
+
+                def GetSetting(self, k):
+                    return mp.rate if k == "timelineFrameRate" else self.s.get(k)
+            return Tl()
+
+        def DeleteTimelines(self, tls):
+            self.deleted += tls
+            return True
+
+    def test_frame_rate_read_back(self):
+        mp = self.Mp(25.0)
+        self.assertIsNotNone(sbuild.create_timeline(mp, "f", "TEST short 1 x", 25, "TEST"))
+        mp = self.Mp(24.0)
+        with self.assertRaises(sbuild.sync.Problem):
+            sbuild.create_timeline(mp, "f", "TEST short 1 x", 25, "TEST")
+        self.assertEqual(len(mp.deleted), 1)
 
 
 class MarkersTest(unittest.TestCase):

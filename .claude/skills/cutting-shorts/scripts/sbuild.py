@@ -11,6 +11,7 @@ Rules (the B-roll skill's sync.py, reference.md of both skills):
 - transforms are set right after placing (ZoomX, ZoomY, Pan, Tilt) and read back;
 - an item of ours that would land on a kept item (the editor's, or one that couldn't be deleted) is not placed.
 """
+import hashlib
 import os
 import re
 import subprocess
@@ -58,7 +59,10 @@ def todo(candidates, ids, eligible):
     if bad:
         lines.append(f"Bilinmeyen aday: {', '.join(bad)}")
     for c in [by_id[i] for i in ids if i in by_id] if ids else candidates:
-        if c.get("frozen"):
+        if c.get("accepted") and not c.get("frozen") and not c.get("teaser"):
+            lines.append(f"{c['id']}: teaser yok: önce check, kurulmadı")
+            bad.append(c["id"])
+        elif c.get("frozen"):
             lines.append(f"{c['id']}: dondurulmuş, atlandı")
         elif not c.get("accepted"):
             if ids:
@@ -129,25 +133,47 @@ def _pad_cmd(src, out):
             "-preset", "fast", "-pix_fmt", "yuv420p", out]
 
 
+def _pad_name(src):
+    """'<stem>-<hash>-siyah.<png|mp4>': the hash covers the canonical source path, its size and mtime, so a
+    re-rendered source (same path) or a same-named file elsewhere gets its own copy. None when src is missing."""
+    try:
+        st = os.stat(src)
+    except OSError:
+        return None
+    key = f"{glue.canon(src)}|{st.st_size}|{st.st_mtime_ns}".encode("utf-8")
+    stem = os.path.splitext(os.path.basename(src))[0]
+    return f"{stem}-{hashlib.sha1(key).hexdigest()[:8]}-siyah{'.png' if _is_still_file(src) else '.mp4'}"
+
+
 def black_backgrounds(items, out_dir, runner=subprocess.run):
     """Items with background "black" -> (items, problems): the picture padded to 1080x1920 with black (FFmpeg,
-    made once in out_dir) replaces the file; frames, props and flag stay. The track below a V2 item is the camera,
-    so the black is part of the picture instead of an item of its own."""
+    made once per source version in out_dir, written to a temp file and moved in place only on success) replaces
+    the file; frames, props and flag stay. The track below a V2 item is the camera, so the black is part of the
+    picture instead of an item of its own."""
     out, probs = [], []
     for it in items:
         if it.get("background") != "black" or not it.get("file"):
             out.append(it)
             continue
-        stem, ext = os.path.splitext(os.path.basename(it["file"]))
-        dst = os.path.join(out_dir, f"{stem}-siyah{'.png' if _is_still_file(it['file']) else '.mp4'}")
+        name = _pad_name(it["file"])
+        if name is None:
+            probs.append(f"{it['id']}: kaynak dosya yok ({it['file']}); siyahsız yerleştirildi")
+            out.append(it)
+            continue
+        dst = os.path.join(out_dir, name)
         if not os.path.exists(dst):
             os.makedirs(out_dir, exist_ok=True)
-            p = runner(_pad_cmd(it["file"], dst), capture_output=True, text=True)
-            if p.returncode != 0 or not os.path.exists(dst):
+            stem, ext = os.path.splitext(dst)
+            tmp = f"{stem}.part{ext}"  # FFmpeg picks the format from the extension
+            p = runner(_pad_cmd(it["file"], tmp), capture_output=True, text=True)
+            if p.returncode != 0 or not os.path.exists(tmp):
+                if os.path.exists(tmp):
+                    os.remove(tmp)
                 probs.append(f"{it['id']}: siyah arka plan yapılamadı ({(p.stderr or '').strip()[-200:]}); "
                              "siyahsız yerleştirildi")
                 out.append(it)
                 continue
+            os.replace(tmp, dst)
         out.append(dict(it, file=glue.canon(dst)))
     return out, probs
 
@@ -337,8 +363,13 @@ def create_timeline(mp, folder, name, fps, prefix):
     want = (("useCustomSettings", "1"), ("timelineResolutionWidth", str(W)), ("timelineResolutionHeight", str(H)),
             ("timelineFrameRate", str(fps)))
     bad = [k for k, v in want if not tl.SetSetting(k, v)]
-    got = (tl.GetSetting("timelineResolutionWidth"), tl.GetSetting("timelineResolutionHeight"))
-    if bad or got != (str(W), str(H)):
+    got = (tl.GetSetting("timelineResolutionWidth"), tl.GetSetting("timelineResolutionHeight"),
+           tl.GetSetting("timelineFrameRate"))
+    try:
+        rate_ok = float(got[2]) == float(fps)
+    except (TypeError, ValueError):
+        rate_ok = False
+    if bad or got[:2] != (str(W), str(H)) or not rate_ok:
         mp.DeleteTimelines([tl])  # ours and empty: the next build starts clean
         raise sync.Problem(f"'{name}' dikey ayarlanamadı ({', '.join(bad) or got}); silindi")
     return tl
