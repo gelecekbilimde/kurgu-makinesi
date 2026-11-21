@@ -1,7 +1,7 @@
 # B-roll skill: design
 
 **Date:** 2026-11-20
-**Status:** draft, awaiting approval
+**Status:** approved
 **Builds on:** the script template and reader (`2026-11-11-script-template-design.md`), the stock finder (`2026-11-13-stock-finder-design.md`), making-graphics (`.claude/skills/making-graphics`), the A-roll rough cutter (`.claude/skills/rough-cutting-a-roll`).
 
 ## Why
