@@ -68,6 +68,26 @@ class ReviewTest(unittest.TestCase):
         self.assertEqual(out["candidates"][0]["pieces"][0]["end"], 333)  # back to the gap before the word [340, 350): 330 + POST_F
         self.assertTrue(any("kelime içindeydi" in n for n in notes))
 
+    def test_bumped_marker_reads_back_unchanged(self):
+        data = {"candidates": [cand(accepted=True)]}
+        ms = review.markers(data, OFFS)
+        res = [review.bumped(m, m["frameId"] + 2) if m["customData"] == "short:c1:t" else m for m in ms]
+        self.assertEqual(res[1]["frameId"], 202)
+        back, notes = review.read_back(data, res, OFFS, FRAMES)
+        self.assertEqual(back["candidates"][0]["teaser"], data["candidates"][0]["teaser"])
+        self.assertEqual(back["candidates"][0]["pieces"], data["candidates"][0]["pieces"])
+        self.assertEqual(notes, [])
+
+    def test_bumped_marker_really_moved_is_detected(self):
+        data = {"candidates": [cand()]}
+        t = review.markers(data, OFFS)[1]
+        moved = dict(review.bumped(t, 202), frameId=230)  # editor dragged it further
+        back, _ = review.read_back(data, [moved], OFFS, FRAMES)
+        self.assertEqual(back["candidates"][0]["teaser"], {"chapter": 3, "start": 230, "end": 290})
+        resized = dict(review.bumped(t, 202), duration=40)  # editor resized it
+        back, _ = review.read_back(data, [resized], OFFS, FRAMES)
+        self.assertEqual(back["candidates"][0]["teaser"]["end"] - back["candidates"][0]["teaser"]["start"], 40)
+
 
 if __name__ == "__main__":
     unittest.main()

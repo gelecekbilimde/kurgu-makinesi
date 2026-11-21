@@ -151,8 +151,9 @@ def build_review(ep, p, data):
             print(f"{m['customData']}: aralık zaman çizelgesinin dışında, işaretçi eklenmedi", file=sys.stderr)
             continue
         ok = False
-        for bump in range(0, 5):  # a second marker on an occupied frame is refused
-            if tl.AddMarker(fr + bump, m["color"], m["name"], m["note"], m["duration"], m["customData"]):
+        for bump in range(0, review.MAX_BUMP + 1):  # a second marker on an occupied frame is refused
+            mm = m if not bump else review.bumped(m, fr + bump)
+            if tl.AddMarker(mm["frameId"], mm["color"], mm["name"], mm["note"], mm["duration"], mm["customData"]):
                 ok = True
                 if bump:
                     print(f"{m['customData']}: kare dolu, işaretçi {bump} kare kaydırıldı", file=sys.stderr)
@@ -193,12 +194,19 @@ def cmd_accept(a):
     if tl is None:
         sys.exit(f"'{review_name(ep.m['prefix'])}' bulunamadı: önce 'review' çalıştırın")
     marks = _marker_list(tl)  # read BEFORE the timeline is rebuilt
-    frames = _chapter_frames(ep, chapters_ok)
+    try:
+        frames = _chapter_frames(ep, chapters_ok)
+    except FileNotFoundError as err:
+        sys.exit(f"{err} yok: önce 'read' ile bölümlerin yerleşimini okuyun")
     offs = review.offsets(frames, chapters_ok)
     data, notes = review.read_back(data, marks, offs, frames)
     need = sorted({r["chapter"] for c in data["candidates"] for r in c.get("pieces", []) + [c.get("teaser") or {}]
                    if r.get("chapter") in chapters_ok})
-    data, cnotes, errors = cands.check(data, shorts._words(ep, need), chapters_ok, ep.fps)
+    try:
+        words = shorts._words(ep, need)
+    except FileNotFoundError as err:
+        sys.exit(f"{err} yok: önce 'read' ile bölümlerin yerleşimini okuyun")
+    data, cnotes, errors = cands.check(data, words, chapters_ok, ep.fps)
     cands.save(path, data)
     for n in notes + cnotes:
         print(n, file=sys.stderr)

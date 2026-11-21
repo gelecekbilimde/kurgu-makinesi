@@ -3,6 +3,7 @@ and reading the editor's changes back (Green = accepted, moved/resized markers =
 import copy
 
 PREFIX = "short"
+MAX_BUMP = 4
 
 
 def offsets(chapter_frames, eligible):
@@ -36,6 +37,12 @@ def markers(data, offs):
     return out
 
 
+def bumped(m, frame):
+    """The marker placed at frame (> its frameId) because its own frame was occupied: customData carries the
+    intended start (short:<id>:p<i>@<frame>), so read_back can tell an untouched bumped marker from a moved one."""
+    return {**m, "frameId": frame, "customData": f"{m['customData']}@{m['frameId']}"}
+
+
 def _locate(frame, offs):
     """chapter whose span starts at or before frame (None before the first chapter)."""
     best = None
@@ -58,7 +65,13 @@ def read_back(data, markers_from_resolve, offs, chapter_frames=None):
     resized one gives the new range in the chapter it starts in (clamped to that chapter, with a note)."""
     data = copy.deepcopy(data)
     notes = []
-    by_cd = {m.get("customData"): m for m in markers_from_resolve}
+    by_cd = {}
+    for m in markers_from_resolve:
+        cd, _, intended = str(m.get("customData")).partition("@")
+        m = dict(m, customData=cd)
+        if intended.isdigit():
+            m["_intended"] = int(intended)
+        by_cd[cd] = m
     for c in data.get("candidates", []):
         cid = c["id"]
         ranges = {_data(cid, f"p{i}"): p for i, p in enumerate(c.get("pieces", []))}
@@ -70,11 +83,14 @@ def read_back(data, markers_from_resolve, offs, chapter_frames=None):
             m = by_cd.get(cd)
             if m is None:
                 continue
-            ch = _locate(m["frameId"], offs)
+            frame = m["frameId"]
+            if "_intended" in m and 0 < frame - m["_intended"] <= MAX_BUMP and m["duration"] == r["end"] - r["start"]:
+                frame = m["_intended"]  # untouched marker that was only bumped off an occupied frame
+            ch = _locate(frame, offs)
             if ch is None:
                 notes.append(f"{cid}: işaretçi ilk bölümün öncesinde, aralık değişmedi")
                 continue
-            start = m["frameId"] - offs[ch]
+            start = frame - offs[ch]
             end = start + m["duration"]
             limit = _chapter_end(ch, offs, chapter_frames)
             if limit is not None and offs[ch] + end > limit:
