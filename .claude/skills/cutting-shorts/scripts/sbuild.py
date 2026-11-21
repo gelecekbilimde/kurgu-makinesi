@@ -225,11 +225,33 @@ def delete_items(tl, its, prefix):
     return bool(tl.DeleteClips(dead)) if dead else True
 
 
-def place(mp, tl, s0, fps, item, mpi, prefix):
+def audio_items(tl):
+    """uid -> item of every audio track."""
+    out = {}
+    for k in range(1, (tl.GetTrackCount("audio") or 0) + 1):
+        for it in tl.GetItemListInTrack("audio", k) or []:
+            out[it.GetUniqueId()] = it
+    return out
+
+
+def assert_current(project, tl):
+    """AppendToTimeline appends to the project's current timeline: it must still be tl (same uid)."""
+    if project is None:
+        return
+    cur = project.GetCurrentTimeline()
+    if cur is None or cur.GetUniqueId() != tl.GetUniqueId():
+        raise NotOurs(f"geçerli zaman çizelgesi '{cur.GetName() if cur is not None else '-'}', "
+                      f"'{tl.GetName()}' değil (Resolve'da başka zaman çizelgesi açıldı): eklenmedi, durduruldu")
+
+
+def place(mp, tl, s0, fps, item, mpi, prefix, project=None):
     """Append one item, find it by uid diff on every video track, set its transform -> (plan item, problems).
-    Anything else the append put on a video track is deleted again."""
+    Anything else the append put on a video track is deleted again, and when the item itself didn't land, the
+    audio the append made too (a camera clip's). project: the current timeline is checked to be tl first."""
     assert_ours(tl, prefix)
+    assert_current(project, tl)
     before = set(sync.track_items(tl, s0, fps, video_tracks(tl))[1])
+    before_audio = set(audio_items(tl))
     still = glue.is_still(mpi)
     ratio = glue.clip_ratio(mpi, fps)
     if still:
@@ -246,6 +268,10 @@ def place(mp, tl, s0, fps, item, mpi, prefix):
     probs = []
     if extra and not delete_items(tl, extra, prefix):
         probs.append(f"{item['id']}: fazladan yerleşen {len(extra)} öğe silinemedi")
+    if mine is None:
+        stray = [a for uid, a in audio_items(tl).items() if uid not in before_audio]
+        if stray and not (assert_ours(tl, prefix) or tl.DeleteClips(stray)):
+            probs.append(f"{item['id']}: görüntüsü yerleşmeyen {len(stray)} ses öğesi silinemedi")
     rec, p2 = glue.placed(item, mine, ratio)
     probs += p2
     if mine is not None:
@@ -260,7 +286,8 @@ def _sort(items):
 
 
 def sync_short(ctx, tl, last_items, desired, segments, save):
-    """Read back, remove, place. ctx: mp, media, bin (import folder), fps, prefix. save(items) after the removes
+    """Read back, remove, place. ctx: mp, media, bin (import folder), fps, prefix, project (optional: the current
+    timeline is checked before every append). save(items) after the removes
     and after every placement. -> (items, counts, problems)"""
     mp, media, fps, prefix = ctx["mp"], ctx["media"], ctx["fps"], ctx["prefix"]
     assert_ours(tl, prefix)
@@ -306,7 +333,7 @@ def sync_short(ctx, tl, last_items, desired, segments, save):
             if not err.reported:
                 problems.append(f"{i['id']}: {err}")
             continue
-        rec, probs = place(mp, tl, s0, fps, i, mpi, prefix)
+        rec, probs = place(mp, tl, s0, fps, i, mpi, prefix, ctx.get("project"))
         problems += probs
         if rec.get("uid") is not None:
             added.append(rec)

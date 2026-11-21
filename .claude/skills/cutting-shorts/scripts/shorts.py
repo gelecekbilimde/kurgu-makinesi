@@ -4,6 +4,7 @@ candidates: sentences + script rows of the eligible chapters (needs shorts/layou
 check: validate and snap shorts/candidates.json. prepare: face crop, teaser cut-out, graphics, captions and
 shorts/<id>/assets.json of the accepted, not frozen candidates. freeze/unfreeze: a frozen candidate is never rebuilt."""
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -199,6 +200,42 @@ def _render(prep, d, rows):
     return files, notes
 
 
+def _version(*parts):
+    """8 hex digits of the content-defining inputs of a file we write: a changed input gives a new file name, so
+    build never reuses the media-pool clip imported from the old content at the same path."""
+    return hashlib.sha1(json.dumps(parts, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()[:8]
+
+
+def cutout_files(d, cropped, teaser_items):
+    """[{"item", "file"}] of the teaser cut-outs: 'teaser-cutout-<hash>.mov' ('teaser-cutout-<k>-<hash>.mov'
+    when the teaser crosses camera items), the hash over the camera file, source range, crop and source size."""
+    out = []
+    for k, i in enumerate(teaser_items, 1):
+        it = cropped[i]
+        h = _version(it["camera"], it["src_in"], it["src_out"], it["transform"], it.get("src_size"))
+        name = f"teaser-cutout-{h}.mov" if len(teaser_items) == 1 else f"teaser-cutout-{k}-{h}.mov"
+        out.append({"item": i, "file": os.path.join(d, name)})
+    return out
+
+
+def placeholder_file(d, cand_id, p):
+    """stills/<role>-<hash>.png, the hash over everything drawn on the placeholder."""
+    h = _version(cand_id, p["template"], p["text"], p["overlay"], list(VERTICAL))
+    return os.path.join(d, "stills", f"{p['role']}-{h}.png")
+
+
+def _camera_items(prep, layout):
+    out = []
+    for v in layout["v1"]:
+        c = prep.clips.get(v["clip"])
+        if c is None or not c.get("camera"):
+            g = layout["segments"][v["segment"]]
+            raise RuntimeError(f"kamera parçası '{v['clip']}' (bölüm {g['chapter']}) episode.json'un clips "
+                               "listesinde yok: bölümün yerleşimini yeniden okuyun ('read') veya klibi ekleyin")
+        out.append(dict(v, camera=c["camera"]))
+    return out
+
+
 def prepare_one(prep, cand):
     """Media, graphics, captions and assets.json of one short -> summary lines."""
     ep, fps = prep.ep, prep.ep.fps
@@ -208,17 +245,17 @@ def prepare_one(prep, cand):
     words = short_words(layout, {n: prep.words[n] for n in {g["chapter"] for g in layout["segments"]}}, prep.rows)
     cues = captions.cues(words, fps, avoid=[layout["teaser"], layout["end_card"]])
     srt = os.path.join(d, "captions.srt")
-    with open(srt, "w", encoding="utf-8") as f:
-        f.write(captions.srt(cues, fps))
 
-    items = [dict(v, camera=prep.clips[v["clip"]]["camera"]) for v in layout["v1"]]
+    items = _camera_items(prep, layout)
     teaser_items = [i for i, v in enumerate(items) if v["segment"] == 0]
-    cutouts = [{"item": i, "file": os.path.join(d, "teaser-cutout.mov" if len(teaser_items) == 1
-                                                 else f"teaser-cutout-{k}.mov")}
-               for k, i in enumerate(teaser_items, 1)]
     job = os.path.join(d, "media.json")
-    _write(job, {"units": "frames", "fps": fps, "items": items, "cutouts": cutouts})
+    _write(job, {"units": "frames", "fps": fps, "items": items, "cutouts": []})
     _media(prep, "faces", job)
+    cropped = _read(os.path.join(d, "crop.json"), {"items": []})["items"]
+    if len(cropped) != len(items):
+        raise RuntimeError(f"crop.json {len(cropped)} kamera parçası, {len(items)} beklendi")
+    cutouts = cutout_files(d, cropped, teaser_items)
+    _write(job, {"units": "frames", "fps": fps, "items": items, "cutouts": cutouts})
     _media(prep, "matte", job)
 
     rows, placeholders, needed = graphics.requests(ep, cand, layout, prep.templates, prep.archive, words)
@@ -248,11 +285,13 @@ def prepare_one(prep, cand):
             placeholders.append({"template": r["template"], "role": r["role"], "range": r["range"],
                                  "overlay": r["role"] != "end-card", "text": r["template"]})
     for p in placeholders:
-        out = os.path.join(d, "stills", f"{p['role']}.png")
+        out = placeholder_file(d, cand["id"], p)
         stills.placeholder(out, cand["id"], p["template"], p["text"], p["overlay"], runner=prep.runner,
                            size=VERTICAL)
         own.append({"role": p["role"], "file": out, "range": p["range"], "placeholder": True, "vertical": True})
 
+    with open(srt, "w", encoding="utf-8") as f:  # with assets.json, once every media step has succeeded
+        f.write(captions.srt(cues, fps))
     _write(os.path.join(d, "assets.json"), {
         "units": "frames", "id": cand["id"], "end_card_frames": graphics.end_card_frames(fps),
         "crop": os.path.join(d, "crop.json"), "captions": srt, "cues": cues,
@@ -307,8 +346,13 @@ def prepare(ep, ids, runner=subprocess.run):
     for c in todo:
         try:
             lines, needed = prepare_one(prep, c)
-        except (RuntimeError, stills.StillError) as err:
+        except (RuntimeError, stills.StillError, ValueError) as err:
             print(f"{c['id']}: hata: {err}", file=sys.stderr)
+            rc = 1
+            continue
+        except KeyError as err:  # a chapter or field the short's layout needs is missing
+            print(f"{c['id']}: hata: eksik kayıt {err} (yerleşimi 'read' ile yeniden okuyun, sonra check)",
+                  file=sys.stderr)
             rc = 1
             continue
         for line in lines:

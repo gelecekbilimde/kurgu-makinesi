@@ -45,21 +45,32 @@ def _median(found):
     return {k: statistics.median(f[k] for f in found) for k in ("cx", "cy", "h")}
 
 
+def _detections(video, src_in, src_out, detect, runner, fps, workdir):
+    """The faces found on the SAMPLES sampled frames of [src_in, src_out) (sample PNGs removed after detection)."""
+    found = []
+    for n in samples(src_in, src_out):
+        png = os.path.join(workdir, f"face-{n}.png")
+        frame_png(video, n, fps, png, runner)
+        try:
+            f = detect(png)
+        finally:
+            if os.path.exists(png):
+                os.unlink(png)
+        if f is not None:
+            found.append(f)
+    return found
+
+
 def piece_faces(video, ranges, detect, runner=subprocess.run, *, fps, workdir):
     """Per [src_in, src_out) range of video: the per-key median of the faces found on SAMPLES sampled frames,
     or None when none was found. Sample PNGs go to workdir and are removed after detection."""
-    out = []
-    for src_in, src_out in ranges:
-        found = []
-        for n in samples(src_in, src_out):
-            png = os.path.join(workdir, f"face-{n}.png")
-            frame_png(video, n, fps, png, runner)
-            try:
-                f = detect(png)
-            finally:
-                if os.path.exists(png):
-                    os.unlink(png)
-            if f is not None:
-                found.append(f)
-        out.append(_median(found))
-    return out
+    return [_median(_detections(video, a, b, detect, runner, fps, workdir)) for a, b in ranges]
+
+
+def pooled_face(video, ranges, detect, runner=subprocess.run, *, fps, workdir):
+    """One face for all [src_in, src_out) ranges of video: the per-key median of every detection on the SAMPLES
+    sampled frames of each range, or None when none was found."""
+    found = []
+    for a, b in ranges:
+        found += _detections(video, a, b, detect, runner, fps, workdir)
+    return _median(found)

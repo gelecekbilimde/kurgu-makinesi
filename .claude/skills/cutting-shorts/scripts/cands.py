@@ -122,4 +122,4 @@ def timeline_name(prefix, rank, title):
     """'<prefix> short <rank> <title>', sanitised like episode.chapter_timeline_name (Resolve refuses some
     characters): title text before the first ':', then only letters, digits, spaces and , ' -"""
     title = re.sub(r"[^\w\s,'-]", "", str(title).split(":")[0]).strip()
-    return f"{prefix} short {rank} {title}".strip()[:80]
+    return f"{prefix} short {rank} {title}"[:80].strip()

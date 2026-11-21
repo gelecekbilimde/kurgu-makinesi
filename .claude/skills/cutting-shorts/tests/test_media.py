@@ -6,6 +6,7 @@ import helpers  # noqa: F401
 import crop
 import faces
 import matte
+import shorts_media
 from fakes import FakeDetect, FakeRun, FakeSegment
 
 
@@ -30,6 +31,30 @@ class FacesTest(unittest.TestCase):
         self.assertEqual([round(s) for s in seeks], [1005, 1015, 1025, 1035, 1045, 1055, 1065, 1075, 1085])
         self.assertTrue(all(c[c.index("-i") + 1] == "/cam/A.MOV" for c in cmds))
         self.assertEqual([round(float(c[c.index("-ss") + 1]) * 25) for c in cmds[9:]], list(range(5000, 5009)))
+
+
+    def test_one_crop_per_piece_and_camera_clip(self):
+        """Ruling 11: the camera items of one clip inside one piece share one crop (median of all their samples);
+        another piece, or another clip inside the piece, gets its own."""
+        items = [{"rec": 0, "clip": "A.MOV", "camera": "/cam/A.MOV", "src_in": 0, "src_out": 90, "segment": 1},
+                 {"rec": 90, "clip": "A.MOV", "camera": "/cam/A.MOV", "src_in": 200, "src_out": 290, "segment": 1},
+                 {"rec": 180, "clip": "B.MOV", "camera": "/cam/B.MOV", "src_in": 0, "src_out": 90, "segment": 1},
+                 {"rec": 270, "clip": "A.MOV", "camera": "/cam/A.MOV", "src_in": 500, "src_out": 590, "segment": 2}]
+        detect = FakeDetect([face(1000)] * 9 + [face(2000)] * 8 + [None]  # piece 1, A.MOV: 2 items, 18 samples
+                            + [face(2500)] * 9                           # piece 1, B.MOV
+                            + [face(1900)] * 9)                          # piece 2, A.MOV
+        run = FakeRun()
+        with tempfile.TemporaryDirectory() as tmp:
+            got = shorts_media.crop_items(items, detect, run, fps=25, workdir=tmp)
+        self.assertEqual(len(detect.seen), 36)
+        self.assertEqual(got[0]["face"], {"cx": 1000, "cy": 1000, "h": 600})  # median of 17 detections
+        self.assertEqual(got[0]["transform"], got[1]["transform"])
+        self.assertEqual(got[0]["transform"], crop.transform(face(1000), 3840, 2160))
+        self.assertEqual(got[2]["face"]["cx"], 2500)
+        self.assertEqual(got[3]["face"]["cx"], 1900)
+        self.assertNotEqual(got[3]["transform"], got[0]["transform"])
+        self.assertEqual([g["src_size"] for g in got], [[3840, 2160]] * 4)
+        self.assertEqual(len(run.commands("ffprobe")), 2)  # one size per camera file
 
 
 class MatteTest(unittest.TestCase):

@@ -46,6 +46,9 @@ F_OVERLAY = "dikey sürümü olmayan bindirme genişliğe sığdırıldı"
 F_EDITOR_FILE = "düzenleyicinin eklediği dosya genişliğe sığdırıldı"
 F_NO_SIZE = "kaynak boyutu bilinmiyor: 16:9 varsayılıp ortadan kırpıldı"
 F_TRANSFORMED = "düzenleyicinin 16:9 çerçevesi taşınamaz: ortadan kırpıldı"
+F_SPEED = "uzun videoda hız %{}: %100 hızla kopyalandı, kontrol edin"
+F_BLEND = "uzun videodaki opaklık/karışım modu kopyalanmadı, kontrol edin"
+NO_FILE = "dosyasız öğe (Text+, jeneratör, bileşik klip)"
 STALE = "düzenleyici öğesinin sözleri kaydı: yerinde bırakıldı, kontrol edin"
 SUBTITLES_STALE = "altyazılar değişti: eski altyazıları silip captions.srt'yi yeniden içe aktarın"
 
@@ -63,6 +66,25 @@ def _item(row, n, track, start, end, file, src_in, kind, props, anchor, flag=Non
 
 def _transformed(props):
     return any(props.get(k, v) != v for k, v in DEFAULTS.items())
+
+
+def _num(v, default):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return default
+
+
+def _lost(props):
+    """Flags for what a copy can't carry from the long-form item: a speed other than 100 % (copied at 100 %),
+    an opacity below 100 or a composite mode (not copied)."""
+    out = []
+    speed = _num(props.get("Speed"), 100.0)
+    if abs(speed - 100.0) > 1e-6:
+        out.append(F_SPEED.format(f"{speed:g}"))
+    if _num(props.get("Opacity"), 100.0) < 100.0 - 1e-6 or _num(props.get("CompositeMode"), 0) != 0:
+        out.append(F_BLEND)
+    return out
 
 
 def _framing(it, replace):
@@ -108,6 +130,7 @@ def _broll(short_layout, replace):
     out = []
     for it in short_layout["broll"]:
         file, kind, props, flag, background = _framing(it, replace)
+        flag = "; ".join([f for f in [flag] if f] + _lost(it.get("props") or {})) or None
         a = it["anchor"]
         row = f"V{_track(it['track'])}:ch{a['chapter']}:{a['ch_start']}"
         out.append(_item(row, 1, _track(it["track"]), it["rec"], it["end"], file, it["src_in"], kind, props,
@@ -132,7 +155,8 @@ def _own(assets):
 
 def desired(short_layout, assets, crops):
     """The items the skill would place on one short. short_layout: mapping.short_layout; assets: the short's
-    assets.json; crops: its crop.json. Long-form placeholders (short_layout["skipped"]) are not copied."""
+    assets.json; crops: its crop.json. Long-form placeholders and file-less items (short_layout["skipped"]) are
+    not copied."""
     return _camera(short_layout, crops) + _broll(short_layout, assets.get("replace") or {}) + _own(assets)
 
 
@@ -175,8 +199,8 @@ def flag_lines(short_id, items):
 
 def flags(items, short_layout, cand):
     """Fuchsia markers of one short: the teaser (ranged, with the candidate's reason: frame 0), a 1-frame marker
-    at every join between pieces, every flagged item of ours (ranged over it; not the watermark, see flag_lines) and every placeholder left in the
-    chapter that was not copied (the speaker shows there)."""
+    at every join between pieces, every flagged item of ours (ranged over it; not the watermark, see flag_lines) and every placeholder or
+    file-less item left in the chapter that was not copied (the speaker shows there)."""
     sid = cand["id"]
     t0, t1 = short_layout["teaser"]
     out = [marker(sid, "reason", None, 0, 1, "Neden", cand.get("reason") or ""),
@@ -191,10 +215,17 @@ def flags(items, short_layout, cand):
     for n, p in enumerate(short_layout.get("skipped") or [], 1):
         rng = _rec(short_layout, p["chapter"], p["start"], p["end"])
         if rng:
-            out.append(marker(sid, "placeholder", n, *rng, "Yer tutucu",
-                              f"bölümde yer tutucu vardı ({os.path.basename(p.get('file') or '')}): "
-                              "kopyalanmadı, konuşmacı görünüyor"))
+            what = (f"yer tutucu vardı ({os.path.basename(p['file'])})" if p.get("file")
+                    else f"{NO_FILE} vardı")
+            out.append(marker(sid, "placeholder", n, *rng, "Yer tutucu" if p.get("file") else "Dosyasız öğe",
+                              f"bölümde {what}: kopyalanmadı, konuşmacı görünüyor"))
     return merge(out)
+
+
+def skipped_lines(short_id, short_layout):
+    """'Kopyalanmayan öğeler' summary lines: the long-form placeholders and file-less items not copied."""
+    return [f"{short_id}: bölüm {s['chapter']} [{s['start']}, {s['end']}) V{s['track']} "
+            f"{os.path.basename(s['file']) if s.get('file') else NO_FILE}" for s in short_layout.get("skipped") or []]
 
 
 def _maps(anchor, short_layout, start, end):

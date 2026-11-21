@@ -22,7 +22,9 @@ def _camera(layout, s, e, rec, seg_index):
 
 
 def short_layout(cand, layouts, brolls, fps, end_card_frames):
-    """Layout dict: segments, v1, broll, skipped, teaser, end_card, frames (ranges on the short are [start, end])."""
+    """Layout dict: segments, v1, broll, skipped, teaser, end_card, frames (ranges on the short are [start, end]).
+    skipped: the long-form placeholders ("placeholder") and items without a file ("no-file": Text+, generators,
+    compound clips, Fusion compositions), not copied."""
     parts = [("teaser", cand["teaser"])] + [("passage", p) for p in cand["pieces"]]
     segments, v1, broll, skipped = [], [], [], []
     rec = 0
@@ -35,9 +37,9 @@ def short_layout(cand, layouts, brolls, fps, end_card_frames):
                 lo, hi = max(s, it["start"]), min(e, it["end"])
                 if lo >= hi:
                     continue
-                if it["kind"] == "placeholder":
+                if it["kind"] == "placeholder" or not it.get("file"):  # nothing to copy: the speaker shows
                     skipped.append({"chapter": ch, "start": lo, "end": hi, "track": it["track"],
-                                    "kind": "placeholder", "file": it.get("file")})
+                                    "kind": "placeholder" if it.get("file") else "no-file", "file": it.get("file")})
                     continue
                 out = {"rec": rec + lo - s, "end": rec + hi - s, "track": it["track"], "file": it["file"],
                        "src_in": it["src_in"] + lo - it["start"], "src_out": it["src_in"] + hi - it["start"],

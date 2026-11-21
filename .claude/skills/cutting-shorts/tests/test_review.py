@@ -24,6 +24,22 @@ class ReviewTest(unittest.TestCase):
         self.assertEqual(review.offsets({3: 9201, 4: 7168}, [3, 4]), {3: 0, 4: 9201})
         self.assertEqual(review.offsets({3: 10, 4: 5}, [4, 3]), {4: 0, 3: 5})
 
+    def test_offsets_from_the_nested_timelines_as_placed(self):
+        """Final review 7: a nested "… B-roll" timeline longer than its A-roll layout moves the next chapter;
+        offsets come from V1 as placed, and the same offsets read the markers back."""
+        names = {3: "T ch3 B-roll", 4: "T ch4 B-roll"}
+        offs, frames = review.placed_offsets([("T ch4 B-roll", 9250, 7168), ("T ch3 B-roll", 0, 9250)], names)
+        self.assertEqual((offs, frames), ({3: 0, 4: 9250}, {3: 9250, 4: 7168}))
+        c = cand(pieces=[{"chapter": 4, "start": 100, "end": 900}], teaser={"chapter": 4, "start": 200, "end": 260})
+        ms = review.markers({"candidates": [c]}, offs)
+        self.assertEqual(ms[0]["frameId"], 9350)
+        data, _ = review.read_back({"candidates": [c]}, ms, offs, frames)
+        self.assertEqual(data["candidates"][0]["pieces"], c["pieces"])
+        for bad in ([("T ch3 B-roll", 0, 9250)], [("T ch3 B-roll", 0, 10), ("X", 10, 10)], []):
+            with self.assertRaises(ValueError) as e:
+                review.placed_offsets(bad, names)
+            self.assertIn("beklenen", str(e.exception))
+
     def test_marker_per_piece_and_teaser(self):
         c = cand(pieces=[{"chapter": 3, "start": 100, "end": 400}, {"chapter": 4, "start": 50, "end": 500}])
         ms = review.markers({"candidates": [c]}, OFFS)

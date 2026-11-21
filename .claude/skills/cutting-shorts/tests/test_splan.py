@@ -63,6 +63,10 @@ def by_kind(items, kind):
 FIT = {"ZoomX": 1.0, "ZoomY": 1.0, "Pan": 0.0, "Tilt": 0.0}
 
 
+def crop_fill(w, h):
+    return splan.crop.transform(None, w, h)
+
+
 class DesiredTest(unittest.TestCase):
     def test_tracks_by_kind(self):
         lay, items = desired([bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080]),
@@ -173,6 +177,26 @@ class DesiredTest(unittest.TestCase):
         self.assertTrue(shot["flag"])
         self.assertIsNone(b.get("flag"))
 
+    def test_retimed_or_blended_item_flagged(self):
+        """Final review 3: a long-form item at another speed is copied at 100 % and flagged; so is an opacity or
+        composite mode (not copied)."""
+        fast = bitem(300, 400, "stock", "/b/stok/a.mp4", src_size=[1920, 1080])
+        fast["props"] = dict(fast["props"], Speed=150.0)
+        faded = bitem(400, 450, "graphic", GRAPH, track=3)
+        faded["props"] = dict(faded["props"], Opacity=60.0)
+        screen = bitem(450, 480, "graphic", "/b/grafik/G2-1.mp4", track=3)
+        screen["props"] = dict(screen["props"], CompositeMode=7)
+        plain = bitem(480, 500, "stock", "/b/stok/b.mp4", src_size=[1920, 1080])
+        plain["props"] = dict(plain["props"], Opacity=100.0, CompositeMode=0)
+        _, items = desired([fast, faded, screen, plain])
+        a, f, s, b = (next(i for i in items if i["file"] == x)
+                      for x in ("/b/stok/a.mp4", GRAPH, "/b/grafik/G2-1.mp4", "/b/stok/b.mp4"))
+        self.assertEqual(a["flag"], splan.F_SPEED.format("150"))
+        self.assertEqual(a["props"], crop_fill(1920, 1080))  # framing unchanged: only flagged
+        self.assertEqual(f["flag"], f"{splan.F_OVERLAY}; {splan.F_BLEND}")
+        self.assertIn(splan.F_BLEND, s["flag"])
+        self.assertIsNone(b["flag"])
+
     def test_upper_editor_track_kept_above_ours(self):
         _, items = desired([bitem(300, 350, "editor", "/b/x.png", track=4)])
         e = next(i for i in items if i["file"] == "/b/x.png")
@@ -211,6 +235,20 @@ class FlagsTest(unittest.TestCase):
         self.assertTrue(any("watermark#1" in x for x in lines))
         ph = by_frame[450]  # the placeholder left in the chapter, not copied
         self.assertEqual((ph["duration"], ph["customData"]), (50, "short:c1:placeholder:1"))
+
+    def test_file_less_item_not_copied(self):
+        """Final review 5: a long-form item without a file (Text+, generator, compound clip) is not copied: it
+        is listed and marked like a placeholder."""
+        lay, items = desired([bitem(300, 350, "editor", None, track=3), bitem(800, 850, "editor", "", track=2)])
+        self.assertFalse(any(i["kind"] == "editor" for i in items))
+        self.assertEqual([s["kind"] for s in lay["skipped"]], ["no-file", "no-file"])
+        ms = {m["frame"]: m for m in splan.flags(items, lay, {"id": "c1", "reason": "r"})}
+        self.assertIn(splan.NO_FILE, ms[150]["note"])
+        self.assertEqual(ms[150]["customData"], "short:c1:placeholder:1")
+        self.assertEqual(splan.skipped_lines("c1", lay),
+                         [f"c1: bölüm 3 [300, 350) V3 {splan.NO_FILE}", f"c1: bölüm 3 [800, 850) V2 {splan.NO_FILE}"])
+        lay, _ = desired([bitem(300, 350, "placeholder", "/b/stills/p.png")])
+        self.assertEqual(splan.skipped_lines("c1", lay), ["c1: bölüm 3 [300, 350) V2 p.png"])
 
     def test_flag_on_a_join_keeps_the_join(self):
         lay, items = desired([bitem(700, 760, "graphic", GRAPH, track=3)])  # starts on the piece join (350)

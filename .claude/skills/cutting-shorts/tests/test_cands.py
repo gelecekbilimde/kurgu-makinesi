@@ -71,6 +71,8 @@ class NameTest(unittest.TestCase):
     def test_timeline_name_sanitised(self):
         self.assertEqual(cands.timeline_name("COP31B", 1, "1,5°C: hedef?"), "COP31B short 1 1,5C")
         self.assertLessEqual(len(cands.timeline_name("P", 1, "x" * 200)), 80)
+        cut = cands.timeline_name("P", 1, "x" * 69 + " yy")  # the 80th character is a space
+        self.assertEqual(cut, "P short 1 " + "x" * 69)
 
 
 class CliTest(unittest.TestCase):

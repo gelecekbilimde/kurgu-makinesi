@@ -20,13 +20,21 @@ def _script_words(script_rows):
     return out
 
 
-def _alike(a, b):
-    return a.startswith(b) or b.startswith(a) or difflib.SequenceMatcher(None, a, b).ratio() >= 0.6
+SUFFIX = re.compile(r"(°C|°F|°|%|‰|['’]\w+)[.,;:!?…]*$")  # a unit or an apostrophe suffix at the end
+
+
+def _same_word(spoken, script):
+    """True when the script word is the spoken word plus only a unit or an apostrophe suffix ('1,5' / '1,5°C',
+    'cop31' / "COP31'in"): the digits/letters spoken are all there and nothing else was said."""
+    m = SUFFIX.search(script)
+    return bool(m) and bool(align.norm(spoken)) and align.norm(script[:m.start()]) == align.norm(spoken)
 
 
 def spell(words, script_rows):
-    """Per word, the script's spelling where the normalised words line up with the script's (an equal block,
-    or a similar word, in order, inside a differing block, e.g. '1,5' / '1,5°C'); else the transcript's."""
+    """Per word, the script's spelling where the normalised words line up with the script's: an equal block, or
+    inside a differing block of the same length on both sides, a pair that differs only by a unit or apostrophe
+    suffix ('1,5' / '1,5°C'). Every other word keeps the transcript's spelling (spoken 'bu' is never written as
+    the script's 'Bunun', nor '1,5 derece' as '1,5°C derece')."""
     script = _script_words(script_rows)
     a = [align.norm(x["text"]) for x in words]
     b = [align.norm(x) for x in script]
@@ -34,12 +42,10 @@ def spell(words, script_rows):
     for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
         if tag == "equal":
             out[i1:i2] = script[j1:j2]
-        elif tag == "replace":  # similar words in order inside the block, e.g. '1,5' / '1,5°C'
-            j = j1
-            for i in range(i1, i2):
-                k = next((k for k in range(j, j2) if _alike(a[i], b[k])), None)
-                if k is not None:
-                    out[i], j = script[k], k + 1
+        elif tag == "replace" and i2 - i1 == j2 - j1:
+            for i, j in zip(range(i1, i2), range(j1, j2)):
+                if _same_word(out[i], script[j]):
+                    out[i] = script[j]
     return out
 
 
@@ -47,9 +53,59 @@ def _overlaps(a0, a1, b0, b1):
     return a0 < b1 and b0 < a1
 
 
+def _wrap(text, max_chars, max_lines):
+    """text re-broken into at most max_lines lines of at most max_chars, or None when it doesn't fit."""
+    lines = []
+    for w in text.split():
+        if lines and len(lines[-1]) + 1 + len(w) <= max_chars:
+            lines[-1] += " " + w
+        elif len(lines) < max_lines:
+            lines.append(w)
+        else:
+            return None
+    return "\n".join(lines)
+
+
+def _min_length(out, min_f, max_chars, max_lines, avoid):
+    """Cues shorter than min_f frames: extended into the following gap (never into the next cue or an avoid
+    range), else merged with the next (or the previous) cue when the joined text still fits the line limits and
+    no avoid range lies between them, else extended as far as the gap allows."""
+    i = 0
+    while i < len(out):
+        c = out[i]
+        if c["end"] - c["start"] >= min_f:
+            i += 1
+            continue
+        limit = out[i + 1]["start"] if i + 1 < len(out) else None
+        for a, _b in avoid:
+            if a >= c["end"]:
+                limit = a if limit is None else min(limit, a)
+        if limit is None or limit >= c["start"] + min_f:
+            c["end"] = c["start"] + min_f
+            i += 1
+            continue
+        for j in (i + 1, i - 1):
+            if not 0 <= j < len(out):
+                continue
+            lo, hi = sorted((i, j))
+            first, last = out[lo], out[hi]
+            if any(_overlaps(first["start"], last["end"], a, b) for a, b in avoid):
+                continue
+            text = _wrap(first["text"] + " " + last["text"], max_chars, max_lines)
+            if text is not None:
+                out[lo:hi + 1] = [{"start": first["start"], "end": last["end"], "text": text}]
+                i = lo
+                break
+        else:
+            c["end"] = max(c["end"], limit)
+            i += 1
+    return out
+
+
 def cues(words_on_short, fps, max_chars=32, max_lines=2, avoid=()):
     """[{"start","end","text"}] (`\\n` between lines). Words inside the `avoid` [start, end) ranges are left out
-    and no cue runs into them. (Frame limits are fps-independent, like the rough cutter's.)"""
+    and no cue runs into them. A cue shorter than one second (`fps` frames) is lengthened or merged with a
+    neighbour (_min_length). (The gap limits are fps-independent, like the rough cutter's.)"""
     ws = [w for w in words_on_short if not any(_overlaps(w["start"], w["end"], a, b) for a, b in avoid)]
     groups, cur, lines = [], [], []
 
@@ -85,7 +141,7 @@ def cues(words_on_short, fps, max_chars=32, max_lines=2, avoid=()):
             if a >= s:
                 end = min(end, a)
         out.append({"start": s, "end": end, "text": text})
-    return out
+    return _min_length(out, fps, max_chars, max_lines, avoid)
 
 
 def teaser_words(words_on_short, teaser):

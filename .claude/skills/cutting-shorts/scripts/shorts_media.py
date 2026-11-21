@@ -5,7 +5,8 @@ Usage: shorts_media.py faces JOB | matte JOB      (JOB = episodes/<ep>/shorts/<i
 JOB: {"units": "frames", "fps", "items": [{"rec","clip","camera","src_in","src_out","segment"}],
       "cutouts": [{"item": <index into items>, "file": <abs .mov>}]}
 faces: writes crop.json beside JOB: {"units", "timeline": [1080, 1920], "items": [item + "src_size", "face", "transform"]}
-       (face = median {"cx","cy","h"} of 9 sampled frames in source pixels, None -> centre crop).
+       (one crop per piece and camera clip: face = median {"cx","cy","h"} of 9 sampled frames of each of its
+       items, in source pixels, None -> centre crop).
 matte: writes each cut-out (ProRes 4444 + alpha) from crop.json's item.
 
 Models (mediapipe Tasks API; the bundled `mediapipe.solutions` is gone from mediapipe 0.10.3x+): downloaded on first
@@ -111,19 +112,32 @@ class Segmenter:
         self.s.close()
 
 
+def crop_items(items, detect, runner=subprocess.run, *, fps, workdir):
+    """items + "src_size", "face", "transform": one crop per (piece, camera clip) (Ruling 11): the face is the
+    median of the samples of every camera item of that clip inside that piece (segment), so the framing doesn't
+    jump at the A-roll cuts inside a piece; a piece that reaches into another camera file gets a crop of its own
+    there."""
+    items, sizes, groups = [dict(it) for it in items], {}, {}
+    for it in items:
+        groups.setdefault((it["segment"], it["clip"]), []).append(it)
+    for mine in groups.values():
+        camera = mine[0]["camera"]
+        if camera not in sizes:
+            sizes[camera] = src_size(camera, runner)
+        f = faces.pooled_face(camera, [[it["src_in"], it["src_out"]] for it in mine], detect, runner,
+                              fps=fps, workdir=workdir)
+        t = crop.transform(f, *sizes[camera], *matte.TL)
+        for it in mine:
+            it.update(src_size=sizes[camera], face=f, transform=t)
+    return items
+
+
 def cmd_faces(job_path):
     job = json.loads(Path(job_path).read_text(encoding="utf-8"))
-    fps, items = job["fps"], [dict(it) for it in job["items"]]
     detect = Detector()
     try:
         with tempfile.TemporaryDirectory(prefix="faces-", dir=Path(job_path).parent) as tmp:
-            for camera in dict.fromkeys(it["camera"] for it in items):
-                mine = [it for it in items if it["camera"] == camera]
-                size = src_size(camera)
-                found = faces.piece_faces(camera, [[it["src_in"], it["src_out"]] for it in mine], detect,
-                                          fps=fps, workdir=tmp)
-                for it, f in zip(mine, found):
-                    it.update(src_size=size, face=f, transform=crop.transform(f, *size, *matte.TL))
+            items = crop_items(job["items"], detect, fps=job["fps"], workdir=tmp)
     finally:
         detect.close()
     out = Path(job_path).with_name("crop.json")

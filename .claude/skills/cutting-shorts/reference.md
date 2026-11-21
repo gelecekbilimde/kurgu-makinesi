@@ -66,10 +66,10 @@ Parent vertical timeline with two nested timelines on V1 (`mp.AppendToTimeline([
 - `sentences.json`: `{"units", "chapters": {"<N>": [{"start", "end", "text"}]}}` on the chapter timeline. A sentence ends after `. ? ! …` or before a pause longer than 12 frames at 25 fps.
 - `candidates.json`: `{"units", "candidates": [Candidate]}`. Candidate = `{"id": "c<n>", "rank", "title", "pieces": [{"chapter", "start", "end"}], "teaser": {"chapter", "start", "end"}, "reason", "teaser_rating", "accepted", "frozen", "header"}`. Ranges are on the chapter timelines. `check` assigns missing ids and snaps; `accept` writes `accepted` and ranges; `freeze`/`unfreeze` write `frozen`. Never overwritten as a whole.
 - `<id>/media.json`: the job `prepare` hands to `shorts_media.py` (camera items, cut-outs).
-- `<id>/crop.json`: `{"units", "timeline": [1080, 1920], "items": [{"rec", "clip", "src_in", "src_out", "segment", "camera", "src_size", "face": {"cx", "cy", "h"} | null, "transform": {"ZoomX", "ZoomY", "Pan", "Tilt"}}]}`. Face = median of 9 sampled frames, in source pixels. Transform = exact height fill (ZoomX = ZoomY = 3.160494 for UHD), face centre centred horizontally (Pan clamped to the image edge), Tilt 0; `null` face = centre crop.
+- `<id>/crop.json`: `{"units", "timeline": [1080, 1920], "items": [{"rec", "clip", "src_in", "src_out", "segment", "camera", "src_size", "face": {"cx", "cy", "h"} | null, "transform": {"ZoomX", "ZoomY", "Pan", "Tilt"}}]}`. One crop per piece (segment) and camera clip: face = median over 9 sampled frames of each camera item of that clip in that piece, in source pixels, so the framing holds across the A-roll cuts inside a piece. Transform = exact height fill (ZoomX = ZoomY = 3.160494 for UHD), face centre centred horizontally (Pan clamped to the image edge), Tilt 0; `null` face = centre crop.
 - `<id>/assets.json`: `{"units", "id", "end_card_frames", "crop", "captions", "cues": [{"start", "end", "text"}], "teaser_cutout": [{"file", "rec", "end"}], "graphics": [{"role", "file", "range", "placeholder", "vertical"}], "replace": {"<long-form file>": "<vertical re-render>"}, "needed": ["<Gereken şablonlar line>"]}`. `role` = `teaser-caption | end-card | header | watermark`. Cue and graphic ranges are on the short.
 - `<id>/captions.srt`: the passage cues, times exact on the frame grid (`frame * 1000 / fps` ms), lines joined with `\n` (Resolve reads them back with U+2028).
-- `<id>/grafik/`, `<id>/stills/`, `<id>/siyah/`: renders, placeholder stills, black-padded copies (`<stem>-<sha1[:8]>-siyah.png|mp4`, keyed by source path, size and mtime). `teaser-cutout.mov`: ProRes 4444 with alpha, the speaker cut out over the teaser frames.
+- `<id>/grafik/`, `<id>/stills/`, `<id>/siyah/`: renders, placeholder stills (`<role>-<sha1[:8]>.png`, keyed by everything drawn on them), black-padded copies (`<stem>-<sha1[:8]>-siyah.png|mp4`, keyed by source path, size and mtime). `teaser-cutout-<sha1[:8]>.mov` (`teaser-cutout-<k>-<sha1[:8]>.mov` when the teaser crosses camera items): ProRes 4444 with alpha, the speaker cut out over the teaser frames, keyed by camera file, source range, crop and source size. A file whose content changes gets a new name because Resolve's media pool returns the clip already imported from a path, with its old length.
 - `plan.json`: `{"units", "shorts": {"<id>": {"timeline": uid, "timeline_name", "items": [Item], "subtitles": [Cue], "segments": [...]}}}`, see the `splan.py` docstring. Item = the B-roll skill's plan item plus `anchor`, `flag`, `background`; Cue = `{"start", "end", "text", "uid", "editor", "deleted", "anchor"}`. `editor: true` = the editor's (changed, added or deleted by them): never touched again.
 
 ## Track layout of a short (1080x1920, episode fps)
@@ -83,9 +83,9 @@ Parent vertical timeline with two nested timelines on V1 (`mp.AppendToTimeline([
 | V6 | watermark (passage only) |
 | V7 | header (`"header": true` only) |
 | V(n+4) | a long-form chapter's own editor track Vn (n > 3) |
-| Subtitle 1 | passage captions: ≤ 2 lines, ≤ 32 characters a line, never over the teaser or end card |
+| Subtitle 1 | passage captions: ≤ 2 lines, ≤ 32 characters a line, never over the teaser or end card; a cue shorter than 1 s (fps frames) is lengthened into the following gap or merged with a neighbour when the lines still fit. Script spelling only for words that match the script exactly, or differ by a unit or apostrophe suffix one to one (`1,5` → `1,5°C`); any other spoken word keeps the transcript's spelling |
 
-No B-roll over the teaser. B-roll is copied video-only (`mediaType: 1`). A long-form placeholder is not copied (the speaker shows; Fuchsia marker + "Kopyalanmayan yer tutucular").
+No B-roll over the teaser. B-roll is copied video-only (`mediaType: 1`), at 100 % speed, without opacity or composite mode: an item that had another speed, opacity < 100 or a composite mode is flagged (`uzun videoda hız %150: %100 hızla kopyalandı`, `uzun videodaki opaklık/karışım modu kopyalanmadı`). A long-form placeholder, and an item without a file (Text+, generator, compound clip, Fusion), is not copied (the speaker shows; Fuchsia marker + "Kopyalanmayan öğeler").
 
 ## Summary lines (`build`, stderr)
 ```
@@ -94,14 +94,15 @@ c1 '<timeline>': <a> eklendi, <r> kaldırıldı, <k> korundu (<e> düzenleyici �
   Uyarı: <problem>                              (e.g. renamed timeline, collision "yer dolu", ffmpeg failure)
 Kontrol edilecekler:                            (flagged items incl. the watermark, the subtitles re-import note)
   - c1: V2:ch3:805#1 (291-553): dikey sürümü olmayan grafik genişliğe sığdırıldı (arkası siyah)
-Kopyalanmayan yer tutucular:
+Kopyalanmayan öğeler:                           (long-form placeholders and file-less items)
   - c4: bölüm 4 [5003, 5317) V3 R023-2-YAZI-4fa6176b.png
+  - c4: bölüm 4 [5400, 5480) V3 dosyasız öğe (Text+, jeneratör, bileşik klip)
 Kayan düzenleyici öğeleri:                      (editor items/cues whose words moved; Fuchsia marker, left in place)
 Gereken şablonlar:
   - teaser-caption: ...
 -> episodes/<ep>/shorts/plan.json
 ```
-Each section prints `yok` when empty. `prepare` prints `<id>: N kamera parçası, N altyazı, N dikey B-roll grafiği, N yer tutucu -> assets.json`, `Not:` lines and its own `Gereken şablonlar`. Re-running `prepare` re-renders the graphics under new `-N` names, so the next build replaces those items once (`N eklendi, N kaldırıldı`).
+Each section prints `yok` when empty. `prepare` prints `<id>: N kamera parçası, N altyazı, N dikey B-roll grafiği, N yer tutucu -> assets.json`, `Not:` lines and its own `Gereken şablonlar`. `prepare` stops a short with `<id>: hata: …` (others go on) for a camera piece missing from `episode.json`'s clips or a missing layout field; it writes `captions.srt` and `assets.json` only after every media step succeeded. Re-running `prepare` re-renders the graphics under new `-N` names, so the next build replaces those items once (`N eklendi, N kaldırıldı`).
 
 ## Acceptance run (Task 11, 2026-11-21, `episodes/cop31-broll`, Resolve `demo`, COP31B only)
 **The editor's UI work was simulated through the API** (review markers: delete + `AddMarker` with the new colour/duration and the same customData; edits as in the B-roll skill's Task 9), not done by hand.

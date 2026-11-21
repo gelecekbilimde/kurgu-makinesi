@@ -331,6 +331,129 @@ class MarkersTest(unittest.TestCase):
             sbuild.set_markers(self.Tl({}, "TEST ch1 x"), "c1", [], 100, "TEST")
 
 
+class PlaceTest(unittest.TestCase):
+    """sbuild.place against a fake timeline whose append can drop the video of a camera clip."""
+
+    class It:
+        n = 0
+
+        def __init__(self, kind, track, start, dur, mpi, left=0):
+            PlaceTest.It.n += 1
+            self.left = left
+            self.uid, self.kind, self.track, self.start, self.dur, self.mpi = f"u{PlaceTest.It.n}", kind, track, start, dur, mpi
+            self.p = {"ZoomX": 1.0, "ZoomY": 1.0, "Pan": 0.0, "Tilt": 0.0}
+
+        def GetUniqueId(self):
+            return self.uid
+
+        def GetMediaPoolItem(self):
+            return self.mpi
+
+        def GetStart(self):
+            return self.start
+
+        def GetDuration(self):
+            return self.dur
+
+        def GetLeftOffset(self):
+            return self.left
+
+        def GetProperty(self, k=None):
+            return self.p[k] if k else dict(self.p)
+
+        def SetProperty(self, k, v):
+            self.p[k] = v
+            return True
+
+        def GetClipColor(self):
+            return ""
+
+        def GetSpeed(self):
+            return 100.0
+
+        def GetLinkedItems(self):
+            return []
+
+        def GetTrackTypeAndIndex(self):
+            return [self.kind, self.track]
+
+    class Tl:
+        def __init__(self, uid="t1", name="TEST short 1 x"):
+            self.uid, self.name, self.items, self.deleted = uid, name, [], []
+
+        def GetName(self):
+            return self.name
+
+        def GetUniqueId(self):
+            return self.uid
+
+        def GetStartFrame(self):
+            return 90000
+
+        def GetTrackCount(self, kind):
+            return 2 if kind == "video" else 1
+
+        def GetItemListInTrack(self, kind, k):
+            return [i for i in self.items if (i.kind, i.track) == (kind, k)]
+
+        def DeleteClips(self, its):
+            self.deleted += its
+            self.items = [i for i in self.items if i not in its]
+            return True
+
+    class Mp:
+        def __init__(self, tl, video=True):
+            self.tl, self.video, self.specs = tl, video, []
+
+        def AppendToTimeline(self, specs):
+            self.specs += specs
+            spec = specs[0]
+            dur = spec["endFrame"] - spec["startFrame"]
+            if self.video:
+                self.tl.items.append(PlaceTest.It("video", spec["trackIndex"], spec["recordFrame"], dur,
+                                                  spec["mediaPoolItem"], spec["startFrame"]))
+            self.tl.items.append(PlaceTest.It("audio", 1, spec["recordFrame"], dur, spec["mediaPoolItem"]))
+            return [object()]
+
+    class Project:
+        def __init__(self, tl):
+            self.tl = tl
+
+        def GetCurrentTimeline(self):
+            return self.tl
+
+    def test_camera_audio_removed_when_its_video_does_not_land(self):
+        """Final review minor: no orphan audio left behind by a camera append whose video didn't land."""
+        tl = self.Tl()
+        mp = self.Mp(tl, video=False)
+        cam = item("camera", track=1, start=0, end=50, src_in=100, file="/cam/A.MOV", props={"Pan": 5.0})
+        rec, probs = sbuild.place(mp, tl, 90000, 25, cam, Mpi("/cam/A.MOV"), "TEST", self.Project(tl))
+        self.assertIsNone(rec["uid"])
+        self.assertTrue(probs)
+        self.assertEqual(tl.items, [])
+        self.assertEqual([d.kind for d in tl.deleted], ["audio"])
+
+    def test_camera_with_video_keeps_its_audio(self):
+        tl = self.Tl()
+        mp = self.Mp(tl)
+        cam = item("camera", track=1, start=0, end=50, src_in=100, file="/cam/A.MOV", props={"Pan": 5.0})
+        rec, probs = sbuild.place(mp, tl, 90000, 25, cam, Mpi("/cam/A.MOV"), "TEST", self.Project(tl))
+        self.assertEqual(probs, [])
+        self.assertIsNotNone(rec["uid"])
+        self.assertEqual(sorted(i.kind for i in tl.items), ["audio", "video"])
+        self.assertEqual(rec["props"]["Pan"], 5.0)
+
+    def test_refuses_to_append_when_another_timeline_is_current(self):
+        """Final review minor: the current timeline is re-checked (uid) before every append."""
+        tl = self.Tl()
+        mp = self.Mp(tl)
+        other = self.Tl("t2", "TEST ch1 Bir")
+        with self.assertRaises(sbuild.NotOurs):
+            sbuild.place(mp, tl, 90000, 25, item(), Mpi(), "TEST", self.Project(other))
+        self.assertEqual(mp.specs, [])
+        self.assertEqual(tl.items, [])
+
+
 class ReadSizeTest(unittest.TestCase):
     def test_parse_resolution(self):
         self.assertEqual(sr.parse_resolution("1920x1080"), [1920, 1080])

@@ -129,12 +129,22 @@ def review_name(prefix):
     return f"{prefix} short adayları"
 
 
-def _chapter_frames(ep, chapters_ok):
-    out = {}
-    for n in chapters_ok:
-        with open(ep.path("shorts", "layout", f"ch{n}.json"), encoding="utf-8") as f:
-            out[n] = json.load(f)["frames"]
-    return out
+def _nested_names(ep, chapters_ok):
+    """{chapter: the "… B-roll" timeline nested for it on the review timeline}, in eligible order."""
+    with open(ep.path("sections.json"), encoding="utf-8") as f:
+        titles = json.load(f)["chapters"]
+    return {n: glue.broll_name(episode.chapter_timeline_name(ep.m["prefix"], titles[n - 1], n - 1))
+            for n in chapters_ok}
+
+
+def _placed(tl, names):
+    """(offsets, frames) of the chapters as nested on the review timeline's V1 (review.placed_offsets)."""
+    s0 = tl.GetStartFrame()
+    items = [(it.GetName(), it.GetStart() - s0, it.GetDuration()) for it in tl.GetItemListInTrack("video", 1) or []]
+    try:
+        return review.placed_offsets(items, names)
+    except ValueError as err:
+        sys.exit(f"'{tl.GetName()}': {err}")
 
 
 def _marker_list(tl):
@@ -145,13 +155,7 @@ def build_review(ep, p, data):
     """(Re)create the review timeline of OUR prefix only and put the candidates' markers on it."""
     pre = ep.m["prefix"]
     chapters_ok = eligible.chapters(ep)
-    with open(ep.path("sections.json"), encoding="utf-8") as f:
-        titles = json.load(f)["chapters"]
-    try:
-        frames = _chapter_frames(ep, chapters_ok)
-    except FileNotFoundError as err:
-        sys.exit(f"{err} yok: önce 'read' ile bölümlerin yerleşimini okuyun")
-    offs = review.offsets(frames, chapters_ok)
+    names = _nested_names(ep, chapters_ok)
     mp = p.GetMediaPool()
     name = review_name(pre)
     old = br.timeline_by_name(p, name)
@@ -164,16 +168,13 @@ def build_review(ep, p, data):
     if not tl:
         sys.exit(f"'{name}' oluşturulamadı")
     br.make_current(p, tl)
-    for n in chapters_ok:
-        src = glue.broll_name(episode.chapter_timeline_name(pre, titles[n - 1], n - 1))
+    for n, src in names.items():
         child = br.timeline_by_name(p, src)
         mpi = child.GetMediaPoolItem() if child is not None else None
         if mpi is None or not mp.AppendToTimeline([{"mediaPoolItem": mpi}]):
             sys.exit(f"Bölüm {n}: '{src}' iç içe eklenemedi; durduruldu")
-        got = int(mpi.GetClipProperty("Frames"))
-        if got != frames[n]:
-            print(f"Bölüm {n}: '{src}' {got} kare, layout'ta {frames[n]}; işaretçiler kayabilir", file=sys.stderr)
-    total = sum(frames.values())
+    offs, frames = _placed(tl, names)  # where the nested timelines really landed, at their real lengths
+    total = max((offs[n] + frames[n] for n in offs), default=0)
     placed = 0
     for m in review.markers(data, offs):
         fr = m["frameId"]
@@ -224,11 +225,7 @@ def cmd_accept(a):
     if tl is None:
         sys.exit(f"'{review_name(ep.m['prefix'])}' bulunamadı: önce 'review' çalıştırın")
     marks = _marker_list(tl)  # read BEFORE the timeline is rebuilt
-    try:
-        frames = _chapter_frames(ep, chapters_ok)
-    except FileNotFoundError as err:
-        sys.exit(f"{err} yok: önce 'read' ile bölümlerin yerleşimini okuyun")
-    offs = review.offsets(frames, chapters_ok)
+    offs, frames = _placed(tl, _nested_names(ep, chapters_ok))  # the offsets the markers were placed with
     data, notes = review.read_back(data, marks, offs, frames)
     need = sorted({r["chapter"] for c in data["candidates"] for r in c.get("pieces", []) + [c.get("teaser") or {}]
                    if r.get("chapter") in chapters_ok})
@@ -357,7 +354,7 @@ def build_short(ctx, cand, entry, save):
         extra.append(m)
         rep["flags"].append(line)
 
-    sctx = {"mp": mp, "media": ctx["media"], "bin": folder, "fps": fps, "prefix": pre}
+    sctx = {"mp": mp, "media": ctx["media"], "bin": folder, "fps": fps, "prefix": pre, "project": p}
     items, rep["counts"], probs = sbuild.sync_short(sctx, tl, last_items, desired, last_segs,
                                                     lambda its: keep(items=its))
     rep["problems"] += probs
@@ -366,8 +363,7 @@ def build_short(ctx, cand, entry, save):
     stale = splan.stale_anchors([i for i in items + subs if i.get("editor")], layout)
     sm, rep["stale"] = splan.stale_notes(sid, stale)
     rep["flags"] = splan.flag_lines(sid, items) + rep["flags"]
-    rep["skipped"] = [f"{sid}: bölüm {s['chapter']} [{s['start']}, {s['end']}) V{s['track']} "
-                      f"{os.path.basename(s.get('file') or '')}" for s in layout.get("skipped") or []]
+    rep["skipped"] = splan.skipped_lines(sid, layout)
     markers = splan.merge(splan.flags(items, layout, cand) + sm + extra)
     rep["problems"] += sbuild.set_markers(tl, sid, markers, layout["frames"], pre)
     keep(items=items, segments=layout["segments"], timeline_name=tl.GetName())
@@ -442,7 +438,7 @@ def cmd_build(a):
         stale += rep["stale"]
         needed += [x for x in rep["needed"] if x not in needed]
     _section("Kontrol edilecekler", flags)
-    _section("Kopyalanmayan yer tutucular", skipped)
+    _section("Kopyalanmayan öğeler", skipped)
     _section("Kayan düzenleyici öğeleri", stale)
     _section("Gereken şablonlar", needed)
     print(f"-> {plan_path}", file=sys.stderr)

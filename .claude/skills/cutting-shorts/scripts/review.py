@@ -15,6 +15,20 @@ def offsets(chapter_frames, eligible):
     return out
 
 
+def placed_offsets(placed, names):
+    """(offsets, frames) from the nested timelines as they sit on the review timeline's V1 (a nested "… B-roll"
+    timeline can be longer than the chapter's A-roll layout, so the layout's frame count is not used).
+    placed: [(name, start, frames)] of the V1 items, start from the timeline start; names: {chapter: nested
+    timeline name} in eligible order. ValueError (Turkish) unless V1 holds exactly those timelines in that order."""
+    placed = sorted(placed, key=lambda p: p[1])
+    want = list(names.items())
+    if [p[0] for p in placed] != [name for _, name in want]:
+        raise ValueError("inceleme zaman çizelgesinin V1'i beklenen bölümler değil "
+                         f"({', '.join(p[0] for p in placed) or 'boş'}; beklenen: "
+                         f"{', '.join(name for _, name in want)}): işaretçiler yerleştirilmedi/okunmadı")
+    return ({n: p[1] for (n, _), p in zip(want, placed)}, {n: p[2] for (n, _), p in zip(want, placed)})
+
+
 def _data(cid, suffix):
     return f"{PREFIX}:{cid}:{suffix}"
 

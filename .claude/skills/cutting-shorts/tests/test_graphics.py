@@ -170,9 +170,10 @@ class PrepareTest(unittest.TestCase):
             rc_named = shorts.prepare(episode.Episode(d), ["c3"], runner=FakeRun())
         self.assertEqual(rc_named, 1)  # a named candidate that is not accepted is refused
         self.assertEqual(assets["units"], "frames")
-        self.assertEqual([c["file"].rsplit("/", 1)[1] for c in assets["teaser_cutout"]], ["teaser-cutout.mov"])
+        self.assertRegex(assets["teaser_cutout"][0]["file"].rsplit("/", 1)[1], r"^teaser-cutout-[0-9a-f]{8}\.mov$")
         roles = {g["role"]: g for g in assets["graphics"]}
         self.assertTrue(roles["teaser-caption"]["placeholder"])
+        self.assertRegex(roles["teaser-caption"]["file"], r"/stills/teaser-caption-[0-9a-f]{8}\.png$")
         self.assertFalse(roles["watermark"]["placeholder"])
         self.assertEqual(roles["watermark"]["range"], [60, 960])
         self.assertIn("\nkelime", srt)
@@ -181,6 +182,63 @@ class PrepareTest(unittest.TestCase):
         self.assertEqual(media, ["faces", "matte"])
         self.assertTrue(all(c[0].endswith(".venv/bin/python") for c in run.commands("shorts_media.py")))
         self.assertIn("Gereken şablonlar:", err.getvalue())
+
+
+    def _cand(self, d, **teaser):
+        path = d / "shorts" / "candidates.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["candidates"][0]["teaser"].update(teaser)
+        path.write_text(json.dumps(data), encoding="utf-8")
+
+    def _assets(self, d):
+        return json.loads((d / "shorts" / "c1" / "assets.json").read_text(encoding="utf-8"))
+
+    def test_cutout_and_placeholder_names_follow_their_content(self):
+        """Final review 2: a changed teaser gives the cut-out a new file name (Resolve's media pool returns the
+        clip imported earlier for the same path); the same inputs give the same name."""
+        err = io.StringIO()
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(err):
+            d = make_ep(tmp, title="COP31")
+            shorts.prepare(episode.Episode(d), ["c1"], runner=FakeRun())
+            first = self._assets(d)
+            shorts.prepare(episode.Episode(d), ["c1"], runner=FakeRun())
+            again = self._assets(d)
+            self._cand(d, end=480)
+            shorts.prepare(episode.Episode(d), ["c1"], runner=FakeRun())
+            moved = self._assets(d)
+            media = json.loads((d / "shorts" / "c1" / "media.json").read_text(encoding="utf-8"))
+        cut = [a["teaser_cutout"][0]["file"] for a in (first, again, moved)]
+        self.assertEqual(cut[0], cut[1])
+        self.assertNotEqual(cut[0], cut[2])
+        self.assertEqual(media["cutouts"][0]["file"], cut[2])  # the matte job writes the new name
+        self.assertEqual((moved["teaser_cutout"][0]["rec"], moved["teaser_cutout"][0]["end"]), (0, 80))
+        roles = [{g["role"]: g["file"] for g in a["graphics"]} for a in (first, moved)]
+        self.assertNotEqual(roles[0]["teaser-caption"], roles[1]["teaser-caption"])  # its text is the teaser's
+        self.assertEqual(roles[0]["end-card"], roles[1]["end-card"])  # same text drawn: same file
+
+    def test_unknown_camera_clip_is_a_turkish_error(self):
+        """Final review 4: a camera piece the episode doesn't know stops that short only, with a Turkish line."""
+        err = io.StringIO()
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(err):
+            d = make_ep(tmp, title="COP31")
+            write(d / "shorts" / "layout" / "ch1.json",
+                  {"units": "frames", "timeline": "T ch1", "frames": 2000,
+                   "pieces": [[0, "A.MOV", 0, 300], [300, "B.MOV", 0, 1700]]})
+            rc = shorts.prepare(episode.Episode(d), ["c1"], runner=FakeRun())
+            self.assertFalse((d / "shorts" / "c1" / "captions.srt").exists())  # written only with assets.json
+            self.assertFalse((d / "shorts" / "c1" / "assets.json").exists())
+        self.assertEqual(rc, 1)
+        self.assertIn("c1: hata: kamera parçası 'B.MOV' (bölüm 1) episode.json'un clips listesinde yok",
+                      err.getvalue())
+
+    def test_missing_chapter_layout_key_is_reported_per_short(self):
+        err = io.StringIO()
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(err):
+            d = make_ep(tmp, title="COP31")
+            write(d / "shorts" / "broll" / "ch1.json", {"units": "frames", "timeline": "T ch1 B-roll"})
+            rc = shorts.prepare(episode.Episode(d), ["c1"], runner=FakeRun())
+        self.assertEqual(rc, 1)
+        self.assertIn("c1: hata: eksik kayıt 'items'", err.getvalue())
 
 
 if __name__ == "__main__":
