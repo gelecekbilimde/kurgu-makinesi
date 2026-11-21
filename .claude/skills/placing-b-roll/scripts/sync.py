@@ -77,11 +77,12 @@ class Media:
         return mpi
 
 
-def track_items(tl, s0, fps):
-    """(seen dicts, uid -> timeline item) of V2 and V3"""
+def track_items(tl, s0, fps, tracks=(2, 3)):
+    """(seen dicts, uid -> timeline item) of the given video tracks (default V2 and V3; None = every track above V1)"""
     seen, by_uid = [], {}
-    for k in (2, 3):
-        if k > tl.GetTrackCount("video"):
+    count = tl.GetTrackCount("video")
+    for k in (range(2, count + 1) if tracks is None else tracks):
+        if k > count:
             continue
         for it in tl.GetItemListInTrack("video", k) or []:
             s = glue.seen_item(it, s0, k, fps)
