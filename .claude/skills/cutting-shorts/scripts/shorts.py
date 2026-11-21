@@ -227,6 +227,7 @@ def prepare_one(prep, cand):
     for r in rows:
         if "replaces" in r and r["code"] in files:  # a B-roll graphic re-rendered vertical
             replace[r["replaces"]] = files[r["code"]]
+    n_vertical = len(replace)
     for it in layout["broll"]:  # Ruling 2: the vertical hold still of a re-rendered graphic, same frame
         if it["kind"] != "still" or it.get("hold_of") not in replace or it["file"] in replace:
             continue
@@ -259,7 +260,7 @@ def prepare_one(prep, cand):
                            "end": items[c["item"]]["rec"] + items[c["item"]]["src_out"] - items[c["item"]]["src_in"]}
                           for c in cutouts],
         "graphics": own, "replace": replace, "needed": needed})
-    lines = [f"{cand['id']}: {len(items)} kamera parçası, {len(cues)} altyazı, {len(replace)} dikey B-roll grafiği, "
+    lines = [f"{cand['id']}: {len(items)} kamera parçası, {len(cues)} altyazı, {n_vertical} dikey B-roll grafiği, "
              f"{len(placeholders)} yer tutucu -> {os.path.join(d, 'assets.json')}"]
     return lines + [f"  Not: {n}" for n in notes], needed
 

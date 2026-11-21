@@ -92,7 +92,7 @@ def tc(f):
     return f"00:{f // 1500:02d}:{f // 25 % 60:02d}:{f % 25:02d}"
 
 
-def make_ep(tmp, **extra):
+def make_ep(tmp, broll=(), **extra):
     d = helpers.make_episode(tmp, frozen=[1], broll_frozen=[1],
                              clips=[{"clip": "A.MOV", "camera": "/cam/A.MOV", "offset_f": 0}], **extra)
     words = [{"text": f" kelime{k}", "start": tc(10 * k), "end": tc(10 * k + 8)} for k in range(200)]
@@ -102,7 +102,7 @@ def make_ep(tmp, **extra):
     write(d / "sections.json", {"chapters": ["Bir"]})
     write(d / "shorts" / "layout" / "ch1.json",
           {"units": "frames", "timeline": "T ch1", "frames": 2000, "pieces": [[0, "A.MOV", 0, 2000]]})
-    write(d / "shorts" / "broll" / "ch1.json", {"units": "frames", "timeline": "T ch1 B-roll", "items": []})
+    write(d / "shorts" / "broll" / "ch1.json", {"units": "frames", "timeline": "T ch1 B-roll", "items": list(broll)})
     cand = {"pieces": [{"chapter": 1, "start": 100, "end": 1000}], "teaser": {"chapter": 1, "start": 400, "end": 460},
             "title": "Bir", "header": False}
     write(d / "shorts" / "candidates.json", {"units": "frames", "candidates": [
@@ -113,6 +113,39 @@ def make_ep(tmp, **extra):
 
 
 class PrepareTest(unittest.TestCase):
+    def test_vertical_rerender_and_hold_still(self):
+        """Ruling 2: a copied graphic with a vertical template is re-rendered vertical and its hold still is taken
+        from the new render at the same hold_from; assets.json maps both old files to the new ones."""
+        run, err = FakeRun(), io.StringIO()
+        with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(err):
+            d0 = Path(tmp) / "src"
+            g_old, h_old = str(d0 / "broll" / "grafik" / "G1-1.mp4"), str(d0 / "broll" / "stills" / "G1-1-hold-105.png")
+            d = make_ep(tmp, title="COP31", broll=[
+                {"track": 2, "start": 200, "end": 300, "file": g_old, "src_in": 0, "src_out": 100,
+                 "kind": "graphic", "props": {}},
+                {"track": 2, "start": 300, "end": 400, "file": h_old, "src_in": 0, "src_out": 100,
+                 "kind": "still", "props": {}, "hold_of": g_old}])
+            write(d / "broll" / "grafik" / "results.json", {"notes": [], "renders": [
+                {"code": "G1-1", "file": "G1-1.mp4", "template": "number", "variant": "ev", "background": True,
+                 "vertical": False, "frames": 150, "values": {"value": "1,5"}}]})
+            write(d / "broll" / "fetched.json", {"units": "frames", "rows": {"k1": [
+                {"kind": "graphic", "files": [{"file": g_old}], "hold": h_old, "hold_from": 105}]}})
+            rc = shorts.prepare(episode.Episode(d), ["c1"], runner=run)
+            self.assertEqual(rc, 0, err.getvalue())
+            c1 = d / "shorts" / "c1"
+            assets = json.loads((c1 / "assets.json").read_text(encoding="utf-8"))
+            batch = json.loads((c1 / "grafik-batch.json").read_text(encoding="utf-8"))
+        g_new, h_new = str(c1 / "grafik" / "G1-1-1.mp4"), str(c1 / "stills" / "G1-1-1-hold-105.png")
+        self.assertEqual(assets["replace"], {g_old: g_new, h_old: h_new})
+        row = next(r for r in batch if r["code"] == "G1-1")
+        self.assertTrue(row["vertical"])
+        self.assertNotIn("replaces", row)
+        grab = [c for c in run.commands("ffmpeg") if c[-1] == h_new]
+        self.assertEqual(len(grab), 1)
+        self.assertEqual(grab[0][grab[0].index("-i") + 1], g_new)
+        self.assertIn("select=eq(n\\,105)", grab[0][grab[0].index("-vf") + 1])
+        self.assertIn("1 dikey B-roll grafiği", err.getvalue())  # the hold still is not counted as a graphic
+
     def test_missing_title_stops(self):
         run, err = FakeRun(), io.StringIO()
         with tempfile.TemporaryDirectory() as tmp, contextlib.redirect_stderr(err):
