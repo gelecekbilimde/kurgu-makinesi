@@ -4,7 +4,8 @@
 Run with Resolve open: bash .claude/skills/rough-cutting-a-roll/scripts/rv.sh spike_api.py [camera.mov]
 Works only in the throwaway project `shorts-spike` (created if missing, its spike timelines rebuilt each run),
 then loads the project that was open before. Needs ffmpeg (test pattern, still measurement); its temp files are removed at the end.
-Prints one line per fact: `OK` or `FAIL` with the observed values."""
+Prints one line per fact: `OK` or `FAIL` with the observed values (`SKIP` for the camera check without a clip).
+When `shorts-spike` itself was open, the reload check loads another project of the folder (only loaded, never changed)."""
 import os
 import shutil
 import subprocess
@@ -167,13 +168,15 @@ def main():
         mp.DeleteClips([sm, vid])
         check("3 cues stay on the timeline after their pool clip is deleted", len(subs(ts)) == 2, len(subs(ts)))
         snap = subs(ts)
-        pm.SaveProject()
-        pm.LoadProject(before)
+        assert pm.SaveProject(), "SaveProject"
+        other = before if before != SPIKE else next(n for n in pm.GetProjectListInCurrentFolder() if n != SPIKE)
+        away = pm.LoadProject(other) is not None and pm.GetCurrentProject().GetName() == other
         p = pm.LoadProject(SPIKE)
         mp = p.GetMediaPool()
         ts = [p.GetTimelineByIndex(i + 1) for i in range(p.GetTimelineCount())
               if p.GetTimelineByIndex(i + 1).GetName() == "spike subtitles"][0]
-        check("3 cue uids/text/frames survive save + reload", subs(ts) == snap, len(snap))
+        check(f"3 cue uids/text/frames survive save, load '{other}' (read only), load {SPIKE}",
+              away and p.GetName() == SPIKE and subs(ts) == snap, [(n, a, b, u[:8]) for n, a, b, u in subs(ts)])
 
         # Step 4: markers on a timeline with nested timelines
         tp = vertical("spike parent")
@@ -209,6 +212,8 @@ def main():
                                   "recordFrame": tc.GetStartFrame(), "mediaType": 1}])
             na = sum(len(tc.GetItemListInTrack("audio", i) or []) for i in range(1, tc.GetTrackCount("audio") + 1))
             check("5 mediaType 1 places video only", len(tc.GetItemListInTrack("video", 1)) == 1 and na == 0, na)
+        else:
+            print("SKIP 5 mediaType 1 places video only: no camera clip given")
         pm.SaveProject()
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

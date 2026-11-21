@@ -4,7 +4,7 @@
 
 Spike run 2026-11-21 on Resolve Studio 21.2.0.6 (Linux), throwaway project `shorts-spike`, 25 fps, timeline start 90000 (01:00:00:00). Builds on placing-b-roll's "Resolve API, verified on 21.2" (append rules, exclusive end frames, stills, `AddTrack`, uids), which is not repeated here. `mp` = MediaPool, `t` = Timeline, `s0 = t.GetStartFrame()`.
 
-Re-run: `bash .claude/skills/rough-cutting-a-roll/scripts/rv.sh .claude/skills/cutting-shorts/scripts/spike_api.py demo/cop/raw/COP/P1011088.MOV` prints one `OK`/`FAIL` line per fact below (last run: 0 FAIL). Facts marked "(exploration)" come from the one-off probes of the spike and are not re-checked by `spike_api.py`.
+Re-run: `bash .claude/skills/rough-cutting-a-roll/scripts/rv.sh .claude/skills/cutting-shorts/scripts/spike_api.py demo/cop/raw/COP/P1011088.MOV` prints one `OK`/`FAIL` line per fact below (last runs: 0 FAIL; without the camera path the video-only check prints `SKIP`). Facts marked "(exploration)" come from the one-off probes of the spike and are not re-checked by `spike_api.py`.
 
 **1. Vertical timeline: works.**
 `t = mp.CreateEmptyTimeline(name)`, then `t.SetSetting("useCustomSettings", "1")`, `t.SetSetting("timelineResolutionWidth", "1080")`, `t.SetSetting("timelineResolutionHeight", "1920")`, `t.SetSetting("timelineFrameRate", "25")`: all return True.
@@ -36,10 +36,10 @@ Measured with a 3840x2160 25 fps test pattern (ffmpeg `drawbox` squares centred 
 - `t.ImportIntoTimeline(srt, {})` returns False and adds nothing.
 - Read-back: `t.GetItemListInTrack("subtitle", 1)`; per cue `GetName()` = the cue text, `GetStart()`, `GetEnd()`, `GetDuration()`, `GetUniqueId()` (a full UUID like `07aac07b-8590-45ce-8f4f-dc31c125617f`). A two-line cue reads back with the line break as **U+2028** (`'Birinci satır çığ ikinci satır Şüö'`); Turkish letters (ç ğ ı İ ş ü ö) are intact.
 - Rounding: times on the frame grid land exactly. Half-frame times rounded unevenly (exploration): 06,020 (150.5 f) → 150, 06,060 (151.5) → 151, 06,500 (162.5) → 163, 00,500 (12.5) → 13; 07,030 (175.75) → 176, 08,019 (200.475) → 200, 08,981 (224.525) → 225. Write SRT times as exact frame times (`frame * 1000 / fps` ms, an integer at 25 fps).
-- `item.SetName("x")` on a cue returns False (text unchanged, uid unchanged). `GetRightOffset()` on a cue returns None, `GetMediaPoolItem()` returns None. So the API cannot edit a cue; text and timing edits are the editor's.
+- `item.SetName("x")` on a cue returns False (text unchanged, uid unchanged). `GetRightOffset()` on a cue returns None (exploration), `GetMediaPoolItem()` returns None. So the API cannot edit a cue; text and timing edits are the editor's.
 - `t.DeleteClips([cue])` removes that cue only (exploration).
-- uids, text and frames of the cues are identical after `SaveProject`, loading another project and loading `shorts-spike` again.
-- **Re-importing a changed SRT at the same path returns the old clip** (same `GetMediaId()`, old text: a timeline appended from it showed `ilk sürüm`, not the new `ikinci sürüm`). `mp.DeleteClips([clip])` then `ImportMedia` gives the new text. Deleting the pool clip leaves the cues already on timelines in place.
+- uids, text and frames of the cues are identical after `SaveProject`, `LoadProject("demo")` (only loaded; `GetCurrentProject().GetName()` confirmed the switch) and `LoadProject("shorts-spike")` again: e.g. 90025..90060 `7584c850`, 90076..90125 `04b339b0` read the same before and after. Re-verified in two probe runs (one started from `demo`, one from `shorts-spike`); the exploration also showed it via `broll-spike`.
+- **Re-importing a changed SRT at the same path returns the old clip** (same `GetMediaId()`; old text, exploration: a timeline appended from it showed `ilk sürüm`, not the new `ikinci sürüm`). `mp.DeleteClips([clip])` then `ImportMedia` gives the new text (exploration). Deleting the pool clip leaves the cues already on timelines in place.
 - Step 6 fallback (`captions.srt` + "File › Import › Subtitle" line) is **not needed**: subtitles can be placed by script.
 
 **4. Markers on a timeline with nested timelines: API side works.**
@@ -47,7 +47,7 @@ Parent vertical timeline with two nested timelines on V1 (`mp.AppendToTimeline([
 - `t.AddMarker(40, "Fuchsia", "aday 1", "not", 250, "short:c1")` → True. `t.GetMarkers()` → `{40: {'color': 'Fuchsia', 'duration': 250, 'note': 'not', 'name': 'aday 1', 'customData': 'short:c1'}}`: keys are frames from the timeline start (not absolute), duration in frames. `"Green"` works the same.
 - `t.GetMarkerByCustomData("short:c1")` → the same dict **without the frame**; unknown customData → None. To find a marker's frame, scan `GetMarkers()`.
 - A second `AddMarker` on an occupied frame returns False.
-- `AddMarker` past the timeline end (frame 825 on a 775-frame timeline) and with a duration past the end (500 + 5000) both return True: validate ranges ourselves.
+- `AddMarker` past the timeline end (frame 825 on a 775-frame timeline) and with a duration past the end (500 + 5000) both return True (the duration case is exploration): validate ranges ourselves.
 - `t.UpdateMarkerCustomData(400, "short:c2b")` → True, `GetMarkerCustomData(400)` → `'short:c2b'` (exploration). `DeleteMarkerByCustomData("short:long")` removes only that one (exploration).
 - A marker on a nested child timeline (`child.AddMarker(10, "Blue", …)`) does not show in the parent's `GetMarkers()` (`{}`).
 
