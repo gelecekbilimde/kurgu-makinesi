@@ -1,7 +1,17 @@
 Kurgu Makinesi
 Copyright (c) 2026 Gelecek Bilimde
 
-The MIT License in LICENSE does not cover the items below.
+This program is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version (SPDX: GPL-3.0-or-later).
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License in LICENSE for more
+details.
+
+The GPL does not cover the items below.
 
 Gelecek Bilimde name and logo
   The name "Gelecek Bilimde" and its logo are the intellectual property of
@@ -12,7 +22,7 @@ Gelecek Bilimde name and logo
     graphics/designs/starter/reference/ (logo-options.html, showcase.html,
       watermark-v9.html)
     graphics/templates/starter/watermark/ and end-card/ (the logo artwork; the
-      rest of the template code is MIT)
+      rest of the template code is GPL)
   You may keep these files in a copy or fork of this repository. Any other use,
   such as in your own videos, graphics or products, needs written permission;
   replace them with your own. Naming Gelecek Bilimde to credit the project is

@@ -207,7 +207,7 @@ for d in .claude/skills/*/tests templates/script/tests; do python3 -m unittest d
 
 ## License
 
-The code and documentation are under the [MIT License](LICENSE), with these exceptions (details in [NOTICE](NOTICE)):
+Copyright (c) 2026 Gelecek Bilimde. The code and documentation are under the [GNU General Public License](LICENSE), version 3 or any later version (GPL-3.0-or-later): if you distribute this project or a modified version, you must share its source under the same license. These items are not covered (details in [NOTICE](NOTICE)):
 
 - **The Gelecek Bilimde name and logo** are the intellectual property of Gelecek Bilimde, all rights reserved. If you use this project for your own channel, replace them with your own.
 - **The fonts** in `graphics/designs/starter/fonts/` are under the SIL Open Font License (`OFL.txt` next to each font).
