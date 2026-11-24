@@ -207,7 +207,14 @@ for d in .claude/skills/*/tests templates/script/tests; do python3 -m unittest d
 
 ## License
 
-Copyright (c) 2026 Gelecek Bilimde. The code and documentation are under the [GNU General Public License](LICENSE), version 3 or any later version (GPL-3.0-or-later): if you distribute this project or a modified version, you must share its source under the same license. These items are not covered (details in [NOTICE](NOTICE)):
+Copyright (c) 2026 Gelecek Bilimde. The code and documentation are under the [GNU General Public License](LICENSE), version 3 or any later version (GPL-3.0-or-later): if you distribute this project or a modified version, you must share its source under the same license.
+
+Two additional permissions apply (full wording in [NOTICE](NOTICE)):
+
+- **DaVinci Resolve:** you may combine the project with Resolve and its scripting library, and share the result.
+- **Your output is yours:** videos, graphics, subtitles and timelines you make with the project are not under the GPL, even when they use its templates.
+
+The GPL and these permissions don't cover:
 
 - **The Gelecek Bilimde name and logo** are the intellectual property of Gelecek Bilimde, all rights reserved. If you use this project for your own channel, replace them with your own.
 - **The fonts** in `graphics/designs/starter/fonts/` are under the SIL Open Font License (`OFL.txt` next to each font).

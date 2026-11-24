@@ -11,7 +11,24 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License in LICENSE for more
 details.
 
-The GPL does not cover the items below.
+Additional permissions under GNU GPL version 3 section 7
+
+  1. DaVinci Resolve. If you modify this Program, or any covered work, by linking
+     or combining it with DaVinci Resolve, its scripting API or its libraries (or
+     a modified version of those libraries), the licensors of this Program grant
+     you additional permission to convey the resulting work. This does not give
+     you any rights in DaVinci Resolve itself, which stays under Blackmagic
+     Design's own license.
+
+  2. Output. Videos, images, subtitles, timelines and Resolve projects that you
+     make with this Program are not covered by the GPL because of that, even when
+     they contain parts of the Program's graphic templates or designs as rendered.
+     You may use and share that output under terms of your choice. This does not
+     extend to the templates' and designs' source files, which stay under the GPL,
+     or to the items below.
+
+The GPL does not cover the items below, and neither permission above applies to
+them.
 
 Gelecek Bilimde name and logo
   The name "Gelecek Bilimde" and its logo are the intellectual property of
