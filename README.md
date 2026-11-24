@@ -22,7 +22,9 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 
 ## Requirements
 
-### DaVinci Resolve
+The Resolve skills need everything below. The [Kdenlive / Shotcut / Premiere / CapCut writer](#other-editors-kdenlive-shotcut-premiere-capcut) needs only Python 3.11 or newer, optionally FFprobe, and the editor you open the result in; it doesn't need Resolve, Claude Code, Node.js or the other software.
+
+### DaVinci Resolve (for the skills)
 - **DaVinci Resolve Studio 21.2 or newer.** The free edition is not enough: the skills use external scripting and Resolve's AI transcription, which are Studio features.
 - Resolve runs on the same machine as Claude Code, with the episode's project open.
 - About 1-2 GB for the *Extended AI Transcription Language Support 2* Extras package, which Turkish needs. The rough cutter installs it the first time (step 3 of [the A-roll](#2-rough-cut-the-a-roll)).
@@ -37,6 +39,7 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 | FFmpeg and FFprobe | graphics, B-roll, shorts |
 | fontconfig (`fc-match`) | B-roll and shorts placeholders |
 | A free [Pixabay API key](https://pixabay.com/api/docs/) | stock, B-roll (NASA needs no key) |
+| Kdenlive, Shotcut, Premiere Pro or CapCut (any one) | opening the projects `kurgu_makinesi.py` writes; not needed by the skills |
 
 ### Operating system
 Developed and tested on Linux. `rv.sh` also knows Resolve's default paths on macOS, but macOS and Windows are untested.
