@@ -21,4 +21,16 @@ Gelecek Bilimde name and logo
 Third-party files
   Fonts in graphics/designs/starter/fonts/: SIL Open Font License (OFL.txt next
   to each font).
-  graphics/designs/starter/reference/rocket.jpg: credited to NASA / Rocket Lab.
+
+  graphics/designs/starter/reference/rocket.jpg: credit NASA / Rocket Lab.
+    A still frame from the video "Rocket Lab PREFIRE-1 Launch" (25 May 2024), from
+    the NASA Image and Video Library:
+    https://images.nasa.gov/details/KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988
+    It is here only as a sample background in the design reference pages
+    (showcase.html, watermark-v9.html), to show how graphics look over footage.
+    Why it is excluded: Gelecek Bilimde doesn't own it, so it can't license it to
+    you. NASA's library lists it as NASA / Rocket Lab footage, so Rocket Lab may
+    hold rights in it beyond NASA's media usage guidelines
+    (https://www.nasa.gov/nasa-brand-center/images-and-media/). Check with the
+    rights holders before reusing it, or replace it with your own image. Its
+    presence doesn't imply endorsement by NASA or Rocket Lab.

@@ -210,6 +210,7 @@ for d in .claude/skills/*/tests templates/script/tests; do python3 -m unittest d
 The code and documentation are under the [MIT License](LICENSE), with these exceptions (details in [NOTICE](NOTICE)):
 
 - **The Gelecek Bilimde name and logo** are the intellectual property of Gelecek Bilimde, all rights reserved. If you use this project for your own channel, replace them with your own.
-- **Third-party files** keep their own terms: the fonts in `graphics/designs/starter/fonts/` are under the SIL Open Font License (`OFL.txt` next to each font), and the reference photo `graphics/designs/starter/reference/rocket.jpg` is credited to NASA / Rocket Lab.
+- **The fonts** in `graphics/designs/starter/fonts/` are under the SIL Open Font License (`OFL.txt` next to each font).
+- **The reference photo** `graphics/designs/starter/reference/rocket.jpg` (credit: NASA / Rocket Lab) is a still from NASA's [Rocket Lab PREFIRE-1 Launch](https://images.nasa.gov/details/KSC-20240525-MH-RKL01-0001-Rocket_Lab_PREFIRE_1_Launch_1080p-M6988) video, used only as a sample background in the design reference pages. It isn't ours to license, so check the rights before reusing it.
 
 Stock clips you download stay under their source's license.
