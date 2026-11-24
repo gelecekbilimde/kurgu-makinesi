@@ -1,0 +1,24 @@
+Kurgu Makinesi
+Copyright (c) 2026 Gelecek Bilimde
+
+The MIT License in LICENSE does not cover the items below.
+
+Gelecek Bilimde name and logo
+  The name "Gelecek Bilimde" and its logo are the intellectual property of
+  Gelecek Bilimde. All rights reserved. This applies to the logo in every form
+  (globe, wordmark, animated and wireframe versions) wherever it appears in this
+  repository or is rendered by it, including:
+    graphics/designs/starter/assets/logo.svg
+    graphics/designs/starter/reference/ (logo-options.html, showcase.html,
+      watermark-v9.html)
+    graphics/templates/starter/watermark/ and end-card/ (the logo artwork; the
+      rest of the template code is MIT)
+  You may keep these files in a copy or fork of this repository. Any other use,
+  such as in your own videos, graphics or products, needs written permission;
+  replace them with your own. Naming Gelecek Bilimde to credit the project is
+  fine, as long as it doesn't suggest endorsement.
+
+Third-party files
+  Fonts in graphics/designs/starter/fonts/: SIL Open Font License (OFL.txt next
+  to each font).
+  graphics/designs/starter/reference/rocket.jpg: credited to NASA / Rocket Lab.

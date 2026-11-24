@@ -207,4 +207,9 @@ for d in .claude/skills/*/tests templates/script/tests; do python3 -m unittest d
 
 ## License
 
-[MIT](LICENSE). Third-party files keep their own terms: the fonts in `graphics/designs/starter/fonts/` are under the SIL Open Font License (`OFL.txt` next to each font), and the reference photo `graphics/designs/starter/reference/rocket.jpg` is credited to NASA / Rocket Lab. Stock clips you download stay under their source's license.
+The code and documentation are under the [MIT License](LICENSE), with these exceptions (details in [NOTICE](NOTICE)):
+
+- **The Gelecek Bilimde name and logo** are the intellectual property of Gelecek Bilimde, all rights reserved. If you use this project for your own channel, replace them with your own.
+- **Third-party files** keep their own terms: the fonts in `graphics/designs/starter/fonts/` are under the SIL Open Font License (`OFL.txt` next to each font), and the reference photo `graphics/designs/starter/reference/rocket.jpg` is credited to NASA / Rocket Lab.
+
+Stock clips you download stay under their source's license.
