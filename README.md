@@ -11,15 +11,15 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 
 ## Supported editors
 
-| Capability | DaVinci Resolve Studio | Kdenlive (`.kdenlive`) | Shotcut (`.mlt`) | Adobe Premiere Pro (FCP7 `.xml`) | CapCut Desktop (Draft Folder) |
+| Capability | DaVinci Resolve Studio | Kdenlive (`.kdenlive`) | Shotcut (`.mlt`) | Adobe Premiere Pro (FCP7 `.xml`) | CapCut Desktop (Draft Folder, *experimental*) |
 |---|---|---|---|---|---|
-| **Workflow** | Claude Code skills (live API) | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI |
+| **Workflow** | Claude Code skills (live API) | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI (see [CapCut limitations](#capcut-limitations)) |
 | **AI transcription & auto cut planning** | Yes (Resolve Studio AI) | Cut plan JSON | Cut plan JSON | Cut plan JSON | Cut plan JSON |
 | **A-Roll (`V1`) + Camera Audio** | Yes | Yes + **A/V grouped** (`kdenlive:docproperties.groups`) | Yes (`playlist0`) | Yes + `<link>` A1/A2 | Yes (Video Track 0) |
-| **Synced External WAV Audio** | Yes (waveform sync) | `A2` track + grouped with `V1` (`audio_offset_f`) | `A1` (`playlist3`) + `mix` | `A3`/`A4` stereo tracks | Audio Track 0 |
+| **Synced External WAV Audio** | Yes (waveform sync) | `A2` track + grouped with `V1` (`audio_offset_f`) | `A1` (`playlist3`) + `mix` | `A3`/`A4` stereo tracks | Audio Track 0 (not grouped with V1) |
 | **Multi-Track B-Roll (`V2`) & Overlays (`V3`)** | Yes (`placing-b-roll`) | `V2` + `V3` with `qtblend` | `playlist1`/`playlist2` with `frei0r.cairoblend` & `qimage` stills | `V2` + `V3` tracks | Video Track 1 + Video Track 2 |
-| **Color-Coded Point & Range Markers** | Yes (native Resolve markers) | `guidesCategories` + `guides` JSON | `shotcut:markers:{n}` with hex color & start/end | Sequence `<marker>` with `<pproColor>` & `<in>`/`<out>` | `chapters.txt` + `markers.json` |
-| **Yellow Marker Feedback Readback** | Yes (skills read Resolve markers) | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` |
+| **Color-Coded Point & Range Markers** | Yes (native Resolve markers) | `guidesCategories` + `guides` JSON | `shotcut:markers:{n}` with hex color & start/end | Sequence `<marker>` with `<pproColor>` & `<in>`/`<out>` | Sidecar `chapters.txt` + `markers.json` only (no native markers) |
+| **Yellow Marker Feedback Readback** | Yes (skills read Resolve markers) | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` reads sidecar `markers.json` only |
 | **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
 | **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
 | **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
@@ -290,7 +290,19 @@ See [`examples/sample_cutplan.json`](examples/sample_cutplan.json) for a full mu
 - **Kdenlive (`.kdenlive`):** A/V pairs and synced external WAV tracks are grouped via `kdenlive:docproperties.groups`; uses `qtblend` for `V2`/`V3` overlays and vertical crop, and `guidesCategories` + `guides` JSON for color-coded markers.
 - **Shotcut (`.mlt`):** Uses `playlist0`–`playlist3` with `mix` for synced external audio, `frei0r.cairoblend` & `qimage` stills for B-roll/overlays, `affine` for 9:16 face crop, and `shotcut:markers:{n}` with hex colors and start/end ranges.
 - **Adobe Premiere Pro (`.xml`):** Uses Final Cut Pro 7 XML (`<xmeml version="4">`) imported via **File › Import** (native `.prproj` is proprietary). Links A1/A2 with `<link>`, places synced WAVs on A3/A4, overlays on V2/V3, Basic Motion for 9:16 crop, and `<marker>` with `<pproColor>`.
-- **CapCut Desktop (`<name>/` draft folder):** Writes `draft_content.json`, `draft_meta_info.json`, `chapters.txt`, `markers.json`, and `<name>.srt` (plus a native text track for captions). `draft_content.json` targets unencrypted CapCut Desktop 5.x drafts; CapCut Desktop ≥ 6.0 encrypts newly saved drafts, while `chapters.txt`, `markers.json`, and `.srt` remain usable across versions.
+- **CapCut Desktop (`<name>/` draft folder — experimental):** Writes `draft_content.json`, `draft_meta_info.json`, `chapters.txt`, `markers.json`, and `<name>.srt` (plus a native text track for captions). See [CapCut limitations](#capcut-limitations) below.
+
+### CapCut limitations
+
+CapCut has no official public scripting API or documented project import format, so CapCut support is **experimental** and has important constraints compared to Resolve, Kdenlive, Shotcut, and Premiere Pro:
+
+- **Draft encryption in CapCut Desktop ≥ 6.0:** `draft_content.json` and `draft_meta_info.json` target **CapCut Desktop 5.x** (unencrypted JSON). CapCut Desktop 6.0 and newer encrypt newly saved drafts, so unencrypted draft folders may fail to open or re-save on v6+. The sidecar files (`chapters.txt`, `markers.json`, and `<name>.srt`) remain usable on all versions.
+- **Unverified against a live CapCut install:** Automated tests validate the generated JSON schema and timings, but generated drafts have not been end-to-end tested in a live CapCut Desktop installation.
+- **Manual draft folder installation & absolute paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g. `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths at generation time, so moving media or opening the draft on another machine/OS can break links.
+- **No native timeline markers or UI marker readback:** CapCut drafts do not store Kurgu Makinesi's color-coded point/range markers inside `draft_content.json`. Chapters are exported to `chapters.txt` and markers to a sidecar `markers.json`. As a result, `kurgu_makinesi.py read-markers` only reads `markers.json` — markers added manually inside CapCut's timeline UI are not read back.
+- **Desktop only (Windows & macOS — no Linux, Mobile, or Web):** CapCut Desktop is not available natively on Linux, and CapCut Mobile / Web cannot load local draft folders.
+- **No A/V grouping for synced WAVs:** External recorder WAVs (`Audio Track 0`) are not linked/grouped to `V1` clips, so moving an A-roll clip in CapCut will not automatically move its synced WAV.
+- **Basic caption styling & codec caveats:** Native text-track captions use plain white text at a fixed lower position (`y: -0.65`) without word-by-word highlight animations; style adjustments must be done in CapCut (or via `<name>.srt`). Transparent ProRes 4444 `.mov` overlays from `making-graphics` may require transcoding or Pro features depending on CapCut version/OS (transparent `.png` stills work normally).
 
 Automated tests verify XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback across all 4 editors. Still open generated projects in your target editor and report any version-specific quirks.
 
