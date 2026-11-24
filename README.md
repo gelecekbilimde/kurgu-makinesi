@@ -2,6 +2,8 @@
 
 Claude Code skills that edit [Gelecek Bilimde](https://www.youtube.com/@GelecekBilimde) videos in DaVinci Resolve Studio: rough-cutting the A-roll, finding stock footage, rendering graphics, placing B-roll and cutting vertical shorts. Every result is an ordinary Resolve timeline that the editor reviews, changes and signs off.
 
+The skills need DaVinci Resolve. Separately, a small command-line tool writes a rough-cut project for **Kdenlive, Shotcut, Adobe Premiere Pro and CapCut** from a cut plan: see [Other editors](#other-editors-kdenlive-shotcut-premiere-capcut).
+
 **Watch the demo (in Turkish):** [Claude Kurgu DEMO on YouTube](https://youtu.be/4Zj-HLRg2E4)
 
 [![Claude Kurgu DEMO](https://i.ytimg.com/vi/4Zj-HLRg2E4/hqdefault.jpg)](https://youtu.be/4Zj-HLRg2E4)
@@ -177,6 +179,54 @@ Each short is a 1080x1920 timeline with a teaser, captions, the episode's B-roll
 
 Files go to `~/Downloads/stok/` and `~/Downloads/grafik/`, each with a `kaynaklar.txt` for the credits. Graphics are transparent ProRes 4444 overlays unless you ask for a background. To design a new template or look, ask Claude for one; it follows the [design workflow](.claude/skills/making-graphics/references/design-workflow.md) and leaves the design decisions to you. The `starter` design is an example, not the channel's approved look.
 
+## Other editors (Kdenlive, Shotcut, Premiere, CapCut)
+
+`kurgu_makinesi.py` turns a **cut plan** into a project file for another editor. It needs only Python 3.11 or newer; FFprobe is optional but recommended (it reads each file's length, frame rate, size and audio, and rejects cuts past the end of a file). It doesn't use Resolve, and it doesn't transcribe or decide cuts: you give it the cuts, it lays them end to end on one video track with its audio and puts a marker at each chapter.
+
+```bash
+python3 kurgu_makinesi.py import plan.json --script script.md --format all --out out/
+```
+
+| Option | Meaning |
+|---|---|
+| `--format` | `kdenlive`, `shotcut`, `premiere`, `capcut` or `all` (default) |
+| `--script` | a script whose `## ` headings name the chapters (see below) |
+| `--out` | output folder (default: current folder) |
+| `--name` | project name (default: the plan's `name`) |
+
+`python3 kurgu_makinesi.py list [DIR]` lists script files (`.txt`, `.md`, `.rst`, `.html`) under a folder.
+
+### The cut plan
+
+```json
+{
+  "name": "cop31-ch1",
+  "fps": 25, "width": 1920, "height": 1080,
+  "clips": [
+    {"file": "cam1.mp4", "in": 1.0, "out": 3.0, "chapter": 1},
+    {"file": "cam1.mp4", "in": 4.0, "out": 6.5, "chapter": 1},
+    {"file": "cam1.mp4", "in": 7.0, "out": 9.0, "chapter": "Outro"}
+  ]
+}
+```
+
+- `in` and `out` are seconds in the source file. `out` may be left out to use the end of the file (needs FFprobe).
+- `file` is relative to the plan's folder, or absolute.
+- `chapter` is a 1-based number into the script's `## ` headings, or a title. A marker is placed where it changes.
+- `fps`, `width` and `height` default to the first clip's values (or 25 fps, 1920x1080 without FFprobe).
+- Problems (missing `clips`, `in` not below `out`, a cut past the end of the file, bad JSON) stop with a one-line error. A file FFprobe can't read is only a warning.
+
+### What each editor gets
+
+| Editor | File | Chapters | Status |
+|---|---|---|---|
+| Shotcut | `<name>.mlt` | timeline markers | written to Shotcut's own layout, not opened in Shotcut |
+| Kdenlive | `<name>.kdenlive` | guides | Kdenlive's document version 1.04, which Kdenlive upgrades on load; not opened in Kdenlive. Audio and video are not grouped: group them in Kdenlive if you want them to move together |
+| Premiere Pro | `<name>.xml` | sequence markers | Final Cut Pro 7 XML (xmeml v4): use *File › Import*; not opened in Premiere. A native `.prproj` isn't written because its format is undocumented |
+| CapCut | `<name>/` folder | `chapters.txt` (no markers) | **experimental**: CapCut has no documented import format, newer versions encrypt drafts, and it hasn't been tried in CapCut |
+
+Tests check the generated files' structure (timing, ids, markers, links) and that the XML is well-formed. They can't tell whether an editor accepts the file, so open the result and report anything that doesn't load.
+
 ## Troubleshooting
 
 | Problem | Fix |
@@ -195,6 +245,7 @@ Each skill's `SKILL.md` lists its common mistakes. The rough cutter, B-roll and 
 | Path | Contents |
 |---|---|
 | `.claude/skills/` | the skills, their scripts and tests |
+| `kurgu_makinesi.py`, `shared/`, `test_kurgu.py` | the Kdenlive / Shotcut / Premiere / CapCut writer and its tests |
 | `templates/script/` | the script template for writers and its reader |
 | `graphics/` | designs and graphic templates |
 | `docs/` | specs, plans and the development log |
@@ -203,6 +254,7 @@ Each skill's `SKILL.md` lists its common mistakes. The rough cutter, B-roll and 
 Run the tests (Resolve and network not needed):
 ```bash
 for d in .claude/skills/*/tests templates/script/tests; do python3 -m unittest discover -s "$d"; done
+python3 -m unittest test_kurgu    # the other-editors writer; needs FFmpeg
 ```
 
 ## License
