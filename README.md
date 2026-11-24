@@ -1,20 +1,36 @@
 # Kurgu Makinesi
 
-Claude Code skills that edit [Gelecek Bilimde](https://www.youtube.com/@GelecekBilimde) videos in DaVinci Resolve Studio: rough-cutting the A-roll, finding stock footage, rendering graphics, placing B-roll and cutting vertical shorts. Every result is an ordinary Resolve timeline that the editor reviews, changes and signs off.
+Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekBilimde), supporting **DaVinci Resolve Studio**, **Adobe Premiere Pro**, **Kdenlive**, **Shotcut**, and **CapCut**:
 
-The skills need DaVinci Resolve. Separately, a small command-line tool writes a rough-cut project for **Kdenlive, Shotcut, Adobe Premiere Pro and CapCut** from a cut plan: see [Other editors](#other-editors-kdenlive-shotcut-premiere-capcut).
+- **DaVinci Resolve Studio (Claude Code skills):** end-to-end automated editing directly inside Resolve — rough-cutting A-roll from camera + recorder WAVs with AI transcription, finding stock footage, rendering graphics, placing B-roll, and cutting vertical shorts. Every result is an ordinary Resolve timeline that the editor reviews, changes, and signs off.
+- **Kdenlive, Shotcut, Adobe Premiere Pro & CapCut (`kurgu_makinesi.py` CLI):** editor-neutral multi-track project builder turning a cut plan into native project files with A-roll, synced external WAV audio, B-roll (`V2`), overlays (`V3`), color-coded point & range markers, marker feedback readback (`read-markers`), per-chapter freeze/unfreeze, and 9:16 vertical shorts with face crop and captions. See [Multi-editor CLI](#multi-editor-cli-kdenlive-shotcut-premiere-pro-capcut).
 
 **Watch the demo (in Turkish):** [Claude Kurgu DEMO on YouTube](https://youtu.be/4Zj-HLRg2E4)
 
 [![Claude Kurgu DEMO](https://i.ytimg.com/vi/4Zj-HLRg2E4/hqdefault.jpg)](https://youtu.be/4Zj-HLRg2E4)
+
+## Supported editors
+
+| Capability | DaVinci Resolve Studio | Kdenlive (`.kdenlive`) | Shotcut (`.mlt`) | Adobe Premiere Pro (FCP7 `.xml`) | CapCut Desktop (Draft Folder) |
+|---|---|---|---|---|---|
+| **Workflow** | Claude Code skills (live API) | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI |
+| **AI transcription & auto cut planning** | Yes (Resolve Studio AI) | Cut plan JSON | Cut plan JSON | Cut plan JSON | Cut plan JSON |
+| **A-Roll (`V1`) + Camera Audio** | Yes | Yes + **A/V grouped** (`kdenlive:docproperties.groups`) | Yes (`playlist0`) | Yes + `<link>` A1/A2 | Yes (Video Track 0) |
+| **Synced External WAV Audio** | Yes (waveform sync) | `A2` track + grouped with `V1` (`audio_offset_f`) | `A1` (`playlist3`) + `mix` | `A3`/`A4` stereo tracks | Audio Track 0 |
+| **Multi-Track B-Roll (`V2`) & Overlays (`V3`)** | Yes (`placing-b-roll`) | `V2` + `V3` with `qtblend` | `playlist1`/`playlist2` with `frei0r.cairoblend` & `qimage` stills | `V2` + `V3` tracks | Video Track 1 + Video Track 2 |
+| **Color-Coded Point & Range Markers** | Yes (native Resolve markers) | `guidesCategories` + `guides` JSON | `shotcut:markers:{n}` with hex color & start/end | Sequence `<marker>` with `<pproColor>` & `<in>`/`<out>` | `chapters.txt` + `markers.json` |
+| **Yellow Marker Feedback Readback** | Yes (skills read Resolve markers) | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` |
+| **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
+| **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
+| **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
 
 ## The skills
 
 | Skill | What it does | Needs Resolve |
 |---|---|---|
 | [`rough-cutting-a-roll`](.claude/skills/rough-cutting-a-roll/SKILL.md) | Syncs camera clips with recorder WAVs, transcribes them, removes retakes, false starts and pauses, and builds one timeline per script chapter | yes |
-| [`finding-stock-footage`](.claude/skills/finding-stock-footage/SKILL.md) | Searches Pixabay and NASA, downloads a few candidates and collects the credits | no |
-| [`making-graphics`](.claude/skills/making-graphics/SKILL.md) | Renders title cards, numbers, charts, name lines and other overlays from HyperFrames templates | no |
+| [`finding-stock-footage`](.claude/skills/finding-stock-footage/SKILL.md) | Searches Pixabay and NASA, downloads a few candidates and collects the credits | no (works for all editors) |
+| [`making-graphics`](.claude/skills/making-graphics/SKILL.md) | Renders title cards, numbers, charts, name lines and other overlays from HyperFrames templates | no (works for all editors) |
 | [`placing-b-roll`](.claude/skills/placing-b-roll/SKILL.md) | Fills the script's B-roll rows with stock, graphics and source screenshots, over signed-off A-roll chapters | yes |
 | [`cutting-shorts`](.claude/skills/cutting-shorts/SKILL.md) | Cuts 30-45 s vertical shorts from signed-off chapters, with face crop, captions, teaser and end card | yes |
 
@@ -22,22 +38,27 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 
 ## Requirements
 
-### DaVinci Resolve
-- **DaVinci Resolve Studio 21.2 or newer.** The free edition is not enough: the skills use external scripting and Resolve's AI transcription, which are Studio features.
+### DaVinci Resolve (for the automated Resolve skills)
+- **DaVinci Resolve Studio 21.2 or newer.** The free edition is not enough: the Resolve skills use external scripting and Resolve's AI transcription, which are Studio features.
 - Resolve runs on the same machine as Claude Code, with the episode's project open.
 - About 1-2 GB for the *Extended AI Transcription Language Support 2* Extras package, which Turkish needs. The rough cutter installs it the first time (step 3 of [the A-roll](#2-rough-cut-the-a-roll)).
+
+### Other editors (Kdenlive, Shotcut, Adobe Premiere Pro, CapCut)
+- **Python 3.11 or newer** — `kurgu_makinesi.py` uses only the Python standard library (zero external Python dependencies).
+- **FFprobe** (optional) — reads clip duration, frame rate, resolution, and audio streams; falls back cleanly to 25 fps / 1920×1080 if unavailable.
+- Any of **Kdenlive**, **Shotcut**, **Adobe Premiere Pro**, or **CapCut Desktop** to open the generated projects.
 
 ### Other software
 
 | Software | Used by |
 |---|---|
-| [Claude Code](https://claude.com/claude-code) | everything |
-| Python 3 (developed and tested with 3.12) with `venv` | everything |
+| [Claude Code](https://claude.com/claude-code) | skills |
+| Python 3 (developed and tested with 3.12) with `venv` | everything (`kurgu_makinesi.py` needs only stdlib) |
 | Node.js 22 or newer, with npm | graphics, B-roll, shorts |
-| FFmpeg and FFprobe | graphics, B-roll, shorts |
+| FFmpeg and FFprobe | graphics, B-roll, shorts (optional for `kurgu_makinesi.py`) |
 | fontconfig (`fc-match`) | B-roll and shorts placeholders |
 | A free [Pixabay API key](https://pixabay.com/api/docs/) | stock, B-roll (NASA needs no key) |
-| Kdenlive, Shotcut, Premiere Pro or CapCut (any one) | opening the projects `kurgu_makinesi.py` writes; not needed by the skills |
+| DaVinci Resolve Studio, Kdenlive, Shotcut, Adobe Premiere Pro, or CapCut | opening and editing timelines/projects |
 
 ### Operating system
 Developed and tested on Linux. `rv.sh` also knows Resolve's default paths on macOS, but macOS and Windows are untested.
@@ -180,53 +201,98 @@ Each short is a 1080x1920 timeline with a teaser, captions, the episode's B-roll
 
 Files go to `~/Downloads/stok/` and `~/Downloads/grafik/`, each with a `kaynaklar.txt` for the credits. Graphics are transparent ProRes 4444 overlays unless you ask for a background. To design a new template or look, ask Claude for one; it follows the [design workflow](.claude/skills/making-graphics/references/design-workflow.md) and leaves the design decisions to you. The `starter` design is an example, not the channel's approved look.
 
-## Other editors (Kdenlive, Shotcut, Premiere, CapCut)
+## Multi-editor CLI (Kdenlive, Shotcut, Premiere Pro, CapCut)
 
-`kurgu_makinesi.py` turns a **cut plan** into a project file for another editor. It needs only Python 3.11 or newer; FFprobe is optional but recommended (it reads each file's length, frame rate, size and audio, and rejects cuts past the end of a file). It doesn't use Resolve, and it doesn't transcribe or decide cuts: you give it the cuts, it lays them end to end on one video track with its audio and puts a marker at each chapter.
+`kurgu_makinesi.py` turns a **cut plan JSON** (and optional script) into multi-track projects for **Kdenlive**, **Shotcut**, **Adobe Premiere Pro**, and **CapCut Desktop** — no DaVinci Resolve required. It uses only the Python standard library (Python 3.11+); FFprobe is optional and gracefully falls back to 25 fps / 1920×1080 when unavailable.
+
+It supports sequential A-roll on `V1`, synced external recorder WAVs, multi-track B-roll (`V2`) and graphics/text overlays (`V3`), color-coded point & range markers using the same palette as the Resolve skills, per-chapter splitting with `freeze`/`unfreeze` state, 9:16 vertical Shorts with face crop & `.srt`/native captions, and round-trip Yellow marker readback into `edits.json`.
+
+### Quick usage
+
+Try it right away with the bundled [`examples/sample_cutplan.json`](examples/sample_cutplan.json) and [`examples/sample_script.md`](examples/sample_script.md):
 
 ```bash
-python3 kurgu_makinesi.py import plan.json --script script.md --format all --out out/
+# 1. Build projects for all 4 editors (plus per-chapter files)
+python3 kurgu_makinesi.py import examples/sample_cutplan.json \
+  --script examples/sample_script.md --format all --chapters --out build/
+
+# Shorthand `make` alias for a single editor:
+python3 kurgu_makinesi.py make shotcut examples/sample_cutplan.json \
+  --script examples/sample_script.md --out build/
+
+# 2. Freeze signed-off chapters before rebuilding (stored in build/.kurgu_frozen.json)
+python3 kurgu_makinesi.py freeze 1 2 --out build/
+python3 kurgu_makinesi.py unfreeze 2 --out build/
+
+# 3. Build 9:16 Vertical Shorts (1080x1920, face crop & captions)
+python3 kurgu_makinesi.py shorts short_plan.json --format all --out build/shorts/
+
+# 4. Read Yellow edit-range markers back from an edited project into edits.json
+python3 kurgu_makinesi.py read-markers build/shotcut/gb_ep01_ornek.mlt \
+  --color Yellow --out edits/ep01-edits.json
+
+# 5. List script files (.txt, .md, .rst, .html) and their chapters / B-roll tags
+python3 kurgu_makinesi.py list examples/
 ```
 
-| Option | Meaning |
-|---|---|
-| `--format` | `kdenlive`, `shotcut`, `premiere`, `capcut` or `all` (default) |
-| `--script` | a script whose `## ` headings name the chapters (see below) |
-| `--out` | output folder (default: current folder) |
-| `--name` | project name (default: the plan's `name`) |
+### CLI options
 
-`python3 kurgu_makinesi.py list [DIR]` lists script files (`.txt`, `.md`, `.rst`, `.html`) under a folder.
+| Command / Option | Meaning |
+|---|---|
+| `import <cutplan.json>` | Build project file(s) from a cut plan (`--format`, `--script`, `--out`, `--name`, `--chapters`, `--freeze`, `--vertical`) |
+| `make <editor> <cutplan.json>` | Alias for `import <cutplan.json> --format <editor>` (`kdenlive`, `shotcut`, `premiere`, `capcut`, `all`) |
+| `shorts <plan.json>` | Build 1080×1920 vertical Shorts with per-clip face crop and `.srt` (plus native CapCut) captions |
+| `read-markers <project>` | Read Yellow (or `--color all`) point/range markers back from `.kdenlive`, `.mlt`, `.xml`, or a CapCut draft folder into `edits.json` |
+| `freeze` / `unfreeze <chapters...>` | Mark 1-based chapter numbers as frozen/unfrozen in `<out>/.kurgu_frozen.json` so `--chapters` rebuilds skip signed-off chapters |
+| `list [DIR]` | List script files (`.txt`, `.md`, `.rst`, `.html`) and their `## ` chapters and `[STOK]`/`[GRAFİK]`/`[YAZI]`/`[KAYNAK]`/`[ARŞİV]` tags |
 
 ### The cut plan
 
+See [`examples/sample_cutplan.json`](examples/sample_cutplan.json) for a full multi-track example:
+
 ```json
 {
-  "name": "cop31-ch1",
+  "name": "gb_ep01_ornek",
   "fps": 25, "width": 1920, "height": 1080,
   "clips": [
-    {"file": "cam1.mp4", "in": 1.0, "out": 3.0, "chapter": 1},
-    {"file": "cam1.mp4", "in": 4.0, "out": 6.5, "chapter": 1},
-    {"file": "cam1.mp4", "in": 7.0, "out": 9.0, "chapter": "Outro"}
+    {
+      "file": "media/cam_A001.mp4",
+      "in": 4.0, "out": 14.0,
+      "chapter": 1, "subsection": "Problem Tanımı",
+      "external_audio": "media/rec_001.wav",
+      "audio_offset_f": 12
+    }
+  ],
+  "broll": [
+    {"file": "stock/earth_orbit.mp4", "timeline_in": 3.0, "in": 1.0, "duration": 5.0, "kind": "STOK", "label": "Uzaydan Dünya"}
+  ],
+  "overlays": [
+    {"file": "graphics/title_card.png", "timeline_in": 1.0, "duration": 3.5, "kind": "GRAFIK", "label": "Başlık Kartı"}
+  ],
+  "markers": [
+    {"time": 8.0, "duration": 2.0, "name": "Tekrar cümle önerisi", "color": "Fuchsia", "note": "Kısaltılabilir"},
+    {"time": 24.0, "duration": 3.0, "name": "Editör kesim aralığı", "color": "Yellow", "note": "Bu aralığı çıkar"}
+  ],
+  "captions": [
+    {"start": 0.5, "end": 3.5, "text": "Gelecek Bilimde'ye hoş geldiniz."}
   ]
 }
 ```
 
-- `in` and `out` are seconds in the source file. `out` may be left out to use the end of the file (needs FFprobe).
-- `file` is relative to the plan's folder, or absolute.
-- `chapter` is a 1-based number into the script's `## ` headings, or a title. A marker is placed where it changes.
-- `fps`, `width` and `height` default to the first clip's values (or 25 fps, 1920x1080 without FFprobe).
-- Problems (missing `clips`, `in` not below `out`, a cut past the end of the file, bad JSON) stop with a one-line error. A file FFprobe can't read is only a warning.
+- `clips`: sequential A-roll clips on `V1`. Supports seconds (`in`/`out`) or integer frames (`in_f`/`out_f`), optional `chapter` (1-based index into script `## ` headings, or title string), `subsection`, `external_audio` (with frame-accurate `audio_offset_f`), and `crop` (`x`, `y`, `scale`, `center_x`, `center_y` for 9:16 shorts).
+- `broll` (`V2`) and `overlays` (`V3`): placed at `timeline_in` (seconds) with `duration` or `in`/`out`, optional `kind` (`STOK`, `GRAFIK`, `YAZI`, `KAYNAK`, `ARŞİV`), `opacity`, and `crop`. Still images (`.png`, `.jpg`, `.webp`, etc.) are handled automatically.
+- `markers`: point (`duration: 0`) or range markers using the shared Kurgu Makinesi color palette (`Green`, `Sky`, `Blue`, `Red`, `Rose`, `Purple`, `Cyan`, `Fuchsia`, `Pink`, `Yellow`, `Lavender`).
+- `captions`: timed caption items exported as sidecar `<name>.srt` across all editors (and as a native text track in CapCut).
+- `frozen_chapters`: optional list of chapter numbers to skip when exporting with `--chapters`.
 
-### What each editor gets
+### Notes & caveats per editor
 
-| Editor | File | Chapters | Status |
-|---|---|---|---|
-| Shotcut | `<name>.mlt` | timeline markers | written to Shotcut's own layout, not opened in Shotcut |
-| Kdenlive | `<name>.kdenlive` | guides | Kdenlive's document version 1.04, which Kdenlive upgrades on load; not opened in Kdenlive. Audio and video are not grouped: group them in Kdenlive if you want them to move together |
-| Premiere Pro | `<name>.xml` | sequence markers | Final Cut Pro 7 XML (xmeml v4): use *File › Import*; not opened in Premiere. A native `.prproj` isn't written because its format is undocumented |
-| CapCut | `<name>/` folder | `chapters.txt` (no markers) | **experimental**: CapCut has no documented import format, newer versions encrypt drafts, and it hasn't been tried in CapCut |
+- **Kdenlive (`.kdenlive`):** A/V pairs and synced external WAV tracks are grouped via `kdenlive:docproperties.groups`; uses `qtblend` for `V2`/`V3` overlays and vertical crop, and `guidesCategories` + `guides` JSON for color-coded markers.
+- **Shotcut (`.mlt`):** Uses `playlist0`–`playlist3` with `mix` for synced external audio, `frei0r.cairoblend` & `qimage` stills for B-roll/overlays, `affine` for 9:16 face crop, and `shotcut:markers:{n}` with hex colors and start/end ranges.
+- **Adobe Premiere Pro (`.xml`):** Uses Final Cut Pro 7 XML (`<xmeml version="4">`) imported via **File › Import** (native `.prproj` is proprietary). Links A1/A2 with `<link>`, places synced WAVs on A3/A4, overlays on V2/V3, Basic Motion for 9:16 crop, and `<marker>` with `<pproColor>`.
+- **CapCut Desktop (`<name>/` draft folder):** Writes `draft_content.json`, `draft_meta_info.json`, `chapters.txt`, `markers.json`, and `<name>.srt` (plus a native text track for captions). `draft_content.json` targets unencrypted CapCut Desktop 5.x drafts; CapCut Desktop ≥ 6.0 encrypts newly saved drafts, while `chapters.txt`, `markers.json`, and `.srt` remain usable across versions.
 
-Tests check the generated files' structure (timing, ids, markers, links) and that the XML is well-formed. They can't tell whether an editor accepts the file, so open the result and report anything that doesn't load.
+Automated tests verify XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback across all 4 editors. Still open generated projects in your target editor and report any version-specific quirks.
 
 ## Troubleshooting
 
@@ -245,17 +311,18 @@ Each skill's `SKILL.md` lists its common mistakes. The rough cutter, B-roll and 
 
 | Path | Contents |
 |---|---|
-| `.claude/skills/` | the skills, their scripts and tests |
-| `kurgu_makinesi.py`, `shared/`, `test_kurgu.py` | the Kdenlive / Shotcut / Premiere / CapCut writer and its tests |
+| `.claude/skills/` | the DaVinci Resolve & standalone Claude Code skills, their scripts and tests |
+| `kurgu_makinesi.py`, `shared/`, `test_kurgu_multi_editor.py` | the Kdenlive / Shotcut / Premiere Pro / CapCut multi-editor builder, marker readback, and tests |
+| `examples/` | sample multi-track cut plan (`sample_cutplan.json`) and script (`sample_script.md`) |
 | `templates/script/` | the script template for writers and its reader |
 | `graphics/` | designs and graphic templates |
 | `docs/` | specs, plans and the development log |
 | `episodes/`, `demo/`, `assets/` | local working data, not in git |
 
-Run the tests (Resolve and network not needed):
+Run the tests (Resolve, FFmpeg, and network not needed):
 ```bash
 for d in .claude/skills/*/tests templates/script/tests; do python3 -m unittest discover -s "$d"; done
-python3 -m unittest test_kurgu    # the other-editors writer; needs FFmpeg
+python3 -m unittest test_kurgu_multi_editor.py -v
 ```
 
 ## License
