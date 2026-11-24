@@ -37,6 +37,7 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 | FFmpeg and FFprobe | graphics, B-roll, shorts |
 | fontconfig (`fc-match`) | B-roll and shorts placeholders |
 | A free [Pixabay API key](https://pixabay.com/api/docs/) | stock, B-roll (NASA needs no key) |
+| Kdenlive, Shotcut, Premiere Pro or CapCut (any one) | opening the projects `kurgu_makinesi.py` writes; not needed by the skills |
 
 ### Operating system
 Developed and tested on Linux. `rv.sh` also knows Resolve's default paths on macOS, but macOS and Windows are untested.
