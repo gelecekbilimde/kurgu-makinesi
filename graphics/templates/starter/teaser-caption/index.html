@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<script src="design/motion.js"></script>
+<style>
+  #svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; filter: var(--caption-shadow); }
+  #svg text { font-family: var(--font-head); font-weight: var(--caption-weight); letter-spacing: -.01em; text-anchor: middle; text-shadow: none; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="teaser-caption" data-start="0" data-duration="3" data-width="1920" data-height="1080">
+  <div id="content"><svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
+</div>
+<script>
+  /* Pages of one or two big lines on a gentle arc over the head; a page stays until the next page's first word.
+   * Only the lower edge of the bottom line should fall behind the head (the cut-out track above covers it). */
+  const v = kit.vars();
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.getElementById("svg");
+  const mk = (tag, parent) => parent.appendChild(document.createElementNS(NS, tag));
+  const max = kit.tokenNum("--caption-chars");
+  const pages = []; let page = null;
+  v.words.forEach((w) => {
+    const line = page && page[page.length - 1];
+    const len = line ? line.reduce((n, x) => n + x.text.length + 1, 0) : 0;
+    if (line && len + w.text.length <= max) line.push(w);
+    else if (page && page.length < 2) page.push([w]);
+    else { page = [[w]]; pages.push(page); }
+  });
+  /* break a two-line page where its lines are most even */
+  const width = (ws) => ws.reduce((n, x) => n + x.text.length + 1, 0);
+  pages.forEach((lines, i) => {
+    const ws = lines.flat();
+    if (lines.length < 2) return;
+    let best = null;
+    for (let k = 1; k < ws.length; k++) {
+      const m = Math.max(width(ws.slice(0, k)), width(ws.slice(k)));
+      if (!best || m < best.m) best = { m, k };
+    }
+    pages[i] = [ws.slice(0, best.k), ws.slice(best.k)];
+  });
+  document.fonts.ready.then(async () => {
+    const box = document.getElementById("root").getBoundingClientRect();
+    const u = box.width / 100, W = box.width;
+    const size = kit.tokenNum("--caption-size") * u;
+    await document.fonts.load("600 " + size + "px Fraunces", "ğüşçöıİ");
+    svg.setAttribute("viewBox", "0 0 " + box.width + " " + box.height);
+    const defs = mk("defs", svg), R = kit.tokenNum("--caption-radius") * u;
+    const spans = [], groups = [];
+    pages.forEach((lines, pi) => {
+      const g = mk("g", svg);
+      groups.push({ g, from: pi ? lines[0][0].start : 0, to: pi + 1 < pages.length ? pages[pi + 1][0][0].start : Infinity });
+      lines.forEach((ws, li) => {
+        const up = lines.length - 1 - li;
+        const base = (kit.tokenNum("--caption-base") - up * kit.tokenNum("--caption-lead")) * u;
+        const r = R + up * kit.tokenNum("--caption-lead") * u, half = W * .62;  /* concentric arcs */
+        const dy = r - Math.sqrt(r * r - half * half);
+        const path = mk("path", defs); path.id = "p" + pi + "_" + li;
+        path.setAttribute("d", `M ${W / 2 - half} ${base + dy} A ${r} ${r} 0 0 1 ${W / 2 + half} ${base + dy}`);
+        const text = mk("text", g); text.setAttribute("font-size", size);
+        const tp = mk("textPath", text); tp.setAttribute("href", "#" + path.id); tp.setAttribute("startOffset", "50%");
+        ws.forEach((w, i) => { const s = mk("tspan", tp); s.textContent = (i ? " " : "") + w.text; spans.push([s, w]); });
+        const n = text.getComputedTextLength(), room = W * .92;
+        if (n > room) text.setAttribute("font-size", size * room / n);
+      });
+    });
+    kit.onFrame((t) => {
+      const f = t * kit.fps();
+      groups.forEach(({ g, from, to }) => g.setAttribute("visibility", f >= from && f < to ? "visible" : "hidden"));
+      spans.forEach(([s, w]) => {
+        s.setAttribute("fill-opacity", kit.progress(t, w.start / kit.fps(), .15, kit.token("--motion-ease")));
+        s.setAttribute("fill", f < w.end ? kit.token("--hl") : kit.token("--ink"));
+      });
+    });
+    calm.start();
+  });
+</script>
+</body>
+</html>

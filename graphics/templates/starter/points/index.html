@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<script src="design/motion.js"></script>
+<style>
+  .block { position: absolute; left: var(--margin-x); right: var(--margin-x); top: 50%; transform: translateY(-50%); }
+  #label { margin-bottom: 2.4cqw; }
+  #list { display: flex; flex-direction: column; gap: var(--points-gap); }
+  .pt { display: flex; align-items: baseline; gap: 2cqw; }
+  .pt i { font: 500 var(--points-num-size) var(--font-label); color: var(--series); font-style: normal; width: 2.4cqw; flex: none; }
+  .pt span { font-size: var(--points-size); line-height: 1.15; font-weight: var(--head-weight); }
+  :root[data-orientation="vertical"] .pt span { font-size: 7cqw; }
+  :root[data-orientation="vertical"] .pt i { font-size: 3.4cqw; width: 6cqw; }
+  :root[data-orientation="vertical"] #list { gap: 4cqw; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="points" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+  <div class="page"></div>
+  <div id="content">
+    <div class="pattern" id="pattern"></div>
+    <div class="block"><div class="label" id="label"></div><div id="list"></div></div>
+  </div>
+</div>
+<script>
+  const v = kit.vars();
+  const $ = (id) => document.getElementById(id);
+  $("pattern").classList.add(kit.token("--page-pattern"));
+  $("label").textContent = v.label; if (!v.label) $("label").remove();
+  const rows = v.items.map((s, i) => {
+    const d = document.createElement("div"); d.className = "pt";
+    const n = document.createElement("i"); n.textContent = String(i + 1).padStart(2, "0");
+    const t = document.createElement("span"); t.textContent = s;
+    d.append(n, t); $("list").append(d); return d;
+  });
+  document.fonts.ready.then(() => {
+    const span = (kit.duration() - 2) * 0.62;
+    if ($("label")) calm.entry([$("label")]);
+    /* the points arrive one by one over the first part of the clip, so they follow the speaker's list */
+    kit.onFrame((t) => rows.forEach((el, i) => {
+      const at = kit.tokenNum("--motion-delay") + 0.3 + (rows.length > 1 ? i * span / (rows.length - 1) : 0);
+      const p = kit.progress(t, at, kit.tokenNum("--motion-in"), kit.token("--motion-ease"));
+      el.style.opacity = String(p);
+      el.style.translate = "0 " + ((1 - p) * kit.tokenNum("--motion-rise")) + "cqw";
+    }));
+    calm.exit($("content"));
+    calm.start();
+  });
+</script>
+</body>
+</html>

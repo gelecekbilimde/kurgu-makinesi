@@ -127,3 +127,35 @@
   --lower-role-size: ;
   --lower-scrim: ;
 }
+
+/* steps, points, dates, short captions and end card */
+:root {
+  --band-height: ;
+  --header-height: ;
+  --header-size: ;
+  --header-done: ;
+  --note-size: ;
+  --note-page: ;
+  --note-stroke: ;
+  --band-page: ;
+  --band-rule: ;
+  --band-title-size: ;
+  --band-text-size: ;
+  --band-prompt-size: ;
+  --band-prompt-page: ;
+  --points-size: ;
+  --points-num-size: ;
+  --points-gap: ;
+  --date-cell: ;
+  --date-size: ;
+  --date-mark: ;
+  --caption-size: ;
+  --caption-chars: ;
+  --caption-weight: ;
+  --caption-base: ;
+  --caption-lead: ;
+  --caption-radius: ;
+  --caption-shadow: ;
+  --end-title-size: ;
+  --end-logo-size: ;
+}

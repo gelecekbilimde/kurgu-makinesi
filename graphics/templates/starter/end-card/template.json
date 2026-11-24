@@ -1,0 +1,4 @@
+{"name": "end-card", "description": "Short bitiş kartı: logo, YENİ VİDEO, bölümün başlığı, kanala yönlendirme (dikey)",
+ "version": 1, "status": "draft", "output": "fullscreen", "canvas": "frame", "vertical": true,
+ "frames": {"default": 75, "min": 50, "max": 150},
+ "fields": [{"name": "title", "type": "text", "required": true, "max_len": 60, "help": "bölümün başlığı"}]}

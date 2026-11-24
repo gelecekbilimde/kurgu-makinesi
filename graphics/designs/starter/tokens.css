@@ -134,3 +134,35 @@
   --lower-role-size: 4.4cqw;
   --lower-scrim: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .5) 22%, rgba(0, 0, 0, .25) 32%, transparent 44%);
 }
+
+/* 2026-11-24 demo episode: step-note band, points list, date grid (see design.md, "Decisions by the editors") */
+:root {
+  --band-height: 10cqw;               /* 192 px at 1920; with the header, the space around a 3440x1440 screen recording */
+  --header-height: 4.375cqw;          /* 84 px */
+  --header-size: .86cqw;
+  --header-done: #6E6A62;
+  --note-size: 2cqw;
+  --note-page: rgba(0, 0, 0, .86);
+  --note-stroke: .2cqw;
+  --band-page: #000;
+  --band-rule: #2a2a2a;
+  --band-title-size: 2.05cqw;
+  --band-text-size: 1.18cqw;
+  --band-prompt-size: 1.12cqw;
+  --band-prompt-page: #141414;
+  --points-size: 3.3cqw;
+  --points-num-size: 1.5cqw;
+  --points-gap: 2.1cqw;
+  --date-cell: 4.5cqw;
+  --date-size: 2.2cqw;
+  --date-mark: rgba(255, 154, 60, .45);
+  --caption-size: 12;                 /* cqw; words per page wrap at --caption-chars */
+  --caption-chars: 15;
+  --caption-weight: 620;
+  --caption-base: 23.4;               /* cqw from the top: baseline of the lowest line at the middle of the arc */
+  --caption-lead: 11.6;               /* cqw between baselines */
+  --caption-radius: 125;              /* cqw; larger = flatter arc */
+  --caption-shadow: drop-shadow(0 .3cqw 1.2cqw rgba(0, 0, 0, .55));
+  --end-title-size: 8.4cqw;
+  --end-logo-size: 30cqw;
+}

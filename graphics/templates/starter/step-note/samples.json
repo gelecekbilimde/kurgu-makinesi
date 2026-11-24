@@ -1,0 +1,32 @@
+[
+ {
+  "label": "normal",
+  "fields": {
+   "stages": [
+    "HAZIRLIK",
+    "KABA KURGU",
+    "İNCELEME",
+    "ONAY",
+    "B-ROLL",
+    "KONTROL",
+    "ADAYLAR",
+    "SHORT",
+    "SON DOKUNUŞ",
+    "SONUÇ"
+   ],
+   "current": "3",
+   "label": "ADIM 3 / 9",
+   "title": "İnceleme: sarı işaret",
+   "prompt": "Sarı işaretlerimi uygula",
+   "check": "Çıkmasını istediğiniz yere SARI ARALIKLI işaret koyun. Pembe öneriyi kabul etmek için sarıya çevirin.",
+   "does": "İşaretlenen aralıkları keser, bölümü yeniden kurar. Örnekte süre 3:34'ten 3:11'e indi.",
+   "callouts": [
+    "20|180|1040|618|90|16|620|470|Sarı aralık = çıkar",
+    "60|180|968|105|300|62|1400|300|Notunuzu\\nburaya yazın"
+   ],
+   "speed": [
+    "0|60|20× hızlı"
+   ]
+  }
+ }
+]

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<script src="design/motion.js"></script>
+<style>
+  .wrap { position: absolute; left: var(--margin-x); right: var(--margin-x); top: 50%; transform: translateY(-50%); display: flex;
+    align-items: center; justify-content: space-between; gap: 4cqw; }
+  .txt { flex: 1; min-width: 0; }
+  #label { margin-bottom: 1.8cqw; }
+  .grid { display: grid; grid-template-columns: repeat(7, var(--date-cell)); flex: none; }
+  .d { position: relative; width: var(--date-cell); height: var(--date-cell); display: flex; align-items: center; justify-content: center;
+    font-size: var(--date-size); color: var(--dim); font-weight: 300; }
+  .d.h { font: 600 calc(var(--date-size) * .5) var(--font-label); color: var(--label); letter-spacing: .1em; }
+  .d.on { color: var(--ink); }
+  .d.on::before { content: ""; position: absolute; inset: 14% 0; background: var(--date-mark); z-index: -1; opacity: var(--p, 0); }
+  :root[data-orientation="vertical"] .wrap { flex-direction: column; align-items: flex-start; }
+  :root[data-orientation="vertical"] .grid { --date-cell: 11.5cqw; --date-size: 5cqw; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="date-range" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+  <div class="page"></div>
+  <div id="content">
+    <div class="pattern" id="pattern"></div>
+    <div class="wrap">
+      <div class="txt"><div class="label" id="label"></div><div class="head" id="line1"></div><div class="head second" id="line2"></div></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+</div>
+<script>
+  const v = kit.vars();
+  const $ = (id) => document.getElementById(id);
+  $("pattern").classList.add(kit.token("--page-pattern"));
+  $("label").textContent = v.label; if (!v.label) $("label").remove();
+  $("line1").textContent = v.line1;
+  $("line2").textContent = v.line2; if (!v.line2) $("line2").remove();
+  const num = (x) => parseInt(x.base, 10);
+  const y = num(v.year), m = num(v.month), a = num(v.first), b = num(v.last);
+  ["Pt", "Sa", "Ça", "Pe", "Cu", "Ct", "Pz"].forEach((s) => { const d = document.createElement("div"); d.className = "d h"; d.textContent = s; $("grid").append(d); });
+  const lead = (new Date(Date.UTC(y, m - 1, 1)).getUTCDay() + 6) % 7;
+  const days = new Date(Date.UTC(y, m, 0)).getUTCDate();
+  for (let i = 0; i < lead; i++) $("grid").append(Object.assign(document.createElement("div"), { className: "d" }));
+  const on = [];
+  for (let i = 1; i <= days; i++) {
+    const d = document.createElement("div"); d.className = "d" + (i >= a && i <= b ? " on" : ""); d.textContent = i;
+    $("grid").append(d); if (i >= a && i <= b) on.push(d);
+  }
+  document.fonts.ready.then(() => {
+    const W = $("root").getBoundingClientRect().width;
+    const vertical = kit.orientation() === "vertical";
+    ["line1", "line2"].forEach((id) => $(id) && kit.fit($(id), vertical ? W * .84 : W * .46));
+    calm.entry([...document.querySelectorAll(".txt > *"), $("grid")]);
+    kit.onFrame((t) => on.forEach((el, i) => el.style.setProperty("--p",
+      kit.progress(t, kit.tokenNum("--motion-hl-at") + i * kit.tokenNum("--motion-bar-stagger"), .3, kit.token("--motion-hl-ease")))));
+    calm.exit($("content"));
+    calm.start();
+  });
+</script>
+</body>
+</html>

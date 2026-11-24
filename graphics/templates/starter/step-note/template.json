@@ -1,0 +1,12 @@
+{"name": "step-note", "description": "Eğitim videosu katmanı: üstte aşama başlığı, altta adım bandı (istem, kurgucunun işi), zamanlı ok/halka ve el yazısı notlar",
+ "version": 1, "status": "draft", "output": "overlay", "canvas": "frame", "vertical": false,
+ "frames": {"default": 200, "min": 50, "max": 3000},
+ "fields": [{"name": "stages", "type": "list", "item": "text", "required": true, "min_items": 2, "max_items": 10, "max_len": 18, "help": "bütün aşamalar, sırayla"},
+            {"name": "current", "type": "number", "required": true, "help": "şu anki aşama (1'den)"},
+            {"name": "label", "type": "text", "max_len": 24, "help": "ADIM 3 / 9"},
+            {"name": "title", "type": "text", "max_len": 48, "help": "adımın adı (boşsa alt bant yok)"},
+            {"name": "prompt", "type": "text", "max_len": 110, "help": "Claude'a yazılacak istem"},
+            {"name": "check", "type": "text", "max_len": 130, "help": "kurgucu ne yapar"},
+            {"name": "does", "type": "text", "max_len": 130, "help": "Claude ne yapar"},
+            {"name": "callouts", "type": "list", "item": "text", "max_items": 8, "max_len": 140, "help": "baş|son|x|y|g|y|notX|notY|metin (kare; 1920x1080 piksel)"},
+            {"name": "speed", "type": "list", "item": "text", "max_items": 6, "max_len": 30, "help": "baş|son|20× hızlı"}]}

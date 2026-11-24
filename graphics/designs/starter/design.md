@@ -99,4 +99,11 @@ Prototype: `reference/watermark-v9.html`. The `watermark` template rebuilds it, 
 
 ## Decisions by the editors
 
-(empty: record decisions here, with the date and why)
+(record decisions here, with the date and why)
+
+**2026-11-24, editors' demo video.** The user left the creative decisions to Claude; the points marked *user* are the user's own rulings.
+- New draft templates: `points`, `date-range`, `teaser-caption`, `end-card`, `step-note`.
+- **Teaser caption** *(user)*: the text stays mostly visible; only a small bit falls behind the head, for depth. A gentle curve over the head, not too strong. Built as pages of one or two large lines (`--caption-*` tokens, tuned on the COP31 framing).
+- **Watermark** *(user)*: animated in shorts and long videos. At least a minute between animated states, so they seem almost random; wireframe while a graphic shows.
+- **Short subtitles** *(user)*: green border (`#19B34A`). Resolve's API can't set it, so it is set by hand on the subtitle track.
+- **Tutorial videos** *(user)*: in Turkish; a header with every stage and the current one highlighted; notes to the editor with arrows and other pointers; the parts where Claude thinks are sped up; the finished videos at the end. The screen recording must fit its section, and a zoom must not cut the chat window (`step-note`).

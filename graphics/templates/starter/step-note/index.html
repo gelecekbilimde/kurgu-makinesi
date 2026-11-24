@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="design/tokens.css">
+<link rel="stylesheet" href="design/variant.css">
+<link rel="stylesheet" href="design/base.css">
+<script src="kit/hf-kit.js"></script>
+<script src="design/motion.js"></script>
+<style>
+  #root { text-shadow: none; }
+  #content { text-shadow: none !important; }
+  .header { position: absolute; left: 0; right: 0; top: 0; height: var(--header-height); background: var(--band-page); display: flex;
+    align-items: stretch; border-bottom: .08cqw solid var(--band-rule); padding: 0 1.4cqw; }
+  .st { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; gap: .5em; white-space: nowrap; position: relative;
+    font: 500 var(--header-size) var(--font-label); letter-spacing: .06em; color: var(--header-done); }
+  .st b { font-weight: 500; opacity: .7; }
+  .st.done { color: var(--body); } .st.done b::before { content: "✓ "; color: var(--logo-land); } .st.done b { opacity: 1; font-size: 0; }
+  .st.done b::before { font-size: var(--header-size); }
+  .st.now { color: var(--page); font-weight: 700; } .st.now span, .st.now b { position: relative; }
+  .st.now::before { content: ""; position: absolute; inset: 24% .35cqw; background: var(--hl); border-radius: .25cqw; transform: scaleX(var(--p, 1)); transform-origin: left; }
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: var(--band-height); background: var(--band-page);
+    border-top: .08cqw solid var(--band-rule); display: flex; align-items: center; gap: 2.4cqw; padding: 0 9cqw 0 2.4cqw; }
+  .left { width: 21cqw; flex: none; }
+  #title { font-size: var(--band-title-size); line-height: 1.08; margin-top: .6cqw; white-space: normal; }
+  .right { flex: 1; display: flex; flex-direction: column; gap: .55cqw; min-width: 0; }
+  .prompt { font: 500 var(--band-prompt-size)/1.3 var(--font-label); color: var(--ink); background: var(--band-prompt-page);
+    border-left: .3cqw solid var(--hl); padding: .45cqw 1cqw; align-self: flex-start; }
+  .prompt::before { content: "Claude'a yazın › "; color: var(--hl); }
+  .text { font-size: calc(var(--band-text-size) * 1.12); line-height: 1.3; color: var(--ink); font-weight: 350; }
+  .text b { font: 600 calc(var(--band-text-size) * .78) var(--font-label); letter-spacing: .1em; color: var(--hl); margin-right: .7em; }
+  #over { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  #over path { fill: none; stroke: var(--hl); stroke-width: var(--note-stroke); stroke-linecap: round; stroke-linejoin: round; }
+  .note { position: absolute; font-family: var(--font-hand); font-weight: var(--hand-weight); font-size: var(--note-size); line-height: 1.02;
+    color: var(--hl); background: var(--note-page); padding: .5cqw 1cqw .6cqw; border-radius: .5cqw; white-space: pre; }
+  .speed { position: absolute; right: 1.6cqw; top: calc(var(--header-height) + 2.4cqw); font: 700 1.5cqw var(--font-label); color: var(--page);
+    background: var(--ink); border-radius: .3cqw; padding: .35cqw .9cqw; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="step-note" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+  <div id="content">
+    <svg id="over" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="notes"></div>
+    <div class="band" id="band">
+      <div class="left"><div class="label" id="label"></div><div class="head" id="title"></div></div>
+      <div class="right"><div class="prompt" id="prompt"></div><div class="text" id="check"></div><div class="text" id="does"></div></div>
+    </div>
+    <div class="header" id="header"></div>
+  </div>
+</div>
+<script>
+  const v = kit.vars();
+  const $ = (id) => document.getElementById(id);
+  const cur = parseInt(v.current.base, 10);
+  let now = null;
+  v.stages.forEach((s, i) => {
+    const d = document.createElement("div"); d.className = "st" + (i + 1 < cur ? " done" : i + 1 === cur ? " now" : "");
+    const b = document.createElement("b"); b.textContent = i + 1; const t = document.createElement("span"); t.textContent = s;
+    d.append(b, t); $("header").append(d); if (i + 1 === cur) now = d;
+  });
+  if (!v.title) $("band").remove();
+  else {
+    if (v.label) $("label").textContent = v.label; else $("label").remove();
+    $("title").textContent = v.title;
+    if (v.prompt) $("prompt").textContent = v.prompt; else $("prompt").remove();
+    [["check", "SİZ"], ["does", "CLAUDE"]].forEach(([id, tag]) => {
+      if (!v[id]) return $(id).remove();
+      const b = document.createElement("b"); b.textContent = tag; $(id).append(b, v[id]);
+    });
+  }
+  const NS = "http://www.w3.org/2000/svg";
+  /* callout: start|end|x|y|w|h|noteX|noteY|text (frames; pixels of the 1920x1080 frame; w=0: point, else a ring) */
+  const callouts = v.callouts.map((s) => {
+    const f = s.split("|"), [a, b, x, y, w, h, nx, ny] = f.slice(0, 8).map(Number);
+    return { a, b, x, y, w, h, nx, ny, text: f.slice(8).join("|").replace(/\\n/g, "\n") };
+  });
+  const speeds = v.speed.map((s) => { const f = s.split("|"); return { a: +f[0], b: +f[1], text: f[2] }; });
+  document.fonts.ready.then(() => {
+    const box = $("root").getBoundingClientRect(), k = box.width / 1920;
+    $("over").setAttribute("viewBox", "0 0 1920 1080");
+    const mk = (d) => { const p = document.createElementNS(NS, "path"); p.setAttribute("d", d); p.style.strokeWidth = kit.tokenNum("--note-stroke") * 19.2; $("over").append(p); return p; };
+    callouts.forEach((c) => {
+      const n = document.createElement("div"); n.className = "note"; n.textContent = c.text; $("notes").append(n);
+      n.style.left = c.nx * k + "px"; n.style.top = c.ny * k + "px"; c.el = n;
+      const r = n.getBoundingClientRect(), W = r.width / k, H = r.height / k;
+      const cx = c.nx + W / 2, cy = c.ny + H / 2, tx = c.x + c.w / 2, ty = c.y + c.h / 2;
+      const edge = (px, py, hw, hh, qx, qy, pad) => {  /* the point where the segment p->q leaves a box */
+        const dx = qx - px, dy = qy - py, s = Math.min((hw + pad) / (Math.abs(dx) || 1e-6), (hh + pad) / (Math.abs(dy) || 1e-6), 1);
+        return [px + dx * s, py + dy * s];
+      };
+      const [x0, y0] = edge(cx, cy, W / 2, H / 2, tx, ty, 6), [x1, y1] = edge(tx, ty, c.w / 2, c.h / 2, cx, cy, c.w ? 12 : 10);
+      const len = Math.hypot(x1 - x0, y1 - y0), bend = Math.min(40, len * .18);
+      const mx = (x0 + x1) / 2 - (y1 - y0) / (len || 1) * bend, my = (y0 + y1) / 2 + (x1 - x0) / (len || 1) * bend;
+      const ang = Math.atan2(y1 - my, x1 - mx), hd = (o) => `${x1 - 22 * Math.cos(ang + o)} ${y1 - 22 * Math.sin(ang + o)}`;
+      c.shapes = [];
+      if (c.w) {
+        const rx = c.w / 2 + 8, ry = c.h / 2 + 8, rr = Math.min(18, ry);
+        c.shapes.push(mk(`M ${tx - rx + rr} ${ty - ry + 2} L ${tx + rx - rr} ${ty - ry - 2} Q ${tx + rx} ${ty - ry} ${tx + rx + 1} ${ty - ry + rr} L ${tx + rx - 1} ${ty + ry - rr} Q ${tx + rx} ${ty + ry} ${tx + rx - rr} ${ty + ry + 1} L ${tx - rx + rr} ${ty + ry - 1} Q ${tx - rx} ${ty + ry} ${tx - rx - 1} ${ty + ry - rr} L ${tx - rx + 1} ${ty - ry + rr} Q ${tx - rx} ${ty - ry} ${tx - rx + rr + 10} ${ty - ry - 3}`));
+      }
+      c.shapes.push(mk(`M ${x0} ${y0} Q ${mx} ${my} ${x1} ${y1}`), mk(`M ${hd(.45)} L ${x1} ${y1} L ${hd(-.45)}`));
+    });
+    speeds.forEach((s) => { const d = document.createElement("div"); d.className = "speed"; d.textContent = s.text; $("notes").append(d); s.el = d; });
+    if ($("band")) calm.entry(document.querySelectorAll(".left > *, .right > *"));
+    kit.onFrame((t) => {
+      const f = t * kit.fps();
+      if (now) now.style.setProperty("--p", kit.progress(t, 0, .5, "out-cubic"));
+      callouts.forEach((c) => {
+        const at = c.a / kit.fps(), on = f >= c.a && f < c.b;
+        c.el.style.opacity = on ? kit.progress(t, at, .25, "out-cubic") * (1 - kit.progress(t, c.b / kit.fps() - .2, .2, "linear")) : 0;
+        c.shapes.forEach((s, i) => { s.style.opacity = on ? 1 - kit.progress(t, c.b / kit.fps() - .2, .2, "linear") : 0;
+          kit.draw(s, kit.progress(t, at + .15 + i * .35, .45, "in-out-cubic")); });
+      });
+      speeds.forEach((s) => { s.el.style.opacity = f >= s.a && f < s.b ? 1 : 0; });
+    });
+    calm.start();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{"name": "date-range", "description": "Takvim: bir ayın günleri, işaretlenen tarih aralığı, iki satır başlık",
+ "version": 1, "status": "draft", "output": "fullscreen", "canvas": "frame", "vertical": true,
+ "frames": {"default": 150, "min": 75, "max": 750},
+ "fields": [{"name": "label", "type": "text", "max_len": 40, "help": "üstteki küçük etiket"},
+            {"name": "line1", "type": "text", "required": true, "max_len": 28, "help": "başlığın ilk satırı"},
+            {"name": "line2", "type": "text", "max_len": 28, "help": "ikinci satır"},
+            {"name": "year", "type": "number", "required": true, "help": "2026"},
+            {"name": "month", "type": "number", "required": true, "help": "11"},
+            {"name": "first", "type": "number", "required": true, "help": "ilk gün"},
+            {"name": "last", "type": "number", "required": true, "help": "son gün"}]}

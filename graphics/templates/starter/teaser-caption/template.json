@@ -1,0 +1,4 @@
+{"name": "teaser-caption", "description": "Short teaser altyazısı: konuşmaya zamanlı, kelime kelime gelen büyük yazı (konuşmacının başının arkasında durur)",
+ "version": 1, "status": "draft", "output": "overlay", "canvas": "frame", "vertical": true,
+ "frames": {"default": 75, "min": 25, "max": 150},
+ "fields": [{"name": "words", "type": "words", "required": true, "max_items": 14, "help": "kelimeler: text, start, end (kare)"}]}
