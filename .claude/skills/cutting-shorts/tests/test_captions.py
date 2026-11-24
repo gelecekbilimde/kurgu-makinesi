@@ -60,7 +60,7 @@ class CuesTest(unittest.TestCase):
         for c in cs:
             lines = c["text"].split("\n")
             self.assertLessEqual(len(lines), 2)
-            self.assertTrue(all(len(l) <= 32 for l in lines))
+            self.assertTrue(all(len(l) <= captions.MAX_CHARS for l in lines))
         self.assertEqual(" ".join(c["text"].replace("\n", " ") for c in cs), " ".join(["kelimeler"] * 30))
 
     def test_break_on_pause(self):
@@ -88,13 +88,13 @@ class CuesTest(unittest.TestCase):
         self.assertEqual([(c["start"], c["end"], c["text"]) for c in cs], [(0, 43, "Neden? Çünkü")])
 
     def test_short_cue_not_merged_over_the_limits_or_the_teaser(self):
-        long_ = ["kelimeler"] * 6  # a full cue: 2 lines of 3 words
+        long_ = ["kelimelerkelime"] * 2  # a full cue: 2 lines of 1 word
         ws = run(long_, dur=8, gap=2) + [w("Son.", 60, 64)]
         cs = captions.cues(ws, 25, avoid=[(70, 100)])
         self.assertEqual(cs[-1]["text"], "Son.")
         self.assertEqual(cs[-1]["end"], 70)  # extended up to the avoid range, not merged past the line limit
         for c in cs:
-            self.assertTrue(all(len(x) <= 32 for x in c["text"].split("\n")) and c["text"].count("\n") <= 1)
+            self.assertTrue(all(len(x) <= captions.MAX_CHARS for x in c["text"].split("\n")) and c["text"].count("\n") <= 1)
 
     def test_no_cue_in_teaser_or_end_card(self):
         ws = run(["a"] * 6, start=0, dur=10, gap=0)  # 0..60

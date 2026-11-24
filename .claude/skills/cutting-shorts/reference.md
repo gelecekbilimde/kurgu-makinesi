@@ -83,7 +83,7 @@ Parent vertical timeline with two nested timelines on V1 (`mp.AppendToTimeline([
 | V6 | watermark (passage only) |
 | V7 | header (`"header": true` only) |
 | V(n+4) | a long-form chapter's own editor track Vn (n > 3) |
-| Subtitle 1 | passage captions: ≤ 2 lines, ≤ 32 characters a line, never over the teaser or end card; a cue shorter than 1 s (fps frames) is lengthened into the following gap or merged with a neighbour when the lines still fit. Script spelling only for words that match the script exactly, or differ by a unit or apostrophe suffix one to one (`1,5` → `1,5°C`); any other spoken word keeps the transcript's spelling |
+| Subtitle 1 | passage captions: ≤ 2 lines, ≤ 18 characters a line (Resolve's default subtitle size fits 1080 px; the API cannot set the size), never over the teaser or end card; a cue shorter than 1 s (fps frames) is lengthened into the following gap or merged with a neighbour when the lines still fit. Script spelling only for words that match the script exactly, or differ by a unit or apostrophe suffix one to one (`1,5` → `1,5°C`); any other spoken word keeps the transcript's spelling |
 
 No B-roll over the teaser. B-roll is copied video-only (`mediaType: 1`), at 100 % speed, without opacity or composite mode: an item that had another speed, opacity < 100 or a composite mode is flagged (`uzun videoda hız %150: %100 hızla kopyalandı`, `uzun videodaki opaklık/karışım modu kopyalanmadı`). A long-form placeholder, and an item without a file (Text+, generator, compound clip, Fusion), is not copied (the speaker shows; Fuchsia marker + "Kopyalanmayan öğeler").
 
@@ -117,7 +117,17 @@ Each section prints `yok` when empty. `prepare` prints `<id>: N kamera parçası
 9. `freeze c4` → build prints `c4: dondurulmuş, atlandı`, c4 timeline identical; `unfreeze` → 0/0.
 10. Long-form snapshot after 10 builds, 1 review, 1 accept: **identical** (`cmp`). Project saved, `demo` on the Edit page.
 
+## Demo episode findings (2026-11-24, `COP31 Demo`)
+- **Captions at 32 characters overflowed 1080 px.** Resolve's default subtitle style takes about 46-52 px per character, so `captions.MAX_CHARS` is 18.
+- **A `number` graphic could not be re-rendered vertically:** its archived value is decoded (`{"base", "exp", "text"}`). `graphics._request_fields` sends the text back.
+- `ExportCurrentFrameAsStill` leaves the subtitle track out; check captions in a render (`ExportSubtitle: True, SubtitleFormat: "BurnIn"`).
+- **Render target:** paths outside Resolve's media storage (here anything but `~/Videos`) raised a modal "render path inaccessible", `AddRenderJob` returned `''`, and the API answered `None` until the dialog was closed.
+- **Pan of a clip that fits by height** scales by `fitted width / timeline width`, as inferred above: the 760x520 watermark on 1920x1080 needed Pan 1020 for 838 px (measured on the render).
+- A word the transcript stretches over silence (`1995'ten`, `Yani`) is dropped from the captions though it is spoken; the editor adds it.
+- A passage snapped 2 frames before a word can pick up 2 frames of the graphic before it; delete that item on the short.
+
 ## Still to verify by hand (UI)
+- The subtitle track's Stroke setting (green border) and whether a rebuild keeps it.
 - Marker: change an engine marker's colour to Green and resize it in the UI, then `GetMarkers()`: expected (not observed) the same key with `color: 'Green'` and the new `duration`, customData kept. If a resize from the left moves the key, the marker must be matched by customData. (`accept` relies on this.)
 - Subtitle cue: edit a cue's text in the UI, then `GetName()` (does it return the edited text?) and `GetUniqueId()` (same uid?). Same for a UI trim/move of a cue. The acceptance replaced a cue instead (delete + new cue elsewhere).
 - A real UI move or trim of a B-roll item on a short (does it keep the uid?). Either way it reads as the editor's.

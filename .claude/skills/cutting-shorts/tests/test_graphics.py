@@ -49,6 +49,13 @@ class RequestsTest(unittest.TestCase):
                                "replaces": GRAPHIC, "variant": "ev", "background": True, "vertical": True, "frames": 150})
         self.assertEqual(sum(1 for r in rows if r["code"] == "G1-1"), 1)
 
+    def test_archived_number_goes_back_as_text(self):
+        number = {"base": "198", "exp": None, "text": "198"}
+        archive = {"renders": [dict(ARCHIVE["renders"][0], values={"value": number, "unit": "taraf"})]}
+        rows, _, _ = graphics.requests(FakeEp(), CAND, LAYOUT, TEMPLATES, archive, words=WORDS)
+        row = next(r for r in rows if r["code"] == "G1-1")
+        self.assertEqual(row["fields"], {"value": "198", "unit": "taraf"})
+
     def test_non_vertical_template_not_rerendered(self):
         rows, _, _ = request(TEMPLATES)
         self.assertNotIn("G2-1", [r["code"] for r in rows])

@@ -11,6 +11,11 @@ GAP_F = 12    # a pause longer than this starts a new cue; a gap up to this is b
 SENTENCE_END = ".?!…"
 
 
+# Resolve's default subtitle style on a 1080-wide timeline takes about 46-52 px per character (measured 2026-11-24),
+# and the API cannot change the size: 18 characters = at most 936 px.
+MAX_CHARS = 18
+
+
 def _script_words(script_rows):
     out = []
     for r in script_rows:
@@ -102,7 +107,7 @@ def _min_length(out, min_f, max_chars, max_lines, avoid):
     return out
 
 
-def cues(words_on_short, fps, max_chars=32, max_lines=2, avoid=()):
+def cues(words_on_short, fps, max_chars=MAX_CHARS, max_lines=2, avoid=()):
     """[{"start","end","text"}] (`\\n` between lines). Words inside the `avoid` [start, end) ranges are left out
     and no cue runs into them. A cue shorter than one second (`fps` frames) is lengthened or merged with a
     neighbour (_min_length). (The gap limits are fps-independent, like the rough cutter's.)"""

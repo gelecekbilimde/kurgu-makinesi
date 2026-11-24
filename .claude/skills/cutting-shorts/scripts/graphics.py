@@ -25,6 +25,12 @@ def end_card_frames(fps):
     return round(END_CARD_S * fps)
 
 
+def _request_fields(values):
+    """An archived render's values -> request fields: a number is archived decoded ({"base", "exp", "text"}) but
+    requested as the text the writer gave."""
+    return {k: v["text"] if isinstance(v, dict) and "text" in v else v for k, v in (values or {}).items()}
+
+
 def _graphic_rows(short_layout, templates, archive):
     by_file = {r["file"]: r for r in archive.get("renders", [])}
     rows, seen = [], set()
@@ -36,7 +42,7 @@ def _graphic_rows(short_layout, templates, archive):
         if not t or not t.get("vertical") or rec["code"] in seen:
             continue  # no vertical version (or a hand-added graphic): fitted to the width and flagged later
         seen.add(rec["code"])
-        row = {"template": rec["template"], "code": rec["code"], "fields": rec.get("values") or {},
+        row = {"template": rec["template"], "code": rec["code"], "fields": _request_fields(rec.get("values")),
                "replaces": it["file"]}
         if rec.get("variant"):
             row["variant"] = rec["variant"]
