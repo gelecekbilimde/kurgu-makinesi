@@ -15,15 +15,15 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 |---|---|---|---|---|---|
 | **Workflow** | Claude Code skills (live API) | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI (see [CapCut limitations](#capcut-limitations)) |
 | **AI transcription & auto cut planning** | Yes (Resolve Studio AI) | Cut plan JSON | Cut plan JSON | Cut plan JSON | Cut plan JSON |
-| **A-Roll (`V1`) + Camera Audio** | Yes | Yes + **A/V grouped** (`kdenlive:docproperties.groups`) | Yes (`playlist0`) | Yes + `<link>` A1/A2 | Yes (Video Track 0) |
+| **A-Roll (`V1`) + Camera Audio** | Yes | Yes + **A/V grouped** (`kdenlive:sequenceproperties.groups`) | Yes (`playlist0`) | Yes + `<link>` A1/A2 | Yes (Video Track 0) |
 | **Synced External WAV Audio** | Yes (waveform sync) | `A2` track + grouped with `V1` (`audio_offset_f`) | `A1` (`playlist3`) + `mix` | `A3`/`A4` stereo tracks | Audio Track 0 (not grouped with V1) |
 | **Multi-Track B-Roll (`V2`) & Overlays (`V3`)** | Yes (`placing-b-roll`) | `V2` + `V3` with `qtblend` | `playlist1`/`playlist2` with `frei0r.cairoblend` & `qimage` stills | `V2` + `V3` tracks | Video Track 1 + Video Track 2 |
-| **Color-Coded Point & Range Markers** | Yes (native Resolve markers) | `guidesCategories` + `guides` JSON | `shotcut:markers:{n}` with hex color & start/end | Sequence `<marker>` with `<pproColor>` & `<in>`/`<out>` | Sidecar `chapters.txt` + `markers.json` only (no native markers) |
+| **Color-Coded Point & Range Markers** | Yes (native Resolve markers) | `guidesCategories` + `guides` JSON | Native `<properties name="shotcut:markers">` with hex color & start/end | Sequence `<marker>` with `<pproColor>` & `<in>`/`<out>` | Sidecar `chapters.txt` + `markers.json` only (no native markers) |
 | **Yellow Marker Feedback Readback** | Yes (skills read Resolve markers) | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` reads sidecar `markers.json` only |
 | **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
 | **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
 | **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
-| **Testing status** | Tested on Linux | Structure tested; not opened in Kdenlive yet | Structure tested; not opened in Shotcut yet | Structure tested; not opened in Premiere yet | Experimental; not opened in CapCut yet (v6+ encrypts drafts) |
+| **Testing status** | Tested on Linux | **Tested on Linux** (Kdenlive 26.08.3 Flatpak) | **Tested on Linux** (Shotcut 26.11.15 Flatpak) | Structure tested; awaiting live report | Experimental; awaiting live report (v6+ encrypts drafts) |
 
 ## The skills
 
@@ -289,8 +289,8 @@ See [`examples/sample_cutplan.json`](examples/sample_cutplan.json) for a full mu
 
 ### Notes & caveats per editor
 
-- **Kdenlive (`.kdenlive`):** A/V pairs and synced external WAV tracks are grouped via `kdenlive:docproperties.groups`; uses `qtblend` for `V2`/`V3` overlays and vertical crop, and `guidesCategories` + `guides` JSON for color-coded markers.
-- **Shotcut (`.mlt`):** Uses `playlist0`–`playlist3` with `mix` for synced external audio, `frei0r.cairoblend` & `qimage` stills for B-roll/overlays, `affine` for 9:16 face crop, and `shotcut:markers:{n}` with hex colors and start/end ranges.
+- **Kdenlive (`.kdenlive`):** Generates native Kdenlive `1.1` sequence projects (`project_tractor` + `main_tractor`, two subtracks per track tractor, `xml_retain=1` on `main_bin`, and deduplicated `avformat-novalidate` producers with explicit frame lengths). A/V pairs and synced external WAV tracks are grouped via `kdenlive:sequenceproperties.groups` (mirrored to `kdenlive:docproperties.groups`); uses `qtblend` for `V2`/`V3` overlays and vertical crop, and `guidesCategories` + `guides` JSON for color-coded markers.
+- **Shotcut (`.mlt`):** Uses `<playlist id="background">` + `playlist0`–`playlist3` with `mix` for synced external audio, deduplicated `avformat-novalidate` chains with explicit lengths, `frei0r.cairoblend` & `qimage` stills for B-roll/overlays, `affine` for 9:16 face crop, and native nested `<properties name="shotcut:markers">` with hex colors and start/end ranges.
 - **Adobe Premiere Pro (`.xml`):** Uses Final Cut Pro 7 XML (`<xmeml version="4">`) imported via **File › Import** (native `.prproj` is proprietary). Links A1/A2 with `<link>`, places synced WAVs on A3/A4, overlays on V2/V3, Basic Motion for 9:16 crop, and `<marker>` with `<pproColor>`.
 - **CapCut Desktop (`<name>/` draft folder — experimental):** Writes `draft_content.json`, `draft_meta_info.json`, `chapters.txt`, `markers.json`, and `<name>.srt` (plus a native text track for captions). See [CapCut limitations](#capcut-limitations) below.
 
@@ -308,7 +308,14 @@ CapCut has no official public scripting API or documented project import format,
 
 ### Testing status
 
-Automated tests check the structure of the generated files (XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback). They can't tell whether an editor accepts them: the Kdenlive, Shotcut, Premiere Pro, and CapCut output has not been opened in those editors yet. Open the result and report anything that doesn't load.
+Automated tests check the structure of all generated files (XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback).
+
+Live editor verification:
+
+- **Kdenlive 26.08.3** (Flatpak `org.kde.kdenlive`) — **Verified live.** Full COP31 episode (4K 25 fps 10-bit H.264 camera `.MOV` + synced external `.wav` audio, 199 A-roll cuts / 24:51, 6 per-chapter projects, color-coded guides, and `.srt` captions) opened, loaded all tracks/clips/thumbnails cleanly, and passed `melt` render + audio cross-correlation sync verification.
+- **Shotcut 26.11.15** (Flatpak `org.shotcut.Shotcut`) — **Verified live** in a clean standalone workspace. Full COP31 episode (199 A-roll cuts / 24:51, 6 per-chapter projects, 115 native color-coded markers, and `.srt` captions) opened cleanly and passed `melt` render + audio cross-correlation sync verification.
+- **Test environment (Kdenlive & Shotcut):** Arch Linux `x86_64` (Linux `7.3.4-zen2-1-zen`), KDE Plasma 6.7.5 (KWin / XLibre), Intel Core i7-13700H, NVIDIA GeForce RTX 4060 Mobile + Intel Iris Xe Graphics, 32 GiB RAM.
+- **Adobe Premiere Pro & CapCut Desktop:** Automated structure tests pass; awaiting live editor test reports. Open the result and report anything that doesn't load.
 
 ## Troubleshooting
 

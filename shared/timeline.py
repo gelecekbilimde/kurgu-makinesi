@@ -42,6 +42,8 @@ IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tif", ".tiff"}
 def hex_to_canonical_color(hex_color: str) -> str:
     """Map an editor hex color back to the nearest canonical Kurgu Makinesi color name."""
     cleaned = hex_color.strip().lower()
+    if len(cleaned) == 9 and cleaned.startswith("#"):
+        cleaned = "#" + cleaned[3:]  # Strip Qt/Shotcut #aarrggbb alpha channel
     for name, (hx, _, _) in MARKER_COLORS.items():
         if hx.lower() == cleaned:
             return name

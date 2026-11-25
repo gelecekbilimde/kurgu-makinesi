@@ -14,6 +14,8 @@ Features:
 from __future__ import annotations
 
 import json
+import time
+import uuid
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -32,8 +34,8 @@ from .timeline import (
     write_srt,
 )
 
-KDENLIVE_DOC_VERSION = "1.04"
-KDENLIVE_APP_VERSION = "24.05.0"
+KDENLIVE_DOC_VERSION = "1.1"
+KDENLIVE_APP_VERSION = "26.08.0"
 
 # Reverse map from Kdenlive guide category ID -> canonical Kurgu Makinesi color
 _CAT_TO_COLOR: Dict[int, str] = {cat: name for name, (_, cat, _) in MARKER_COLORS.items()}
@@ -116,56 +118,95 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
         },
     )
 
-    # Collect unique media resources and assign bin IDs
+    # Collect unique media resources and assign bin IDs + known frame lengths
     file_to_bin_id: Dict[str, str] = {}
+    file_lengths: Dict[str, int] = {}
     unique_files: List[Tuple[str, bool, bool]] = []  # (path, is_image, is_audio_only)
 
-    def register_media(path: str, is_image: bool = False, is_audio_only: bool = False) -> str:
+    def register_media(
+        path: str, is_image: bool = False, is_audio_only: bool = False, min_frames: int = 0
+    ) -> str:
         if path not in file_to_bin_id:
             bid = f"producer{len(unique_files) + 1}"
             file_to_bin_id[path] = bid
             unique_files.append((path, is_image, is_audio_only))
+        if min_frames > file_lengths.get(path, 0):
+            file_lengths[path] = min_frames
         return file_to_bin_id[path]
 
     for pc in placed_v1:
-        register_media(pc.clip.file, is_image=pc.media.is_image)
+        dur_f = int(round(pc.media.duration * timeline.fps)) if pc.media.duration > 0 else 0
+        register_media(
+            pc.clip.file, is_image=pc.media.is_image, min_frames=max(dur_f, pc.out_frame + 1)
+        )
     for ac in placed_a2:
-        register_media(ac.file, is_audio_only=True)
+        register_media(ac.file, is_audio_only=True, min_frames=ac.out_frame + 1)
     for ov in placed_ov:
-        register_media(ov.overlay.file, is_image=ov.media.is_image)
+        dur_f = int(round(ov.media.duration * timeline.fps)) if ov.media.duration > 0 else 0
+        register_media(
+            ov.overlay.file, is_image=ov.media.is_image, min_frames=max(dur_f, ov.out_frame + 1)
+        )
 
-    # Create main bin producers
+    # Create main bin producers (with explicit length/out so avformat-novalidate loads fast and plays)
+    # Kdenlive reserves kdenlive:id 2 for the Sequences folder and 3 for the primary sequence.
+    file_uuids: Dict[str, str] = {}
+    file_kdenlive_ids: Dict[str, str] = {}
     for idx, (path, is_image, is_audio_only) in enumerate(unique_files, start=1):
         bid = f"producer{idx}"
-        prod = ET.SubElement(mlt, "producer", {"id": bid})
+        kid = str(idx + 3)
+        file_kdenlive_ids[path] = kid
+        clip_uuid = "{" + str(uuid.uuid5(uuid.NAMESPACE_URL, f"kdenlive-bin:{idx}:{path}")) + "}"
+        file_uuids[path] = clip_uuid
+        length_f = max(
+            file_lengths.get(path, 0),
+            max(total_frames, int(timeline.fps * 30)) if is_image else 1,
+        )
+        prod = ET.SubElement(mlt, "producer", {"id": bid, "in": "0", "out": str(length_f - 1)})
+        _prop(prod, "length", str(length_f))
         _prop(prod, "resource", str(Path(path).resolve()) if Path(path).exists() else path)
         _prop(prod, "mlt_service", "qimage" if is_image else "avformat-novalidate")
-        _prop(prod, "kdenlive:id", str(idx))
+        _prop(prod, "kdenlive:id", kid)
         _prop(prod, "kdenlive:clipname", Path(path).name)
-        if is_image:
-            _prop(prod, "length", str(max(total_frames, int(timeline.fps * 30))))
+        _prop(prod, "kdenlive:control_uuid", clip_uuid)
+        _prop(prod, "kdenlive:clip_type", "1" if is_audio_only else ("2" if is_image else "0"))
         if is_audio_only:
             _prop(prod, "video_index", "-1")
 
     # Black track producer
     black = ET.SubElement(mlt, "producer", {"id": "black_track", "in": "0", "out": str(total_frames)})
-    _prop(black, "length", str(total_frames + 1))
+    _prop(black, "length", "2147483647")
+    _prop(black, "eof", "continue")
     _prop(black, "resource", "black")
+    _prop(black, "aspect_ratio", "1")
     _prop(black, "mlt_service", "color")
+    _prop(black, "kdenlive:playlistid", "black_track")
+    _prop(black, "mlt_image_format", "rgba")
     _prop(black, "set.test_audio", "0")
 
-    # Track playlists:
+    # Track playlists are built detached first so all track producers are emitted
+    # BEFORE playlists in MLT XML document order (required by MLT's single-pass XML parser).
+    # Kdenlive requires TWO playlists per track tractor (primary + empty sibling for mixes).
     # track_id 0 = A2 (External WAV), 1 = A1 (Camera Audio), 2 = V1 (A-roll), 3 = V2 (B-roll), 4 = V3 (Overlays)
-    pl_a2 = ET.SubElement(mlt, "playlist", {"id": "playlist_a2"})
+    pl_a2 = ET.Element("playlist", {"id": "playlist_a2"})
     _prop(pl_a2, "kdenlive:audio_track", "1")
-    pl_a1 = ET.SubElement(mlt, "playlist", {"id": "playlist_a1"})
-    _prop(pl_a1, "kdenlive:audio_track", "1")
-    pl_v1 = ET.SubElement(mlt, "playlist", {"id": "playlist_v1"})
-    pl_v2 = ET.SubElement(mlt, "playlist", {"id": "playlist_v2"})
-    pl_v3 = ET.SubElement(mlt, "playlist", {"id": "playlist_v3"})
+    pl_a2_b = ET.Element("playlist", {"id": "playlist_a2_b"})
+    _prop(pl_a2_b, "kdenlive:audio_track", "1")
 
-    # Track-scoped producer clones (Kdenlive expects separate video/audio producers per track)
+    pl_a1 = ET.Element("playlist", {"id": "playlist_a1"})
+    _prop(pl_a1, "kdenlive:audio_track", "1")
+    pl_a1_b = ET.Element("playlist", {"id": "playlist_a1_b"})
+    _prop(pl_a1_b, "kdenlive:audio_track", "1")
+
+    pl_v1 = ET.Element("playlist", {"id": "playlist_v1"})
+    pl_v1_b = ET.Element("playlist", {"id": "playlist_v1_b"})
+    pl_v2 = ET.Element("playlist", {"id": "playlist_v2"})
+    pl_v2_b = ET.Element("playlist", {"id": "playlist_v2_b"})
+    pl_v3 = ET.Element("playlist", {"id": "playlist_v3"})
+    pl_v3_b = ET.Element("playlist", {"id": "playlist_v3_b"})
+
+    # Track-scoped producer clones (reused per unique file+mode to avoid opening hundreds of file handles)
     track_prod_counter = 0
+    track_prod_cache: Dict[Tuple[str, bool, bool, bool, Optional[str], float], str] = {}
 
     def make_track_producer(
         src_path: str,
@@ -176,12 +217,23 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
         gain_db: float = 0.0,
     ) -> str:
         nonlocal track_prod_counter
+        crop_key = _crop_to_mlt_rect(crop, timeline.width, timeline.height) if crop is not None else None
+        cache_key = (src_path, is_image, audio_only, video_only, crop_key, round(gain_db, 3))
+        if cache_key in track_prod_cache:
+            return track_prod_cache[cache_key]
+
         track_prod_counter += 1
         pid = f"track_prod_{track_prod_counter}"
-        prod = ET.SubElement(mlt, "producer", {"id": pid})
+        length_f = max(
+            file_lengths.get(src_path, 0),
+            max(total_frames, int(timeline.fps * 30)) if is_image else 1,
+        )
+        prod = ET.SubElement(mlt, "producer", {"id": pid, "in": "0", "out": str(length_f - 1)})
+        _prop(prod, "length", str(length_f))
         _prop(prod, "resource", str(Path(src_path).resolve()) if Path(src_path).exists() else src_path)
         _prop(prod, "mlt_service", "qimage" if is_image else "avformat-novalidate")
-        _prop(prod, "kdenlive:id", file_to_bin_id[src_path].replace("producer", ""))
+        _prop(prod, "kdenlive:id", file_kdenlive_ids[src_path])
+        _prop(prod, "kdenlive:control_uuid", file_uuids[src_path])
         if audio_only:
             _prop(prod, "set.test_image", "1")
             _prop(prod, "set.test_audio", "0")
@@ -200,11 +252,17 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
                 _prop(flt, "rect", _crop_to_mlt_rect(crop, timeline.width, timeline.height))
                 _prop(flt, "compositing", "0")
                 _prop(flt, "distort", "0")
+        track_prod_cache[cache_key] = pid
         return pid
 
     # Groups JSON so V1 + A1 (+ synced A2) move together in Kdenlive
-    # Kdenlive group format: {"children": [{"data": "<track_idx>:<frame>", "leaf": "clip", "type": "Leaf"}, ...], "type": "AVSplit"}
+    # Kdenlive 1.1 group format: {"children": [{"data": "<track_idx>:<frame>:-1", "leaf": "clip", "type": "Leaf"}, ...], "type": "AVSplit"}
     groups: List[Dict[str, object]] = []
+
+    def add_entry(playlist: ET.Element, prod_id: str, src_path: str, in_f: int, out_f: int) -> ET.Element:
+        ent = ET.SubElement(playlist, "entry", {"producer": prod_id, "in": str(in_f), "out": str(out_f)})
+        _prop(ent, "kdenlive:id", file_kdenlive_ids[src_path])
+        return ent
 
     # Populate V1 (track index 2) and A1 (track index 1)
     v1_cursor = 0
@@ -214,15 +272,11 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
         v_pid = make_track_producer(
             pc.clip.file, is_image=pc.media.is_image, audio_only=False, video_only=True, crop=pc.clip.crop
         )
-        ET.SubElement(
-            pl_v1,
-            "entry",
-            {"producer": v_pid, "in": str(pc.in_frame), "out": str(pc.out_frame)},
-        )
+        add_entry(pl_v1, v_pid, pc.clip.file, pc.in_frame, pc.out_frame)
         v1_cursor += pc.duration_frames
 
         group_children: List[Dict[str, str]] = [
-            {"data": f"2:{pc.timeline_start}", "leaf": "clip", "type": "Leaf"}
+            {"data": f"2:{pc.timeline_start}:-1", "leaf": "clip", "type": "Leaf"}
         ]
 
         if pc.media.has_audio and not pc.clip.mute_camera_audio:
@@ -230,21 +284,17 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
             a_pid = make_track_producer(
                 pc.clip.file, is_image=False, audio_only=True, video_only=False
             )
-            ET.SubElement(
-                pl_a1,
-                "entry",
-                {"producer": a_pid, "in": str(pc.in_frame), "out": str(pc.out_frame)},
-            )
+            add_entry(pl_a1, a_pid, pc.clip.file, pc.in_frame, pc.out_frame)
             a1_cursor += pc.duration_frames
             group_children.append(
-                {"data": f"1:{pc.timeline_start}", "leaf": "clip", "type": "Leaf"}
+                {"data": f"1:{pc.timeline_start}:-1", "leaf": "clip", "type": "Leaf"}
             )
 
         # Link synced external WAV (on A2, track index 0) if present
         for ac in placed_a2:
             if ac.linked_v1_index == pc.index:
                 group_children.append(
-                    {"data": f"0:{ac.timeline_start}", "leaf": "clip", "type": "Leaf"}
+                    {"data": f"0:{ac.timeline_start}:-1", "leaf": "clip", "type": "Leaf"}
                 )
 
         if len(group_children) > 1:
@@ -257,11 +307,7 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
         a_pid = make_track_producer(
             ac.file, is_image=False, audio_only=True, video_only=False, gain_db=ac.gain_db
         )
-        ET.SubElement(
-            pl_a2,
-            "entry",
-            {"producer": a_pid, "in": str(ac.in_frame), "out": str(ac.out_frame)},
-        )
+        add_entry(pl_a2, a_pid, ac.file, ac.in_frame, ac.out_frame)
         a2_cursor += ac.duration_frames
 
     # Populate V2 (B-roll, track index 3) and V3 (Overlays/Graphics, track index 4)
@@ -283,59 +329,55 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
             video_only=ov.overlay.mute_audio,
             crop=ov.overlay.crop,
         )
-        ET.SubElement(
-            target_pl,
-            "entry",
-            {"producer": ov_pid, "in": str(ov.in_frame), "out": str(ov.out_frame)},
-        )
+        add_entry(target_pl, ov_pid, ov.overlay.file, ov.in_frame, ov.out_frame)
 
-    # Track tractors (Kdenlive wraps each playlist in a track tractor)
+    # Append playlists AFTER all track producers so MLT resolves every producer reference
+    for pl in (pl_a2, pl_a2_b, pl_a1, pl_a1_b, pl_v1, pl_v1_b, pl_v2, pl_v2_b, pl_v3, pl_v3_b):
+        mlt.append(pl)
+
+    # Track tractors (Kdenlive requires TWO subtracks per track tractor)
     track_defs = [
-        ("tractor_a2", "playlist_a2", "A2 External WAV", True),
-        ("tractor_a1", "playlist_a1", "A1 Camera Audio", True),
-        ("tractor_v1", "playlist_v1", "V1 A-Roll", False),
-        ("tractor_v2", "playlist_v2", "V2 B-Roll", False),
-        ("tractor_v3", "playlist_v3", "V3 Overlays", False),
+        ("tractor_a2", "playlist_a2", "playlist_a2_b", "A2 External WAV", True),
+        ("tractor_a1", "playlist_a1", "playlist_a1_b", "A1 Camera Audio", True),
+        ("tractor_v1", "playlist_v1", "playlist_v1_b", "V1 A-Roll", False),
+        ("tractor_v2", "playlist_v2", "playlist_v2_b", "V2 B-Roll", False),
+        ("tractor_v3", "playlist_v3", "playlist_v3_b", "V3 Overlays", False),
     ]
-    for tid, pl_id, label, is_audio in track_defs:
+    flt_counter = 0
+    for tid, pl_id, pl_b_id, label, is_audio in track_defs:
         tr = ET.SubElement(mlt, "tractor", {"id": tid, "in": "0", "out": str(total_frames)})
         _prop(tr, "kdenlive:track_name", label)
+        _prop(tr, "kdenlive:trackheight", "67")
+        _prop(tr, "kdenlive:timeline_active", "1")
+        _prop(tr, "kdenlive:collapsed", "0")
         if is_audio:
             _prop(tr, "kdenlive:audio_track", "1")
-            _prop(tr, "kdenlive:trackheight", "67")
-        else:
-            _prop(tr, "kdenlive:trackheight", "67")
-        ET.SubElement(tr, "track", {"producer": pl_id, "hide": "video" if is_audio else "audio"})
-
-    # Main sequence tractor
-    main_tractor = ET.SubElement(
-        mlt, "tractor", {"id": "main_tractor", "in": "0", "out": str(total_frames)}
-    )
-    _prop(main_tractor, "kdenlive:sequenceproperties.hasAudio", "1")
-    _prop(main_tractor, "kdenlive:sequenceproperties.hasVideo", "1")
-    ET.SubElement(main_tractor, "track", {"producer": "black_track"})
-    for tid, _, _, _ in track_defs:
-        ET.SubElement(main_tractor, "track", {"producer": tid})
-
-    # Audio mix transitions (A2=1, A1=2 onto black=0)
-    for idx, a_track in enumerate((1, 2), start=1):
-        trn = ET.SubElement(main_tractor, "transition", {"id": f"transition_mix_{idx}"})
-        _prop(trn, "a_track", "0")
-        _prop(trn, "b_track", str(a_track))
-        _prop(trn, "mlt_service", "mix")
-        _prop(trn, "always_active", "1")
-        _prop(trn, "sum", "1")
-
-    # Video compositing transitions (V1=3, V2=4, V3=5 onto black=0 via qtblend)
-    for idx, v_track in enumerate((3, 4, 5), start=1):
-        trn = ET.SubElement(main_tractor, "transition", {"id": f"transition_blend_{idx}"})
-        _prop(trn, "a_track", "0")
-        _prop(trn, "b_track", str(v_track))
-        _prop(trn, "compositing", "0")
-        _prop(trn, "distort", "0")
-        _prop(trn, "rotate_center", "1")
-        _prop(trn, "mlt_service", "qtblend")
-        _prop(trn, "always_active", "1")
+        hide_mode = "video" if is_audio else "audio"
+        ET.SubElement(tr, "track", {"producer": pl_id, "hide": hide_mode})
+        ET.SubElement(tr, "track", {"producer": pl_b_id, "hide": hide_mode})
+        if is_audio:
+            flt_counter += 1
+            f_vol = ET.SubElement(tr, "filter", {"id": f"trk_flt_{flt_counter}"})
+            _prop(f_vol, "window", "75")
+            _prop(f_vol, "max_gain", "20dB")
+            _prop(f_vol, "channel_mask", "-1")
+            _prop(f_vol, "mlt_service", "volume")
+            _prop(f_vol, "internal_added", "237")
+            _prop(f_vol, "disable", "1")
+            flt_counter += 1
+            f_pan = ET.SubElement(tr, "filter", {"id": f"trk_flt_{flt_counter}"})
+            _prop(f_pan, "channel", "-1")
+            _prop(f_pan, "mlt_service", "panner")
+            _prop(f_pan, "internal_added", "237")
+            _prop(f_pan, "start", "0.5")
+            _prop(f_pan, "disable", "1")
+            flt_counter += 1
+            f_lvl = ET.SubElement(tr, "filter", {"id": f"trk_flt_{flt_counter}"})
+            _prop(f_lvl, "iec_scale", "0")
+            _prop(f_lvl, "mlt_service", "audiolevel")
+            _prop(f_lvl, "internal_added", "237")
+            _prop(f_lvl, "dbpeak", "1")
+            _prop(f_lvl, "disable", "1")
 
     # Build Kdenlive guide categories & guides JSON
     guide_categories = [
@@ -370,10 +412,94 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
     if timeline.captions:
         srt_path = write_srt(timeline.captions, out_dir / f"{timeline.name}.srt")
 
-    # Main bin playlist (holds document properties)
+    seq_uuid = "{" + str(uuid.uuid5(uuid.NAMESPACE_URL, f"kdenlive-seq:{timeline.name}")) + "}"
+    seq_bin_id = "3"
+
+    # Main sequence tractor (Kdenlive 1.1 sequence format)
+    main_tractor = ET.SubElement(
+        mlt, "tractor", {"id": "main_tractor", "in": "0", "out": str(total_frames)}
+    )
+    _prop(main_tractor, "kdenlive:duration", str(total_frames + 1))
+    _prop(main_tractor, "kdenlive:maxduration", str(total_frames + 1))
+    _prop(main_tractor, "kdenlive:clipname", timeline.name)
+    _prop(main_tractor, "kdenlive:uuid", seq_uuid)
+    _prop(main_tractor, "kdenlive:control_uuid", seq_uuid)
+    _prop(main_tractor, "kdenlive:producer_type", "17")
+    _prop(main_tractor, "kdenlive:id", seq_bin_id)
+    _prop(main_tractor, "kdenlive:clip_type", "0")
+    _prop(main_tractor, "kdenlive:folderid", "2")
+    _prop(main_tractor, "kdenlive:sequenceproperties.documentuuid", seq_uuid)
+    _prop(main_tractor, "kdenlive:sequenceproperties.hasAudio", "1")
+    _prop(main_tractor, "kdenlive:sequenceproperties.hasVideo", "1")
+    _prop(main_tractor, "kdenlive:sequenceproperties.tracksCount", str(len(track_defs)))
+    _prop(main_tractor, "kdenlive:sequenceproperties.activeTrack", "2")
+    _prop(main_tractor, "kdenlive:sequenceproperties.audioTarget", "0")
+    _prop(main_tractor, "kdenlive:sequenceproperties.videoTarget", "2")
+    _prop(main_tractor, "kdenlive:sequenceproperties.verticalzoom", "1")
+    _prop(main_tractor, "kdenlive:sequenceproperties.zoom", "8")
+    _prop(main_tractor, "kdenlive:sequenceproperties.position", "0")
+    _prop(main_tractor, "kdenlive:sequenceproperties.scrollPos", "0")
+    _prop(main_tractor, "kdenlive:sequenceproperties.zonein", "0")
+    _prop(main_tractor, "kdenlive:sequenceproperties.zoneout", "75")
+    _prop(main_tractor, "kdenlive:sequenceproperties.groups", json.dumps(groups))
+    _prop(main_tractor, "kdenlive:sequenceproperties.guides", json.dumps(guides_json))
+
+    ET.SubElement(main_tractor, "track", {"producer": "black_track"})
+    for tid, _, _, _, _ in track_defs:
+        ET.SubElement(main_tractor, "track", {"producer": tid})
+
+    # Internal audio mix transitions (A2=1, A1=2 onto black=0)
+    for idx, a_track in enumerate((1, 2), start=1):
+        trn = ET.SubElement(main_tractor, "transition", {"id": f"transition_mix_{idx}"})
+        _prop(trn, "a_track", "0")
+        _prop(trn, "b_track", str(a_track))
+        _prop(trn, "mlt_service", "mix")
+        _prop(trn, "kdenlive_id", "mix")
+        _prop(trn, "internal_added", "237")
+        _prop(trn, "always_active", "1")
+        _prop(trn, "accepts_blanks", "1")
+        _prop(trn, "sum", "1")
+
+    # Internal video compositing transitions (V1=3, V2=4, V3=5 onto black=0 via qtblend)
+    for idx, v_track in enumerate((3, 4, 5), start=1):
+        trn = ET.SubElement(main_tractor, "transition", {"id": f"transition_blend_{idx}"})
+        _prop(trn, "a_track", "0")
+        _prop(trn, "b_track", str(v_track))
+        _prop(trn, "compositing", "0")
+        _prop(trn, "distort", "0")
+        _prop(trn, "rotate_center", "0")
+        _prop(trn, "mlt_service", "qtblend")
+        _prop(trn, "kdenlive_id", "qtblend")
+        _prop(trn, "internal_added", "237")
+        _prop(trn, "always_active", "1")
+
+    # Master audio filters on sequence tractor
+    m_vol = ET.SubElement(main_tractor, "filter", {"id": "master_vol"})
+    _prop(m_vol, "window", "75")
+    _prop(m_vol, "max_gain", "20dB")
+    _prop(m_vol, "channel_mask", "-1")
+    _prop(m_vol, "mlt_service", "volume")
+    _prop(m_vol, "internal_added", "237")
+    _prop(m_vol, "disable", "1")
+    m_pan = ET.SubElement(main_tractor, "filter", {"id": "master_pan"})
+    _prop(m_pan, "channel", "-1")
+    _prop(m_pan, "mlt_service", "panner")
+    _prop(m_pan, "internal_added", "237")
+    _prop(m_pan, "start", "0.5")
+    _prop(m_pan, "disable", "1")
+
+    # Main bin playlist (holds document properties, bin clips, and sequence reference)
+    # xml_retain=1 is REQUIRED so MLT does not garbage-collect main_bin when project_tractor is root.
     main_bin = ET.SubElement(mlt, "playlist", {"id": "main_bin"})
+    _prop(main_bin, "kdenlive:folder.-1.2", "Sequences")
+    _prop(main_bin, "kdenlive:sequenceFolder", "2")
     _prop(main_bin, "kdenlive:docproperties.version", KDENLIVE_DOC_VERSION)
     _prop(main_bin, "kdenlive:docproperties.kdenliveversion", KDENLIVE_APP_VERSION)
+    _prop(main_bin, "kdenlive:docproperties.activetimeline", seq_uuid)
+    _prop(main_bin, "kdenlive:docproperties.opensequences", seq_uuid)
+    _prop(main_bin, "kdenlive:docproperties.uuid", seq_uuid)
+    _prop(main_bin, "kdenlive:docproperties.documentid", str(int(time.time() * 1000)))
+    _prop(main_bin, "kdenlive:docproperties.audioChannels", "2")
     _prop(main_bin, "kdenlive:docproperties.guidesCategories", json.dumps(guide_categories))
     _prop(main_bin, "kdenlive:docproperties.guides", json.dumps(guides_json))
     _prop(main_bin, "kdenlive:docproperties.groups", json.dumps(groups))
@@ -383,8 +509,25 @@ def write_kdenlive(timeline: Timeline, output_dir: str | Path) -> Path:
             "kdenlive:docproperties.subtitlesList",
             json.dumps([{"file": str(srt_path.name), "id": 0, "name": "Captions"}]),
         )
-    for idx in range(1, len(unique_files) + 1):
-        ET.SubElement(main_bin, "entry", {"producer": f"producer{idx}"})
+    _prop(main_bin, "xml_retain", "1")
+    for idx, (path, is_image, _) in enumerate(unique_files, start=1):
+        length_f = max(
+            file_lengths.get(path, 0),
+            max(total_frames, int(timeline.fps * 30)) if is_image else 1,
+        )
+        ET.SubElement(
+            main_bin, "entry", {"producer": f"producer{idx}", "in": "0", "out": str(length_f - 1)}
+        )
+    ET.SubElement(main_bin, "entry", {"producer": "main_tractor", "in": "0", "out": str(total_frames)})
+
+    # Root project tractor (MUST be the final element so both Kdenlive 1.1 and melt play main_tractor)
+    proj_tractor = ET.SubElement(
+        mlt, "tractor", {"id": "project_tractor", "in": "0", "out": str(total_frames)}
+    )
+    _prop(proj_tractor, "kdenlive:projectTractor", "1")
+    ET.SubElement(
+        proj_tractor, "track", {"producer": "main_tractor", "in": "0", "out": str(total_frames)}
+    )
 
     out_path.write_text(_prettify_xml(mlt), encoding="utf-8")
     return out_path
@@ -417,9 +560,12 @@ def read_kdenlive_markers(
             pass
 
     guides_raw: Optional[str] = None
-    for prop in root.findall(".//property[@name='kdenlive:docproperties.guides']"):
-        if prop.text:
-            guides_raw = prop.text
+    for prop_name in ("kdenlive:sequenceproperties.guides", "kdenlive:docproperties.guides"):
+        for prop in root.findall(f".//property[@name='{prop_name}']"):
+            if prop.text:
+                guides_raw = prop.text
+                break
+        if guides_raw:
             break
 
     if not guides_raw:

@@ -129,10 +129,11 @@ def write_shotcut(timeline: Timeline, output_dir: str | Path) -> Path:
     main_bin = ET.SubElement(mlt, "playlist", {"id": "main_bin"})
     _prop(main_bin, "xml_retain", "1")
 
-    # Black background producer
-    total_clock = format_tc_mlt(frames_to_sec(total_frames, fps))
-    bg = ET.SubElement(mlt, "producer", {"id": "black", "in": "00:00:00.000", "out": total_clock})
-    _prop(bg, "length", total_clock)
+    # Black background producer + background playlist (Shotcut track 0 convention)
+    total_out_tc = format_tc_mlt(frames_to_sec(max(0, total_frames - 1), fps))
+    total_len_tc = format_tc_mlt(frames_to_sec(total_frames, fps))
+    bg = ET.SubElement(mlt, "producer", {"id": "black", "in": "00:00:00.000", "out": total_out_tc})
+    _prop(bg, "length", total_len_tc)
     _prop(bg, "eof", "pause")
     _prop(bg, "resource", "0")
     _prop(bg, "aspect_ratio", "1")
@@ -140,7 +141,25 @@ def write_shotcut(timeline: Timeline, output_dir: str | Path) -> Path:
     _prop(bg, "mlt_image_format", "rgba")
     _prop(bg, "set.test_audio", "0")
 
+    pl_bg = ET.SubElement(mlt, "playlist", {"id": "background"})
+    ET.SubElement(pl_bg, "entry", {"producer": "black", "in": "00:00:00.000", "out": total_out_tc})
+
+    # Pre-compute full source frame lengths per unique media path so avformat-novalidate
+    # loads instantaneously and allows trimming past the initial cut in Shotcut.
+    file_lengths: Dict[str, int] = {}
+    for pc in placed_v1:
+        dur_f = int(round(pc.media.duration * fps)) if pc.media.duration > 0 else 0
+        file_lengths[pc.clip.file] = max(file_lengths.get(pc.clip.file, 0), dur_f, pc.out_frame + 1)
+    for ac in placed_a2:
+        file_lengths[ac.file] = max(file_lengths.get(ac.file, 0), ac.out_frame + 1)
+    for ov in placed_ov:
+        dur_f = int(round(ov.media.duration * fps)) if ov.media.duration > 0 else 0
+        file_lengths[ov.overlay.file] = max(
+            file_lengths.get(ov.overlay.file, 0), dur_f, ov.out_frame + 1
+        )
+
     chain_counter = 0
+    chain_cache: Dict[Tuple[str, bool, bool, bool, Optional[str], float], str] = {}
 
     def create_media_node(
         src_path: str,
@@ -153,12 +172,28 @@ def write_shotcut(timeline: Timeline, output_dir: str | Path) -> Path:
         gain_db: float = 0.0,
     ) -> str:
         nonlocal chain_counter
+        crop_key = _crop_to_affine_rect(crop, timeline.width, timeline.height) if crop is not None else None
+        # Only cache nodes without per-cut range-scoped affine filters
+        cache_key = (src_path, is_image, mute_audio, audio_only, crop_key, round(gain_db, 3))
+        if crop is None and cache_key in chain_cache:
+            return chain_cache[cache_key]
+
         chain_counter += 1
         cid = f"chain{chain_counter}" if not is_image else f"producer{chain_counter}"
         tag = "producer" if is_image else "chain"
+        length_f = max(
+            file_lengths.get(src_path, 0),
+            out_f + 1,
+            max(total_frames, int(fps * 30)) if is_image else 1,
+        )
         in_tc = format_tc_mlt(frames_to_sec(in_f, fps))
         out_tc = format_tc_mlt(frames_to_sec(out_f, fps))
-        node = ET.SubElement(mlt, tag, {"id": cid, "out": out_tc})
+        full_out_tc = format_tc_mlt(frames_to_sec(max(0, length_f - 1), fps))
+        full_len_tc = format_tc_mlt(frames_to_sec(length_f, fps))
+
+        node = ET.SubElement(mlt, tag, {"id": cid, "in": "00:00:00.000", "out": full_out_tc})
+        _prop(node, "length", full_len_tc)
+        _prop(node, "eof", "pause")
         _prop(node, "resource", str(Path(src_path).resolve()) if Path(src_path).exists() else src_path)
         _prop(node, "mlt_service", "qimage" if is_image else "avformat-novalidate")
         _prop(node, "shotcut:caption", Path(src_path).name)
@@ -178,23 +213,26 @@ def write_shotcut(timeline: Timeline, output_dir: str | Path) -> Path:
             _prop(flt, "transition.fill", "1")
             _prop(flt, "transition.distort", "0")
             _prop(flt, "background", "color:#00000000")
+        if crop is None:
+            chain_cache[cache_key] = cid
         return cid
 
-    # Playlists:
+    # Playlists are built detached first so all <chain>/<producer> declarations appear
+    # BEFORE <playlist> elements in MLT XML document order (required by MLT's parser).
     # playlist0 = V1 (A-roll), playlist1 = V2 (B-roll), playlist2 = V3 (Overlays), playlist3 = A1 (External WAV)
-    pl_v1 = ET.SubElement(mlt, "playlist", {"id": "playlist0"})
+    pl_v1 = ET.Element("playlist", {"id": "playlist0"})
     _prop(pl_v1, "shotcut:video", "1")
     _prop(pl_v1, "shotcut:name", "V1 A-Roll")
 
-    pl_v2 = ET.SubElement(mlt, "playlist", {"id": "playlist1"})
+    pl_v2 = ET.Element("playlist", {"id": "playlist1"})
     _prop(pl_v2, "shotcut:video", "1")
     _prop(pl_v2, "shotcut:name", "V2 B-Roll")
 
-    pl_v3 = ET.SubElement(mlt, "playlist", {"id": "playlist2"})
+    pl_v3 = ET.Element("playlist", {"id": "playlist2"})
     _prop(pl_v3, "shotcut:video", "1")
     _prop(pl_v3, "shotcut:name", "V3 Overlays")
 
-    pl_a1 = ET.SubElement(mlt, "playlist", {"id": "playlist3"})
+    pl_a1 = ET.Element("playlist", {"id": "playlist3"})
     _prop(pl_a1, "shotcut:audio", "1")
     _prop(pl_a1, "shotcut:name", "A1 External WAV")
 
@@ -274,29 +312,36 @@ def write_shotcut(timeline: Timeline, output_dir: str | Path) -> Path:
         )
         a1_cursor += ac.duration_frames
 
+    # Append track playlists AFTER all media chain/producer nodes
+    for pl in (pl_v1, pl_v2, pl_v3, pl_a1):
+        mlt.append(pl)
+
     # Main Shotcut tractor0
     tractor = ET.SubElement(
         mlt,
         "tractor",
-        {"id": "tractor0", "title": SHOTCUT_TITLE, "in": "00:00:00.000", "out": total_clock},
+        {"id": "tractor0", "title": SHOTCUT_TITLE, "in": "00:00:00.000", "out": total_out_tc},
     )
     _prop(tractor, "shotcut", "1")
     _prop(tractor, "shotcut:projectAudioChannels", "2")
     _prop(tractor, "shotcut:projectFolder", "0")
 
-    # Color-coded point & range markers on tractor0
-    for idx, m in enumerate(markers):
-        hx, _, _ = MARKER_COLORS.get(m.color, MARKER_COLORS["Green"])
-        start_tc = format_tc_mlt(frames_to_sec(m.frame, fps))
-        end_tc = format_tc_mlt(frames_to_sec(m.end_frame, fps))
-        text = m.name if not m.note else f"{m.name} — {m.note}"
-        _prop(tractor, f"shotcut:markers:{idx}:text", text)
-        _prop(tractor, f"shotcut:markers:{idx}:start", start_tc)
-        _prop(tractor, f"shotcut:markers:{idx}:end", end_tc)
-        _prop(tractor, f"shotcut:markers:{idx}:color", hx)
+    # Color-coded point & range markers on tractor0 (native Shotcut nested <properties>)
+    if markers:
+        markers_el = ET.SubElement(tractor, "properties", {"name": "shotcut:markers"})
+        for idx, m in enumerate(markers):
+            hx, _, _ = MARKER_COLORS.get(m.color, MARKER_COLORS["Green"])
+            start_tc = format_tc_mlt(frames_to_sec(m.frame, fps))
+            end_tc = format_tc_mlt(frames_to_sec(m.end_frame, fps))
+            text = m.name if not m.note else f"{m.name} — {m.note}"
+            m_el = ET.SubElement(markers_el, "properties", {"name": str(idx)})
+            _prop(m_el, "text", text)
+            _prop(m_el, "start", start_tc)
+            _prop(m_el, "end", end_tc)
+            _prop(m_el, "color", hx)
 
-    # Track stack: 0=black, 1=V1, 2=V2, 3=V3, 4=A1
-    ET.SubElement(tractor, "track", {"producer": "black"})
+    # Track stack: 0=background, 1=V1, 2=V2, 3=V3, 4=A1
+    ET.SubElement(tractor, "track", {"producer": "background"})
     ET.SubElement(tractor, "track", {"producer": "playlist0"})
     ET.SubElement(tractor, "track", {"producer": "playlist1"})
     ET.SubElement(tractor, "track", {"producer": "playlist2"})
@@ -350,6 +395,20 @@ def read_shotcut_markers(
             pass
 
     grouped: Dict[int, Dict[str, str]] = {}
+    # 1. Native Shotcut nested <properties name="shotcut:markers"><properties name="0">...
+    for markers_block in root.findall(".//tractor/properties[@name='shotcut:markers']"):
+        for item in markers_block.findall("properties"):
+            try:
+                idx = int(item.attrib.get("name", len(grouped)))
+            except ValueError:
+                idx = len(grouped)
+            entry = grouped.setdefault(idx, {})
+            for prop in item.findall("property"):
+                fname = prop.attrib.get("name", "")
+                if fname in ("text", "start", "end", "color"):
+                    entry[fname] = (prop.text or "").strip()
+
+    # 2. Fallback for flat shotcut:markers:{n}:{field} properties
     pat = re.compile(r"^shotcut:markers:(\d+):(text|start|end|color)$")
     for prop in root.findall(".//tractor/property"):
         name = prop.attrib.get("name", "")
