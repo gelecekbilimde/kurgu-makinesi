@@ -23,6 +23,7 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 | **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
 | **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
 | **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
+| **Testing status** | Tested on Linux | Structure tested; not opened in Kdenlive yet | Structure tested; not opened in Shotcut yet | Structure tested; not opened in Premiere yet | Experimental; not opened in CapCut yet (v6+ encrypts drafts) |
 
 ## The skills
 
@@ -304,6 +305,8 @@ CapCut has no official public scripting API or documented project import format,
 - **Desktop only (Windows & macOS — no Linux, Mobile, or Web):** CapCut Desktop is not available natively on Linux, and CapCut Mobile / Web cannot load local draft folders.
 - **No A/V grouping for synced WAVs:** External recorder WAVs (`Audio Track 0`) are not linked/grouped to `V1` clips, so moving an A-roll clip in CapCut will not automatically move its synced WAV.
 - **Basic caption styling & codec caveats:** Native text-track captions use plain white text at a fixed lower position (`y: -0.65`) without word-by-word highlight animations; style adjustments must be done in CapCut (or via `<name>.srt`). Transparent ProRes 4444 `.mov` overlays from `making-graphics` may require transcoding or Pro features depending on CapCut version/OS (transparent `.png` stills work normally).
+
+### Testing status
 
 Automated tests check the structure of the generated files (XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback). They can't tell whether an editor accepts them: the Kdenlive, Shotcut, Premiere Pro, and CapCut output has not been opened in those editors yet. Open the result and report anything that doesn't load.
 
