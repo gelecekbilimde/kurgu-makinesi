@@ -45,7 +45,7 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 
 ### Other editors (Kdenlive, Shotcut, Adobe Premiere Pro, CapCut)
 - **Python 3.11 or newer** — `kurgu_makinesi.py` uses only the Python standard library (zero external Python dependencies).
-- **FFprobe** (optional) — reads clip duration, frame rate, resolution, and audio streams; falls back cleanly to 25 fps / 1920×1080 if unavailable.
+- **FFprobe** (optional) — reads each clip's metadata (duration, resolution, frame rate, and audio streams). The project's `fps`, `width`, and `height` come from the cut plan (defaulting to 25 fps and 1920×1080, or 1080×1920 for shorts).
 - Any of **Kdenlive**, **Shotcut**, **Adobe Premiere Pro**, or **CapCut Desktop** to open the generated projects.
 
 ### Other software
@@ -203,13 +203,13 @@ Files go to `~/Downloads/stok/` and `~/Downloads/grafik/`, each with a `kaynakla
 
 ## Multi-editor CLI (Kdenlive, Shotcut, Premiere Pro, CapCut)
 
-`kurgu_makinesi.py` turns a **cut plan JSON** (and optional script) into multi-track projects for **Kdenlive**, **Shotcut**, **Adobe Premiere Pro**, and **CapCut Desktop** — no DaVinci Resolve required. It uses only the Python standard library (Python 3.11+); FFprobe is optional and gracefully falls back to 25 fps / 1920×1080 when unavailable.
+`kurgu_makinesi.py` turns a **cut plan JSON** (and optional script) into multi-track projects for **Kdenlive**, **Shotcut**, **Adobe Premiere Pro**, and **CapCut Desktop** — no DaVinci Resolve required. It uses only the Python standard library (Python 3.11+); FFprobe is optional and reads each clip's metadata, while the project's `fps`, `width`, and `height` come from the cut plan.
 
 It supports sequential A-roll on `V1`, synced external recorder WAVs, multi-track B-roll (`V2`) and graphics/text overlays (`V3`), color-coded point & range markers using the same palette as the Resolve skills, per-chapter splitting with `freeze`/`unfreeze` state, 9:16 vertical Shorts with face crop & `.srt`/native captions, and round-trip Yellow marker readback into `edits.json`.
 
 ### Quick usage
 
-Try it right away with the bundled [`examples/sample_cutplan.json`](examples/sample_cutplan.json) and [`examples/sample_script.md`](examples/sample_script.md):
+Try it right away with the bundled [`examples/sample_cutplan.json`](examples/sample_cutplan.json), [`examples/sample_short_plan.json`](examples/sample_short_plan.json), and [`examples/sample_script.md`](examples/sample_script.md):
 
 ```bash
 # 1. Build projects for all 4 editors (plus per-chapter files)
@@ -225,7 +225,7 @@ python3 kurgu_makinesi.py freeze 1 2 --out build/
 python3 kurgu_makinesi.py unfreeze 2 --out build/
 
 # 3. Build 9:16 Vertical Shorts (1080x1920, face crop & captions)
-python3 kurgu_makinesi.py shorts short_plan.json --format all --out build/shorts/
+python3 kurgu_makinesi.py shorts examples/sample_short_plan.json --format all --out build/shorts/
 
 # 4. Read Yellow edit-range markers back from an edited project into edits.json
 python3 kurgu_makinesi.py read-markers build/shotcut/gb_ep01_ornek.mlt \
@@ -279,11 +279,12 @@ See [`examples/sample_cutplan.json`](examples/sample_cutplan.json) for a full mu
 }
 ```
 
-- `clips`: sequential A-roll clips on `V1`. Supports seconds (`in`/`out`) or integer frames (`in_f`/`out_f`), optional `chapter` (1-based index into script `## ` headings, or title string), `subsection`, `external_audio` (with frame-accurate `audio_offset_f`), and `crop` (`x`, `y`, `scale`, `center_x`, `center_y` for 9:16 shorts).
-- `broll` (`V2`) and `overlays` (`V3`): placed at `timeline_in` (seconds) with `duration` or `in`/`out`, optional `kind` (`STOK`, `GRAFIK`, `YAZI`, `KAYNAK`, `ARŞİV`), `opacity`, and `crop`. Still images (`.png`, `.jpg`, `.webp`, etc.) are handled automatically.
+- `clips`: sequential A-roll clips on `V1`. Supports seconds (`in`/`out`) or integer frames (`in_f`/`out_f`), optional `chapter` (1-based index into script `## ` headings, or title string), `subsection`, `external_audio` (with frame-accurate `audio_offset_f`; setting `external_audio` mutes the camera audio unless `mute_camera_audio` is `false`), and `crop` (for 9:16 shorts — use `scale` and `center_x`/`center_y` for all editors; `x`/`y` pixel offsets apply to Kdenlive and Shotcut only).
+- `broll` (`V2`) and `overlays` (`V3`): placed at `timeline_in` (seconds) with `duration` or `in`/`out`, optional `kind` (`STOK`, `GRAFIK`, `YAZI`, `KAYNAK`, `ARŞİV`), and `crop`. Still images (`.png`, `.jpg`, `.webp`, etc.) are handled automatically.
 - `markers`: point (`duration: 0`) or range markers using the shared Kurgu Makinesi color palette (`Green`, `Sky`, `Blue`, `Red`, `Rose`, `Purple`, `Cyan`, `Fuchsia`, `Pink`, `Yellow`, `Lavender`).
 - `captions`: timed caption items exported as sidecar `<name>.srt` across all editors (and as a native text track in CapCut).
 - `frozen_chapters`: optional list of chapter numbers to skip when exporting with `--chapters`.
+- **Paths & defaults:** `file` (and `external_audio`) is absolute or relative to the directory you run the command from. `fps`, `width`, and `height` default to `25` and `1920×1080` (`1080×1920` for shorts); they are not taken from the footage.
 
 ### Notes & caveats per editor
 
@@ -298,13 +299,13 @@ CapCut has no official public scripting API or documented project import format,
 
 - **Draft encryption in CapCut Desktop ≥ 6.0:** `draft_content.json` and `draft_meta_info.json` target **CapCut Desktop 5.x** (unencrypted JSON). CapCut Desktop 6.0 and newer encrypt newly saved drafts, so unencrypted draft folders may fail to open or re-save on v6+. The sidecar files (`chapters.txt`, `markers.json`, and `<name>.srt`) remain usable on all versions.
 - **Unverified against a live CapCut install:** Automated tests validate the generated JSON schema and timings, but generated drafts have not been end-to-end tested in a live CapCut Desktop installation.
-- **Manual draft folder installation & absolute paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g. `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths at generation time, so moving media or opening the draft on another machine/OS can break links.
+- **Manual draft folder installation & media paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g. `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths if the files exist at generation time; otherwise they are written as given, so moving media or opening the draft on another machine/OS can break links.
 - **No native timeline markers or UI marker readback:** CapCut drafts do not store Kurgu Makinesi's color-coded point/range markers inside `draft_content.json`. Chapters are exported to `chapters.txt` and markers to a sidecar `markers.json`. As a result, `kurgu_makinesi.py read-markers` only reads `markers.json` — markers added manually inside CapCut's timeline UI are not read back.
 - **Desktop only (Windows & macOS — no Linux, Mobile, or Web):** CapCut Desktop is not available natively on Linux, and CapCut Mobile / Web cannot load local draft folders.
 - **No A/V grouping for synced WAVs:** External recorder WAVs (`Audio Track 0`) are not linked/grouped to `V1` clips, so moving an A-roll clip in CapCut will not automatically move its synced WAV.
 - **Basic caption styling & codec caveats:** Native text-track captions use plain white text at a fixed lower position (`y: -0.65`) without word-by-word highlight animations; style adjustments must be done in CapCut (or via `<name>.srt`). Transparent ProRes 4444 `.mov` overlays from `making-graphics` may require transcoding or Pro features depending on CapCut version/OS (transparent `.png` stills work normally).
 
-Automated tests verify XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback across all 4 editors. Still open generated projects in your target editor and report any version-specific quirks.
+Automated tests check the structure of the generated files (XML/JSON schemas, A/V grouping, external WAV sync, multi-track overlays, vertical shorts, freeze logic, and marker readback). They can't tell whether an editor accepts them: the Kdenlive, Shotcut, Premiere Pro, and CapCut output has not been opened in those editors yet. Open the result and report anything that doesn't load.
 
 ## Troubleshooting
 
@@ -325,7 +326,7 @@ Each skill's `SKILL.md` lists its common mistakes. The rough cutter, B-roll and 
 |---|---|
 | `.claude/skills/` | the DaVinci Resolve & standalone Claude Code skills, their scripts and tests |
 | `kurgu_makinesi.py`, `shared/`, `test_kurgu_multi_editor.py` | the Kdenlive / Shotcut / Premiere Pro / CapCut multi-editor builder, marker readback, and tests |
-| `examples/` | sample multi-track cut plan (`sample_cutplan.json`) and script (`sample_script.md`) |
+| `examples/` | sample multi-track cut plan (`sample_cutplan.json`), vertical short plan (`sample_short_plan.json`), and script (`sample_script.md`) |
 | `templates/script/` | the script template for writers and its reader |
 | `graphics/` | designs and graphic templates |
 | `docs/` | specs, plans and the development log |
