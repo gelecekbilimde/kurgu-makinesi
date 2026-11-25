@@ -35,6 +35,7 @@ from shared import (
 
 ROOT = Path(__file__).resolve().parent
 SAMPLE_CUTPLAN = ROOT / "examples" / "sample_cutplan.json"
+SAMPLE_SHORT_PLAN = ROOT / "examples" / "sample_short_plan.json"
 SAMPLE_SCRIPT = ROOT / "examples" / "sample_script.md"
 
 
@@ -203,6 +204,17 @@ class TestKurguMultiEditor(unittest.TestCase):
         self.assertEqual(len(edits_data["edits"]), 1)
         self.assertEqual(edits_data["edits"][0]["start_f"], 600)
         self.assertEqual(edits_data["edits"][0]["end_f"], 675)
+
+        # Test bundled shorts example via CLI `shorts` subcommand
+        shorts_out = self.out / "cli_shorts"
+        rc = kurgu_makinesi.main(
+            ["shorts", str(SAMPLE_SHORT_PLAN), "--format", "all", "--out", str(shorts_out)]
+        )
+        self.assertEqual(rc, 0)
+        self.assertTrue((shorts_out / "kdenlive" / "gb_ep01_short_ornek.kdenlive").exists())
+        self.assertTrue((shorts_out / "shotcut" / "gb_ep01_short_ornek.mlt").exists())
+        self.assertTrue((shorts_out / "premiere" / "gb_ep01_short_ornek.xml").exists())
+        self.assertTrue((shorts_out / "capcut" / "gb_ep01_short_ornek" / "draft_content.json").exists())
 
 
 if __name__ == "__main__":

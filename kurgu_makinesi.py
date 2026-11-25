@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Kurgu Makinesi Multi-Editor CLI (Kdenlive, Shotcut, Premiere Pro, CapCut).
 
-Drop-in replacement for `kurgu_makinesi.py` in gelecekbilimde/kurgu-makinesi.
-Supports both the original `import` subcommand and the README's `make` syntax,
+Multi-editor project builder for gelecekbilimde/kurgu-makinesi.
+Supports both the `import` subcommand and the `make` alias,
 plus per-chapter generation with freeze/unfreeze state, vertical Shorts, and
 round-trip marker feedback readback.
 """
