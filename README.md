@@ -19,11 +19,11 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 | **Synced External WAV Audio** | Yes (waveform sync) | `A2` track + grouped with `V1` (`audio_offset_f`) | `A1` (`playlist3`) + `mix` | `A3`/`A4` stereo tracks | Audio Track 0 (not grouped with V1) |
 | **Multi-Track B-Roll (`V2`) & Overlays (`V3`)** | Yes (`placing-b-roll`) | `V2` + `V3` with `qtblend` | `playlist1`/`playlist2` with `frei0r.cairoblend` & `qimage` stills | `V2` + `V3` tracks | Video Track 1 + Video Track 2 |
 | **Color-Coded Point & Range Markers** | Yes (native Resolve markers) | `guidesCategories` + `guides` JSON | Native `<properties name="shotcut:markers">` with hex color & start/end | Sequence `<marker>` with `<pproColor>` & `<in>`/`<out>` | Sidecar `chapters.txt` + `markers.json` only (no native markers) |
-| **Yellow Marker Feedback Readback** | Yes (skills read Resolve markers) | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` reads sidecar `markers.json` only |
+| **Yellow Marker Feedback Readback** | Yes (skills read Resolve markers) | `read-markers` → `edits.json` | `read-markers` → `edits.json` | `read-markers` → `edits.json` | Not supported from CapCut UI (no `.xml` export; reads sidecar `markers.json` only) |
 | **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
 | **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
 | **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
-| **Testing status** | Tested on Linux | **Tested on Linux** (Kdenlive 26.08.3 Flatpak) | **Tested on Linux** (Shotcut 26.11.15 Flatpak) | Structure tested; awaiting live report | Experimental; awaiting live report (v6+ encrypts drafts) |
+| **Testing status** | Tested on Linux | **Tested on Linux** (Kdenlive 26.08.3 Flatpak) | **Tested on Linux** (Shotcut 26.11.15 Flatpak) | **Tested on macOS** (recommended over CapCut) | **Tested on macOS** (experimental; no `.xml` export for `read-markers`; v6+ encrypts drafts) |
 
 ## The skills
 
@@ -62,7 +62,7 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 | DaVinci Resolve Studio, Kdenlive, Shotcut, Adobe Premiere Pro, or CapCut | opening and editing timelines/projects |
 
 ### Operating system
-Developed and tested on Linux. `rv.sh` also knows Resolve's default paths on macOS, but macOS and Windows are untested.
+Developed and tested on Linux. The multi-editor CLI (`kurgu_makinesi.py`) has also been tested on **macOS** with Adobe Premiere Pro and CapCut Desktop. `rv.sh` knows Resolve's default paths on macOS, though Resolve skills on macOS and all workflows on Windows remain untested.
 
 ## Setup
 
@@ -291,17 +291,16 @@ See [`examples/sample_cutplan.json`](examples/sample_cutplan.json) for a full mu
 
 - **Kdenlive (`.kdenlive`):** Generates native Kdenlive `1.1` sequence projects (`project_tractor` + `main_tractor`, two subtracks per track tractor, `xml_retain=1` on `main_bin`, and deduplicated `avformat-novalidate` producers with explicit frame lengths). A/V pairs and synced external WAV tracks are grouped via `kdenlive:sequenceproperties.groups` (mirrored to `kdenlive:docproperties.groups`); uses `qtblend` for `V2`/`V3` overlays and vertical crop, and `guidesCategories` + `guides` JSON for color-coded markers.
 - **Shotcut (`.mlt`):** Uses `<playlist id="background">` + `playlist0`–`playlist3` with `mix` for synced external audio, deduplicated `avformat-novalidate` chains with explicit lengths, `frei0r.cairoblend` & `qimage` stills for B-roll/overlays, `affine` for 9:16 face crop, and native nested `<properties name="shotcut:markers">` with hex colors and start/end ranges.
-- **Adobe Premiere Pro (`.xml`):** Uses Final Cut Pro 7 XML (`<xmeml version="4">`) imported via **File › Import** (native `.prproj` is proprietary). Links A1/A2 with `<link>`, places synced WAVs on A3/A4, overlays on V2/V3, Basic Motion for 9:16 crop, and `<marker>` with `<pproColor>`.
-- **CapCut Desktop (`<name>/` draft folder — experimental):** Writes `draft_content.json`, `draft_meta_info.json`, `chapters.txt`, `markers.json`, and `<name>.srt` (plus a native text track for captions). See [CapCut limitations](#capcut-limitations) below.
+- **Adobe Premiere Pro (`.xml`):** Uses Final Cut Pro 7 XML (`<xmeml version="4">`) imported via **File › Import** (native `.prproj` is proprietary). Links A1/A2 with `<link>`, places synced WAVs on A3/A4, overlays on V2/V3, Basic Motion for 9:16 crop, and `<marker>` with `<pproColor>`. Verified on macOS and noticeably more comfortable to use than CapCut (including `.xml` export for `read-markers` round-tripping).
+- **CapCut Desktop (`<name>/` draft folder — experimental):** Writes `draft_content.json`, `draft_meta_info.json`, `chapters.txt`, `markers.json`, and `<name>.srt` (plus a native text track for captions). Verified on macOS, though Premiere Pro is more comfortable to use. See [CapCut limitations](#capcut-limitations) below.
 
 ### CapCut limitations
 
-CapCut has no official public scripting API or documented project import format, so CapCut support is **experimental** and has important constraints compared to Resolve, Kdenlive, Shotcut, and Premiere Pro:
+CapCut has no official public scripting API or documented project import format, so CapCut support is **experimental** and has important constraints compared to Resolve, Kdenlive, Shotcut, and Premiere Pro (on macOS, Premiere Pro is noticeably easier to use):
 
+- **No `.xml` export / no UI marker readback (`read-markers`):** CapCut does not export timelines in `.xml` format, and CapCut drafts do not store Kurgu Makinesi's color-coded point/range markers inside `draft_content.json`. Chapters are exported to `chapters.txt` and markers to a sidecar `markers.json`. Because CapCut cannot export `.xml`, `kurgu_makinesi.py read-markers` cannot run on timelines edited in CapCut — it can only read the static sidecar `markers.json`, not markers added inside CapCut's UI.
 - **Draft encryption in CapCut Desktop ≥ 6.0:** `draft_content.json` and `draft_meta_info.json` target **CapCut Desktop 5.x** (unencrypted JSON). CapCut Desktop 6.0 and newer encrypt newly saved drafts, so unencrypted draft folders may fail to open or re-save on v6+. The sidecar files (`chapters.txt`, `markers.json`, and `<name>.srt`) remain usable on all versions.
-- **Unverified against a live CapCut install:** Automated tests validate the generated JSON schema and timings, but generated drafts have not been end-to-end tested in a live CapCut Desktop installation.
 - **Manual draft folder installation & media paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g. `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths if the files exist at generation time; otherwise they are written as given, so moving media or opening the draft on another machine/OS can break links.
-- **No native timeline markers or UI marker readback:** CapCut drafts do not store Kurgu Makinesi's color-coded point/range markers inside `draft_content.json`. Chapters are exported to `chapters.txt` and markers to a sidecar `markers.json`. As a result, `kurgu_makinesi.py read-markers` only reads `markers.json` — markers added manually inside CapCut's timeline UI are not read back.
 - **Desktop only (Windows & macOS — no Linux, Mobile, or Web):** CapCut Desktop is not available natively on Linux, and CapCut Mobile / Web cannot load local draft folders.
 - **No A/V grouping for synced WAVs:** External recorder WAVs (`Audio Track 0`) are not linked/grouped to `V1` clips, so moving an A-roll clip in CapCut will not automatically move its synced WAV.
 - **Basic caption styling & codec caveats:** Native text-track captions use plain white text at a fixed lower position (`y: -0.65`) without word-by-word highlight animations; style adjustments must be done in CapCut (or via `<name>.srt`). Transparent ProRes 4444 `.mov` overlays from `making-graphics` may require transcoding or Pro features depending on CapCut version/OS (transparent `.png` stills work normally).
@@ -315,7 +314,8 @@ Live editor verification:
 - **Kdenlive 26.08.3** (Flatpak `org.kde.kdenlive`) — **Verified live.** Full COP31 episode (4K 25 fps 10-bit H.264 camera `.MOV` + synced external `.wav` audio, 199 A-roll cuts / 24:51, 6 per-chapter projects, color-coded guides, and `.srt` captions) opened, loaded all tracks/clips/thumbnails cleanly, and passed `melt` render + audio cross-correlation sync verification.
 - **Shotcut 26.11.15** (Flatpak `org.shotcut.Shotcut`) — **Verified live** in a clean standalone workspace. Full COP31 episode (199 A-roll cuts / 24:51, 6 per-chapter projects, 115 native color-coded markers, and `.srt` captions) opened cleanly and passed `melt` render + audio cross-correlation sync verification.
 - **Test environment (Kdenlive & Shotcut):** Arch Linux `x86_64` (Linux `7.3.4-zen2-1-zen`), KDE Plasma 6.7.5 (KWin / XLibre), Intel Core i7-13700H, NVIDIA GeForce RTX 4060 Mobile + Intel Iris Xe Graphics, 32 GiB RAM.
-- **Adobe Premiere Pro & CapCut Desktop:** Automated structure tests pass; awaiting live editor test reports. Open the result and report anything that doesn't load.
+- **Adobe Premiere Pro (macOS)** — **Verified live.** Confirmed working on macOS and noticeably more comfortable to use than CapCut, with `.xml` export support for `read-markers`.
+- **CapCut Desktop (macOS)** — **Verified live (experimental).** Confirmed working on macOS, though usability is lower than Premiere Pro and `read-markers` cannot be used on edited timelines because CapCut does not export `.xml`.
 
 ## Troubleshooting
 
