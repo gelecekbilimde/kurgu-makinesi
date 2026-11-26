@@ -62,7 +62,7 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 | DaVinci Resolve Studio, Kdenlive, Shotcut, Adobe Premiere Pro, or CapCut | opening and editing timelines/projects |
 
 ### Operating system
-Developed and tested on Linux. The multi-editor CLI (`kurgu_makinesi.py`) has also been tested on **macOS** with Adobe Premiere Pro and CapCut Desktop. `rv.sh` knows Resolve's default paths on macOS, though Resolve skills on macOS and all workflows on Windows remain untested.
+Developed and tested on GNU/Linux. The multi-editor CLI (`kurgu_makinesi.py`) has also been tested on **macOS** with Adobe Premiere Pro and CapCut Desktop. `rv.sh` knows Resolve's default paths on macOS, though Resolve skills on macOS and all workflows on Windows remain untested.
 
 ## Setup
 
@@ -301,7 +301,7 @@ CapCut has no official public scripting API or documented project import format,
 - **No `.xml` export / no UI marker readback (`read-markers`):** CapCut does not export timelines in `.xml` format, and CapCut drafts do not store Kurgu Makinesi's color-coded point/range markers inside `draft_content.json`. Chapters are exported to `chapters.txt` and markers to a sidecar `markers.json`. Because CapCut cannot export `.xml`, `kurgu_makinesi.py read-markers` cannot run on timelines edited in CapCut — it can only read the static sidecar `markers.json`, not markers added inside CapCut's UI.
 - **Draft encryption in CapCut Desktop ≥ 6.0:** `draft_content.json` and `draft_meta_info.json` target **CapCut Desktop 5.x** (unencrypted JSON). CapCut Desktop 6.0 and newer encrypt newly saved drafts, so unencrypted draft folders may fail to open or re-save on v6+. The sidecar files (`chapters.txt`, `markers.json`, and `<name>.srt`) remain usable on all versions.
 - **Manual draft folder installation & media paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g., `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths if the files exist at generation time; otherwise, they are written as given, so moving media or opening the draft on another machine/OS can break links.
-- **Desktop only (Windows & macOS — no Linux, Mobile, or Web):** CapCut Desktop is not available natively on Linux, and CapCut Mobile / Web cannot load local draft folders.
+- **Windows & macOS only (no GNU/Linux, Mobile, or Web):** CapCut Desktop is not available natively on GNU/Linux, and CapCut Mobile / Web cannot load local draft folders.
 - **No A/V grouping for synced WAVs:** External recorder WAVs (`Audio Track 0`) are not linked/grouped to `V1` clips, so moving an A-roll clip in CapCut will not automatically move its synced WAV.
 - **Basic caption styling & codec caveats:** Native text-track captions use plain white text at a fixed lower position (`y: -0.65`) without word-by-word highlight animations; style adjustments must be done in CapCut (or via `<name>.srt`). Transparent ProRes 4444 `.mov` overlays from `making-graphics` may require transcoding or Pro features depending on CapCut version/OS (transparent `.png` stills work normally).
 
@@ -311,11 +311,11 @@ Automated tests check the structure of all generated files (XML/JSON schemas, A/
 
 Live editor verification:
 
-- **Kdenlive 26.08.3** (Flatpak `org.kde.kdenlive`) — **Verified live.** Full COP31 episode (4K 25 fps 10-bit H.264 camera `.MOV` + synced external `.wav` audio, 199 A-roll cuts / 24:51, 6 per-chapter projects, color-coded guides, and `.srt` captions) opened, loaded all tracks/clips/thumbnails cleanly, and passed `melt` render + audio cross-correlation sync verification.
-- **Shotcut 26.11.15** (Flatpak `org.shotcut.Shotcut`) — **Verified live** in a clean standalone workspace. Full COP31 episode (199 A-roll cuts / 24:51, 6 per-chapter projects, 115 native color-coded markers, and `.srt` captions) opened cleanly and passed `melt` render + audio cross-correlation sync verification.
+- **Kdenlive 26.08.3** (Flatpak `org.kde.kdenlive`) — **Verified live on GNU/Linux.** Full COP31 episode (4K 25 fps 10-bit H.264 camera `.MOV` + synced external `.wav` audio, 199 A-roll cuts / 24:51, 6 per-chapter projects, color-coded guides, and `.srt` captions) opened, loaded all tracks/clips/thumbnails cleanly, and passed `melt` render + audio cross-correlation sync verification.
+- **Shotcut 26.11.15** (Flatpak `org.shotcut.Shotcut`) — **Verified live on GNU/Linux** in a clean standalone workspace. Full COP31 episode (199 A-roll cuts / 24:51, 6 per-chapter projects, 115 native color-coded markers, and `.srt` captions) opened cleanly and passed `melt` render + audio cross-correlation sync verification.
 - **Test environment (Kdenlive & Shotcut):** Arch Linux `x86_64` (Linux `7.3.4-zen2-1-zen`), KDE Plasma 6.7.5 (KWin / XLibre), Intel Core i7-13700H, NVIDIA GeForce RTX 4060 Mobile + Intel Iris Xe Graphics, 32 GiB RAM.
-- **Adobe Premiere Pro (macOS)** — **Verified live.** Confirmed working on macOS and noticeably more comfortable to use than CapCut, with `.xml` export support for `read-markers`.
-- **CapCut Desktop (macOS)** — **Verified live (experimental).** Confirmed working on macOS, though usability is lower than Premiere Pro and `read-markers` cannot be used on edited timelines because CapCut does not export `.xml`.
+- **Adobe Premiere Pro** — **Verified live on macOS.** Confirmed working on macOS and noticeably more comfortable to use than CapCut, with `.xml` export support for `read-markers`.
+- **CapCut Desktop (experimental)** — **Verified live on macOS.** Confirmed working on macOS, though usability is lower than Premiere Pro and `read-markers` cannot be used on edited timelines because CapCut does not export `.xml`.
 
 ## Troubleshooting
 
