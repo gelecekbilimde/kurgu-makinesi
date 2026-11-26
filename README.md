@@ -89,7 +89,13 @@ python3 -m venv .venv
 ```
 The first short also downloads two small MediaPipe models.
 
-**4. Install FFmpeg, then set up the graphics renderer.** On Fedora/RHEL-like systems, FFmpeg comes from [RPM Fusion](https://rpmfusion.org/Configuration) (`sudo dnf install ffmpeg`).
+**4. Install FFmpeg, then set up the graphics renderer.**
+    - **Arch-based:** `sudo pacman -S ffmpeg`
+    - **Debian/Ubuntu-based:** `sudo apt install ffmpeg`
+    - **Fedora/RHEL-like:** from [RPM Fusion](https://rpmfusion.org/Configuration) (`sudo dnf install ffmpeg`)
+    - **macOS:** `brew install ffmpeg` (via [Homebrew](https://brew.sh/))
+    - **Windows:** `winget install Gyan.FFmpeg` (or download from [gyan.dev](https://www.gyan.dev/ffmpeg/builds/))
+
 ```bash
 python3 .claude/skills/making-graphics/scripts/setup.py
 ```
