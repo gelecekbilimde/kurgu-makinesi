@@ -29,7 +29,7 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 
 | Skill | What it does | Needs Resolve |
 |---|---|---|
-| [`rough-cutting-a-roll`](.claude/skills/rough-cutting-a-roll/SKILL.md) | Syncs camera clips with recorder WAVs, transcribes them, removes retakes, false starts and pauses, and builds one timeline per script chapter | yes |
+| [`rough-cutting-a-roll`](.claude/skills/rough-cutting-a-roll/SKILL.md) | Syncs camera clips with recorder WAVs, transcribes them, removes retakes, false starts, and pauses, and builds one timeline per script chapter | yes |
 | [`finding-stock-footage`](.claude/skills/finding-stock-footage/SKILL.md) | Searches Pixabay and NASA, downloads a few candidates and collects the credits | no (works for all editors) |
 | [`making-graphics`](.claude/skills/making-graphics/SKILL.md) | Renders title cards, numbers, charts, name lines and other overlays from HyperFrames templates | no (works for all editors) |
 | [`placing-b-roll`](.claude/skills/placing-b-roll/SKILL.md) | Fills the script's B-roll rows with stock, graphics and source screenshots, over signed-off A-roll chapters | yes |
@@ -87,9 +87,9 @@ python3 -m venv .venv
 .venv/bin/pip install -r .claude/skills/rough-cutting-a-roll/requirements.txt \
                       -r .claude/skills/cutting-shorts/requirements.txt
 ```
-The first short also downloads two small mediapipe models.
+The first short also downloads two small MediaPipe models.
 
-**4. Install FFmpeg, then set up the graphics renderer.** On Fedora/RHEL-like systems FFmpeg comes from [RPM Fusion](https://rpmfusion.org/Configuration) (`sudo dnf install ffmpeg`).
+**4. Install FFmpeg, then set up the graphics renderer.** On Fedora/RHEL-like systems, FFmpeg comes from [RPM Fusion](https://rpmfusion.org/Configuration) (`sudo dnf install ffmpeg`).
 ```bash
 python3 .claude/skills/making-graphics/scripts/setup.py
 ```
@@ -110,7 +110,7 @@ The channel's brand pack isn't in git and isn't needed to run the skills. Team m
 
 ## Using the skills
 
-Tell Claude what you want, in Turkish or English; it picks the skill and runs the scripts. You can also name a skill yourself, for example `/rough-cutting-a-roll`. The sections below follow one episode from script to shorts. Stock footage and graphics also work on their own, without an episode.
+Tell Claude what you want, in Turkish or English; it picks the skill and runs the scripts. You can also name a skill yourself, for example, `/rough-cutting-a-roll`. The sections below follow one episode from script to shorts. Stock footage and graphics also work on their own, without an episode.
 
 Only signed-off ("frozen") work moves on: **A-roll → B-roll → shorts**.
 
@@ -119,7 +119,7 @@ Only signed-off ("frozen") work moves on: **A-roll → B-roll → shorts**.
 1. Write the script in a copy of the [script template](templates/script/README.md), then download it as `.docx`.
 2. Make a folder `episodes/<slug>/` and put the file there as `script.docx`. Git ignores `episodes/`.
 3. Unzip the raw footage outside the repo or under `demo/`, which git also ignores.
-4. Create a project in Resolve and leave it open. **Don't create a timeline yet:** the frame rate can't be changed afterwards.
+4. Create a project in Resolve and leave it open. **Don't create a timeline yet:** the frame rate can't be changed afterward.
 5. Ask Claude to write `episodes/<slug>/episode.json`, or write it yourself:
 
 ```json
@@ -148,7 +148,7 @@ Claude then:
 1. pairs the camera clips with the recorder files and asks you when a pairing is unclear;
 2. reads the script;
 3. sets the project's frame rate and Turkish transcription;
-4. imports, syncs and transcribes the clips, and checks the sync independently;
+4. imports, syncs, and transcribes the clips, and checks the sync independently;
 5. plans the cuts and builds one timeline per chapter, plus a master.
 
 **Review in Resolve.** The engine removes only what it is sure of and marks the rest:
@@ -160,7 +160,7 @@ Claude then:
 | Red, Rose, Purple | where something was removed |
 | **Yellow range** | **yours: remove this range** |
 
-Add Yellow ranges, or recolour a Fuchsia one to Yellow. The end of the range is where the good take starts. Then:
+Add Yellow ranges, or recolor a Fuchsia one to Yellow. The end of the range is where the good takes off. Then:
 
 > Apply my markers on chapter 2 and rebuild it.
 
@@ -174,7 +174,7 @@ A frozen chapter is never rebuilt.
 
 Each chapter gets a new `… B-roll` timeline with the frozen chapter nested on V1, full-screen B-roll on V2 and overlays on V3. The script's tags decide what goes in: `[STOK]` stock, `[GRAFİK]` and `[YAZI]` graphics, `[KAYNAK]` source screenshots, `[ARŞİV]` a placeholder for past footage. Anything that can't be filled stays visible as a placeholder with a Lavender marker.
 
-Move, trim, swap or delete anything you like; rebuilding keeps your changes. Unused stock candidates are in the bin `<prefix> B-roll/ch<N>/<row id>`. When you're happy:
+Move, trim, swap, or delete anything you like; rebuilding keeps your changes. Unused stock candidates are in the bin `<prefix> B-roll/ch<N>/<row id>`. When you're happy:
 
 > Freeze the B-roll of chapter 2 and build the B-roll master.
 
@@ -188,9 +188,9 @@ Shorts come only from chapters with both A-roll and B-roll frozen, and `episode.
 
 Claude builds a review timeline, `<prefix> short adayları`, with Fuchsia ranges. Turn a candidate's marker **Green** to accept it, and move or resize its ranges to change the passage. Then:
 
-> I accepted the shorts I want, build them.
+> I accepted the shorts I want; build them.
 
-Each short is a 1080x1920 timeline with a teaser, captions, the episode's B-roll and an end card. Edit it freely. Two things are done by hand for now: the subtitle style, and the watermark's size and animation.
+Each short is a 1080x1920 timeline with a teaser, captions, the episode's B-roll and an end card. Edit it freely. Two things are done by hand for now: the subtitle style and the watermark's size and animation.
 
 > Freeze short c1.
 
@@ -198,7 +198,7 @@ Each short is a 1080x1920 timeline with a teaser, captions, the episode's B-roll
 
 > Find rocket launch footage for a vertical short.
 
-> Make a number graphic: 10^67 yıl, "Kara deliklerin buharlaşma süresi", source NASA.
+> Make a number graphic: 10^67 yıl, "Kara deliklerin buharlaşma süresi", source: NASA.
 
 Files go to `~/Downloads/stok/` and `~/Downloads/grafik/`, each with a `kaynaklar.txt` for the credits. Graphics are transparent ProRes 4444 overlays unless you ask for a background. To design a new template or look, ask Claude for one; it follows the [design workflow](.claude/skills/making-graphics/references/design-workflow.md) and leaves the design decisions to you. The `starter` design is an example, not the channel's approved look.
 
@@ -296,11 +296,11 @@ See [`examples/sample_cutplan.json`](examples/sample_cutplan.json) for a full mu
 
 ### CapCut limitations
 
-CapCut has no official public scripting API or documented project import format, so CapCut support is **experimental** and has important constraints compared to Resolve, Kdenlive, Shotcut, and Premiere Pro (on macOS, Premiere Pro is noticeably easier to use):
+CapCut has no official public scripting API or documented project import format, so CapCut support is **experimental** and has important constraints compared to Resolve, Kdenlive, Shotcut, and Premiere Pro.
 
 - **No `.xml` export / no UI marker readback (`read-markers`):** CapCut does not export timelines in `.xml` format, and CapCut drafts do not store Kurgu Makinesi's color-coded point/range markers inside `draft_content.json`. Chapters are exported to `chapters.txt` and markers to a sidecar `markers.json`. Because CapCut cannot export `.xml`, `kurgu_makinesi.py read-markers` cannot run on timelines edited in CapCut — it can only read the static sidecar `markers.json`, not markers added inside CapCut's UI.
 - **Draft encryption in CapCut Desktop ≥ 6.0:** `draft_content.json` and `draft_meta_info.json` target **CapCut Desktop 5.x** (unencrypted JSON). CapCut Desktop 6.0 and newer encrypt newly saved drafts, so unencrypted draft folders may fail to open or re-save on v6+. The sidecar files (`chapters.txt`, `markers.json`, and `<name>.srt`) remain usable on all versions.
-- **Manual draft folder installation & media paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g. `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths if the files exist at generation time; otherwise they are written as given, so moving media or opening the draft on another machine/OS can break links.
+- **Manual draft folder installation & media paths:** CapCut Desktop has no *File › Import Project* option for draft folders — you must copy `<name>/` into CapCut's local drafts directory (e.g., `~/Movies/CapCut/User Data/Projects/com.lveditor.draft/` on macOS or `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft\` on Windows). Media paths are written as absolute paths if the files exist at generation time; otherwise, they are written as given, so moving media or opening the draft on another machine/OS can break links.
 - **Desktop only (Windows & macOS — no Linux, Mobile, or Web):** CapCut Desktop is not available natively on Linux, and CapCut Mobile / Web cannot load local draft folders.
 - **No A/V grouping for synced WAVs:** External recorder WAVs (`Audio Track 0`) are not linked/grouped to `V1` clips, so moving an A-roll clip in CapCut will not automatically move its synced WAV.
 - **Basic caption styling & codec caveats:** Native text-track captions use plain white text at a fixed lower position (`y: -0.65`) without word-by-word highlight animations; style adjustments must be done in CapCut (or via `<name>.srt`). Transparent ProRes 4444 `.mov` overlays from `making-graphics` may require transcoding or Pro features depending on CapCut version/OS (transparent `.png` stills work normally).
@@ -339,7 +339,7 @@ Each skill's `SKILL.md` lists its common mistakes. The rough cutter, B-roll and 
 | `examples/` | sample multi-track cut plan (`sample_cutplan.json`), vertical short plan (`sample_short_plan.json`), and script (`sample_script.md`) |
 | `templates/script/` | the script template for writers and its reader |
 | `graphics/` | designs and graphic templates |
-| `docs/` | specs, plans and the development log |
+| `docs/` | specs, plans, and the development log |
 | `episodes/`, `demo/`, `assets/` | local working data, not in git |
 
 Run the tests (Resolve, FFmpeg, and network not needed):
@@ -355,7 +355,7 @@ Copyright (c) 2026 Gelecek Bilimde. The code and documentation are under the [GN
 Two additional permissions apply (full wording in [NOTICE](NOTICE)):
 
 - **DaVinci Resolve:** you may combine the project with Resolve and its scripting library, and share the result.
-- **Your output is yours:** videos, graphics, subtitles and timelines you make with the project are not under the GPL, even when they use its templates.
+- **Your output is yours:** videos, graphics, subtitles, and timelines you make with the project are not under the GPL, even when they use its templates.
 
 The GPL and these permissions don't cover:
 
