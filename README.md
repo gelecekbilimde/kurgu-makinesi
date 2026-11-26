@@ -23,7 +23,7 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 | **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
 | **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
 | **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
-| **Testing status** | Tested on GNU/Linux | **Tested on GNU/Linux** (Kdenlive 26.08.3 Flatpak) | Tested on GNU/Linux (Shotcut 26.11.15 Flatpak) | Tested on macOS (recommended over CapCut) | Tested on macOS (experimental; no `.xml` export for `read-markers`; v6+ encrypts drafts) |
+| **Testing status** | Tested on GNU/Linux | Tested on GNU/Linux (Kdenlive 26.08.3 Flatpak) | Tested on GNU/Linux (Shotcut 26.11.15 Flatpak) | Tested on macOS (recommended over CapCut) | Tested on macOS (experimental; no `.xml` export for `read-markers`; v6+ encrypts drafts) |
 
 ## The skills
 
