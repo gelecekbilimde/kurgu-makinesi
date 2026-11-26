@@ -27,3 +27,7 @@ Thumbs.db
 # Superpowers brainstorm mockups and plan-execution workspaces
 /.superpowers/
 /.claude/skills/making-graphics/node_modules/
+
+# Environment & secret files
+.env*
+!.env.example
