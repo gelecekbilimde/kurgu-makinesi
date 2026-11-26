@@ -11,7 +11,7 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 
 ## Supported editors
 
-| Capability | DaVinci Resolve Studio | Kdenlive (`.kdenlive`) | Shotcut (`.mlt`) | Adobe Premiere Pro (FCP7 `.xml`) | CapCut Desktop (Draft Folder, *experimental*) |
+| Capability | DaVinci Resolve Studio | Kdenlive (`.kdenlive`) | Shotcut (`.mlt`) | Adobe Premiere Pro (FCP7 `.xml`) | CapCut Desktop (*experimental*) |
 |---|---|---|---|---|---|
 | **Workflow** | Claude Code skills (live API) | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI | `kurgu_makinesi.py` CLI (see [CapCut limitations](#capcut-limitations)) |
 | **AI transcription & auto cut planning** | Yes (Resolve Studio AI) | Cut plan JSON | Cut plan JSON | Cut plan JSON | Cut plan JSON |
@@ -23,7 +23,7 @@ Video editing automation for [Gelecek Bilimde](https://www.youtube.com/@GelecekB
 | **Per-Chapter Projects & Freeze/Unfreeze** | Yes (`episode.json`) | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` | `--chapters`, `freeze`/`unfreeze` |
 | **Vertical Shorts (`1080×1920`, Crop, Captions)** | Yes (`cutting-shorts`) | 9:16 profile + `qtblend` crop + `.srt` | 9:16 profile + `affine` crop + `.srt` | 9:16 sequence + Basic Motion crop + `.srt` | 9:16 canvas + `clip` transform + native text track + `.srt` |
 | **Stock Footage & HyperFrames Graphics** | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) | Yes (standalone skills) |
-| **Testing status** | Tested on Linux | **Tested on Linux** (Kdenlive 26.08.3 Flatpak) | **Tested on Linux** (Shotcut 26.11.15 Flatpak) | **Tested on macOS** (recommended over CapCut) | **Tested on macOS** (experimental; no `.xml` export for `read-markers`; v6+ encrypts drafts) |
+| **Testing status** | Tested on GNU/Linux | **Tested on GNU/Linux** (Kdenlive 26.08.3 Flatpak) | Tested on GNU/Linux (Shotcut 26.11.15 Flatpak) | Tested on macOS (recommended over CapCut) | Tested on macOS (experimental; no `.xml` export for `read-markers`; v6+ encrypts drafts) |
 
 ## The skills
 
@@ -62,7 +62,7 @@ The skills are built for Turkish teleprompter shoots at 25 fps, with scripts wri
 | DaVinci Resolve Studio, Kdenlive, Shotcut, Adobe Premiere Pro, or CapCut | opening and editing timelines/projects |
 
 ### Operating system
-Developed and tested on GNU/Linux. The multi-editor CLI (`kurgu_makinesi.py`) has also been tested on **macOS** with Adobe Premiere Pro and CapCut Desktop. `rv.sh` knows Resolve's default paths on macOS, though Resolve skills on macOS and all workflows on Windows remain untested.
+Developed and tested on **GNU/Linux**. The multi-editor CLI (`kurgu_makinesi.py`) has also been tested on **macOS** with Adobe Premiere Pro and CapCut Desktop. `rv.sh` knows Resolve's default paths on macOS, though Resolve skills on macOS and all workflows on Windows remain untested.
 
 ## Setup
 
